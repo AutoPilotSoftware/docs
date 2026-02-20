@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title | default: site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <meta property="og:title" content="{{ page.title | default: site.title }}">
+    <meta property="og:description" content="{{ page.description | default: site.description }}">
+    <meta property="og:type" content="article">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --fg: #24292f;
+            --heading: #1b1f24;
+            --link: #0969da;
+            --border: #d0d7de;
+            --code-bg: #f6f8fa;
+            --table-border: #d0d7de;
+            --accent: #0969da;
+            --blockquote-bg: #f6f8fa;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.7;
+            padding: 2rem 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1, h2, h3, h4 { color: var(--heading); margin-top: 2rem; margin-bottom: 0.75rem; }
+        h1 { font-size: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        h2 { font-size: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+        h3 { font-size: 1.25rem; }
+        a { color: var(--link); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        p { margin-bottom: 1rem; }
+        ul, ol { margin-bottom: 1rem; padding-left: 2rem; }
+        li { margin-bottom: 0.3rem; }
+        code {
+            background: var(--code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+        }
+        pre code { background: none; padding: 0; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+        th, td {
+            border: 1px solid var(--table-border);
+            padding: 0.6rem 0.8rem;
+            text-align: left;
+        }
+        th { background: var(--code-bg); color: var(--heading); font-weight: 600; }
+        blockquote {
+            border-left: 4px solid var(--accent);
+            padding: 0.5rem 1rem;
+            margin-bottom: 1rem;
+            background: var(--blockquote-bg);
+            border-radius: 0 4px 4px 0;
+        }
+        hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+        strong { color: var(--heading); }
+        .mermaid { margin: 1.5rem 0; text-align: center; }
+        .nav { margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+        .nav a { margin-right: 1.5rem; font-weight: 500; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/mexc-autopilot' | relative_url }}">MEXC</a>
+        <a href="{{ '/bitget-autopilot' | relative_url }}">Bitget</a>
+        <a href="{{ '/faq' | relative_url }}">FAQ</a>
+    </div>
+
+    {{ content }}
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default'
+        });
+    </script>
+</body>
+</html>
