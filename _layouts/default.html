@@ -108,14 +108,19 @@
             const path = window.location.pathname;
             const base = '/docs';
             const isEn = path.startsWith(base + '/en/') || path === base + '/en';
+            const isUa = path.startsWith(base + '/ua/') || path === base + '/ua';
             // Build corresponding page path
-            const pagePart = isEn
-                ? path.replace(base + '/en', '') || '/'
-                : path.replace(base, '') || '/';
+            var pagePart;
+            if (isEn) pagePart = path.replace(base + '/en', '') || '/';
+            else if (isUa) pagePart = path.replace(base + '/ua', '') || '/';
+            else pagePart = path.replace(base, '') || '/';
             const ruHref = base + pagePart;
             const enHref = base + '/en' + pagePart;
+            const uaHref = base + '/ua' + pagePart;
+            const isRu = !isEn && !isUa;
             sw.innerHTML =
-                '<a href="' + ruHref + '" class="' + (isEn ? '' : 'active') + '">RU</a>' +
+                '<a href="' + ruHref + '" class="' + (isRu ? 'active' : '') + '">RU</a>' +
+                '<a href="' + uaHref + '" class="' + (isUa ? 'active' : '') + '">UA</a>' +
                 '<a href="' + enHref + '" class="' + (isEn ? 'active' : '') + '">EN</a>';
         })();
     </script>
