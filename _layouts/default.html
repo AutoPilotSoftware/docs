@@ -80,8 +80,13 @@
         hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
         strong { color: var(--heading); }
         .mermaid { margin: 1.5rem 0; text-align: center; }
-        .nav { margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+        .nav { margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; flex-wrap: wrap; }
         .nav a { margin-right: 1.5rem; font-weight: 500; }
+        .lang-switch { margin-left: auto; display: flex; gap: 0; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; font-size: 0.85rem; }
+        .lang-switch a { margin: 0; padding: 0.3rem 0.6rem; font-weight: 600; color: var(--fg); border-right: 1px solid var(--border); }
+        .lang-switch a:last-child { border-right: none; }
+        .lang-switch a:hover { background: var(--code-bg); text-decoration: none; }
+        .lang-switch a.active { background: var(--accent); color: #fff; }
     </style>
 </head>
 <body>
@@ -90,10 +95,30 @@
         <a href="{{ '/mexc-autopilot' | relative_url }}">MEXC</a>
         <a href="{{ '/bitget-autopilot' | relative_url }}">Bitget</a>
         <a href="{{ '/faq' | relative_url }}">FAQ</a>
+        <div class="lang-switch" id="langSwitch"></div>
     </div>
 
     {{ content }}
 
+    <script>
+        // Language switcher: RU pages at /docs/page, EN pages at /docs/en/page
+        (function() {
+            const sw = document.getElementById('langSwitch');
+            if (!sw) return;
+            const path = window.location.pathname;
+            const base = '/docs';
+            const isEn = path.startsWith(base + '/en/') || path === base + '/en';
+            // Build corresponding page path
+            const pagePart = isEn
+                ? path.replace(base + '/en', '') || '/'
+                : path.replace(base, '') || '/';
+            const ruHref = base + pagePart;
+            const enHref = base + '/en' + pagePart;
+            sw.innerHTML =
+                '<a href="' + ruHref + '" class="' + (isEn ? '' : 'active') + '">RU</a>' +
+                '<a href="' + enHref + '" class="' + (isEn ? 'active' : '') + '">EN</a>';
+        })();
+    </script>
     <script type="module">
         // Convert Jekyll's <pre><code class="language-mermaid"> to <div class="mermaid">
         document.querySelectorAll('pre > code.language-mermaid').forEach(code => {
