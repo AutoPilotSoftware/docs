@@ -19,6 +19,7 @@ export default defineConfig({
 			},
 			sidebar: [
 				{ label: 'FAQ', slug: 'faq' },
+				{ label: 'NVS Upload FAQ', slug: 'nvs-faq' },
 				{ label: 'MEXC AutoPilot', slug: 'mexc-autopilot' },
 				{ label: 'Bitget AutoPilot', slug: 'bitget-autopilot' },
 			],
