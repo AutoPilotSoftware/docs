@@ -49,6 +49,28 @@ You purchased accounts in **NVS Shop** and received a link. Below is how to uplo
 
 ---
 
+## How to Get Cookies via Cookie Editor
+
+> No Anti-Detect browser? Export cookies directly from your regular browser using the **Cookie Editor** extension.
+
+[Cookie Editor](https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm) lets you transfer accounts between browsers without logging in again. Useful for:
+
+- **Sharing access** — give access to an account without sharing the password
+- **Bypassing blocks** — Gmail, Discord and other services often block logins from new devices. Cookies transfer the session without re-authentication
+- **Multiple devices** — quickly switch between browsers
+
+**Step 1.** Install [Cookie Editor for Chrome](https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm)
+
+**Step 2.** Open the site (e.g. Bybit) in the browser where you're logged in → click the Cookie Editor icon → **Export → JSON**. Cookies are copied to clipboard.
+
+**Step 3.** Paste the copied cookies into a text file and save as `.json` or `.txt`. Send this file to the bot as a document 📎.
+
+> **Important:**
+> - Use the same IP address or proxy so the service doesn't suspect foul play
+> - Cookies have an expiration — if the session expires, you'll need to log in again
+
+---
+
 ## Which Method to Choose?
 
 | Method | When to Use | Difficulty |
@@ -229,10 +251,12 @@ After validation, you see a summary:
 
 | Problem | What You Did | Fix |
 |-|-|-|
-| Wrong file | Sent a screenshot, PDF, or text file | Send the `.json` file from your provider |
-| Pasted text | Pasted cookie text or JWT token | Use 📎 to send as document |
-| Empty file | File has no content | Get a fresh file from provider |
+| Wrong file | Sent a screenshot, PDF, or text file | Save cookies to a `.json` or `.txt` file and send it |
+| Pasted text | Pasted cookie text or JWT token | Paste cookies into a `.json` / `.txt` file, send as document via 📎 |
+| Empty file | File has no content | Re-export cookies using Cookie Editor or your Anti-Detect browser |
 | BOM encoding | Invisible characters at start | Re-save as UTF-8 without BOM |
+
+> **If you copied cookies to clipboard** (e.g. via Cookie Editor) — paste them into a text file, save as `.json` or `.txt`, and send to the bot as a document 📎.
 
 ---
 
@@ -301,7 +325,7 @@ Export them using the **Cookie Editor** or **Edit My Cookie** browser extension,
 
 #### Can I send cookies as text?
 
-**No.** Only `.json` files via 📎.
+**No.** Paste cookies into a `.json` or `.txt` file and send as a document via 📎.
 
 #### What if some accounts fail?
 
