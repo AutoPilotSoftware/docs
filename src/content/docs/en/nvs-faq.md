@@ -3,77 +3,58 @@ title: "NVS Upload — FAQ"
 description: "Step-by-step guide for uploading accounts to AutoPilot KYC bot after purchasing from NVS Shop"
 ---
 
-# 📤 NVS Upload — FAQ
+# NVS Upload — FAQ
 
-You purchased accounts in **NVS Shop** and received a link. Now you need to upload accounts to the bot so that KYC verification can start.
-
-**This page explains every step, every button, and every error you might see.**
+You purchased accounts in **NVS Shop** and received a link. Below is how to upload accounts to the bot.
 
 ---
 
-**Contents:**
+## Quick Start: AdsPower (recommended)
 
-1. [🔗 How to Activate Your Link](#1--how-to-activate-your-link)
-2. [📋 Main Menu — What the Buttons Do](#2--main-menu--what-the-buttons-do)
-3. [📤 Upload Methods — Which One to Choose](#3--upload-methods--which-one-to-choose)
-4. [📄 Method 1: AdsPower TXT File](#4--method-1-adspower-txt-file)
-5. [📡 Method 2: Manual (Proxies + Cookies)](#5--method-2-manual-proxies--cookies)
-   - [5.1 Step 1 — Sending Proxies](#51-step-1--sending-proxies)
-   - [5.2 Step 2 — Sending Cookie Files](#52-step-2--sending-cookie-files)
-6. [✅ Confirmation and Order Creation](#6--confirmation-and-order-creation)
-7. [🚨 Common Errors and How to Fix Them](#7--common-errors-and-how-to-fix-them)
-8. [❓ Frequently Asked Questions](#8--frequently-asked-questions)
+> Using **AdsPower**? Export your profiles as TXT and send to the bot — this is the easiest way.
 
----
+**Step 1.** Select the profiles you need, click **Export** and choose **TXT** format.
 
-### 1. 🔗 How to Activate Your Link
+![AdsPower export — select profiles and Export button](../../../assets/nvs/ads-export-1.png)
 
-After paying in NVS Shop, you receive a link like this:
+**Step 2.** In the export settings, make sure to enable **User Agent**.
 
-```
-https://t.me/AutoPilotKYC_bot?start=nvs_abc123def456
-```
+![Export settings — TXT format](../../../assets/nvs/ads-export-2.png)
 
-**What to do:**
-1. Click the link — Telegram opens the bot
-2. Press **Start** (or the link opens automatically)
-3. You see a message: **"✅ Welcome to AutoPilot KYC!"**
+![Enable User Agent](../../../assets/nvs/ads-export-3.png)
 
-**That's it — your order is activated.**
+**Step 3.** Open the bot [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot), press **Upload Accounts** → **AdsPower TXT** → send the file as a document 📎.
 
-The bot shows you:
-- 🌍 **Country** — the country you selected
-- 💱 **Exchange** — Bybit or MEXC
-- 📦 **Accounts** — how many accounts you purchased
-
-> ⚠️ **"Invalid or expired link"** — The link is wrong or expired. Go back to NVS Shop and get a new one.
->
-> ⚠️ **"This link has expired"** — Too much time has passed. Request a new link in NVS Shop.
+> **Done!** The bot will validate accounts and offer to create an order.
 
 ---
 
-### 2. 📋 Main Menu — What the Buttons Do
+## Quick Start: Manual (proxies + cookies)
 
-After activation, you see the NVS menu with these buttons:
+> No AdsPower? Upload proxies and cookies separately.
 
-| Button | What It Does |
-|-|-|
-| 📤 **Upload Accounts** | Start uploading your accounts (this is the main action) |
-| 📊 **My Orders** | Check status of your orders |
-| 🔙 **Back** | Return to the previous screen |
+**Step 1.** Open the bot → **Upload Accounts** → **Manual**. Paste your proxy list into the chat (as text, one per line):
 
-**You always want to press "Upload Accounts" to begin.**
+![Sending proxies to the bot](../../../assets/nvs/manual-1.png)
+
+**Step 2.** Extract the secure token from the accounts. Video tutorial:
+
+[![Video: token extraction](../../../assets/nvs/manual-2.png)](https://www.youtube.com/watch?v=AYrxVrHdroY)
+
+> [Watch video on YouTube](https://www.youtube.com/watch?v=AYrxVrHdroY)
+
+**Step 3.** Send `.json` cookie files as documents 📎 → bot validates → press **Confirm**.
+
+> **Done!** Order created, sellers will start KYC verification.
 
 ---
 
-### 3. 📤 Upload Methods — Which One to Choose
-
-The bot gives you two upload methods:
+## Which Method to Choose?
 
 | Method | When to Use | Difficulty |
 |-|-|-|
-| 📄 **AdsPower TXT** | You use AdsPower browser and exported a .txt file | Easy |
-| 📡 **Manual** | You have proxies + cookie .json files separately | Medium |
+| **AdsPower TXT** | You use AdsPower | Easy |
+| **Manual** | Proxies and cookies separately | Medium |
 
 ```mermaid
 flowchart TD
@@ -91,32 +72,70 @@ flowchart TD
 
 ---
 
-### 4. 📄 Method 1: AdsPower TXT File
+## What Happens After Upload?
 
-**What is it?** AdsPower is a browser manager. It can export all your accounts into a single .txt file.
+1. The bot validates each account (proxy, cookies, exchange access)
+2. You see the result: `✅ Passed: 3 | ❌ Failed: 1`
+3. Press **Confirm** → order is created
+4. Sellers receive the order and start KYC verification
+5. Check status via the **My Orders** button
 
-**How to export from AdsPower:**
+> Typical time: **a few minutes to 1 day**, depending on country and seller availability.
 
+---
+
+## Detailed Guide
+
+Below is a detailed description of each step for reference.
+
+---
+
+### Activating Your Link
+
+After paying in NVS Shop, you receive a link like:
+
+```
+https://t.me/AutoPilotKYC_bot?start=nvs_abc123def456
+```
+
+**What to do:**
+1. Click the link — Telegram opens the bot
+2. Press **Start** (or the link opens automatically)
+3. You see a message: **"✅ Welcome to AutoPilot KYC!"**
+
+The bot shows you:
+- 🌍 **Country** — the country you selected
+- 💱 **Exchange** — Bybit or MEXC
+- 📦 **Accounts** — how many accounts you purchased
+
+> ⚠️ **"Invalid or expired link"** — Go back to NVS Shop and get a new one.
+
+---
+
+### Main Menu Buttons
+
+| Button | What It Does |
+|-|-|
+| 📤 **Upload Accounts** | Start uploading (main action) |
+| 📊 **My Orders** | Check order status |
+| 🔙 **Back** | Return to previous screen |
+
+---
+
+### AdsPower TXT — Details
+
+**How to export:**
 1. Open AdsPower
-2. Select the profiles you want to export
+2. Select the profiles you need
 3. Click **Export** → choose **TXT format**
-4. Save the file to your computer
+4. Make sure to enable **User Agent**
+5. Save the file
 
-📖 [Detailed AdsPower export guide](https://teletype.in/@buykyc_bot/ADS_Pilot_export)
+**How to send:**
+1. In the bot, press **Upload Accounts** → **AdsPower TXT**
+2. Send the `.txt` file as a **document** (via 📎)
 
-**How to send to the bot:**
-
-1. Press **Upload Accounts** in the bot
-2. Choose **📄 AdsPower TXT**
-3. Send the `.txt` file as a **document** (using the paperclip 📎 icon)
-
-> ⚠️ **IMPORTANT:** Send as a **document**, not as a photo or text message. Use the paperclip icon 📎 in Telegram.
-
-**What happens next:**
-- The bot parses the file and finds accounts
-- It validates each account (checks proxy, cookies, exchange access)
-- You see progress: `✅ Passed: 3 | ❌ Failed: 1`
-- If at least one account passes, you can confirm
+> ⚠️ Send as a **document**, not as a photo or text message.
 
 **File format example:**
 ```
@@ -136,32 +155,19 @@ acc_id=349
 
 ---
 
-### 5. 📡 Method 2: Manual (Proxies + Cookies)
+### Manual — Details
 
-If you don't use AdsPower, you upload proxies and cookies separately. This happens in **two steps**.
+#### Step 1: Proxies
 
----
+Paste proxy text directly into the chat (regular message). Number of lines = number of accounts.
 
-#### 5.1 Step 1 — Sending Proxies
-
-**What is a proxy?** A proxy is a server address that hides your real location. Your proxy provider gave you text like `123.45.67.89:8080:mylogin:mypassword`.
-
-**What to do:**
-1. Press **Upload Accounts** → choose **📡 Manual**
-2. The bot asks for proxies
-3. **Paste the proxy text** directly into the chat (as a regular text message, not a file!)
-
-**How many proxies?** Exactly as many as accounts you purchased. If you bought 3 accounts — send 3 proxy lines.
-
-**Supported formats (all work):**
+**Supported formats:**
 ```
 123.45.67.89:8080:mylogin:mypassword
 mylogin:mypassword@123.45.67.89:8080
 http://mylogin:mypassword@123.45.67.89:8080
 socks5://mylogin:mypassword@123.45.67.89:8080
 ```
-
-> 💡 **Just copy-paste what your proxy provider gave you.** Any common format works.
 
 **Example for 3 accounts:**
 ```
@@ -170,34 +176,15 @@ socks5://mylogin:mypassword@123.45.67.89:8080
 185.123.45.3:8080:user3:pass3
 ```
 
-> ⚠️ **"Could not read your proxies"** — Nothing looked like a proxy. Check for extra spaces, incorrect format, or missing parts.
->
-> ⚠️ **"Wrong number of proxies"** — You sent too many or too few. Each account needs exactly one proxy.
+After sending, the bot tests each proxy: working ✅, failed ❌.
 
-**After sending proxies:**
-- The bot tests each proxy (connects to it)
-- Working proxies are kept ✅
-- Failed proxies are shown ❌
-- If all proxies fail — you need to get new ones from your provider
+#### Step 2: Cookie Files
 
----
+Send `.json` files as **documents** (via 📎). Number of files = number of working proxies.
 
-#### 5.2 Step 2 — Sending Cookie Files
+> ⚠️ Do NOT paste cookie content as text — send files via 📎.
 
-**What are cookies?** Cookies are small files that keep you logged into an account. They are `.json` files your account provider gave you.
-
-**What to do:**
-1. After proxies pass, the bot asks for cookie files
-2. Send `.json` files as **documents** (using the paperclip 📎 icon)
-3. You can send them one at a time or all at once
-
-> ⚠️ **IMPORTANT:** Use the **paperclip 📎 icon** to send files. Do NOT paste cookie content as text — it won't work.
-
-**How many cookie files?** The same number as working proxies. If 3 proxies passed — send 3 cookie files.
-
-**Cookie file format:**
-
-Each file is a `.json` file that looks like this inside:
+**File format:**
 ```json
 [
   {"name": "token", "value": "abc123", "domain": ".bybit.com"},
@@ -205,7 +192,7 @@ Each file is a `.json` file that looks like this inside:
 ]
 ```
 
-You can also send a **single file with all cookies** as a nested array:
+You can send a **single file with all cookies** as a nested array:
 ```json
 [
   [{"name": "token", "value": "abc123"}],
@@ -213,11 +200,9 @@ You can also send a **single file with all cookies** as a nested array:
 ]
 ```
 
-> 💡 **You don't need to open or edit cookie files.** Just send them as they are.
-
 ---
 
-### 6. ✅ Confirmation and Order Creation
+### Order Confirmation
 
 After validation, you see a summary:
 
@@ -233,136 +218,111 @@ After validation, you see a summary:
 ❓ Create order with 3 account(s)?
 ```
 
-- Press **✅ Confirm** to create the order
-- Press **❌ Cancel** to go back without creating
-
-**After confirming:**
-- 📦 Order is created
-- 👥 Sellers are notified and will start working on your KYC
-- ⏳ You can check status with **My Orders**
+- **✅ Confirm** — create the order
+- **❌ Cancel** — go back without creating
 
 ---
 
-### 7. 🚨 Common Errors and How to Fix Them
+## Common Errors and How to Fix Them
 
 #### ❌ "This file is not valid JSON"
 
-**What happened:** The file you sent is not a proper `.json` cookie file.
-
-**Common causes:**
 | Problem | What You Did | Fix |
 |-|-|-|
 | Wrong file | Sent a screenshot, PDF, or text file | Send the `.json` file from your provider |
-| Pasted text | Pasted cookie text or JWT token as a message | Use 📎 to send the file as document |
-| Empty file | File has no content | Get a fresh cookie file from provider |
-| BOM encoding | File has invisible characters at start | Re-save the file as UTF-8 without BOM |
+| Pasted text | Pasted cookie text or JWT token | Use 📎 to send as document |
+| Empty file | File has no content | Get a fresh file from provider |
+| BOM encoding | Invisible characters at start | Re-save as UTF-8 without BOM |
 
 ---
 
 #### ❌ "Could not read your proxies"
 
-**What happened:** The text you sent doesn't look like proxy addresses.
-
-**Fix:**
-- Make sure each line has: `IP:PORT:USERNAME:PASSWORD`
-- Don't add extra text or descriptions
-- Just paste the proxy lines, nothing else
+- Each line: `IP:PORT:USERNAME:PASSWORD`
+- Don't add extra text
+- Just paste the proxy lines
 
 ---
 
 #### ❌ "All proxies failed the check"
 
-**What happened:** The bot tried to connect through each proxy and all failed.
-
-**Common causes:**
 - Proxies expired — ask your provider for new ones
-- Wrong credentials (login/password) — double-check with provider
-- Proxy server is down — try again later or contact provider
+- Wrong credentials — double-check login/password
+- Server is down — try again later
 
 ---
 
 #### ❌ "All accounts failed validation"
 
-**What happened:** Accounts were assembled (proxy + cookies) but none passed the exchange check.
+The bot shows specific reasons:
+- `No KYC provider` — account not set up for KYC
+- `Session expired` — cookies are old
+- `Proxy blocked` — exchange blocks this IP
+- `Country mismatch` — proxy country doesn't match order
 
-**The bot shows specific reasons, for example:**
-- `No KYC provider` — The exchange account was not set up properly
-- `Session expired` — Cookies are old, account is logged out
-- `Proxy blocked` — The exchange blocks this proxy IP
-- `Country mismatch` — Proxy country doesn't match the ordered country
-
-**Fix:** Get fresh cookies and working proxies from your provider. The accounts must be logged in and accessible through the proxy.
+**Fix:** fresh cookies + working proxies from your provider.
 
 ---
 
 #### ❌ "Wrong number of proxies"
 
-**What happened:** You sent more or fewer proxy lines than accounts purchased.
-
-**Fix:** Count your proxy lines. If you bought 5 accounts, send exactly 5 proxy lines.
+Number of lines must match the number of purchased accounts.
 
 ---
 
 #### ❌ "Too many cookie files"
 
-**What happened:** You sent more cookie files than there are proxies.
-
-**Fix:** Each proxy needs exactly one cookie file. If you have 3 proxies, send 3 cookie files.
+Each proxy needs exactly one cookie file.
 
 ---
 
 #### ❌ "Invalid or expired link"
 
-**What happened:** The activation link doesn't work.
-
-**Fix:** Go back to NVS Shop and request a new link. Links expire after a certain time.
+Go back to NVS Shop and request a new link.
 
 ---
 
-### 8. ❓ Frequently Asked Questions
+## Frequently Asked Questions
 
 #### What files do I need?
 
 | Method | What You Need |
 |-|-|
-| AdsPower TXT | One `.txt` file exported from AdsPower |
-| Manual | Proxy text (one per line) + `.json` cookie files (one per account) |
+| AdsPower TXT | One `.txt` file from AdsPower |
+| Manual | Proxy text + `.json` cookie files |
 
 #### Where do I get proxies?
 
-From your proxy provider (the company/person that sells you proxy access). They give you text like `IP:PORT:USER:PASS`.
+From your proxy provider. They give you text like `IP:PORT:USER:PASS`.
 
 #### Where do I get cookie files?
 
-From your account provider (the company/person that provides exchange accounts). They give you `.json` files.
+From your account provider. They give you `.json` files.
 
 #### Can I send cookies as text?
 
-**No.** You must send `.json` files as documents using the 📎 paperclip icon. Pasting cookie text will not work.
+**No.** Only `.json` files via 📎.
 
-#### What if some accounts fail validation?
+#### What if some accounts fail?
 
-You can still create an order with the accounts that passed. Only failed accounts are excluded.
+You can still create an order with the ones that passed. Failed accounts are excluded.
 
 #### Can I upload more accounts later?
 
-Yes! If your order allows more accounts, press **Upload Accounts** again to add more.
+Yes! Press **Upload Accounts** again.
 
 #### What does "No KYC provider" mean?
 
-The exchange account doesn't have a KYC verification session. This usually means:
-- The account wasn't set up for KYC
-- The cookies are from a different account
-- Contact your account provider
+Account isn't set up for KYC, or cookies are from a different account. Contact your provider.
 
 #### How long until KYC is done?
 
-After your order is created, sellers receive it and start working. Typical time: **a few hours to 1-2 days**, depending on seller availability and country.
+**A few minutes to 1 day**, depending on country and seller availability.
 
 #### Something went wrong — who do I contact?
 
-Contact support through NVS Shop or the bot admin. Describe your problem and include screenshots of any error messages.
+Contact support through NVS Shop or the bot admin. Include screenshots of errors.
 
 ---
 
-> 💡 **Summary:** Activate link → Upload Accounts → Choose method → Send files → Confirm → Done! Sellers will handle the rest.
+> **Summary:** Activate link → Upload Accounts → Choose method → Send files → Confirm → Done!
