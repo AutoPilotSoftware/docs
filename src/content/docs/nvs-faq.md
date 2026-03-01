@@ -52,6 +52,8 @@ description: "Пошаговая инструкция по загрузке ак
 ## Как получить куки через Cookie Editor
 
 > Нет Anti-Detect браузера? Экспортируйте куки прямо из обычного браузера с помощью расширения **Cookie Editor**.
+>
+> [Смотреть видео-инструкцию на YouTube](https://youtu.be/c9ZX-KKaoFQ)
 
 [Cookie Editor](https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm) позволяет переносить аккаунты между браузерами без повторного входа. Это полезно для:
 

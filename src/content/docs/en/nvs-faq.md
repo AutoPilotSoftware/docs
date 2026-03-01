@@ -52,6 +52,8 @@ You purchased accounts in **NVS Shop** and received a link. Below is how to uplo
 ## How to Get Cookies via Cookie Editor
 
 > No Anti-Detect browser? Export cookies directly from your regular browser using the **Cookie Editor** extension.
+>
+> [Watch video tutorial on YouTube](https://youtu.be/c9ZX-KKaoFQ)
 
 [Cookie Editor](https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm) lets you transfer accounts between browsers without logging in again. Useful for:
 
