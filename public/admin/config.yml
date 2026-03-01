@@ -1,0 +1,39 @@
+backend:
+  name: github
+  repo: AutoPilotSoftware/docs
+  branch: main
+
+site_url: https://autopilotsoftware.github.io/docs
+display_url: https://autopilotsoftware.github.io/docs
+
+media_folder: src/assets/media
+public_folder: /docs/media
+
+i18n:
+  structure: multiple_folders
+  locales: [ru, en, ua]
+  default_locale: ru
+  omit_default_locale_from_file_path: true
+
+collections:
+  - name: docs
+    label: Documentation
+    folder: src/content/docs
+    extension: md
+    format: yaml-frontmatter
+    create: false
+    delete: false
+    i18n: true
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        i18n: true
+      - label: Description
+        name: description
+        widget: string
+        i18n: true
+      - label: Body
+        name: body
+        widget: markdown
+        i18n: true
