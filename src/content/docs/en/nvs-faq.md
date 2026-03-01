@@ -9,7 +9,27 @@ You purchased accounts in **NVS Shop** and received a link. Below is how to uplo
 
 ---
 
-## Quick Start: AdsPower (recommended)
+## Quick Start: Manual (proxies + cookies)
+
+> Upload proxies and cookies separately.
+
+**Step 1.** Open the bot → **Upload Accounts** → **Manual**. Paste your proxy list into the chat (as text, one per line):
+
+![Sending proxies to the bot](../../../assets/nvs/manual-1.png)
+
+**Step 2.** Extract the secure token from the accounts. Video tutorial:
+
+[![Video: token extraction](../../../assets/nvs/manual-2.png)](https://www.youtube.com/watch?v=AYrxVrHdroY)
+
+> [Watch video on YouTube](https://www.youtube.com/watch?v=AYrxVrHdroY)
+
+**Step 3.** Send `.json` cookie files as documents 📎 → bot validates → press **Confirm**.
+
+> **Done!** Order created, sellers will start KYC verification.
+
+---
+
+## Quick Start: AdsPower
 
 > Using **AdsPower**? Export your profiles as TXT and send to the bot — this is the easiest way.
 
@@ -26,26 +46,6 @@ You purchased accounts in **NVS Shop** and received a link. Below is how to uplo
 **Step 3.** Open the bot [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot), press **Upload Accounts** → **AdsPower TXT** → send the file as a document 📎.
 
 > **Done!** The bot will validate accounts and offer to create an order.
-
----
-
-## Quick Start: Manual (proxies + cookies)
-
-> No AdsPower? Upload proxies and cookies separately.
-
-**Step 1.** Open the bot → **Upload Accounts** → **Manual**. Paste your proxy list into the chat (as text, one per line):
-
-![Sending proxies to the bot](../../../assets/nvs/manual-1.png)
-
-**Step 2.** Extract the secure token from the accounts. Video tutorial:
-
-[![Video: token extraction](../../../assets/nvs/manual-2.png)](https://www.youtube.com/watch?v=AYrxVrHdroY)
-
-> [Watch video on YouTube](https://www.youtube.com/watch?v=AYrxVrHdroY)
-
-**Step 3.** Send `.json` cookie files as documents 📎 → bot validates → press **Confirm**.
-
-> **Done!** Order created, sellers will start KYC verification.
 
 ---
 
@@ -77,8 +77,8 @@ You purchased accounts in **NVS Shop** and received a link. Below is how to uplo
 
 | Method | When to Use | Difficulty |
 |-|-|-|
-| **AdsPower TXT** | You use AdsPower | Easy |
 | **Manual** | Proxies and cookies separately | Medium |
+| **AdsPower TXT** | You use AdsPower | Easy |
 
 ```mermaid
 flowchart TD
