@@ -17,11 +17,9 @@ You purchased accounts in **NVS Shop** and received a link. Below is how to uplo
 
 ![Sending proxies to the bot](../../../assets/nvs/manual-1.png)
 
-**Step 2.** Extract the secure token from the accounts. Video tutorial:
+**Step 2.** Export cookies from your browser using the [Cookie Editor](https://cookie-editor.com/) extension → **Export → JSON** → save to a `.json` file.
 
-[![Video: token extraction](../../../assets/nvs/manual-2.png)](https://www.youtube.com/watch?v=AYrxVrHdroY)
-
-> [Watch video on YouTube](https://www.youtube.com/watch?v=AYrxVrHdroY)
+> **Bybit only:** you can also extract just the secure token — [video tutorial on YouTube](https://www.youtube.com/watch?v=AYrxVrHdroY)
 
 **Step 3.** Send `.json` cookie files as documents 📎 → bot validates → press **Confirm**.
 
@@ -323,7 +321,7 @@ From your proxy provider. They give you text like `IP:PORT:USER:PASS`.
 
 #### Where do I get cookie files?
 
-Export them using the **Cookie Editor** or **Edit My Cookie** browser extension, or click **Export** in your Anti-Detect browser.
+Export them using the [Cookie Editor](https://cookie-editor.com/) extension (Chrome, Firefox, Edge, Safari), or click **Export** in your Anti-Detect browser.
 
 #### Can I send cookies as text?
 

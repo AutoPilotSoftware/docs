@@ -17,11 +17,9 @@ description: "Пошаговая инструкция по загрузке ак
 
 ![Отправка прокси в бот](../../assets/nvs/manual-1.png)
 
-**Шаг 2.** Извлеките secure-токен из аккаунтов. Видео-инструкция:
+**Шаг 2.** Экспортируйте куки из браузера с помощью расширения [Cookie Editor](https://cookie-editor.com/) → **Export → JSON** → сохраните в `.json` файл.
 
-[![Видео: извлечение токена](../../assets/nvs/manual-2.png)](https://www.youtube.com/watch?v=AYrxVrHdroY)
-
-> [Смотреть видео на YouTube](https://www.youtube.com/watch?v=AYrxVrHdroY)
+> **Только для Bybit:** также можно извлечь только secure-токен — [видео-инструкция на YouTube](https://www.youtube.com/watch?v=AYrxVrHdroY)
 
 **Шаг 3.** Отправьте `.json` файлы куки как документы 📎 → бот проверит → нажмите **Подтвердить**.
 
@@ -323,7 +321,7 @@ socks5://mylogin:mypassword@123.45.67.89:8080
 
 #### Где взять файлы куки?
 
-Экспортируйте через расширение **Cookie Editor** или **Edit My Cookie**, либо в вашем Anti-Detect браузере нажмите **Экспортировать**.
+Экспортируйте через расширение [Cookie Editor](https://cookie-editor.com/) (Chrome, Firefox, Edge, Safari), либо в вашем Anti-Detect браузере нажмите **Экспортировать**.
 
 #### Можно отправить куки текстом?
 
