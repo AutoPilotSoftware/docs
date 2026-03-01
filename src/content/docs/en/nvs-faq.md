@@ -297,7 +297,7 @@ From your proxy provider. They give you text like `IP:PORT:USER:PASS`.
 
 #### Where do I get cookie files?
 
-From your account provider. They give you `.json` files.
+Export them using the **Cookie Editor** or **Edit My Cookie** browser extension, or click **Export** in your Anti-Detect browser.
 
 #### Can I send cookies as text?
 
