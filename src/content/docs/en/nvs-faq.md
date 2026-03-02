@@ -5,7 +5,7 @@ description: "Step-by-step guide for uploading accounts to AutoPilot KYC bot aft
 
 # NVS Upload — FAQ
 
-You purchased accounts in **NVS Shop** and received a link. Below is how to upload accounts to the bot.
+You purchased KYC in **NVS Shop** and received a link. Below is how to upload accounts to the bot.
 
 ---
 
