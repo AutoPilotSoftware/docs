@@ -11,6 +11,16 @@ export default defineConfig({
 			title: 'AutoPilot',
 			logo: { src: './src/assets/auto_pilot_logo.png' },
 			plugins: [starlightClientMermaid()],
+			head: [
+				{
+					tag: 'script',
+					attrs: {
+						defer: true,
+						src: 'https://static.cloudflareinsights.com/beacon.min.js',
+						'data-cf-beacon': '{"token": "d98cb2456dd9448bb66e095a800bb391"}',
+					},
+				},
+			],
 			defaultLocale: 'root',
 			locales: {
 				root: { label: 'Русский', lang: 'ru' },
