@@ -106,6 +106,19 @@ flowchart TD
 
 ---
 
+## Security: Who Has Access to My Accounts?
+
+**Workers (KYC sellers) do not have access to your accounts.** They only receive a unique one-time link to complete the verification. All they can do is pass KYC (verify identity). They cannot:
+
+- Log into your account
+- View your balance or history
+- Make trades or withdraw funds
+- Change account settings
+
+> Your cookies and data remain only within the bot's system and are never shared with workers.
+
+---
+
 ## Detailed Guide
 
 Below is a detailed description of each step for reference.
