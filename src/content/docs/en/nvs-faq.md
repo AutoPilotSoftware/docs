@@ -7,7 +7,7 @@ description: "Step-by-step guide for uploading accounts to AutoPilot KYC bot aft
 
 You purchased KYC in **NVS Shop** and received a link. Below is how to upload accounts to the bot.
 
-> **Video guide:** KYC for Bybit and MEXC without authorization, without sharing links, with re-verification — [watch on YouTube](https://youtu.be/6zhf3ytgfkE)
+> **Video guide:** KYC for Bybit and MEXC without authorization, without sharing links, with re-verification — [watch on YouTube](https://www.youtube.com/watch?v=WwYna2q5AfU)
 
 ---
 
