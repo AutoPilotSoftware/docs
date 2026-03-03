@@ -1,0 +1,529 @@
+---
+title: "Bybit AutoPilot"
+description: "AutoPilot Software — автоматизацiя Bybit: реєстрацiя, торгiвля, виведення коштiв, TokenSplash, Puzzle Hunt"
+---
+
+# AutoPilot Software — Максимальна Автоматизацiя на Bybit
+
+**Пiдтримка AdsPower & Dolphin & Vision**
+**Windows / MacOS / Linux**
+
+---
+
+## Забудьте про ручну роботу: рiшення знайдено
+
+Bybit — одна з провiдних криптовалютних бiрж свiту з можливостями для заробiтку через Airdrop, TokenSplash подiї та спецiальнi iвенти.
+
+Ручне управлiння акаунтами потребує багато часу, зусиль i пов'язане з ризиком помилок. AutoPilot Software перетворює рутину в автоматичний процес. Iнтеграцiя з AdsPower, Dolphin та Vision забезпечує захист цифрових вiдбиткiв та безпечну роботу з багатьма акаунтами.
+
+---
+
+## Як працює AutoPilot
+
+```mermaid
+flowchart LR
+    A["📋 Заповнiть таблицю"] --> B["⚙️ Налаштуйте конфiг"]
+    B --> C["🚀 Запустiть AutoPilot"]
+    C --> D["✅ Результат у таблицi"]
+
+    style A fill:#4CAF50,color:#fff,stroke:none,rx:12
+    style B fill:#2196F3,color:#fff,stroke:none,rx:12
+    style C fill:#FF9800,color:#fff,stroke:none,rx:12
+    style D fill:#9C27B0,color:#fff,stroke:none,rx:12
+```
+
+---
+
+## Основнi переваги
+
+**Економiя часу:**
+Автоматизацiя дозволяє одночасно керувати сотнями акаунтiв
+
+**Зручнiсть у використаннi:**
+Займайтеся своїми справами поки AutoPilot автоматизує дiї у фоновому режимi
+
+**Iнтеграцiя з AdsPower / Dolphin / Vision:**
+Безпечне та анонiмне використання акаунтiв. AutoPilot автоматично запускає та iнтегрується у створену антидетект сесiю браузера з унiкальними вiдбитками
+
+**Паралельна автоматизацiя:**
+Автоматизуйте безлiч акаунтiв одночасно
+
+**Зручна таблиця облiку акаунтiв:**
+Ведiть облiк усiх акаунтiв в однiй Excel таблицi. Можна додавати новi стовпцi, змiнювати порядок для себе — головне не змiнювати назву стовпцiв iз шаблону
+
+**Режими швидкостi:**
+- **FAST** — максимально швидка робота з мiнiмальними затримками
+- **MEDIUM** — середня швидкiсть, iмiтацiя людської поведiнки, Smart Cursor, Human Typing
+- **SLOW** — повiльна швидкiсть, повна iмiтацiя людської поведiнки
+
+**Мультифункцiональнiсть:**
+Налаштуйте будь-якi дiї для кожного акаунта. Наприклад, AutoPilot буде отримувати адресу депозиту для одних акаунтiв, а на iнших — виводити кошти
+
+**Автоматичнi ланцюжки дiй:**
+Обирайте будь-яку дiю — AutoPilot автоматично увiйде в акаунт, якщо потрiбен вхiд. Також сам увiмкне 2FA захист, якщо вона ще не пiдключена
+
+**Автогенерацiя паролiв:**
+При реєстрацiї AutoPilot згенерує надiйний пароль, якщо вiн не вказаний
+
+**Повний продаж активiв:**
+Повне виведення з автоматичною конвертацiєю всiх активiв у USDT
+
+**Логування:**
+Повне логування результатiв у `logs/` та автоматичнi бекапи таблицi у `backup/`
+
+---
+
+## Функцiонал Bybit AutoPilot
+
+```mermaid
+mindmap
+  root((Bybit AutoPilot))
+    Акаунти
+      Реєстрацiя
+      Логiн
+      Перевiрка KYC
+      Пiдключення 2FA
+    Гаманцi
+      Адреса депозиту
+      Whitelist адрес
+      Виведення коштiв
+      Повне виведення
+    Трейдинг
+      Маркет торгiвля
+      Набивання об'єму
+      Мульти-монети
+    Iвенти
+      TokenSplash
+      LaunchPad
+      Puzzle Hunt
+    Утилiти
+      API ключi
+      Пiдрахунок прибутку
+      Перевiрка пошт
+      Продаж активiв
+```
+
+AutoPilot пiдтримує безлiч автоматизованих дiй для Bybit:
+
+- **Реєстрацiя** акаунтiв на Bybit: звичайним методом, за реферальним посиланням
+- **Логiн**: вхiд в акаунт, перевiрка верифiкацiї та балансу
+- **Перевiрка KYC**: перевiрка рiвня верифiкацiї з вiдображенням країни, iменi, документа
+- **Керування 2FA**: пiдключення двофакторної автентифiкацiї
+- **Отримання адреси депозиту** для кожного акаунта
+- **Додавання адрес у whitelist** з пiдтримкою рiзних мереж
+- **Виведення коштiв** з акаунта, включаючи повне виведення з конвертацiєю всiх активiв
+- **Отримання API-ключiв** для торгiвлi
+- **Автоматичний трейдинг**: торгiвля та набивання об'єму у вказаних парах
+- **Продаж усiх активiв**: конвертацiя всiх монет у USDT маркет-ордерами
+- **TokenSplash**: автоматична участь у iвентах з виконанням завдань на депозит
+- **Puzzle Hunt**: автоматичне проходження puzzle-завдань
+- Автоматичне розв'язання капчi, отримання кодiв верифiкацiї та багато iншого
+
+---
+
+## Повний перелiк дiй (ACTION)
+
+### Загальна схема роботи дiй
+
+```mermaid
+flowchart TD
+    START["🎯 Обираєте ACTION у таблицi"] --> AUTO{"AutoPilot запущено?"}
+    AUTO -->|Так| LOGIN{"Потрiбен вхiд?"}
+    LOGIN -->|Так| DO_LOGIN["🔑 Автоматичний логiн"]
+    LOGIN -->|Нi| TFA{"Потрiбен 2FA?"}
+    DO_LOGIN --> TFA
+    TFA -->|Не пiдключено| DO_2FA["🔐 Автопiдключення 2FA"]
+    TFA -->|Пiдключено| ACTION["⚡ Виконання дiї"]
+    DO_2FA --> ACTION
+    ACTION --> RESULT["📊 Результат записано в таблицю"]
+
+    style START fill:#FF9800,color:#fff,stroke:none,rx:10
+    style DO_LOGIN fill:#2196F3,color:#fff,stroke:none,rx:10
+    style DO_2FA fill:#9C27B0,color:#fff,stroke:none,rx:10
+    style ACTION fill:#4CAF50,color:#fff,stroke:none,rx:10
+    style RESULT fill:#607D8B,color:#fff,stroke:none,rx:10
+```
+
+> Усi дiї, крiм реєстрацiї, автоматично увiйдуть в акаунт, якщо потрiбно. Дiї whitelist та withdraw автоматично пiдключать 2FA, якщо не встановлено.
+
+---
+
+### `register` — Реєстрацiя акаунта на Bybit
+
+Реєстрацiя акаунта з автоматичним розв'язанням капчi та пiдтвердженням email
+
+```mermaid
+flowchart LR
+    A["Вiдкриття сторiнки"] --> B["Введення email та пароля"]
+    B --> C["Розв'язання капчi"]
+    C --> D["Пiдтвердження Email"]
+    D --> E["✅ Успiх"]
+
+    style E fill:#4CAF50,color:#fff,stroke:none,rx:8
+```
+
+| Параметр | Стовпець | Опис |
+|----------|----------|------|
+| **Потребує** | `[EMAIL] mail_provider` | Поштовий сервiс (yahoo, rambler, icloud, outlook, gmail...) |
+| **Потребує** | `[PROFILE] mail` | Адреса поштової скриньки |
+| **Потребує** | `[EMAIL] mail_password` | Пароль пошти / IMAP пароль |
+| Опцiонально | `[PROFILE] bybit_password` | Пароль вiд акаунта (AutoPilot генерує, якщо порожнiй) |
+| Опцiонально | `[REG] referral_code` | Реферальний код |
+| **Оновлює** | `[REG] is_registered` | Статус реєстрацiї (1 — зареєстрований) |
+| **Оновлює** | `[RESULT] status` | `[REGISTER] SUCCESS` або опис помилки |
+
+> Для старту реєстрацiї достатньо заповнити 4 стовпцi: profile_id, mail_provider, mail, mail_password
+
+---
+
+### `login` — Логiн в акаунт
+
+Вхiд в акаунт, перевiрка верифiкацiї та балансу
+
+| Параметр | Стовпець | Опис |
+|----------|----------|------|
+| **Потребує** | `[REG] is_registered` | 1 (зареєстрований) |
+| **Потребує** | `[PROFILE] mail` | Адреса пошти |
+| **Потребує** | `[PROFILE] bybit_password` | Пароль вiд акаунта |
+| Опцiонально | `[2FA] totp_secret_code` | Секретний код 2FA |
+| **Оновлює** | `[KYC] kyc_status` | Рiвень верифiкацiї |
+| **Оновлює** | `[BALANCE] account_balance` | Баланс акаунта в USDT |
+| **Оновлює** | `[RESULT] status` | `[LOGIN] SUCCESS` |
+
+---
+
+### `2fa` — Пiдключення 2FA
+
+Автоматичне встановлення Google Authenticator на акаунтi
+
+```mermaid
+flowchart LR
+    A["Налаштування безпеки"] --> B["Отримання QR коду"]
+    B --> C["Витягування секрету"]
+    C --> D["Генерацiя TOTP"]
+    D --> E["Пiдтвердження кодами"]
+    E --> F["✅ 2FA пiдключено"]
+
+    style F fill:#4CAF50,color:#fff,stroke:none,rx:8
+```
+
+| Параметр | Стовпець | Опис |
+|----------|----------|------|
+| **Оновлює** | `[2FA] totp_secret_code` | Секретний код 2FA (зберiгається автоматично) |
+| **Оновлює** | `[RESULT] status` | `[2FA] SUCCESS` |
+
+---
+
+### `deposit` — Отримання адреси депозиту
+
+Отримати адресу депозиту для поповнення акаунта
+
+| Параметр | Стовпець | Опис |
+|----------|----------|------|
+| **Потребує** | `[DEPOSIT] deposit_coin` | Монета для депозиту (наприклад: `USDT`) |
+| **Потребує** | `[DEPOSIT] deposit_chain` | Мережа (наприклад: `TRC20`, `Aptos`, `Mantle`) |
+| **Оновлює** | `[DEPOSIT] deposit_address` | Адреса депозиту |
+| **Оновлює** | `[RESULT] status` | `[DEPOSIT] SUCCESS` |
+
+---
+
+### `whitelist` — Додавання адреси в Whitelist
+
+Увiмкнення whitelist режиму та додавання адреси для виведення
+
+```mermaid
+flowchart LR
+    A["Увiмкнення Whitelist"] --> B["Пiдтвердження 2FA"]
+    B --> C["Додавання адреси"]
+    C --> D["Вибiр мережi та memo"]
+    D --> E["✅ Адресу додано"]
+
+    style E fill:#4CAF50,color:#fff,stroke:none,rx:8
+```
+
+| Параметр | Стовпець | Опис |
+|----------|----------|------|
+| **Потребує** | `[WHITELIST] whitelist_address` | Адреса гаманця |
+| **Потребує** | `[WHITELIST] whitelist_chain` | Мережа (наприклад: `TRC20`, `Aptos`, `Mantle`) |
+| Опцiонально | `[WHITELIST] whitelist_memo` | Memo/Tag (якщо потрiбно мережею) |
+| **Оновлює** | `[WHITELIST] whitelist_status` | 1 — успiшно додано |
+| **Оновлює** | `[RESULT] status` | `[WHITELIST] SUCCESS` |
+
+> Якщо 2FA не пiдключено — AutoPilot автоматично пiдключить його перед додаванням у whitelist
+
+---
+
+### `withdraw` — Виведення коштiв
+
+Виведення коштiв з акаунта з автоматичним пiдтвердженням
+
+```mermaid
+flowchart LR
+    A["Вибiр монети"] --> B["Введення адреси та мережi"]
+    B --> C["Вказання суми"]
+    C --> D["Пiдтвердження кодами"]
+    D --> E["✅ Кошти вiдправлено"]
+
+    style E fill:#4CAF50,color:#fff,stroke:none,rx:8
+```
+
+| Параметр | Стовпець | Опис |
+|----------|----------|------|
+| **Потребує** | `[WITHDRAW] withdraw_coin` | Монета для виведення (наприклад: `USDT`) |
+| **Потребує** | `[WITHDRAW] withdraw_chain` | Мережа виведення (наприклад: `TRC20`, `Aptos`) |
+| **Потребує** | `[WITHDRAW] withdraw_address` | Адреса гаманця отримувача |
+| Опцiонально | `[WITHDRAW] withdraw_memo` | Memo/Tag |
+| Опцiонально | `[WITHDRAW] withdraw_amount` | Сума у % (100 = все, 50 = половина) |
+| **Оновлює** | `[RESULT] status` | `[WITHDRAW] SUCCESS` |
+
+> Якщо 2FA не пiдключено — AutoPilot автоматично пiдключить його перед виведенням
+
+---
+
+### Алгоритм повного виведення (`full_withdraw=YES`)
+
+Якщо в конфiгу увiмкнено `full_withdraw=YES`, AutoPilot виконає повний продаж усiх активiв перед виведенням:
+
+```mermaid
+flowchart TD
+    A["Трансфер з FUNDING у TRADING"] --> B["Продаж усiх активiв за USDT"]
+    B --> C["Конвертацiя залишкiв у MNT"]
+    C --> D["Докупка MNT за потреби"]
+    D --> E["Продаж MNT за USDT"]
+    E --> F["Повернення USDT у FUNDING"]
+    F --> G["✅ Виведення"]
+
+    style A fill:#2196F3,color:#fff,stroke:none,rx:8
+    style B fill:#FF9800,color:#fff,stroke:none,rx:8
+    style G fill:#4CAF50,color:#fff,stroke:none,rx:8
+```
+
+---
+
+### `sell` — Продаж усiх активiв
+
+Конвертацiя всiх монет на акаунтi в USDT маркет-ордерами
+
+| Параметр | Стовпець | Опис |
+|----------|----------|------|
+| **Оновлює** | `[BALANCE] account_balance` | Баланс пiсля продажу |
+| **Оновлює** | `[RESULT] status` | `[SELL] SUCCESS` |
+
+---
+
+### `api` — Отримання API ключiв
+
+Створення API ключа з правами для SPOT та Futures торгiвлi
+
+| Параметр | Стовпець | Опис |
+|----------|----------|------|
+| Опцiонально | `[API] api_whitelist_ip` | IP для whitelist (опцiонально) |
+| **Оновлює** | `[API] api_key` | Отриманий API ключ |
+| **Оновлює** | `[API] api_secret` | Секретний ключ API |
+| **Оновлює** | `[RESULT] status` | `[API] SUCCESS` |
+
+---
+
+### `trading` — Автоматичний трейдинг
+
+Торгiвля та набивання об'єму маркет ордерами з пiдтримкою кiлькох монет
+
+```mermaid
+flowchart TD
+    START["⚡ Запуск торгiвлi"] --> COIN["Вибiр пари зi списку"]
+    COIN --> BUY["📈 Купiвля за маркетом"]
+    BUY --> WAIT1["⏳ Випадкова затримка"]
+    WAIT1 --> SELL["📉 Продаж за маркетом"]
+    SELL --> CHECK{"Усi цикли пройдено?"}
+    CHECK -->|Нi| WAIT2["⏳ Затримка мiж циклами"]
+    WAIT2 --> BUY
+    CHECK -->|Так| NEXT{"Є ще монети?"}
+    NEXT -->|Так| COIN
+    NEXT -->|Нi| DONE["✅ Звiт: об'єм та комiсiї"]
+
+    style START fill:#FF9800,color:#fff,stroke:none,rx:10
+    style BUY fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style SELL fill:#f44336,color:#fff,stroke:none,rx:8
+    style DONE fill:#607D8B,color:#fff,stroke:none,rx:10
+```
+
+| Параметр | Стовпець | Опис |
+|----------|----------|------|
+| **Потребує** | `[TRADING] trading_coin` | Актив для торгiвлi (наприклад: `BTC` або `BTC,ETH,SOL`) |
+| **Потребує** | `[TRADING] trading_amount` | Розмiр ордера в USDT (наприклад: `10` або `10,20,5`) |
+| **Потребує** | `[TRADING] trading_cycles` | К-сть циклiв купiвлi-продажу (наприклад: `3` або `3,5,2`) |
+| **Оновлює** | `[RESULT] status` | `[TRADING] VOLUME: об'єм, FEES: комiсiї` |
+
+> **Мульти-монети**: вкажiть через кому кiлька монет, розмiрiв та циклiв — AutoPilot буде торгувати ними послiдовно.
+> Приклад: `BTC,ETH` + `10,20` + `3,5` = 3 цикли BTC по 10 USDT, потiм 5 циклiв ETH по 20 USDT
+
+> **Формула об'єму**: цикли x розмiр ордера x 2 (купiвля + продаж)
+> Приклад: 3 цикли по 10 USDT = 3 x 10 x 2 = **60 USDT** об'єму
+
+---
+
+### `ts` — TokenSplash
+
+Автоматична участь у TokenSplash iвентах на Bybit
+
+| Параметр | Стовпець | Опис |
+|----------|----------|------|
+| **Потребує** | `[TS] code` | Код iвента TokenSplash |
+| **Оновлює** | `[RESULT] status` | `[TS] SUCCESS` |
+
+> Якщо баланс акаунта > 100 USDT — AutoPilot автоматично виконає завдання на депозит
+
+---
+
+### `puzzle` — Puzzle Hunt
+
+Автоматичне проходження Puzzle Hunt завдань на Bybit
+
+| Параметр | Стовпець | Опис |
+|----------|----------|------|
+| **Оновлює** | `[RESULT] status` | `[PUZZLE] SUCCESS` |
+
+---
+
+## Зведена таблиця дiй
+
+```mermaid
+flowchart TD
+    subgraph REG ["🟢 Початок роботи"]
+        R["register — Реєстрацiя"]
+        L["login — Логiн"]
+    end
+
+    subgraph SEC ["🔐 Безпека"]
+        FA["2fa — 2FA захист"]
+        API["api — API ключi"]
+    end
+
+    subgraph WALLET ["💰 Гаманцi"]
+        D["deposit — Адреса депозиту"]
+        W["whitelist — Whitelist"]
+        WD["withdraw — Виведення"]
+        S["sell — Продаж активiв"]
+    end
+
+    subgraph TRADE ["📊 Трейдинг та Iвенти"]
+        T["trading — Торгiвля"]
+        TS["ts — TokenSplash"]
+        PZ["puzzle — Puzzle Hunt"]
+    end
+
+    R --> L
+    L --> FA
+    FA --> W
+    FA --> API
+    W --> WD
+    S --> WD
+    L --> D
+    L --> T
+    L --> TS
+    L --> PZ
+
+    style R fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style L fill:#2196F3,color:#fff,stroke:none,rx:8
+    style FA fill:#9C27B0,color:#fff,stroke:none,rx:8
+    style API fill:#673AB7,color:#fff,stroke:none,rx:8
+    style D fill:#FF9800,color:#fff,stroke:none,rx:8
+    style W fill:#FF5722,color:#fff,stroke:none,rx:8
+    style WD fill:#f44336,color:#fff,stroke:none,rx:8
+    style S fill:#E91E63,color:#fff,stroke:none,rx:8
+    style T fill:#009688,color:#fff,stroke:none,rx:8
+    style TS fill:#00BCD4,color:#fff,stroke:none,rx:8
+    style PZ fill:#795548,color:#fff,stroke:none,rx:8
+```
+
+| Дiя | Опис | Авто-логiн | Авто-2FA |
+|-----|------|:----------:|:--------:|
+| `register` | Реєстрацiя акаунта | — | — |
+| `login` | Вхiд в акаунт | — | — |
+| `2fa` | Пiдключення 2FA | ✅ | — |
+| `deposit` | Адреса для депозиту | ✅ | — |
+| `whitelist` | Додавання в whitelist | ✅ | ✅ |
+| `withdraw` | Виведення коштiв | ✅ | ✅ |
+| `sell` | Продаж усiх активiв | ✅ | — |
+| `api` | Створення API ключiв | ✅ | — |
+| `trading` | Маркет торгiвля | ✅ | — |
+| `ts` | TokenSplash iвенти | ✅ | — |
+| `puzzle` | Puzzle Hunt | ✅ | — |
+
+---
+
+## Налаштування конфiгурацiї
+
+Файл `BybitAutoPilot.config` мiстить основнi параметри:
+
+| Параметр | Опис | Приклад |
+|----------|------|---------|
+| `activation_key` | Ключ активацiї | `XXXX-XXXX-XXXX` |
+| `speed_mode` | Режим швидкостi | `FAST`, `MEDIUM`, `SLOW` |
+| `captcha_key` | API ключ сервiсу капчi | `abc123...` |
+| `captcha_provider` | Провайдер капчi | `2captcha`, `capmonster` |
+| `parallel_limit` | Лiмiт паралельних акаунтiв | `3` |
+| `shuffle_order` | Перемiшати порядок акаунтiв | `YES` / `NO` |
+| `window_size` | Розмiр вiкна браузера | `1280x720` |
+| `close_tabs` | Закривати вкладки пiсля роботи | `YES` / `NO` |
+| `close_after` | Закривати профiль пiсля роботи | `YES` / `NO` |
+| `email_delay_check` | Затримка перевiрки пошти (сек) | `5` |
+| `language` | Мова iнтерфейсу | `EN`, `RU` |
+| `full_withdraw` | Повний продаж перед виведенням | `YES` / `NO` |
+| `show_credentials` | Показувати KYC данi | `YES` / `NO` |
+| `bot_mode` | Iнтеграцiя з Telegram ботом | `YES` / `NO` |
+
+---
+
+## KYC статуси
+
+При логiнi AutoPilot перевiряє статус верифiкацiї:
+
+| Статус | Опис |
+|--------|------|
+| `UNSUBMITTED` | Верифiкацiю не подано |
+| `REJECT` | Вiдхилено (причина вказується) |
+| `1 [КРАЇНА]` | Верифiковано (наприклад: `1 RU`) |
+
+Якщо `show_credentials=YES`, також записуються: iм'я, прiзвище, тип документа, номер документа.
+
+---
+
+## Налаштування пошти (IMAP)
+
+AutoPilot використовує протокол IMAP для отримання кодiв верифiкацiї з пошти.
+
+**Пiдтримуванi провайдери:** Yahoo, Rambler, iCloud, Outlook, Gmail, Mail.ru, First Mail та iншi
+
+> Для Gmail, Outlook, Yahoo, iCloud потрiбне створення **пароля застосунку** (App Password) — звичайний пароль не пiдiйде для IMAP. Або налаштуйте переадресацiю листiв на пошту з прямим IMAP доступом.
+
+---
+
+## Швидкий старт пiсля покупки
+
+1. **Завантажте** `AutoPilot.zip` iз закрiпленого повiдомлення у чатi [@buykyc_bot](https://t.me/buykyc_bot)
+2. **Розпакуйте** архiв у нову папку
+3. **Налаштуйте** `BybitAutoPilot.config`:
+   - Вкажiть `activation_key` (отримано при покупцi)
+   - Вкажiть `captcha_key` (вiд [2captcha](https://2captcha.com/auth/register), [ruCaptcha](https://rucaptcha.com/auth/register) або [Capmonster](https://capmonster.cloud/Account/Signup))
+4. **Заповнiть** `AutoPilot_table.xlsx` даними акаунтiв
+5. **Запустiть** застосунок
+
+> Керування також доступне через бот [@AutoPilotManager_bot](https://t.me/AutoPilotManager_bot) (потрiбен `bot_mode=YES` у конфiгу)
+
+---
+
+## Покупка
+
+Одразу пiсля покупки ви отримуєте готову збiрку для роботи.
+
+Придбати ключ активацiї для Bybit AutoPilot: [https://t.me/buykyc_bot](https://t.me/buykyc_bot)
+
+Разом iз ключем ви отримуєте доступ до тематичного чату AutoPilot, де можна ставити запитання, спiлкуватися та отримувати поради.
+
+Час життя ключа вiдраховується вiд першого запуску.
+
+---
+
+**Менеджер:** [@OxViktor](https://t.me/OxViktor)
+**Розробник:** [@axelenvy](https://t.me/axelenvy)
