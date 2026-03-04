@@ -33,6 +33,7 @@ export default defineConfig({
 				{ label: 'Bybit AutoPilot', slug: 'bybit-autopilot' },
 				{ label: 'MEXC AutoPilot', slug: 'mexc-autopilot' },
 				{ label: 'Bitget AutoPilot', slug: 'bitget-autopilot' },
+				{ label: 'Seller Guide', slug: 'sellers-guide' },
 			],
 		}),
 	],
