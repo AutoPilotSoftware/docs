@@ -7,6 +7,10 @@ description: "How to earn money by completing KYC verifications on Bybit and MEX
 
 Earn money by completing KYC verifications for Bybit and MEXC accounts through the [@AutoPilotSELLER_bot](https://t.me/AutoPilotSELLER_bot).
 
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:1.5rem 0;border-radius:8px;">
+  <iframe src="https://www.youtube.com/embed/JhSqo2XJeCo" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+</div>
+
 > **Full guide on Teletype:** [teletype.in/@buykyc_bot/AutoPilotSellers_GUIDE](https://teletype.in/@buykyc_bot/AutoPilotSellers_GUIDE)
 
 ---
