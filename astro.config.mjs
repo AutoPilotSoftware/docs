@@ -11,6 +11,7 @@ export default defineConfig({
 			title: 'AutoPilot',
 			logo: { src: './src/assets/auto_pilot_logo.png' },
 			plugins: [starlightClientMermaid()],
+			customCss: ['./src/styles/custom.css'],
 			head: [
 				{
 					tag: 'script',
