@@ -31,19 +31,19 @@ The bot will ask you to share your phone number for identity. This is required t
 
 ### Step 3 — View Order Details
 
-After accepting a task, you'll see:
-- Exchange (Bybit or MEXC)
-- Country of the account
-- Payment amount
-- Deadline
+After accepting a task, you'll see the exchange (Bybit or MEXC), country, payment amount, and deadline.
 
 ### Step 4 — Take a Task
 
 Press **Take Task** in the bot to claim the order. Once claimed, the task is reserved for you.
 
+![Task detail view](../../assets/sellers/task-detail.png)
+
 ### Step 5 — Complete the KYC
 
-Follow the verification flow on the exchange. The bot provides you with everything needed — no credentials are shared with you. You only complete the identity verification step.
+Follow the verification flow on the exchange. The bot provides everything needed — no account credentials are shared with you. You only complete the identity verification step.
+
+![Auto-verified task](../../assets/sellers/autoverified-task.png)
 
 ### Step 6 — Get Paid
 
@@ -61,16 +61,15 @@ After successful verification is confirmed, payment is credited to your bot bala
 | `Failed` | Verification was not accepted — no payment |
 | `ReKYC` | Re-verification requested (see below) |
 
+![Seller tasks list](../../assets/sellers/seller-tasks.png)
+
 ---
 
 ## Your Dashboard
 
-Access your dashboard anytime via the **My Dashboard** button in the bot. It shows:
+Access your dashboard anytime via the **My Dashboard** button in the bot. It shows your current balance, active tasks, completed task count, and your rating.
 
-- Current balance
-- Active tasks
-- Completed tasks count
-- Your rating and badges
+![Seller dashboard](../../assets/sellers/seller-dashboard.png)
 
 ---
 
@@ -83,17 +82,23 @@ Once your balance reaches the minimum threshold:
 3. Confirm the withdrawal
 4. Funds are sent automatically
 
+![Withdrawal screen](../../assets/sellers/withdraw.png)
+
 ---
 
 ## ReKYC Requests
 
 Sometimes an exchange requires re-verification of an account. You will receive a **ReKYC notification** in the bot with a new task link. Complete it the same way as a regular task — payment is provided for successful ReKYC as well.
 
+![ReKYC notification](../../assets/sellers/rekyc-notification.png)
+
 ---
 
 ## Leaderboard & Badges
 
-Top performers appear on the leaderboard. Complete more tasks to climb the ranks:
+Top performers appear on the leaderboard. Complete more tasks to climb the ranks.
+
+![Leaderboard](../../assets/sellers/leaderboard.png)
 
 | Tier | Description |
 |------|-------------|
@@ -117,23 +122,23 @@ Top performers appear on the leaderboard. Complete more tasks to climb the ranks
 
 ---
 
+## Statistics & Analytics
+
+The bot provides detailed stats on your performance: total tasks completed, success rate, total earned, average completion time, and country breakdown.
+
+![Statistics](../../assets/sellers/statistics.png)
+
+---
+
 ## Managing Your Countries
 
 You can set which countries you want to work with in the bot settings. This filters the tasks you receive — only orders from your selected countries will be shown to you.
 
-Go to **Settings → Countries** to configure your preferences.
+![Manage countries](../../assets/sellers/manage-countries.png)
 
----
+![Country list](../../assets/sellers/manage-countries-2.png)
 
-## Statistics & Analytics
-
-The bot provides detailed stats on your performance:
-
-- Total tasks completed
-- Success rate
-- Total earned
-- Average completion time
-- Country breakdown
+![Search country](../../assets/sellers/search-country.png)
 
 ---
 
