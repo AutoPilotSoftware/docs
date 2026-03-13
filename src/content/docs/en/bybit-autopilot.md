@@ -306,9 +306,9 @@ Withdraw from hundreds of accounts without touching a single address manually. A
 
 ```mermaid
 flowchart TD
-    A["🔐 setup_aptos_hd\nOne-time: create master wallet"] --> B["🏷️ whitelist_aptos_hd\nAuto-create & whitelist\nunique address per account"]
-    B --> C["💳 withdraw\nWithdraw USDT\n$0 fee on Aptos"]
-    C --> D["📥 Distribute tab\nCollect all to your wallet"]
+    A["🔐 setup_aptos_hd"] --> B["🏷️ whitelist_aptos_hd"]
+    B --> C["💳 withdraw"]
+    C --> D["📥 Distribute"]
 
     style A fill:#9C27B0,color:#fff,stroke:none,rx:8
     style B fill:#FF5722,color:#fff,stroke:none,rx:8

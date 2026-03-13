@@ -306,9 +306,9 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A["🔐 setup_aptos_hd\nОдноразово: створення\nмастер-гаманця"] --> B["🏷️ whitelist_aptos_hd\nАвтостворення та whitelist\nунікальної адреси на акаунт"]
-    B --> C["💳 withdraw\nВиведення USDT\nКомісія $0 на Aptos"]
-    C --> D["📥 Вкладка Distribute\nЗбір на ваш гаманець"]
+    A["🔐 setup_aptos_hd"] --> B["🏷️ whitelist_aptos_hd"]
+    B --> C["💳 withdraw"]
+    C --> D["📥 Distribute"]
 
     style A fill:#9C27B0,color:#fff,stroke:none,rx:8
     style B fill:#FF5722,color:#fff,stroke:none,rx:8
