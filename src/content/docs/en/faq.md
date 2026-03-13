@@ -430,6 +430,56 @@ flowchart LR
 
 ---
 
+### 7.1. 🔑 Master Wallet System — Automatic Whitelists & Untraceable Withdrawals
+
+Withdraw from hundreds of accounts **without manually entering a single address**. AutoPilot creates a unique wallet for each account, whitelists it automatically, and collects all funds to your master wallet — with **$0 fees** and **no traceable links** between accounts.
+
+```mermaid
+flowchart LR
+    A["🔐 setup_aptos_hd"] --> B["🏷️ whitelist_aptos_hd"]
+    B --> C["💳 withdraw"]
+    C --> D["📥 Distribute: collect"]
+
+    style A fill:#9C27B0,color:#fff,stroke:none,rx:8
+    style B fill:#FF5722,color:#fff,stroke:none,rx:8
+    style C fill:#FF9800,color:#fff,stroke:none,rx:8
+    style D fill:#4CAF50,color:#fff,stroke:none,rx:8
+```
+
+**What you get:**
+- 🏷️ **Automatic whitelists** — no need to create addresses or fill them in the table. AutoPilot generates a unique address for each account and whitelists it on Bybit with full email/2FA confirmation
+- 🕵️ **Untraceable withdrawals** — every account withdraws to its own unique address. No shared address = no way to link your accounts together
+- 💰 **$0 withdrawal fees** — Bybit doesn't charge for Aptos withdrawals (vs $1-2 per account on ERC20/TRC20)
+- 📥 **One-click collection** — after withdrawal, collect all funds from all addresses to your master wallet in seconds
+- ⚡ **Instant transfers** — funds arrive in ~1 second
+
+**How it works (3 actions):**
+
+1. **`setup_aptos_hd`** — run once. Creates your master wallet and gives you a secret phrase (12 words). One phrase = unlimited unique addresses.
+
+2. **`whitelist_aptos_hd`** — run on all profiles. AutoPilot will:
+   - Create a unique Aptos address for each account
+   - Open Bybit, add it to whitelist, confirm email/2FA — all automatically
+   - Save everything to the table
+
+3. **`withdraw`** — withdraws all USDT to the whitelisted address on each account. Fee = **$0**.
+
+After withdrawal — open the **Distribute** tab and collect everything to one wallet with one click.
+
+| Config Parameter | Description | Default |
+|-----------|-------------|:-------:|
+| `aptos_hd_enabled` | Enable Master Wallet system | `NO` |
+| `aptos_hd_auto_assign` | Auto-assign address to new profiles | `YES` |
+| `aptos_distribution_master_key` | Master wallet private key (hex) | — |
+| `aptos_distribution_master_index` | Index of the master wallet | `0` |
+| `aptos_distribution_amount` | USDT amount per distribution | `0.5` |
+
+> 💡 **Example:** you have old Bybit accounts with leftover funds. Instead of manually creating addresses, entering them one by one, and collecting from each wallet — run 3 actions and everything lands on your master wallet. Zero manual work, zero fees, zero links between accounts.
+
+> 🔁 **Safe to re-run:** if an account already has an address, `whitelist_aptos_hd` will reuse it — no duplicates.
+
+---
+
 ### 8. 🌐 AdsPower / Dolphin / Vision
 
 **AdsPower:**

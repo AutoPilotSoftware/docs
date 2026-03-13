@@ -300,6 +300,74 @@ flowchart TD
 
 ---
 
+### Master Wallet System — Auto-Whitelists, $0 Fees, Untraceable Withdrawals
+
+Withdraw from hundreds of accounts without touching a single address manually. AutoPilot creates a **unique wallet for every account**, whitelists it automatically, withdraws with **zero fees**, and collects everything to your master wallet. Every account withdraws to a **different address** — no way to link them together.
+
+```mermaid
+flowchart TD
+    A["🔐 setup_aptos_hd\nOne-time: create master wallet"] --> B["🏷️ whitelist_aptos_hd\nAuto-create & whitelist\nunique address per account"]
+    B --> C["💳 withdraw\nWithdraw USDT\n$0 fee on Aptos"]
+    C --> D["📥 Distribute tab\nCollect all to your wallet"]
+
+    style A fill:#9C27B0,color:#fff,stroke:none,rx:8
+    style B fill:#FF5722,color:#fff,stroke:none,rx:8
+    style C fill:#FF9800,color:#fff,stroke:none,rx:8
+    style D fill:#4CAF50,color:#fff,stroke:none,rx:8
+```
+
+#### `setup_aptos_hd` — Create Master Wallet
+
+Run once. Creates your master wallet and shows a secret phrase (12 words). Save it — it controls all your addresses.
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Required** | Config: `activation_key` | Used as encryption password |
+| **Output** | File: `aptos_master_seed.enc` | Encrypted secret phrase |
+| **Output** | File: `aptos_hd_wallet_data.csv` | All addresses and private keys |
+
+> ⚠️ **Save your secret phrase!** Shown once. Lost phrase = lost access to all addresses and funds.
+
+#### `whitelist_aptos_hd` — Automatic Whitelisting
+
+Run on all your profiles. For each account, AutoPilot:
+1. Creates a unique Aptos address (different for every account)
+2. Opens Bybit, adds it to the withdrawal whitelist
+3. Confirms email/2FA — fully automatic
+4. Saves everything to the table
+
+No manual work. You don't need to create wallets, copy addresses, or fill in the table — AutoPilot does it all.
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| Auto-created | `[WHITELIST] whitelist_address` | Unique Aptos address |
+| Auto-set | `[WHITELIST] whitelist_network` | `APTOS` |
+| **Updates** | `[RESULT] status` | `[WHITELIST_HD] SUCCESS` |
+
+> 🔁 **Safe to re-run:** already has an address? AutoPilot will reuse it — no duplicates.
+
+#### Collecting Funds: Distribute Tab
+
+After withdrawal, your USDT is spread across individual addresses. Open the **Distribute** tab in the desktop app:
+- Select profiles → Preview → One click → All funds collected to your master wallet
+- Gas: ~0.002 APT per profile (fractions of a cent)
+- Works both ways: collect from accounts or distribute to them
+
+**Why Aptos?**
+
+| Network | Bybit Fee | Speed |
+|---------|-----------|-------|
+| **Aptos** | **$0** | ~1 sec |
+| Arbitrum | $0.1 | ~1 sec |
+| TRC20 | $1 | ~3 min |
+| ERC20 | $1-5 | ~5 min |
+
+> 💰 **The more accounts you have — the more you save. Every withdrawal on TRC20/ERC20 costs $1-5. On Aptos = $0.**
+
+> 🕵️ **Privacy:** each account → unique address → no shared addresses → accounts can't be linked to each other.
+
+---
+
 ### `sell` — Sell All Assets
 
 Convert all coins on the account to USDT with market orders
@@ -402,6 +470,7 @@ flowchart TD
     subgraph WALLET ["💰 Wallets"]
         D["deposit — Deposit Address"]
         W["whitelist — Whitelist"]
+        HD["whitelist_aptos_hd — Master Wallet"]
         WD["withdraw — Withdrawal"]
         S["sell — Sell Assets"]
     end
@@ -415,8 +484,10 @@ flowchart TD
     R --> L
     L --> FA
     FA --> W
+    FA --> HD
     FA --> API
     W --> WD
+    HD --> WD
     S --> WD
     L --> D
     L --> T
@@ -429,6 +500,7 @@ flowchart TD
     style API fill:#673AB7,color:#fff,stroke:none,rx:8
     style D fill:#FF9800,color:#fff,stroke:none,rx:8
     style W fill:#FF5722,color:#fff,stroke:none,rx:8
+    style HD fill:#E040FB,color:#fff,stroke:none,rx:8
     style WD fill:#f44336,color:#fff,stroke:none,rx:8
     style S fill:#E91E63,color:#fff,stroke:none,rx:8
     style T fill:#009688,color:#fff,stroke:none,rx:8
