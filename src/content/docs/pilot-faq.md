@@ -3,60 +3,60 @@ title: "Гайд NVS Пилота"
 description: "Полный гайд для NVS пилотов — методы загрузки, валидация, жизненный цикл заказов, MiniApp дашборд"
 ---
 
-# NVS Pilot Guide — AutoPilot KYC Bot
+# Гайд NVS Пилота — AutoPilot KYC Bot
 
-Comprehensive guide for NVS (New Verification System) users of the `@AutoPilotKYC_bot` and the Admin MiniApp dashboard.
+Полный гайд для пользователей NVS (New Verification System) бота `@AutoPilotKYC_bot` и дашборда Admin MiniApp.
 
 ---
 
-## Table of Contents
+## Содержание
 
-1. [What is NVS?](#what-is-nvs)
-2. [Getting Started](#getting-started)
-3. [NVS Complete Flow](#nvs-complete-flow)
-4. [Upload Methods](#upload-methods)
-5. [Account Validation Pipeline](#account-validation-pipeline)
-6. [Order Lifecycle](#order-lifecycle)
-7. [NVS Menu Reference](#nvs-menu-reference)
-8. [Admin MiniApp Dashboard](#admin-miniapp-dashboard)
-9. [Task Status Tracking](#task-status-tracking)
-10. [Error Troubleshooting](#error-troubleshooting)
-11. [Security & Privacy](#security--privacy)
+1. [Что такое NVS?](#что-такое-nvs)
+2. [Начало работы](#начало-работы)
+3. [Полная схема NVS](#полная-схема-nvs)
+4. [Методы загрузки](#методы-загрузки)
+5. [Конвейер валидации аккаунтов](#конвейер-валидации-аккаунтов)
+6. [Жизненный цикл заказа](#жизненный-цикл-заказа)
+7. [Справочник меню NVS](#справочник-меню-nvs)
+8. [Дашборд MiniApp](#дашборд-miniapp)
+9. [Отслеживание статусов задач](#отслеживание-статусов-задач)
+10. [Устранение ошибок](#устранение-ошибок)
+11. [Безопасность и приватность](#безопасность-и-приватность)
 12. [FAQ](#faq)
 
 ---
 
-## What is NVS?
+## Что такое NVS?
 
-NVS (New Verification System) is a streamlined KYC order flow for pilots who purchase verification slots through the **NVS Shop**. Instead of managing orders directly in the bot, NVS users receive a one-time deeplink that activates a pre-configured order with country, exchange, and quantity already set.
+NVS (New Verification System) — это упрощённый процесс заказа KYC для пилотов, которые покупают слоты верификации через **NVS Shop**. Вместо управления заказами напрямую в боте, пользователи NVS получают одноразовый deeplink, который активирует преднастроенный заказ с уже указанной страной, биржей и количеством.
 
-**Key differences from regular pilot orders:**
+**Ключевые отличия от обычных заказов пилота:**
 
-| Feature | Regular Pilot | NVS Pilot |
+| Функция | Обычный пилот | NVS пилот |
 |-|-|-|
-| Order creation | In-bot menu | Via NVS Shop deeplink |
-| Pricing | 35% platform markup | 95% NVS markup |
-| License required | Yes | No (deeplink-based) |
-| Menu options | Full pilot dashboard | 5-button focused menu |
-| MiniApp access | Full tabs | Orders, Tasks, History, Analytics |
-| Account upload | Same methods | Same methods |
-| Seller assignment | FCFS global pool | FCFS global pool |
+| Создание заказа | В меню бота | Через deeplink NVS Shop |
+| Ценообразование | 35% наценка платформы | 95% наценка NVS |
+| Нужна лицензия | Да | Нет (на основе deeplink) |
+| Опции меню | Полная панель пилота | Компактное меню из 5 кнопок |
+| Доступ к MiniApp | Все вкладки | Заказы, Задачи, История, Аналитика |
+| Загрузка аккаунтов | Одинаковые методы | Одинаковые методы |
+| Назначение селлера | FCFS глобальный пул | FCFS глобальный пул |
 
 ---
 
-## Getting Started
+## Начало работы
 
-### Step 1: Get Your Deeplink
+### Шаг 1: Получите deeplink
 
-Purchase a verification order from the NVS Shop. You'll receive a link:
+Купите заказ на верификацию в NVS Shop. Вы получите ссылку:
 
 ```
 https://t.me/AutoPilotKYC_bot?start=nvs_abc123def456
 ```
 
-### Step 2: Activate in Telegram
+### Шаг 2: Активируйте в Telegram
 
-Click the link — it opens the bot. New users select a language (English / Russian / Ukrainian). The bot displays your order details:
+Нажмите на ссылку — откроется бот. Новые пользователи выбирают язык (English / Русский / Українська). Бот покажет детали заказа:
 
 ```
 ✅ Order Activated
@@ -65,11 +65,11 @@ Click the link — it opens the bot. New users select a language (English / Russ
 📦 Accounts: 4
 ```
 
-### Step 3: Upload Accounts
+### Шаг 3: Загрузите аккаунты
 
-Choose a method (AdsPower TXT or Manual), upload your data, confirm — sellers begin working.
+Выберите метод (AdsPower TXT или Ручной), загрузите данные, подтвердите — селлеры начнут работу.
 
-### Architecture Overview
+### Обзор архитектуры
 
 ```mermaid
 flowchart TD
@@ -98,7 +98,7 @@ flowchart TD
 
 ---
 
-## NVS Complete Flow
+## Полная схема NVS
 
 ```mermaid
 flowchart TD
@@ -129,23 +129,23 @@ flowchart TD
 
 ---
 
-## Upload Methods
+## Методы загрузки
 
-### Method 1: AdsPower TXT (Recommended)
+### Метод 1: AdsPower TXT (Рекомендуется)
 
-Best if you use AdsPower anti-detect browser.
+Лучший вариант, если вы используете антидетект-браузер AdsPower.
 
-**Export steps:**
-1. Open AdsPower → select profiles
-2. Export → choose **TXT** format
-3. Enable **User Agent** in export settings
-4. Save the `.txt` file
+**Шаги экспорта:**
+1. Откройте AdsPower → выберите профили
+2. Экспорт → выберите формат **TXT**
+3. Включите **User Agent** в настройках экспорта
+4. Сохраните файл `.txt`
 
-**Send to bot:**
-- Bot menu → **Upload Accounts** → **AdsPower TXT**
-- Send the `.txt` file as a **document** (via 📎)
+**Отправка боту:**
+- Меню бота → **Upload Accounts** → **AdsPower TXT**
+- Отправьте файл `.txt` как **документ** (через 📎)
 
-**File format (account blocks separated by `******************`):**
+**Формат файла (блоки аккаунтов разделены `******************`):**
 ```
 acc_id=348
 id=k1a2ge6p
@@ -161,11 +161,11 @@ acc_id=349
 ...
 ```
 
-### Method 2: Manual (Proxy + Cookies)
+### Метод 2: Ручной (Прокси + Куки)
 
-Use when you have separate proxy lists and cookie files.
+Используйте, когда у вас отдельные списки прокси и файлы куки.
 
-**Step 1 — Send proxies as text** (one per line, count must match accounts):
+**Шаг 1 — Отправьте прокси текстом** (по одному на строку, количество должно совпадать с аккаунтами):
 
 ```
 185.123.45.1:8080:user1:pass1
@@ -173,15 +173,15 @@ Use when you have separate proxy lists and cookie files.
 185.123.45.3:8080:user3:pass3
 ```
 
-**Supported proxy formats:**
-| Format | Example |
+**Поддерживаемые форматы прокси:**
+| Формат | Пример |
 |-|-|
 | `IP:PORT:LOGIN:PASS` | `185.1.2.3:8080:user:pass` |
 | `LOGIN:PASS@IP:PORT` | `user:pass@185.1.2.3:8080` |
 | `http://LOGIN:PASS@IP:PORT` | `http://user:pass@185.1.2.3:8080` |
 | `socks5://LOGIN:PASS@IP:PORT` | `socks5://user:pass@185.1.2.3:8080` |
 
-**Step 2 — Send cookie files** via 📎 paperclip (one `.json` per account):
+**Шаг 2 — Отправьте файлы куки** через 📎 скрепку (один `.json` на аккаунт):
 
 ```json
 [
@@ -190,7 +190,7 @@ Use when you have separate proxy lists and cookie files.
 ]
 ```
 
-**Alternative:** Single file with nested array for all accounts:
+**Альтернатива:** Один файл с вложенным массивом для всех аккаунтов:
 ```json
 [
   [{"name":"token","value":"abc1","domain":".bybit.com"}],
@@ -198,23 +198,23 @@ Use when you have separate proxy lists and cookie files.
 ]
 ```
 
-> **Important:** Always send cookies as document files via 📎 — never paste cookie content as text.
+> **Важно:** Всегда отправляйте куки как файлы-документы через 📎 — никогда не вставляйте содержимое куки как текст.
 
-### Method Comparison
+### Сравнение методов
 
-| Feature | AdsPower TXT | Manual |
+| Функция | AdsPower TXT | Ручной |
 |-|-|-|
-| Difficulty | Easy | Medium |
-| Files needed | 1 `.txt` | Proxies (text) + N `.json` files |
-| Proxy included | Yes (in file) | Separate step |
-| User agent | Yes (if enabled) | Not included |
-| Best for | AdsPower users | Separate proxy/cookie sources |
+| Сложность | Легко | Средне |
+| Нужные файлы | 1 `.txt` | Прокси (текстом) + N `.json` файлов |
+| Прокси включены | Да (в файле) | Отдельный шаг |
+| User agent | Да (если включено) | Не включён |
+| Лучше для | Пользователей AdsPower | Отдельные источники прокси/куки |
 
 ---
 
-## Account Validation Pipeline
+## Конвейер валидации аккаунтов
 
-Every uploaded account goes through a 3-stage validation before order creation.
+Каждый загруженный аккаунт проходит 3-этапную валидацию перед созданием заказа.
 
 ```mermaid
 flowchart TD
@@ -235,7 +235,7 @@ flowchart TD
     E -->|"No provider"| X4["❌ Account not configured"]
 ```
 
-**After validation, the bot shows:**
+**После валидации бот показывает:**
 
 ```
 📋 Verification Complete
@@ -248,11 +248,11 @@ flowchart TD
 [✅ Confirm]  [❌ Cancel]
 ```
 
-Only passed accounts are included in the order. Failed accounts are excluded with specific error reasons.
+Только прошедшие валидацию аккаунты включаются в заказ. Непрошедшие исключаются с указанием конкретной причины ошибки.
 
 ---
 
-## Order Lifecycle
+## Жизненный цикл заказа
 
 ```mermaid
 stateDiagram-v2
@@ -264,57 +264,57 @@ stateDiagram-v2
     ACTIVATED --> EXPIRED: 48h no upload
 ```
 
-**Status definitions:**
+**Определения статусов:**
 
-| Status | Meaning |
+| Статус | Значение |
 |-|-|
-| PENDING | Token generated, waiting for pilot activation |
-| ACTIVATED | Pilot opened deeplink, ready to upload |
-| UPLOADING | Upload in progress |
-| PROCESSING | Sellers working on tasks (KYC Monitor auto-verifies) |
-| COMPLETED | All tasks reached terminal status |
-| EXPIRED | 48h passed without upload |
+| PENDING | Токен сгенерирован, ожидание активации пилотом |
+| ACTIVATED | Пилот открыл deeplink, готов к загрузке |
+| UPLOADING | Загрузка в процессе |
+| PROCESSING | Селлеры работают над задачами (KYC Monitor автоматически подтверждает) |
+| COMPLETED | Все задачи достигли финального статуса |
+| EXPIRED | 48 часов прошло без загрузки |
 
-**Timeline:** From upload to completion takes **several minutes to 1 day**, depending on country and seller availability.
-
----
-
-## NVS Menu Reference
-
-After activation, the bot presents 5 action buttons:
-
-| Button | Function | When to Use |
-|-|-|-|
-| 📤 **Upload Accounts** | Start AdsPower or Manual upload flow | First action after activation |
-| 🔄 **Order reKYC** | Resubmit failed accounts with fresh proxy/cookies | When accounts fail validation |
-| 📋 **My Tasks** | View all tasks and their statuses | Track progress after order creation |
-| 💳 **Deposit** | BSC USDT deposit address | Fund account for paid uploads |
-| 🚀 **Get Full Access** | Upgrade to full pilot license | Access all bot features |
-
-### Task Status Icons
-
-| Status | Icon | Meaning |
-|-|-|-|
-| Available | ⏳ | Waiting for seller to claim |
-| Taken | 📋 | Seller assigned, not started |
-| In Progress | 🔄 | Seller working on KYC |
-| Completed | ✅ | KYC submitted, awaiting verification |
-| Verified | ✅ | KYC confirmed by exchange |
-| Rejected | ❌ | KYC rejected by exchange |
-| Country Mismatch | ❌ | KYC country doesn't match order |
-| Deadline Cancelled | ⏰ | Seller didn't complete in time |
+**Сроки:** От загрузки до завершения — **от нескольких минут до 1 дня**, в зависимости от страны и доступности селлеров.
 
 ---
 
-## Admin MiniApp Dashboard
+## Справочник меню NVS
 
-The **Admin MiniApp** at `app.pilot.monster` provides a visual dashboard accessible directly from Telegram.
+После активации бот предлагает 5 кнопок действий:
 
-### Tech Stack
+| Кнопка | Функция | Когда использовать |
+|-|-|-|
+| 📤 **Upload Accounts** | Начать загрузку через AdsPower или Ручной метод | Первое действие после активации |
+| 🔄 **Order reKYC** | Повторно отправить неудавшиеся аккаунты с новыми прокси/куки | Когда аккаунты не прошли валидацию |
+| 📋 **My Tasks** | Просмотр всех задач и их статусов | Отслеживание прогресса после создания заказа |
+| 💳 **Deposit** | Адрес для пополнения BSC USDT | Пополнение счёта для платных загрузок |
+| 🚀 **Get Full Access** | Обновление до полной лицензии пилота | Доступ ко всем функциям бота |
 
-Built with **Svelte 5** + TypeScript + Vite 6 + TailwindCSS v4, with D3 globe visualization. Authenticates via Telegram `init_data` → JWT token.
+### Иконки статусов задач
 
-### Navigation
+| Статус | Иконка | Значение |
+|-|-|-|
+| Available | ⏳ | Ожидает, пока селлер заберёт |
+| Taken | 📋 | Селлер назначен, не начал |
+| In Progress | 🔄 | Селлер работает над KYC |
+| Completed | ✅ | KYC отправлен, ожидает верификации |
+| Verified | ✅ | KYC подтверждён биржей |
+| Rejected | ❌ | KYC отклонён биржей |
+| Country Mismatch | ❌ | Страна KYC не совпадает с заказом |
+| Deadline Cancelled | ⏰ | Селлер не успел завершить вовремя |
+
+---
+
+## Дашборд MiniApp
+
+**Admin MiniApp** на `app.pilot.monster` предоставляет визуальный дашборд, доступный прямо из Telegram.
+
+### Технологический стек
+
+Построен на **Svelte 5** + TypeScript + Vite 6 + TailwindCSS v4, с визуализацией глобуса на D3. Аутентификация через Telegram `init_data` → JWT токен.
+
+### Навигация
 
 ```mermaid
 flowchart LR
@@ -331,73 +331,73 @@ flowchart LR
     end
 ```
 
-### Tab Access by Role
+### Доступ к вкладкам по ролям
 
-| Tab | Admin | Pilot | NVS User |
+| Вкладка | Админ | Пилот | NVS пользователь |
 |-|-|-|-|
-| Orders | All orders | Own orders | Own NVS orders |
-| Tasks | All tasks | Tasks from own orders | Own tasks |
-| History | Platform-wide | Own history | Own history |
-| Analytics | Platform-wide | Own analytics | Own analytics |
-| Sellers | All (full identity) | Workers + anonymized global | Hidden |
-| Globe | Full access | Full access | Hidden |
-| New Order | Full access | Full access | NVS order flow |
-| Chat | Admin→any seller | Task-linked, mutual anonymity | Hidden |
-| NVS | Full management | Hidden | Hidden |
-| AI | Anomaly detection | Hidden | Hidden |
+| Orders | Все заказы | Свои заказы | Свои NVS заказы |
+| Tasks | Все задачи | Задачи из своих заказов | Свои задачи |
+| History | По всей платформе | Своя история | Своя история |
+| Analytics | По всей платформе | Своя аналитика | Своя аналитика |
+| Sellers | Все (полная информация) | Воркеры + анонимные глобальные | Скрыто |
+| Globe | Полный доступ | Полный доступ | Скрыто |
+| New Order | Полный доступ | Полный доступ | Поток NVS заказов |
+| Chat | Админ→любой селлер | Привязан к задаче, взаимная анонимность | Скрыто |
+| NVS | Полное управление | Скрыто | Скрыто |
+| AI | Детекция аномалий | Скрыто | Скрыто |
 
-### Orders Tab
+### Вкладка Orders
 
-- **Search** by order number, country
-- **Filter** by status (active / completed)
-- **Order cards** show: country flag, product, quantity, completion progress
-- **Tap order** → detail view: task funnel (Available → Taken → In Progress → Verified), seller assignments, health warnings
+- **Поиск** по номеру заказа, стране
+- **Фильтр** по статусу (активные / завершённые)
+- **Карточки заказов** показывают: флаг страны, продукт, количество, прогресс выполнения
+- **Нажмите на заказ** → детальный вид: воронка задач (Available → Taken → In Progress → Verified), назначения селлеров, предупреждения
 
-### Tasks Tab
+### Вкладка Tasks
 
-- **Filters**: product type, status, seller
-- **Task cards**: task number, seller, country, status, date
-- **Sort**: by created date, status, or seller
-- **Detail view**: account validation stages, seller history, face verification data
+- **Фильтры**: тип продукта, статус, селлер
+- **Карточки задач**: номер задачи, селлер, страна, статус, дата
+- **Сортировка**: по дате создания, статусу или селлеру
+- **Детальный вид**: этапы валидации аккаунта, история селлера, данные верификации лица
 
-### Analytics Tab
+### Вкладка Analytics
 
-- **Overview cards**: Total verified, current balance, avg price/task, trend sparkline
-- **Period filters**: 7 days, 30 days, All time
-- **Order type filters**: All, Global (FCFS), Workers (assigned)
-- **Charts**:
-  - Daily verified trend (line chart)
-  - Balance trend (sparkline)
-  - Product breakdown (donut chart)
-  - Country distribution (horizontal bar chart)
+- **Обзорные карточки**: Всего верифицировано, текущий баланс, средняя цена/задача, спарклайн тренда
+- **Фильтры по периоду**: 7 дней, 30 дней, Всё время
+- **Фильтры по типу заказа**: Все, Global (FCFS), Workers (назначенные)
+- **Графики**:
+  - Ежедневный тренд верификаций (линейный график)
+  - Тренд баланса (спарклайн)
+  - Разбивка по продуктам (кольцевая диаграмма)
+  - Распределение по странам (горизонтальная гистограмма)
 
-### Sellers Tab (Pilot View)
+### Вкладка Sellers (вид пилота)
 
-- **Workers section**: Your registered sellers with full `@username`, task counts, success rates
-- **Global section**: Anonymous sellers from FCFS orders shown as `Seller #UID` — no identity disclosed
-- **Tier badges**: Gold / Silver / Bronze based on performance
+- **Раздел воркеров**: Ваши зарегистрированные селлеры с полным `@username`, количеством задач, процентом успеха
+- **Глобальный раздел**: Анонимные селлеры из FCFS заказов отображаются как `Seller #UID` — личность не раскрывается
+- **Бейджи уровней**: Gold / Silver / Bronze на основе показателей
 
-### Globe Tab
+### Вкладка Globe
 
-Interactive D3 globe visualization:
-- Touch/drag rotation
-- Country highlighting by task/order volume
-- Continent grouping
-- Country rankings with real-time sparklines
+Интерактивная визуализация глобуса на D3:
+- Вращение касанием/перетаскиванием
+- Подсветка стран по объёму задач/заказов
+- Группировка по континентам
+- Рейтинг стран со спарклайнами в реальном времени
 
-### Chat Tab
+### Вкладка Chat
 
-Task-linked messaging between pilots and sellers:
-- **Mutual anonymity**: Pilot sees `Seller #UID`, seller sees `Customer #ID`
-- **AI moderation**: Contact information automatically censored
-- **Task context**: Messages tagged with task details (ID, AdsPower, country, product)
-- Unread badge counter (polls every 5 seconds)
+Обмен сообщениями между пилотами и селлерами, привязанный к задачам:
+- **Взаимная анонимность**: Пилот видит `Seller #UID`, селлер видит `Customer #ID`
+- **AI модерация**: Контактная информация автоматически цензурируется
+- **Контекст задачи**: Сообщения привязаны к деталям задачи (ID, AdsPower, страна, продукт)
+- Счётчик непрочитанных (обновляется каждые 5 секунд)
 
 ---
 
-## Task Status Tracking
+## Отслеживание статусов задач
 
-### Task State Machine
+### Машина состояний задачи
 
 ```mermaid
 stateDiagram-v2
@@ -414,17 +414,17 @@ stateDiagram-v2
     IN_PROGRESS --> ACCOUNT_REJECTED: Account-level rejection
 ```
 
-### Checking Status
+### Проверка статуса
 
-**In bot:** Press **📋 My Tasks** to see all task statuses.
+**В боте:** Нажмите **📋 My Tasks**, чтобы увидеть все статусы задач.
 
-**In MiniApp:** Open the **Tasks** tab for a visual dashboard with filters and sorting.
+**В MiniApp:** Откройте вкладку **Tasks** для визуального дашборда с фильтрами и сортировкой.
 
-**NVS Shop polling:** The NVS Shop automatically polls the API for updates and can trigger refund webhooks for failed tasks.
+**Опрос NVS Shop:** NVS Shop автоматически опрашивает API для получения обновлений и может инициировать вебхуки возврата для неудавшихся задач.
 
 ---
 
-## Error Troubleshooting
+## Устранение ошибок
 
 ```mermaid
 flowchart TD
@@ -449,120 +449,120 @@ flowchart TD
     T -->|"Invalid/expired link"| L1["✅ Get new link from NVS Shop"]
 ```
 
-### Error Quick Reference
+### Краткая справка по ошибкам
 
-| Error | Cause | Fix |
+| Ошибка | Причина | Решение |
 |-|-|-|
-| File is not valid JSON | Wrong file type or pasted as text | Save to `.json` file, send via 📎 |
-| Could not recognize proxy | Wrong format or extra text | One proxy per line: `IP:PORT:LOGIN:PASS` |
-| All proxies failed | Expired, wrong credentials, server down | Request fresh proxies from provider |
-| No KYC provider | Account not configured for verification | Contact account provider |
-| Session expired | Old cookies, logged out | Re-export cookies while logged in |
-| Proxy blocked | Exchange blocks the IP | Use proxy from different region |
-| Country mismatch | Proxy country ≠ order country | Use proxy matching your order country |
-| Incorrect proxy quantity | Line count ≠ account count | Send exactly N proxies for N accounts |
-| Too many cookie files | More cookies than proxies | One `.json` per working proxy |
-| Invalid/expired link | Token expired (48h) or already used | Get new deeplink from NVS Shop |
+| File is not valid JSON | Неправильный тип файла или вставлен как текст | Сохраните в файл `.json`, отправьте через 📎 |
+| Could not recognize proxy | Неправильный формат или лишний текст | Один прокси на строку: `IP:PORT:LOGIN:PASS` |
+| All proxies failed | Истекли, неверные учётные данные, сервер недоступен | Запросите свежие прокси у провайдера |
+| No KYC provider | Аккаунт не настроен для верификации | Свяжитесь с провайдером аккаунтов |
+| Session expired | Старые куки, выполнен выход | Переэкспортируйте куки, будучи залогиненным |
+| Proxy blocked | Биржа блокирует IP | Используйте прокси из другого региона |
+| Country mismatch | Страна прокси ≠ страна заказа | Используйте прокси, совпадающий со страной заказа |
+| Incorrect proxy quantity | Количество строк ≠ количеству аккаунтов | Отправьте ровно N прокси для N аккаунтов |
+| Too many cookie files | Куки-файлов больше, чем прокси | Один `.json` на каждый рабочий прокси |
+| Invalid/expired link | Токен истёк (48ч) или уже использован | Получите новый deeplink в NVS Shop |
 
-### ReKYC Flow
+### Процесс ReKYC
 
-If accounts fail after order creation, use **🔄 Order reKYC**:
+Если аккаунты не прошли после создания заказа, используйте **🔄 Order reKYC**:
 
-1. Select the failed order
-2. Choose resubmit method (Manual only — fresh proxy + cookies)
-3. Upload new proxy and cookies for failed accounts
-4. Bot re-validates and updates the existing tasks
+1. Выберите неудавшийся заказ
+2. Выберите метод повторной отправки (только Ручной — новые прокси + куки)
+3. Загрузите новые прокси и куки для неудавшихся аккаунтов
+4. Бот повторно валидирует и обновляет существующие задачи
 
-> ReKYC keeps the same task assignment — the original seller continues working if one was assigned.
+> ReKYC сохраняет то же назначение задачи — изначальный селлер продолжает работу, если был назначен.
 
 ---
 
-## Security & Privacy
+## Безопасность и приватность
 
-### What Sellers Can Access
+### Что доступно селлерам
 
-Sellers receive **only a unique one-time SumSub verification link**. They **cannot**:
+Селлеры получают **только уникальную одноразовую ссылку верификации SumSub**. Они **не могут**:
 
-- Log in to your exchange account
-- View balance, trade history, or positions
-- Execute trades or withdrawals
-- Change account settings or passwords
-- Access your cookies or proxy credentials
+- Войти в ваш аккаунт на бирже
+- Просмотреть баланс, историю сделок или позиции
+- Совершать сделки или выводы средств
+- Менять настройки аккаунта или пароли
+- Получить доступ к вашим куки или учётным данным прокси
 
-### Data Handling
+### Обработка данных
 
-| Data | Storage | Access |
+| Данные | Хранение | Доступ |
 |-|-|-|
-| Cookies | Encrypted in bot system | Bot only — never shared with sellers |
-| Proxies | Bot system | Bot only — used for validation and link generation |
-| Account email | Bot system | Hidden from sellers — they see task # only |
-| KYC name | Extracted during validation | Shown to seller for face verification tasks only |
-| Verification link | One-time URL | Seller gets unique link, expires after use |
+| Куки | Зашифрованы в системе бота | Только бот — никогда не передаются селлерам |
+| Прокси | Система бота | Только бот — используются для валидации и генерации ссылок |
+| Email аккаунта | Система бота | Скрыт от селлеров — они видят только номер задачи |
+| Имя KYC | Извлекается при валидации | Показывается селлеру только для задач верификации лица |
+| Ссылка верификации | Одноразовый URL | Селлер получает уникальную ссылку, истекает после использования |
 
-### Tips
+### Советы
 
-- **Use the same IP/proxy** that the account was created with to avoid suspicion
-- **Cookies expire** — export fresh cookies shortly before uploading
-- **Don't share deeplinks** — each link is tied to your Telegram account
+- **Используйте тот же IP/прокси**, с которого был создан аккаунт, чтобы избежать подозрений
+- **Куки истекают** — экспортируйте свежие куки незадолго до загрузки
+- **Не делитесь deeplink** — каждая ссылка привязана к вашему Telegram-аккаунту
 
 ---
 
 ## FAQ
 
-**Q: Which files do I need?**
-- AdsPower TXT: One `.txt` file (contains everything)
-- Manual: Proxies (text in chat) + `.json` cookie files (one per account)
+**В: Какие файлы мне нужны?**
+- AdsPower TXT: Один файл `.txt` (содержит всё)
+- Ручной: Прокси (текстом в чат) + файлы куки `.json` (один на аккаунт)
 
-**Q: Where do I get proxies?**
-From any proxy provider. Format: `IP:PORT:LOGIN:PASSWORD`. The proxy country should match your order country.
+**В: Где взять прокси?**
+У любого прокси-провайдера. Формат: `IP:PORT:LOGIN:PASSWORD`. Страна прокси должна совпадать со страной заказа.
 
-**Q: Where do I get cookie files?**
-Export via the **Cookie Editor** browser extension (Chrome/Firefox/Edge) or your anti-detect browser's export feature.
+**В: Где взять файлы куки?**
+Экспортируйте через расширение браузера **Cookie Editor** (Chrome/Firefox/Edge) или через функцию экспорта вашего антидетект-браузера.
 
-**Q: Can I send cookies as text in chat?**
-No. Always save cookies to a `.json` file and send as a document via the 📎 paperclip button.
+**В: Можно ли отправить куки текстом в чат?**
+Нет. Всегда сохраняйте куки в файл `.json` и отправляйте как документ через кнопку 📎 скрепку.
 
-**Q: What if some accounts fail validation?**
-The bot creates an order with only the passed accounts. Failed ones are excluded. You can use **🔄 Order reKYC** later to retry with fresh data.
+**В: Что если часть аккаунтов не прошла валидацию?**
+Бот создаёт заказ только с прошедшими аккаунтами. Непрошедшие исключаются. Позже вы можете использовать **🔄 Order reKYC** для повторной попытки со свежими данными.
 
-**Q: Can I upload more accounts later?**
-Yes — press **📤 Upload Accounts** again to add more accounts to your order.
+**В: Можно ли загрузить ещё аккаунты позже?**
+Да — нажмите **📤 Upload Accounts** снова, чтобы добавить больше аккаунтов к вашему заказу.
 
-**Q: How long does KYC take?**
-From several minutes to 1 day, depending on country and seller availability.
+**В: Сколько времени занимает KYC?**
+От нескольких минут до 1 дня, в зависимости от страны и доступности селлеров.
 
-**Q: What does "No KYC provider" mean?**
-The account isn't configured for KYC verification, or the cookies are from a different account. Contact your account provider.
+**В: Что значит "No KYC provider"?**
+Аккаунт не настроен для KYC верификации, или куки от другого аккаунта. Свяжитесь с провайдером аккаунтов.
 
-**Q: How do I check task progress?**
-- **In bot**: Press **📋 My Tasks**
-- **In MiniApp**: Open `app.pilot.monster` → Tasks tab
+**В: Как проверить прогресс задач?**
+- **В боте**: Нажмите **📋 My Tasks**
+- **В MiniApp**: Откройте `app.pilot.monster` → вкладка Tasks
 
-**Q: How do I access the MiniApp?**
-Open `app.pilot.monster` in Telegram's built-in browser. It authenticates automatically via your Telegram session.
+**В: Как получить доступ к MiniApp?**
+Откройте `app.pilot.monster` во встроенном браузере Telegram. Аутентификация происходит автоматически через вашу сессию Telegram.
 
-**Q: Who do I contact for issues?**
-Contact support via the NVS Shop or bot admin. Include screenshots of any errors.
+**В: К кому обратиться при проблемах?**
+Свяжитесь с поддержкой через NVS Shop или администратора бота. Приложите скриншоты ошибок.
 
 ---
 
-## Quick Reference
+## Краткая справка
 
 ```
 Activate link → Upload accounts → Choose method → Send files → Confirm → Done!
 ```
 
-### Upload Checklist
+### Чеклист загрузки
 
-- [ ] Deeplink activated (order shows in bot)
-- [ ] Proxy country matches order country
-- [ ] Cookies freshly exported (not expired)
-- [ ] Files sent as documents via 📎 (not pasted as text)
-- [ ] Proxy count = account count
-- [ ] Validation passed for at least 1 account
-- [ ] Order confirmed
+- [ ] Deeplink активирован (заказ отображается в боте)
+- [ ] Страна прокси совпадает со страной заказа
+- [ ] Куки свежие (не истекли)
+- [ ] Файлы отправлены как документы через 📎 (не вставлены текстом)
+- [ ] Количество прокси = количество аккаунтов
+- [ ] Валидация пройдена хотя бы для 1 аккаунта
+- [ ] Заказ подтверждён
 
-### FSM State Flow
+### FSM-схема состояний
 
 ```mermaid
 stateDiagram-v2
