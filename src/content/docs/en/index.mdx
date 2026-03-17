@@ -21,20 +21,11 @@ flowchart TD
         NVS["NVS Shop Integration"]
     end
 
-    subgraph WALLET ["💰 Master Wallet"]
-        direction TB
-        WL["Auto-Whitelist"]
-        WD["$0 Fee Withdrawal"]
-        DIST["One-Click Collection"]
-    end
-
     CORE -->|"KYC verification"| KYC
-    CORE -->|"Fund withdrawal"| WALLET
     KYC -->|"40+ countries"| SELLERS["👥 Global Seller Network"]
 
     style CORE fill:#3b82f6,color:#fff,stroke:none,rx:12
     style KYC fill:#8b5cf6,color:#fff,stroke:none,rx:12
-    style WALLET fill:#10b981,color:#fff,stroke:none,rx:12
     style SELLERS fill:#f59e0b,color:#fff,stroke:none,rx:12
     style BP fill:#2563eb,color:#fff,stroke:none,rx:8
     style MP fill:#2563eb,color:#fff,stroke:none,rx:8
@@ -42,9 +33,7 @@ flowchart TD
     style BOT fill:#7c3aed,color:#fff,stroke:none,rx:8
     style APP fill:#7c3aed,color:#fff,stroke:none,rx:8
     style NVS fill:#7c3aed,color:#fff,stroke:none,rx:8
-    style WL fill:#059669,color:#fff,stroke:none,rx:8
-    style WD fill:#059669,color:#fff,stroke:none,rx:8
-    style DIST fill:#059669,color:#fff,stroke:none,rx:8
+
 ```
 
 ---
@@ -72,12 +61,6 @@ flowchart TD
 | 📤 [**NVS Upload FAQ**](./nvs-faq) | How to upload accounts via NVS Shop |
 | 📋 [**NVS Pilot Guide**](./pilot-faq) | Full guide: upload, validation, dashboard, statuses |
 | 📜 [**Terms of Service**](./autopilot-kyc-tos) | Platform ToS |
-
----
-
-### 💰 Master Wallet
-
-> Auto-whitelist + untraceable withdrawal + $0 fees — details in [FAQ section 7.1](./faq#71--master-wallet-system--automatic-whitelists--untraceable-withdrawals)
 
 ---
 
