@@ -33,11 +33,13 @@ description: "AutoPilot KYC platform Terms of Service"
 
 2.5. The User bears sole and complete responsibility for the selection and quality of proxies, anti-detect browsers, cookies, and all other tools used for working with accounts. The Administration provides no assessment, validation, or guarantee regarding the quality of these tools beyond basic connectivity checks.
 
-2.6. The Administration provides no guarantees whatsoever for re-verification (re-KYC) of accounts. Contractors are informed about potential re-verification requirements, but fulfillment depends entirely on the Contractor's availability and willingness. The User explicitly acknowledges that re-verification may fail or be refused, and no refund is owed for re-verification failures.
+2.6. The Administration provides no guarantees for re-verification (re-KYC) of accounts. Contractors are informed about potential re-verification requirements, but fulfillment depends entirely on the Contractor's availability and willingness.
 
-2.7. The Administration is not responsible for decisions made by third-party services, including but not limited to SumSub, Bybit, MEXC, and other exchanges or KYC providers. These services operate independently, and their decisions regarding account verification are final and outside the Administration's control.
+2.7. If a Contractor refuses to perform re-verification or violates platform rules, their rating is reduced. Upon significant rating decline, the Contractor is blocked and loses the ability to receive new orders. Funds for unfulfilled orders are returned to the User's balance.
 
-2.8. The Administration is not responsible for blockchain network delays, failures, or transaction errors related to deposits or withdrawals.
+2.8. The Administration is not responsible for decisions made by third-party services, including but not limited to SumSub, Bybit, MEXC, and other exchanges or KYC providers. These services operate independently, and their decisions regarding account verification are final and outside the Administration's control.
+
+2.9. The Administration is not responsible for blockchain network delays, failures, or transaction errors related to deposits or withdrawals.
 
 ### 3. Financial Terms
 
@@ -45,11 +47,9 @@ description: "AutoPilot KYC platform Terms of Service"
 
 3.2. No refunds are issued for accounts that were verified but subsequently received restrictions, blocks, or unfavorable outcomes from the exchange.
 
-3.3. No refunds are issued for re-verification (re-KYC) failures.
+3.3. To request a refund, the User must contact support as indicated in the Bot description.
 
-3.4. To request a refund, the User must contact support as indicated in the Bot description.
-
-3.5. All balances held within the platform are non-interest-bearing and denominated in USDT. The Administration is not responsible for cryptocurrency exchange rate fluctuations.
+3.4. All balances held within the platform are non-interest-bearing and denominated in USDT. The Administration is not responsible for cryptocurrency exchange rate fluctuations.
 
 ### 4. Complaint and Moderation System
 
