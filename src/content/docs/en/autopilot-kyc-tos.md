@@ -76,7 +76,7 @@ description: "AutoPilot KYC platform Terms of Service"
 
 ### 7. Limitation of Liability
 
-7.1. THE SERVICE IS PROVIDED ON AN "AS IS" BASIS WITHOUT ANY WARRANTIES.
+7.1. The Service is provided on an "as is" basis without any warranties.
 
 7.2. The Administration is not liable for any direct or indirect damages arising from the use of the Service.
 
@@ -108,24 +108,10 @@ description: "AutoPilot KYC platform Terms of Service"
 
 11.2. The decision to block is made by the Administration and may not be accompanied by an explanation of reasons.
 
-### 12. Dispute Resolution
+### 12. Final Provisions
 
-12.1. These Terms are governed by the laws of the Republic of Seychelles.
+12.1. By using the Service, the User automatically confirms their agreement with these Terms of Service.
 
-12.2. Disputes shall be resolved through negotiation. If a dispute is not resolved within 30 days, it shall be referred to LCIA arbitration (London, English language, sole arbitrator).
+12.2. Official Bot link: https://t.me/AutoPilotKYC_bot
 
-12.3. The User waives the right to participate in class action lawsuits.
-
-12.4. The arbitration award shall be final and binding.
-
-### 13. Severability
-
-13.1. If any provision is found to be invalid, the remaining provisions shall remain in full force and effect.
-
-### 14. Final Provisions
-
-14.1. By using the Service, the User automatically confirms their agreement with these Terms of Service.
-
-14.2. Official Bot link: https://t.me/AutoPilotKYC_bot
-
-14.3. Manager contact: https://t.me/OxViktor
+12.3. Manager contact: https://t.me/OxViktor
