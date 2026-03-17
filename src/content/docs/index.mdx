@@ -1,21 +1,88 @@
 ---
-title: AutoPilot Документация
-description: "AutoPilot Software — автоматизация Bybit, MEXC, Bitget, KYC"
+title: AutoPilot — Экосистема
+description: "AutoPilot Software — автоматизация Bybit, MEXC, Bitget + KYC платформа"
 ---
 
-# AutoPilot Документация
+# AutoPilot Экосистема
 
-### Биржевая автоматизация
-- [FAQ](./faq)
-- [Bybit AutoPilot](./bybit-autopilot)
-- [MEXC AutoPilot](./mexc-autopilot)
-- [Bitget AutoPilot](./bitget-autopilot)
+```mermaid
+flowchart TD
+    subgraph CORE ["⚡ AutoPilot Software"]
+        direction TB
+        BP["Bybit AutoPilot"]
+        MP["MEXC AutoPilot"]
+        BG["Bitget AutoPilot"]
+    end
 
-### KYC Платформа
-- [NVS Upload FAQ](./nvs-faq)
-- [Гайд NVS Пилота](./pilot-faq)
-- [Подписка AutoPilot KYC](./autopilot-kyc-subscription)
-- [Условия использования](./autopilot-kyc-tos)
+    subgraph KYC ["🔐 AutoPilot KYC"]
+        direction TB
+        BOT["@AutoPilotKYC_bot"]
+        APP["Mini-App Dashboard"]
+        NVS["NVS Shop Integration"]
+    end
 
-### Для продавцов
-- [Seller Guide](./sellers-guide)
+    subgraph WALLET ["💰 Master Wallet"]
+        direction TB
+        WL["Auto-Whitelist"]
+        WD["$0 Fee Withdrawal"]
+        DIST["One-Click Collection"]
+    end
+
+    CORE -->|"KYC верификация"| KYC
+    CORE -->|"Вывод средств"| WALLET
+    KYC -->|"40+ стран"| SELLERS["👥 Глобальная сеть селлеров"]
+
+    style CORE fill:#3b82f6,color:#fff,stroke:none,rx:12
+    style KYC fill:#8b5cf6,color:#fff,stroke:none,rx:12
+    style WALLET fill:#10b981,color:#fff,stroke:none,rx:12
+    style SELLERS fill:#f59e0b,color:#fff,stroke:none,rx:12
+    style BP fill:#2563eb,color:#fff,stroke:none,rx:8
+    style MP fill:#2563eb,color:#fff,stroke:none,rx:8
+    style BG fill:#2563eb,color:#fff,stroke:none,rx:8
+    style BOT fill:#7c3aed,color:#fff,stroke:none,rx:8
+    style APP fill:#7c3aed,color:#fff,stroke:none,rx:8
+    style NVS fill:#7c3aed,color:#fff,stroke:none,rx:8
+    style WL fill:#059669,color:#fff,stroke:none,rx:8
+    style WD fill:#059669,color:#fff,stroke:none,rx:8
+    style DIST fill:#059669,color:#fff,stroke:none,rx:8
+```
+
+---
+
+### ⚡ Биржевая автоматизация
+
+> Регистрация, логин, 2FA, торговля, вывод — всё на автопилоте
+
+| | |
+|-|-|
+| 📖 [**FAQ — Полный гайд**](./faq) | Все настройки, режимы скорости, прокси, почта, торговля |
+| 🟠 [**Bybit AutoPilot**](./bybit-autopilot) | Регистрация, whitelist, withdraw, trading, futures, TokenSplash, Puzzle |
+| 🔵 [**MEXC AutoPilot**](./mexc-autopilot) | Регистрация, торговля, вывод, earn/staking |
+| 🟢 [**Bitget AutoPilot**](./bitget-autopilot) | Регистрация, торговля, вывод |
+
+---
+
+### 🔐 KYC Платформа
+
+> Автоматическая KYC верификация через глобальную сеть селлеров
+
+| | |
+|-|-|
+| 🎫 [**Подписка AutoPilot KYC**](./autopilot-kyc-subscription) | $30/мес — оптовые цены, своя команда, полный Mini-App |
+| 📤 [**NVS Upload FAQ**](./nvs-faq) | Как загружать аккаунты через NVS Shop |
+| 📋 [**Гайд NVS Пилота**](./pilot-faq) | Полный гайд: загрузка, валидация, дашборд, статусы |
+| 📜 [**Условия использования**](./autopilot-kyc-tos) | ToS платформы |
+
+---
+
+### 💰 Master Wallet
+
+> Авто-whitelist + невидимый вывод + $0 комиссий — подробнее в [FAQ раздел 7.1](./faq#71--мастер-кошелёк--авто-whitelist-0-комиссий-неотслеживаемый-вывод)
+
+---
+
+### 👥 Для продавцов
+
+| | |
+|-|-|
+| 📚 [**Seller Guide**](./sellers-guide) | Гайд для селлеров KYC платформы |
