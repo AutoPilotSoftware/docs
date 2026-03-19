@@ -69,31 +69,27 @@ https://t.me/AutoPilotKYC_bot?start=nvs_abc123def456
 
 Оберіть метод (AdsPower TXT або Ручний), завантажте дані, підтвердіть — селлери починають роботу.
 
-### Огляд архітектури
+### Як це працює
 
 ```mermaid
 flowchart TD
-    subgraph External["🌐 NVS Shop"]
-        NS[NVS Shop Website] -->|"POST /api/nvs/create-order"| API[AutoPilot API]
-        API -->|"Returns deeplink"| NS
-        NS -->|"Polls status"| POLL["GET /api/nvs/order/TOKEN/status"]
+    subgraph Shop["🛒 NVS Shop"]
+        NS["Купівля замовлення верифікації"] --> DL["Отримання діплінк-посилання"]
     end
 
-    subgraph Bot["🤖 AutoPilot KYC Bot"]
-        DL["Pilot clicks deeplink"] --> USR["User created / activated"]
-        USR --> MENU["NVS Menu"]
-        MENU --> UPLOAD["Upload accounts"]
-        UPLOAD --> VAL["Validate proxy + cookies + exchange"]
-        VAL --> ORD["Order + tasks created"]
+    subgraph Bot["🤖 AutoPilot KYC Бот"]
+        DL --> ACT["Активація замовлення в Telegram"]
+        ACT --> UPLOAD["Завантаження акаунтів"]
+        UPLOAD --> VAL["Автоматична перевірка"]
+        VAL --> ORD["Замовлення підтверджено"]
     end
 
-    subgraph Sellers["👥 Seller Bot"]
-        ORD -->|"FCFS broadcast"| SEL["Sellers take tasks"]
-        SEL --> WORK["Complete KYC via SumSub"]
-        WORK --> MON["KYC Monitor auto-verifies"]
+    subgraph Work["👥 Верифікація"]
+        ORD --> SEL["Селлери виконують KYC"]
+        SEL --> DONE["✅ Акаунти верифіковано"]
     end
 
-    MON -->|"Status updates"| POLL
+    DONE --> TRACK["📊 Відстежуйте прогрес у боті або MiniApp"]
 ```
 
 ---
@@ -102,29 +98,29 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A["🔗 NVS Shop generates deeplink"] --> B["📱 Pilot clicks link"]
-    B --> C{"New user?"}
-    C -->|Yes| D["🌐 Language selection"]
-    C -->|No| E["✅ Order activated"]
+    A["🔗 Купівля в NVS Shop"] --> B["📱 Перехід за посиланням"]
+    B --> C{"Новий користувач?"}
+    C -->|Так| D["🌐 Вибір мови"]
+    C -->|Ні| E["✅ Замовлення активовано"]
     D --> E
 
-    E --> F["📋 NVS Main Menu"]
-    F --> G["📤 Upload Accounts"]
-    G --> L{"Method?"}
+    E --> F["📋 Головне меню NVS"]
+    F --> G["📤 Завантажити акаунти"]
+    G --> L{"Метод?"}
 
-    L -->|AdsPower| M["📄 Send .txt export"]
-    L -->|Manual| N["✏️ Paste proxies"]
-    N --> O["📎 Send .json cookies"]
+    L -->|AdsPower| M["📄 Відправити .txt файл"]
+    L -->|Ручний| N["✏️ Вставити проксі"]
+    N --> O["📎 Відправити .json кукі"]
 
-    M --> P["🔍 Validation"]
+    M --> P["🔍 Валідація"]
     O --> P
 
-    P --> Q["📊 Results: ✅ Passed N | ❌ Failed M"]
-    Q --> R{"Confirm?"}
-    R -->|Yes| S["📦 Order created — sellers notified"]
-    R -->|No| F
-    S --> T["⏳ Sellers work tasks"]
-    T --> U["✅ VERIFIED"]
+    P --> Q["📊 Результат: ✅ Пройшли N | ❌ Не пройшли M"]
+    Q --> R{"Підтвердити?"}
+    R -->|Так| S["📦 Замовлення створено — селлери повідомлені"]
+    R -->|Ні| F
+    S --> T["⏳ Селлери виконують завдання"]
+    T --> U["✅ ВЕРИФІКОВАНО"]
 ```
 
 ---
@@ -218,21 +214,21 @@ acc_id=349
 
 ```mermaid
 flowchart TD
-    A["📎 Account received"] --> B["Stage 1: Proxy Check\nip-api.com connectivity"]
+    A["📎 Акаунт завантажено"] --> B["Крок 1: Перевірка проксі"]
 
-    B -->|"✅ IP responds"| C["Stage 2: Exchange Endpoint\nBybit/MEXC API test"]
-    B -->|"❌ Timeout"| X1["❌ Proxy failed"]
+    B -->|"✅ Підключено"| C["Крок 2: Доступ до біржі"]
+    B -->|"❌ Помилка"| X1["❌ Проксі не працює"]
 
-    C -->|"✅ 200 OK"| D["Stage 3: KYC Status\nExchange API with cookies"]
-    C -->|"❌ 403"| X2["❌ Proxy blocked by exchange"]
+    C -->|"✅ Доступна"| D["Крок 3: Статус акаунта"]
+    C -->|"❌ Заблоковано"| X2["❌ Проксі заблоковано біржею"]
 
-    D -->|"Session valid"| E{"KYC Status?"}
-    D -->|"Auth failed"| X3["❌ Session expired"]
+    D -->|"Сесія активна"| E{"Статус KYC?"}
+    D -->|"Сесія недійсна"| X3["❌ Кукі прострочені"]
 
-    E -->|"Not started"| F["✅ Ready — queued for order"]
-    E -->|"In progress"| G["⚠️ Already submitted"]
-    E -->|"Completed"| H["⚠️ KYC already done"]
-    E -->|"No provider"| X4["❌ Account not configured"]
+    E -->|"Не розпочато"| F["✅ Готовий до замовлення"]
+    E -->|"В процесі"| G["⚠️ Вже відправлено"]
+    E -->|"Завершено"| H["⚠️ KYC вже пройдено"]
+    E -->|"Немає провайдера"| X4["❌ Акаунт не налаштовано"]
 ```
 
 **Після валідації бот показує:**
@@ -256,12 +252,12 @@ flowchart TD
 
 ```mermaid
 stateDiagram-v2
-    [*] --> PENDING: NVS Shop creates order
-    PENDING --> ACTIVATED: Pilot clicks deeplink
-    ACTIVATED --> UPLOADING: Upload starts
-    UPLOADING --> PROCESSING: Confirmed
-    PROCESSING --> COMPLETED: All tasks terminal
-    ACTIVATED --> EXPIRED: 48h no upload
+    [*] --> PENDING: Замовлення створено в NVS Shop
+    PENDING --> ACTIVATED: Пілот відкрив посилання
+    ACTIVATED --> UPLOADING: Завантаження розпочато
+    UPLOADING --> PROCESSING: Підтверджено
+    PROCESSING --> COMPLETED: Всі завдання завершені
+    ACTIVATED --> EXPIRED: 48 год без завантаження
 ```
 
 **Визначення статусів:**
@@ -271,7 +267,7 @@ stateDiagram-v2
 | PENDING | Токен згенеровано, очікується активація пілотом |
 | ACTIVATED | Пілот відкрив діплінк, готовий до завантаження |
 | UPLOADING | Завантаження в процесі |
-| PROCESSING | Селлери працюють над завданнями (KYC Monitor автоматично перевіряє) |
+| PROCESSING | Селлери працюють над завданнями (автоматична перевірка верифікації) |
 | COMPLETED | Всі завдання досягли кінцевого статусу |
 | EXPIRED | Минуло 48 годин без завантаження |
 
@@ -310,24 +306,20 @@ stateDiagram-v2
 
 **Admin MiniApp** за адресою `app.pilot.monster` надає візуальну панель управління, доступну безпосередньо з Telegram.
 
-### Технічний стек
-
-Побудований на **Svelte 5** + TypeScript + Vite 6 + TailwindCSS v4, з візуалізацією глобуса D3. Автентифікація через Telegram `init_data` → JWT токен.
-
 ### Навігація
 
 ```mermaid
 flowchart LR
-    subgraph Tabs["📱 Bottom Tab Navigation"]
+    subgraph Tabs["📱 Нижнє меню"]
         direction TB
-        T1["📦 Orders"]
-        T2["📋 Tasks"]
-        T3["📜 History"]
-        T4["📊 Analytics"]
-        T5["👥 Sellers"]
-        T6["🌍 Globe"]
-        T7["➕ New Order"]
-        T8["💬 Chat"]
+        T1["📦 Замовлення"]
+        T2["📋 Завдання"]
+        T3["📜 Історія"]
+        T4["📊 Аналітика"]
+        T5["👥 Селлери"]
+        T6["🌍 Глобус"]
+        T7["➕ Нове замовлення"]
+        T8["💬 Чат"]
     end
 ```
 
@@ -401,17 +393,17 @@ flowchart LR
 
 ```mermaid
 stateDiagram-v2
-    [*] --> AVAILABLE: Order created
-    AVAILABLE --> TAKEN: Seller claims (FCFS)
-    TAKEN --> IN_PROGRESS: Seller starts KYC
-    IN_PROGRESS --> COMPLETED: Seller uploads proof
-    COMPLETED --> VERIFIED: KYC Monitor confirms
+    [*] --> AVAILABLE: Замовлення створено
+    AVAILABLE --> TAKEN: Селлер взяв завдання
+    TAKEN --> IN_PROGRESS: Селлер почав KYC
+    IN_PROGRESS --> COMPLETED: Селлер завантажив результат
+    COMPLETED --> VERIFIED: Верифікацію підтверджено
 
-    AVAILABLE --> DEADLINE_CANCELLED: No seller claimed in time
-    TAKEN --> DEADLINE_CANCELLED: Seller didn't start in time
-    IN_PROGRESS --> REJECTED: Exchange rejects KYC
-    IN_PROGRESS --> COUNTRY_MISMATCH: KYC country ≠ order country
-    IN_PROGRESS --> ACCOUNT_REJECTED: Account-level rejection
+    AVAILABLE --> DEADLINE_CANCELLED: Ніхто не взяв вчасно
+    TAKEN --> DEADLINE_CANCELLED: Селлер не почав вчасно
+    IN_PROGRESS --> REJECTED: Біржа відхилила KYC
+    IN_PROGRESS --> COUNTRY_MISMATCH: Країна KYC ≠ країна замовлення
+    IN_PROGRESS --> ACCOUNT_REJECTED: Акаунт відхилено
 ```
 
 ### Перевірка статусу
@@ -420,7 +412,7 @@ stateDiagram-v2
 
 **У MiniApp:** Відкрийте вкладку **Завдання** для візуальної панелі з фільтрами та сортуванням.
 
-**Опитування NVS Shop:** NVS Shop автоматично опитує API для отримання оновлень і може запускати вебхуки повернення коштів для невдалих завдань.
+**Автооновлення:** Статуси завдань оновлюються автоматично. NVS Shop відображає актуальний прогрес у реальному часі.
 
 ---
 
@@ -428,25 +420,25 @@ stateDiagram-v2
 
 ```mermaid
 flowchart TD
-    ERR["🔴 Error"] --> T{"Error type?"}
+    ERR["🔴 Помилка"] --> T{"Тип помилки?"}
 
-    T -->|"File is not valid JSON"| J1["Sent as text?"]
-    J1 -->|Yes| J1F["✅ Save to .json, send via 📎"]
-    J1 -->|No| J2["Empty or BOM encoding?"]
-    J2 --> J2F["✅ Re-export cookies, save UTF-8"]
+    T -->|"Файл не є JSON"| J1["Відправлено як текст?"]
+    J1 -->|Так| J1F["✅ Збережіть у .json, відправте через 📎"]
+    J1 -->|Ні| J2["Порожній або невірне кодування?"]
+    J2 --> J2F["✅ Переекспортуйте кукі в UTF-8"]
 
-    T -->|"Could not recognize proxy"| P1["✅ Use IP:PORT:LOGIN:PASS\none per line, no extra text"]
+    T -->|"Не вдалось розпізнати проксі"| P1["✅ Формат: IP:PORT:LOGIN:PASS\nпо одному на рядок"]
 
-    T -->|"All proxies failed"| P2["✅ Get fresh proxies\nfrom provider"]
+    T -->|"Всі проксі не працюють"| P2["✅ Запросіть свіжі\nпроксі у провайдера"]
 
-    T -->|"All accounts failed"| A1{"Reason?"}
-    A1 -->|"No KYC provider"| A1F["✅ Account not configured\ncontact provider"]
-    A1 -->|"Session expired"| A2F["✅ Re-export fresh cookies"]
-    A1 -->|"Proxy blocked"| A3F["✅ Use different proxy IP"]
-    A1 -->|"Country mismatch"| A4F["✅ Match proxy country to order"]
+    T -->|"Всі акаунти не пройшли"| A1{"Причина?"}
+    A1 -->|"Немає KYC провайдера"| A1F["✅ Акаунт не налаштовано —\nзверніться до провайдера"]
+    A1 -->|"Сесія закінчилась"| A2F["✅ Переекспортуйте кукі"]
+    A1 -->|"Проксі заблоковано"| A3F["✅ Використайте інший IP"]
+    A1 -->|"Невідповідність країни"| A4F["✅ Зіставте країну проксі із замовленням"]
 
-    T -->|"Incorrect proxy quantity"| Q1["✅ Count must equal accounts"]
-    T -->|"Invalid/expired link"| L1["✅ Get new link from NVS Shop"]
+    T -->|"Невірна кількість проксі"| Q1["✅ Кількість = кількості акаунтів"]
+    T -->|"Посилання недійсне"| L1["✅ Отримайте нове посилання в NVS Shop"]
 ```
 
 ### Коротка довідка з помилок
@@ -562,24 +554,12 @@ flowchart TD
 - [ ] Валідація пройдена хоча б для 1 акаунту
 - [ ] Замовлення підтверджено
 
-### Потік машини станів
+### Порядок завантаження
 
 ```mermaid
-stateDiagram-v2
-    [*] --> language_selection: New user
-    [*] --> select_order: Existing user
-
-    language_selection --> select_order
-    select_order --> select_method
-
-    select_method --> uploading_file: AdsPower TXT
-    select_method --> uploading_proxies: Manual
-
-    uploading_proxies --> uploading_cookies: Proxies OK
-    uploading_file --> validating: File parsed
-    uploading_cookies --> validating: Cookies received
-
-    validating --> confirming: Results shown
-    confirming --> [*]: Confirmed
-    confirming --> select_method: Cancelled
+flowchart LR
+    A["🔗 Відкрити посилання"] --> B["📤 Обрати метод"]
+    B --> C["📎 Відправити файли"]
+    C --> D["🔍 Валідація"]
+    D --> E["✅ Підтвердити замовлення"]
 ```

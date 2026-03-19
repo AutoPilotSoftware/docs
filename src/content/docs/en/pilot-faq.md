@@ -69,31 +69,27 @@ Click the link — it opens the bot. New users select a language (English / Russ
 
 Choose a method (AdsPower TXT or Manual), upload your data, confirm — sellers begin working.
 
-### Architecture Overview
+### How It Works
 
 ```mermaid
 flowchart TD
-    subgraph External["🌐 NVS Shop"]
-        NS[NVS Shop Website] -->|"POST /api/nvs/create-order"| API[AutoPilot API]
-        API -->|"Returns deeplink"| NS
-        NS -->|"Polls status"| POLL["GET /api/nvs/order/TOKEN/status"]
+    subgraph Shop["🛒 NVS Shop"]
+        NS["Purchase verification order"] --> DL["Receive deeplink"]
     end
 
     subgraph Bot["🤖 AutoPilot KYC Bot"]
-        DL["Pilot clicks deeplink"] --> USR["User created / activated"]
-        USR --> MENU["NVS Menu"]
-        MENU --> UPLOAD["Upload accounts"]
-        UPLOAD --> VAL["Validate proxy + cookies + exchange"]
-        VAL --> ORD["Order + tasks created"]
+        DL --> ACT["Activate order in Telegram"]
+        ACT --> UPLOAD["Upload accounts"]
+        UPLOAD --> VAL["Automatic validation"]
+        VAL --> ORD["Order confirmed"]
     end
 
-    subgraph Sellers["👥 Seller Bot"]
-        ORD -->|"FCFS broadcast"| SEL["Sellers take tasks"]
-        SEL --> WORK["Complete KYC via SumSub"]
-        WORK --> MON["KYC Monitor auto-verifies"]
+    subgraph Work["👥 Verification"]
+        ORD --> SEL["Sellers complete KYC"]
+        SEL --> DONE["✅ Accounts verified"]
     end
 
-    MON -->|"Status updates"| POLL
+    DONE --> TRACK["📊 Track progress in bot or MiniApp"]
 ```
 
 ---
@@ -218,18 +214,18 @@ Every uploaded account goes through a 3-stage validation before order creation.
 
 ```mermaid
 flowchart TD
-    A["📎 Account received"] --> B["Stage 1: Proxy Check\nip-api.com connectivity"]
+    A["📎 Account uploaded"] --> B["Step 1: Proxy check"]
 
-    B -->|"✅ IP responds"| C["Stage 2: Exchange Endpoint\nBybit/MEXC API test"]
-    B -->|"❌ Timeout"| X1["❌ Proxy failed"]
+    B -->|"✅ Connected"| C["Step 2: Exchange access"]
+    B -->|"❌ Failed"| X1["❌ Proxy not working"]
 
-    C -->|"✅ 200 OK"| D["Stage 3: KYC Status\nExchange API with cookies"]
-    C -->|"❌ 403"| X2["❌ Proxy blocked by exchange"]
+    C -->|"✅ Accessible"| D["Step 3: Account status"]
+    C -->|"❌ Blocked"| X2["❌ Proxy blocked by exchange"]
 
-    D -->|"Session valid"| E{"KYC Status?"}
-    D -->|"Auth failed"| X3["❌ Session expired"]
+    D -->|"Session active"| E{"KYC status?"}
+    D -->|"Session invalid"| X3["❌ Cookies expired"]
 
-    E -->|"Not started"| F["✅ Ready — queued for order"]
+    E -->|"Not started"| F["✅ Ready for order"]
     E -->|"In progress"| G["⚠️ Already submitted"]
     E -->|"Completed"| H["⚠️ KYC already done"]
     E -->|"No provider"| X4["❌ Account not configured"]
@@ -271,7 +267,7 @@ stateDiagram-v2
 | PENDING | Token generated, waiting for pilot activation |
 | ACTIVATED | Pilot opened deeplink, ready to upload |
 | UPLOADING | Upload in progress |
-| PROCESSING | Sellers working on tasks (KYC Monitor auto-verifies) |
+| PROCESSING | Sellers working on tasks (auto-verification in progress) |
 | COMPLETED | All tasks reached terminal status |
 | EXPIRED | 48h passed without upload |
 
@@ -309,10 +305,6 @@ After activation, the bot presents 5 action buttons:
 ## Admin MiniApp Dashboard
 
 The **Admin MiniApp** at `app.pilot.monster` provides a visual dashboard accessible directly from Telegram.
-
-### Tech Stack
-
-Built with **Svelte 5** + TypeScript + Vite 6 + TailwindCSS v4, with D3 globe visualization. Authenticates via Telegram `init_data` → JWT token.
 
 ### Navigation
 
@@ -405,7 +397,7 @@ stateDiagram-v2
     AVAILABLE --> TAKEN: Seller claims (FCFS)
     TAKEN --> IN_PROGRESS: Seller starts KYC
     IN_PROGRESS --> COMPLETED: Seller uploads proof
-    COMPLETED --> VERIFIED: KYC Monitor confirms
+    COMPLETED --> VERIFIED: Verification confirmed
 
     AVAILABLE --> DEADLINE_CANCELLED: No seller claimed in time
     TAKEN --> DEADLINE_CANCELLED: Seller didn't start in time
@@ -420,7 +412,7 @@ stateDiagram-v2
 
 **In MiniApp:** Open the **Tasks** tab for a visual dashboard with filters and sorting.
 
-**NVS Shop polling:** The NVS Shop automatically polls the API for updates and can trigger refund webhooks for failed tasks.
+**Auto-updates:** Task statuses update automatically. The NVS Shop displays current progress in real time.
 
 ---
 
@@ -562,24 +554,12 @@ Activate link → Upload accounts → Choose method → Send files → Confirm �
 - [ ] Validation passed for at least 1 account
 - [ ] Order confirmed
 
-### FSM State Flow
+### Upload Flow
 
 ```mermaid
-stateDiagram-v2
-    [*] --> language_selection: New user
-    [*] --> select_order: Existing user
-
-    language_selection --> select_order
-    select_order --> select_method
-
-    select_method --> uploading_file: AdsPower TXT
-    select_method --> uploading_proxies: Manual
-
-    uploading_proxies --> uploading_cookies: Proxies OK
-    uploading_file --> validating: File parsed
-    uploading_cookies --> validating: Cookies received
-
-    validating --> confirming: Results shown
-    confirming --> [*]: Confirmed
-    confirming --> select_method: Cancelled
+flowchart LR
+    A["🔗 Open link"] --> B["📤 Choose method"]
+    B --> C["📎 Send files"]
+    C --> D["🔍 Validation"]
+    D --> E["✅ Confirm order"]
 ```
