@@ -35,7 +35,7 @@ NVS (New Verification System) is a streamlined KYC order flow for pilots who pur
 | Feature | Regular Pilot | NVS Pilot |
 |-|-|-|
 | Order creation | In-bot menu | Via NVS Shop deeplink |
-| Pricing | 35% platform markup | 95% NVS markup |
+| Pricing | Standard platform pricing | NVS Shop pricing |
 | License required | Yes | No (deeplink-based) |
 | Menu options | Full pilot dashboard | 5-button focused menu |
 | MiniApp access | Full tabs | Orders, Tasks, History, Analytics |
