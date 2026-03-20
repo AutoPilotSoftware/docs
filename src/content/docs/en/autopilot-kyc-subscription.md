@@ -3,11 +3,16 @@ title: "AutoPilot KYC Subscription"
 description: "AutoPilot KYC bot — automated KYC verification on Bybit and MEXC. $30/mo subscription."
 ---
 
-# What is @AutoPilotKYC_bot
+# AutoPilot KYC Subscription
 
 A bot for automated KYC on **Bybit** and **MEXC** — upload accounts → automatic validation → distribution to sellers → verification.
 
-![AutoPilot KYC Bot — automated verification robot](https://img4.teletype.in/files/bb/5e/bb5ed64e-86b2-46c6-b002-17f2fe6811ff.png)
+```mermaid
+flowchart LR
+    A["📤 Upload accounts"] --> B["🔍 Auto-validation"]
+    B --> C["👥 Distribute to sellers"]
+    C --> D["✅ Verification"]
+```
 
 ---
 
@@ -25,23 +30,24 @@ A bot for automated KYC on **Bybit** and **MEXC** — upload accounts → automa
 ## Platform Features
 
 ### Security
-- 🔁 Auto-refund on country mismatch
-- 🔄 Resubmit on proxy failure (reKYC)
-- 🔀 Port rotation for blocked proxies
-- ⏰ Deadlines — auto-reassignment on timeout
+- 🔁 **Auto-refund** on country mismatch
+- 🔄 **Resubmit** on proxy failure (reKYC)
+- 🔀 **Port rotation** for blocked proxies
+- ⏰ **Deadlines** — auto-reassignment on timeout
 
 ### Additional
-- 💳 Payment system with USDT balance
-- ⭐ Seller ratings
-- 📊 Analytics and reports
-- 🔍 Filters and bulk orders
-- 🌍 Localization (EN / RU / UA)
+- 💳 Payment system with **USDT** balance
+- ⭐ Seller ratings with tiers (Gold / Silver / Bronze)
+- 📊 Analytics: expenses, activity graphs, success rate
+- 🔍 Filters by country, exchange, bulk orders
+- 🌍 Localization — EN / RU / UA
+- 💬 Built-in anonymous chat with sellers
 
 ---
 
 ## Mini-App: Web Interface in Telegram
 
-![Mini-App — Orders, Tasks, History, Analytics, Sellers, Globe, Chat](https://img2.teletype.in/files/da/ed/daedcb40-975d-49cd-bf42-bfd7b8b4b36d.png)
+Full-featured dashboard right inside Telegram — manage orders, track tasks, and communicate with sellers.
 
 | Tab | Description |
 |-----|-------------|
@@ -58,18 +64,25 @@ A bot for automated KYC on **Bybit** and **MEXC** — upload accounts → automa
 ## Plans
 
 ### 🆓 Free Version
-- Account purchases via @buykyc_bot only
-- Higher pricing tier
-- No custom worker teams
-- Limited Mini-App
-- No custom settings
+
+| | |
+|-|-|
+| Orders | Via @buykyc_bot only |
+| Pricing | Higher tier |
+| Team | No custom workers |
+| Mini-App | Limited |
+| Settings | Basic |
 
 ### 💎 Premium — $30/mo
-- **Wholesale pricing** through local seller competition
-- **Custom team** of workers with your own pricing
-- **Full Mini-App** — all tabs and features
-- **Advanced settings** — deadlines, rotations, filters
-- **Unified balance** with automatic payouts
+
+| | |
+|-|-|
+| Orders | Direct in bot, unlimited |
+| Pricing | **Wholesale** — local seller competition |
+| Team | **Custom team** of workers with your pricing |
+| Mini-App | **Full access** — all tabs and features |
+| Settings | **Advanced** — deadlines, rotations, filters |
+| Balance | **Unified balance** with automatic payouts |
 
 > 💡 **Already subscribed to MEXC AutoPilot or Bybit AutoPilot?** KYC bot access is included for free!
 
@@ -83,6 +96,13 @@ A bot for automated KYC on **Bybit** and **MEXC** — upload accounts → automa
 ---
 
 ## Getting Started
+
+```mermaid
+flowchart LR
+    A["1. Open bot"] --> B["2. Subscribe"]
+    B --> C["3. Upload accounts"]
+    C --> D["✅ Done!"]
+```
 
 1. Open [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot)
 2. Subscribe via [@buykyc_bot](https://t.me/buykyc_bot?start=autopilot_global)
