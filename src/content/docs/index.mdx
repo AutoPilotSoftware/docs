@@ -1,28 +1,31 @@
 ---
 title: AutoPilot — Экосистема
 description: "AutoPilot Software — автоматизация Bybit, MEXC, Bitget + KYC платформа"
-template: splash
 hero:
   title: Экосистема AutoPilot
-  tagline: "Автоматизация Bybit, MEXC, Bitget — торговля, объёмы, KYC верификация в 40+ странах"
+  tagline: Автоматизация торговли на Bybit, MEXC, Bitget + KYC верификация через глобальную сеть селлеров
   actions:
-    - text: Начать работу
+    - text: Начать
       link: ./faq
       icon: right-arrow
       variant: primary
     - text: KYC Платформа
       link: ./autopilot-kyc-subscription
+      icon: seti:lock
       variant: minimal
 ---
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-<CardGrid stagger>
-  <Card title="⚡ Автоматизация бирж" icon="rocket">
-    Регистрация, логин, 2FA, торговля, вывод средств — полная автоматизация для трёх бирж
+<CardGrid>
+  <Card title="Автоматизация бирж" icon="rocket">
+    Регистрация, логин, 2FA, торговля, вывод — всё на автопилоте для Bybit, MEXC и Bitget
   </Card>
-  <Card title="🔐 KYC Платформа" icon="approve-check-circle">
-    Загрузите аккаунты → селлеры пройдут верификацию. 40+ стран, MiniApp дашборд
+  <Card title="KYC Платформа" icon="approve-check-circle">
+    Автоматическая KYC верификация в 40+ странах — загрузите аккаунты, селлеры сделают остальное
+  </Card>
+  <Card title="Сеть селлеров" icon="group">
+    Верифицированные селлеры по всему миру, анонимное назначение задач, автовыплаты
   </Card>
 </CardGrid>
 
@@ -30,11 +33,9 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ### ⚡ Биржевая автоматизация
 
-Торговля, объёмы, фьючерсы, вывод — настройте один раз, работает 24/7
-
 <CardGrid>
   <LinkCard title="FAQ — Полный гайд" description="Все настройки, режимы скорости, прокси, почта, торговля" href="./faq" />
-  <LinkCard title="Bybit AutoPilot" description="Регистрация, whitelist, вывод, фьючерсы, Puzzle" href="./bybit-autopilot" />
+  <LinkCard title="Bybit AutoPilot" description="Регистрация, whitelist, вывод, торговля, фьючерсы" href="./bybit-autopilot" />
   <LinkCard title="MEXC AutoPilot" description="Регистрация, торговля, вывод, earn/staking" href="./mexc-autopilot" />
   <LinkCard title="Bitget AutoPilot" description="Регистрация, торговля, вывод" href="./bitget-autopilot" />
 </CardGrid>
@@ -43,10 +44,8 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ### 🔐 KYC Платформа
 
-Автоматическая верификация через глобальную сеть селлеров
-
 <CardGrid>
-  <LinkCard title="Подписка KYC" description="$30/мес — оптовые цены, своя команда, полный Mini-App" href="./autopilot-kyc-subscription" />
+  <LinkCard title="Подписка AutoPilot KYC" description="$30/мес — оптовые цены, своя команда, полный Mini-App" href="./autopilot-kyc-subscription" />
   <LinkCard title="NVS Upload FAQ" description="Как загружать аккаунты через NVS Shop" href="./nvs-faq" />
   <LinkCard title="Гайд NVS Пилота" description="Загрузка, валидация, дашборд, статусы задач" href="./pilot-faq" />
   <LinkCard title="Условия использования" description="Правила платформы" href="./autopilot-kyc-tos" />
@@ -54,6 +53,6 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ---
 
-### 👥 Для селлеров
+### 👥 Для продавцов
 
-<LinkCard title="Гайд селлера" description="Задачи, рейтинги, выплаты — как зарабатывать на KYC верификации" href="./sellers-guide" />
+<LinkCard title="Гайд селлера" description="Гайд для селлеров KYC платформы — задачи, рейтинги, выплаты" href="./sellers-guide" />
