@@ -282,7 +282,7 @@ After activation, the bot presents 5 action buttons:
 | Button | Function | When to Use |
 |-|-|-|
 | 📤 **Upload Accounts** | Start AdsPower or Manual upload flow | First action after activation |
-| 🔄 **Order reKYC** | Resubmit failed accounts with fresh proxy/cookies | When accounts fail validation |
+| 🔄 **Order reKYC** | Face re-verification requested by the exchange | When exchange requests re-verification |
 | 📋 **My Tasks** | View all tasks and their statuses | Track progress after order creation |
 | 💳 **Deposit** | BSC USDT deposit address | Fund account for paid uploads |
 | 🚀 **Get Full Access** | Upgrade to full pilot license | Access all bot features |
@@ -458,14 +458,14 @@ flowchart TD
 
 ### ReKYC Flow
 
-If accounts fail after order creation, use **🔄 Order reKYC**:
+Sometimes an exchange requests face re-verification for an already verified account. In this case, use **🔄 Order reKYC**:
 
-1. Select the failed order
-2. Choose resubmit method (Manual only — fresh proxy + cookies)
-3. Upload new proxy and cookies for failed accounts
-4. Bot re-validates and updates the existing tasks
+1. Select the order where the exchange requested re-verification
+2. The bot creates a new reKYC task with current data
+3. The same seller who completed the initial KYC performs the face re-verification
+4. Results are updated automatically
 
-> ReKYC keeps the same task assignment — the original seller continues working if one was assigned.
+> ReKYC is assigned to the same seller who completed the initial verification — this is required since the exchange expects the same face.
 
 ---
 
@@ -515,7 +515,7 @@ Export via the **Cookie Editor** browser extension (Chrome/Firefox/Edge) or your
 No. Always save cookies to a `.json` file and send as a document via the 📎 paperclip button.
 
 **Q: What if some accounts fail validation?**
-The bot creates an order with only the passed accounts. Failed ones are excluded. You can use **🔄 Order reKYC** later to retry with fresh data.
+The bot creates an order with only the passed accounts. Failed ones are excluded with specific error reasons.
 
 **Q: Can I upload more accounts later?**
 Yes — press **📤 Upload Accounts** again to add more accounts to your order.

@@ -31,7 +31,7 @@ flowchart LR
 
 ### Security
 - 🔁 **Auto-refund** on country mismatch
-- 🔄 **Resubmit** on proxy failure (reKYC)
+- 🔄 **ReKYC** — face re-verification by the same seller when requested by exchange
 - 🔀 **Port rotation** for blocked proxies
 - ⏰ **Deadlines** — auto-reassignment on timeout
 
