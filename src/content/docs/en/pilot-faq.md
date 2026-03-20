@@ -194,9 +194,7 @@ Use when you have separate proxy lists and cookie files.
 ]
 ```
 
-:::caution[Important]
-Always send cookies as document files via 📎 — never paste cookie content as text.
-:::
+> **Important:** Always send cookies as document files via 📎 — never paste cookie content as text.
 
 ### Method Comparison
 

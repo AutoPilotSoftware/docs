@@ -1,58 +1,71 @@
 ---
 title: AutoPilot — Экосистема
 description: "AutoPilot Software — автоматизация Bybit, MEXC, Bitget + KYC платформа"
-hero:
-  title: Экосистема AutoPilot
-  tagline: Автоматизация торговли на Bybit, MEXC, Bitget + KYC верификация через глобальную сеть селлеров
-  actions:
-    - text: Начать
-      link: ./faq
-      icon: right-arrow
-      variant: primary
-    - text: KYC Платформа
-      link: ./autopilot-kyc-subscription
-      icon: seti:lock
-      variant: minimal
 ---
 
-import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+# AutoPilot Экосистема
 
-<CardGrid>
-  <Card title="Автоматизация бирж" icon="rocket">
-    Регистрация, логин, 2FA, торговля, вывод — всё на автопилоте для Bybit, MEXC и Bitget
-  </Card>
-  <Card title="KYC Платформа" icon="approve-check-circle">
-    Автоматическая KYC верификация в 40+ странах — загрузите аккаунты, селлеры сделают остальное
-  </Card>
-  <Card title="Сеть селлеров" icon="group">
-    Верифицированные селлеры по всему миру, анонимное назначение задач, автовыплаты
-  </Card>
-</CardGrid>
+```mermaid
+flowchart TD
+    subgraph CORE ["⚡ AutoPilot Software"]
+        direction TB
+        BP["Bybit AutoPilot"]
+        MP["MEXC AutoPilot"]
+        BG["Bitget AutoPilot"]
+    end
+
+    subgraph KYC ["🔐 AutoPilot KYC"]
+        direction TB
+        BOT["@AutoPilotKYC_bot"]
+        APP["Mini-App Dashboard"]
+        NVS["NVS Shop Integration"]
+    end
+
+    CORE -->|"KYC верификация"| KYC
+    KYC -->|"40+ стран"| SELLERS["👥 Глобальная сеть селлеров"]
+
+    style CORE fill:#3b82f6,color:#fff,stroke:none,rx:12
+    style KYC fill:#8b5cf6,color:#fff,stroke:none,rx:12
+    style SELLERS fill:#f59e0b,color:#fff,stroke:none,rx:12
+    style BP fill:#2563eb,color:#fff,stroke:none,rx:8
+    style MP fill:#2563eb,color:#fff,stroke:none,rx:8
+    style BG fill:#2563eb,color:#fff,stroke:none,rx:8
+    style BOT fill:#7c3aed,color:#fff,stroke:none,rx:8
+    style APP fill:#7c3aed,color:#fff,stroke:none,rx:8
+    style NVS fill:#7c3aed,color:#fff,stroke:none,rx:8
+
+```
 
 ---
 
 ### ⚡ Биржевая автоматизация
 
-<CardGrid>
-  <LinkCard title="FAQ — Полный гайд" description="Все настройки, режимы скорости, прокси, почта, торговля" href="./faq" />
-  <LinkCard title="Bybit AutoPilot" description="Регистрация, whitelist, вывод, торговля, фьючерсы" href="./bybit-autopilot" />
-  <LinkCard title="MEXC AutoPilot" description="Регистрация, торговля, вывод, earn/staking" href="./mexc-autopilot" />
-  <LinkCard title="Bitget AutoPilot" description="Регистрация, торговля, вывод" href="./bitget-autopilot" />
-</CardGrid>
+> Регистрация, логин, 2FA, торговля, вывод — всё на автопилоте
+
+| | |
+|-|-|
+| 📖 [**FAQ — Полный гайд**](./faq) | Все настройки, режимы скорости, прокси, почта, торговля |
+| 🟠 [**Bybit AutoPilot**](./bybit-autopilot) | Регистрация, whitelist, withdraw, trading, futures, TokenSplash, Puzzle |
+| 🔵 [**MEXC AutoPilot**](./mexc-autopilot) | Регистрация, торговля, вывод, earn/staking |
+| 🟢 [**Bitget AutoPilot**](./bitget-autopilot) | Регистрация, торговля, вывод |
 
 ---
 
 ### 🔐 KYC Платформа
 
-<CardGrid>
-  <LinkCard title="Подписка AutoPilot KYC" description="$30/мес — оптовые цены, своя команда, полный Mini-App" href="./autopilot-kyc-subscription" />
-  <LinkCard title="NVS Upload FAQ" description="Как загружать аккаунты через NVS Shop" href="./nvs-faq" />
-  <LinkCard title="Гайд NVS Пилота" description="Загрузка, валидация, дашборд, статусы задач" href="./pilot-faq" />
-  <LinkCard title="Условия использования" description="Правила платформы" href="./autopilot-kyc-tos" />
-</CardGrid>
+> Автоматическая KYC верификация через глобальную сеть селлеров
+
+| | |
+|-|-|
+| 🎫 [**Подписка AutoPilot KYC**](./autopilot-kyc-subscription) | $30/мес — оптовые цены, своя команда, полный Mini-App |
+| 📤 [**NVS Upload FAQ**](./nvs-faq) | Как загружать аккаунты через NVS Shop |
+| 📋 [**Гайд NVS Пилота**](./pilot-faq) | Полный гайд: загрузка, валидация, дашборд, статусы |
+| 📜 [**Условия использования**](./autopilot-kyc-tos) | ToS платформы |
 
 ---
 
 ### 👥 Для продавцов
 
-<LinkCard title="Гайд селлера" description="Гайд для селлеров KYC платформы — задачи, рейтинги, выплаты" href="./sellers-guide" />
+| | |
+|-|-|
+| 📚 [**Seller Guide**](./sellers-guide) | Гайд для селлеров KYC платформы |

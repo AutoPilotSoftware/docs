@@ -71,9 +71,7 @@ A bot for automated KYC on **Bybit** and **MEXC** — upload accounts → automa
 - **Advanced settings** — deadlines, rotations, filters
 - **Unified balance** with automatic payouts
 
-:::tip[Already subscribed?]
-Already subscribed to MEXC AutoPilot or Bybit AutoPilot? KYC bot access is included for free!
-:::
+> 💡 **Already subscribed to MEXC AutoPilot or Bybit AutoPilot?** KYC bot access is included for free!
 
 ---
 

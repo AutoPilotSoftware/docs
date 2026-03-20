@@ -144,9 +144,7 @@ flowchart TD
     style RESULT fill:#607D8B,color:#fff,stroke:none,rx:10
 ```
 
-:::note[Auto-login and Auto-2FA]
-All actions except registration will automatically log in if needed. The whitelist and withdraw actions will automatically enable 2FA if it is not set up.
-:::
+> All actions except registration will automatically log in if needed. The whitelist and withdraw actions will automatically enable 2FA if it is not set up.
 
 ---
 
@@ -174,9 +172,7 @@ flowchart LR
 | **Updates** | `[REG] is_registered` | Registration status (1 — registered) |
 | **Updates** | `[RESULT] status` | `[REGISTER] SUCCESS` or error description |
 
-:::tip[Quick start]
-To start registration, you only need to fill in 4 columns: profile_id, mail_provider, mail, mail_password
-:::
+> To start registration, you only need to fill in 4 columns: profile_id, mail_provider, mail, mail_password
 
 ---
 
@@ -253,9 +249,7 @@ flowchart LR
 | **Updates** | `[WHITELIST] whitelist_status` | 1 — successfully added |
 | **Updates** | `[RESULT] status` | `[WHITELIST] SUCCESS` |
 
-:::note[Auto-2FA]
-If 2FA is not enabled — AutoPilot will automatically set it up before adding to the whitelist
-:::
+> If 2FA is not enabled — AutoPilot will automatically set it up before adding to the whitelist
 
 ---
 
@@ -282,9 +276,7 @@ flowchart LR
 | Optional | `[WITHDRAW] withdraw_amount` | Amount in % (100 = all, 50 = half) |
 | **Updates** | `[RESULT] status` | `[WITHDRAW] SUCCESS` |
 
-:::note[Auto-2FA]
-If 2FA is not enabled — AutoPilot will automatically set it up before withdrawal
-:::
+> If 2FA is not enabled — AutoPilot will automatically set it up before withdrawal
 
 ---
 
@@ -334,9 +326,7 @@ Run once. Creates your master wallet and shows a secret phrase (12 words). Save 
 | **Output** | File: `aptos_master_seed.enc` | Encrypted secret phrase |
 | **Output** | File: `aptos_hd_wallet_data.csv` | All addresses and private keys |
 
-:::danger[Save your secret phrase!]
-Shown once. Lost phrase = lost access to all addresses and funds.
-:::
+> ⚠️ **Save your secret phrase!** Shown once. Lost phrase = lost access to all addresses and funds.
 
 #### `whitelist_aptos_hd` — Automatic Whitelisting
 
@@ -354,9 +344,7 @@ No manual work. You don't need to create wallets, copy addresses, or fill in the
 | Auto-set | `[WHITELIST] whitelist_network` | `APTOS` |
 | **Updates** | `[RESULT] status` | `[WHITELIST_HD] SUCCESS` |
 
-:::note[Safe to re-run]
-Already has an address? AutoPilot will reuse it — no duplicates.
-:::
+> 🔁 **Safe to re-run:** already has an address? AutoPilot will reuse it — no duplicates.
 
 #### Collecting Funds: Distribute Tab
 
@@ -374,13 +362,9 @@ After withdrawal, your USDT is spread across individual addresses. Open the **Di
 | TRC20 | $1 | ~3 min |
 | ERC20 | $1-5 | ~5 min |
 
-:::tip[Cost savings]
-The more accounts you have — the more you save. Every withdrawal on TRC20/ERC20 costs $1-5. On Aptos = $0.
-:::
+> 💰 **The more accounts you have — the more you save. Every withdrawal on TRC20/ERC20 costs $1-5. On Aptos = $0.**
 
-:::tip[Privacy]
-Each account → unique address → no shared addresses → accounts can't be linked to each other.
-:::
+> 🕵️ **Privacy:** each account → unique address → no shared addresses → accounts can't be linked to each other.
 
 ---
 
@@ -438,15 +422,11 @@ flowchart TD
 | **Required** | `[TRADING] trading_cycles` | Number of buy-sell cycles (e.g.: `3` or `3,5,2`) |
 | **Updates** | `[RESULT] status` | `[TRADING] VOLUME: volume, FEES: fees` |
 
-:::note[Multi-coins]
-Specify multiple coins, sizes, and cycles separated by commas — AutoPilot will trade them sequentially.
-Example: `BTC,ETH` + `10,20` + `3,5` = 3 cycles of BTC at 10 USDT, then 5 cycles of ETH at 20 USDT
-:::
+> **Multi-coins**: specify multiple coins, sizes, and cycles separated by commas — AutoPilot will trade them sequentially.
+> Example: `BTC,ETH` + `10,20` + `3,5` = 3 cycles of BTC at 10 USDT, then 5 cycles of ETH at 20 USDT
 
-:::note[Volume formula]
-Cycles x order size x 2 (buy + sell).
-Example: 3 cycles at 10 USDT = 3 x 10 x 2 = **60 USDT** volume
-:::
+> **Volume formula**: cycles x order size x 2 (buy + sell)
+> Example: 3 cycles at 10 USDT = 3 x 10 x 2 = **60 USDT** volume
 
 ---
 
@@ -459,9 +439,7 @@ Automatic participation in TokenSplash events on Bybit
 | **Required** | `[TS] code` | TokenSplash event code |
 | **Updates** | `[RESULT] status` | `[TS] SUCCESS` |
 
-:::note[Deposit task]
-If the account balance is > 100 USDT — AutoPilot will automatically complete the deposit task
-:::
+> If the account balance is > 100 USDT — AutoPilot will automatically complete the deposit task
 
 ---
 
@@ -589,9 +567,7 @@ AutoPilot uses the IMAP protocol to retrieve verification codes from email.
 
 **Supported providers:** Yahoo, Rambler, iCloud, Outlook, Gmail, Mail.ru, First Mail, and others
 
-:::caution[App Password required]
-For Gmail, Outlook, Yahoo, and iCloud, you need to create an **App Password** — a regular password won't work for IMAP. Alternatively, set up email forwarding to a mailbox with direct IMAP access.
-:::
+> For Gmail, Outlook, Yahoo, and iCloud, you need to create an **App Password** — a regular password won't work for IMAP. Alternatively, set up email forwarding to a mailbox with direct IMAP access.
 
 ---
 
@@ -605,9 +581,7 @@ For Gmail, Outlook, Yahoo, and iCloud, you need to create an **App Password** �
 4. **Fill in** `AutoPilot_table.xlsx` with account data
 5. **Launch** the application
 
-:::tip[Telegram bot]
-Management is also available via the [@AutoPilotManager_bot](https://t.me/AutoPilotManager_bot) bot (requires `bot_mode=YES` in the config)
-:::
+> Management is also available via the [@AutoPilotManager_bot](https://t.me/AutoPilotManager_bot) bot (requires `bot_mode=YES` in the config)
 
 ---
 
