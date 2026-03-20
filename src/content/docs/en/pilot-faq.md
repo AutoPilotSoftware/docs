@@ -392,18 +392,11 @@ Task-linked messaging between pilots and sellers:
 ### Task State Machine
 
 ```mermaid
-stateDiagram-v2
-    [*] --> AVAILABLE: Order created
-    AVAILABLE --> TAKEN: Seller claims (FCFS)
-    TAKEN --> IN_PROGRESS: Seller starts KYC
-    IN_PROGRESS --> COMPLETED: Seller uploads proof
-    COMPLETED --> VERIFIED: Verification confirmed
-
-    AVAILABLE --> DEADLINE_CANCELLED: No seller claimed in time
-    TAKEN --> DEADLINE_CANCELLED: Seller didn't start in time
-    IN_PROGRESS --> REJECTED: Exchange rejects KYC
-    IN_PROGRESS --> COUNTRY_MISMATCH: KYC country ≠ order country
-    IN_PROGRESS --> ACCOUNT_REJECTED: Account-level rejection
+flowchart LR
+    A["⏳ Waiting"] --> B["📋 Assigned"]
+    B --> C["🔄 In Progress"]
+    C --> D["✅ Verified"]
+    C --> E["❌ Rejected"]
 ```
 
 ### Checking Status
@@ -418,28 +411,7 @@ stateDiagram-v2
 
 ## Error Troubleshooting
 
-```mermaid
-flowchart TD
-    ERR["🔴 Error"] --> T{"Error type?"}
-
-    T -->|"File is not valid JSON"| J1["Sent as text?"]
-    J1 -->|Yes| J1F["✅ Save to .json, send via 📎"]
-    J1 -->|No| J2["Empty or BOM encoding?"]
-    J2 --> J2F["✅ Re-export cookies, save UTF-8"]
-
-    T -->|"Could not recognize proxy"| P1["✅ Use IP:PORT:LOGIN:PASS\none per line, no extra text"]
-
-    T -->|"All proxies failed"| P2["✅ Get fresh proxies\nfrom provider"]
-
-    T -->|"All accounts failed"| A1{"Reason?"}
-    A1 -->|"No KYC provider"| A1F["✅ Account not configured\ncontact provider"]
-    A1 -->|"Session expired"| A2F["✅ Re-export fresh cookies"]
-    A1 -->|"Proxy blocked"| A3F["✅ Use different proxy IP"]
-    A1 -->|"Country mismatch"| A4F["✅ Match proxy country to order"]
-
-    T -->|"Incorrect proxy quantity"| Q1["✅ Count must equal accounts"]
-    T -->|"Invalid/expired link"| L1["✅ Get new link from NVS Shop"]
-```
+Use the table below to quickly resolve issues.
 
 ### Error Quick Reference
 
