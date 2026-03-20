@@ -35,10 +35,43 @@
   padding: 0.6rem 0.85rem;
 }
 
-/* Card hover enhancement */
-.card .sl-link-card {
-  transition: transform 0.2s, box-shadow 0.2s;
+/* Hero gradient background for splash pages */
+.hero {
+  background: linear-gradient(160deg, #f8f7ff 0%, #eee8ff 40%, #faf5ff 70%, #f0f9ff 100%);
+  border-bottom: 1px solid var(--sl-color-gray-5, #e2e8f0);
+  padding-bottom: 3rem !important;
 }
-.card .sl-link-card:hover {
+[data-theme='dark'] .hero {
+  background: linear-gradient(160deg, #0f0f1a 0%, #1a1040 40%, #1a0f30 70%, #0f0f1a 100%);
+  border-bottom-color: var(--sl-color-gray-5, #2a2a48);
+}
+
+/* Tighter hero spacing */
+.hero .sl-flex {
+  gap: 1rem;
+}
+
+/* Splash page content width */
+[data-page-template='splash'] .sl-container {
+  max-width: 72rem;
+}
+
+/* LinkCard hover lift */
+.sl-link-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.sl-link-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+[data-theme='dark'] .sl-link-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Card styling improvement */
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
   transform: translateY(-2px);
 }

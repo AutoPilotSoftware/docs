@@ -1,9 +1,10 @@
 ---
 title: AutoPilot — Ecosystem
 description: "AutoPilot Software — automation for Bybit, MEXC, Bitget + KYC platform"
+template: splash
 hero:
   title: AutoPilot Ecosystem
-  tagline: Trade automation for Bybit, MEXC, Bitget + KYC verification through a global seller network
+  tagline: "Bybit, MEXC, Bitget automation — trading, volumes, KYC verification in 40+ countries"
   actions:
     - text: Get Started
       link: ./faq
@@ -11,21 +12,17 @@ hero:
       variant: primary
     - text: KYC Platform
       link: ./autopilot-kyc-subscription
-      icon: seti:lock
       variant: minimal
 ---
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-<CardGrid>
-  <Card title="Exchange Automation" icon="rocket">
-    Registration, login, 2FA, trading, withdrawal — all on autopilot for Bybit, MEXC, and Bitget
+<CardGrid stagger>
+  <Card title="⚡ Exchange Automation" icon="rocket">
+    Registration, login, 2FA, trading, withdrawal — full automation for three exchanges
   </Card>
-  <Card title="KYC Platform" icon="approve-check-circle">
-    Automated KYC verification through 40+ countries — upload accounts, sellers do the rest
-  </Card>
-  <Card title="Global Seller Network" icon="group">
-    Verified sellers worldwide, anonymous task assignment, automated payouts
+  <Card title="🔐 KYC Platform" icon="approve-check-circle">
+    Upload accounts → sellers complete verification. 40+ countries, MiniApp dashboard
   </Card>
 </CardGrid>
 
@@ -33,9 +30,11 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ### ⚡ Exchange Automation
 
+Trading, volumes, futures, withdrawal — set up once, runs 24/7
+
 <CardGrid>
   <LinkCard title="FAQ — Full Guide" description="All settings, speed modes, proxies, email, trading" href="./faq" />
-  <LinkCard title="Bybit AutoPilot" description="Registration, whitelist, withdraw, trading, futures" href="./bybit-autopilot" />
+  <LinkCard title="Bybit AutoPilot" description="Registration, whitelist, withdraw, futures, Puzzle" href="./bybit-autopilot" />
   <LinkCard title="MEXC AutoPilot" description="Registration, trading, withdrawal, earn/staking" href="./mexc-autopilot" />
   <LinkCard title="Bitget AutoPilot" description="Registration, trading, withdrawal" href="./bitget-autopilot" />
 </CardGrid>
@@ -43,6 +42,8 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 ---
 
 ### 🔐 KYC Platform
+
+Automated verification through a global seller network
 
 <CardGrid>
   <LinkCard title="KYC Subscription" description="$30/mo — wholesale pricing, custom team, full Mini-App" href="./autopilot-kyc-subscription" />
@@ -55,4 +56,4 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ### 👥 For Sellers
 
-<LinkCard title="Seller Guide" description="Guide for KYC platform sellers — tasks, ratings, payouts" href="./sellers-guide" />
+<LinkCard title="Seller Guide" description="Tasks, ratings, payouts — how to earn from KYC verification" href="./sellers-guide" />
