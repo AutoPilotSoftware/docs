@@ -67,9 +67,10 @@ You purchased KYC in **NVS Shop** and received a link. Below is how to upload ac
 
 **Step 3.** Paste the copied cookies into a text file and save as `.json` or `.txt`. Send this file to the bot as a document 📎.
 
-> **Important:**
-> - Use the same IP address or proxy so the service doesn't suspect foul play
-> - Cookies have an expiration — if the session expires, you'll need to log in again
+:::caution[Important]
+- Use the same IP address or proxy so the service doesn't suspect foul play
+- Cookies have an expiration — if the session expires, you'll need to log in again
+:::
 
 ---
 
@@ -145,7 +146,9 @@ The bot shows you:
 - 💱 **Exchange** — Bybit or MEXC
 - 📦 **Accounts** — how many accounts you purchased
 
-> ⚠️ **"Invalid or expired link"** — Go back to NVS Shop and get a new one.
+:::caution[Invalid or expired link]
+Go back to NVS Shop and get a new one.
+:::
 
 ---
 
@@ -172,7 +175,9 @@ The bot shows you:
 1. In the bot, press **Upload Accounts** → **AdsPower TXT**
 2. Send the `.txt` file as a **document** (via 📎)
 
-> ⚠️ Send as a **document**, not as a photo or text message.
+:::caution[Send as document]
+Send as a **document**, not as a photo or text message.
+:::
 
 **File format example:**
 ```
@@ -219,7 +224,9 @@ After sending, the bot tests each proxy: working ✅, failed ❌.
 
 Send `.json` files as **documents** (via 📎). Number of files = number of working proxies.
 
-> ⚠️ Do NOT paste cookie content as text — send files via 📎.
+:::caution[Important]
+Do NOT paste cookie content as text — send files via 📎.
+:::
 
 **File format:**
 ```json

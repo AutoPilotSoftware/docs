@@ -29,15 +29,35 @@ export default defineConfig({
 				ua: { label: 'Українська', lang: 'uk' },
 			},
 			sidebar: [
-				{ label: 'FAQ', slug: 'faq' },
-				{ label: 'NVS Upload FAQ', slug: 'nvs-faq' },
-				{ label: 'Bybit AutoPilot', slug: 'bybit-autopilot' },
-				{ label: 'MEXC AutoPilot', slug: 'mexc-autopilot' },
-				{ label: 'Bitget AutoPilot', slug: 'bitget-autopilot' },
-				{ label: 'NVS Pilot Guide', slug: 'pilot-faq' },
-				{ label: 'KYC Subscription', slug: 'autopilot-kyc-subscription' },
-				{ label: 'Terms of Service', slug: 'autopilot-kyc-tos' },
-				{ label: 'Seller Guide', slug: 'sellers-guide' },
+				{
+					label: 'Getting Started',
+					items: [
+						{ label: 'FAQ', slug: 'faq', badge: { text: 'Guide', variant: 'tip' } },
+						{ label: 'NVS Upload FAQ', slug: 'nvs-faq' },
+					],
+				},
+				{
+					label: 'Exchange Automation',
+					items: [
+						{ label: 'Bybit AutoPilot', slug: 'bybit-autopilot' },
+						{ label: 'MEXC AutoPilot', slug: 'mexc-autopilot' },
+						{ label: 'Bitget AutoPilot', slug: 'bitget-autopilot', badge: { text: 'New', variant: 'success' } },
+					],
+				},
+				{
+					label: 'KYC Platform',
+					items: [
+						{ label: 'KYC Subscription', slug: 'autopilot-kyc-subscription' },
+						{ label: 'NVS Pilot Guide', slug: 'pilot-faq' },
+						{ label: 'Terms of Service', slug: 'autopilot-kyc-tos' },
+					],
+				},
+				{
+					label: 'For Sellers',
+					items: [
+						{ label: 'Seller Guide', slug: 'sellers-guide' },
+					],
+				},
 			],
 		}),
 	],

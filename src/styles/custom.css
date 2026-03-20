@@ -1,8 +1,44 @@
-/* Center images and constrain to column width like Teletype */
+/* Brand accent color */
+:root {
+  --sl-color-accent-low: #eeedff;
+  --sl-color-accent: #6c63ff;
+  --sl-color-accent-high: #4f46e5;
+}
+[data-theme='dark'] {
+  --sl-color-accent-low: #1e1b4b;
+  --sl-color-accent: #8b83ff;
+  --sl-color-accent-high: #a5a0ff;
+}
+
+/* Center images and constrain to column width */
 .sl-markdown-content img {
   max-width: 520px;
   width: 100%;
   display: block;
   margin: 1.5rem auto;
   border-radius: 8px;
+}
+
+/* Better table styling */
+.sl-markdown-content table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.sl-markdown-content tr:nth-child(even) {
+  background: var(--sl-color-gray-7, #f8f9fa);
+}
+[data-theme='dark'] .sl-markdown-content tr:nth-child(even) {
+  background: var(--sl-color-gray-6, #1a1a2e);
+}
+.sl-markdown-content td,
+.sl-markdown-content th {
+  padding: 0.6rem 0.85rem;
+}
+
+/* Card hover enhancement */
+.card .sl-link-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card .sl-link-card:hover {
+  transform: translateY(-2px);
 }

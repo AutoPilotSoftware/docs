@@ -65,11 +65,17 @@ flowchart LR
 - `[EMAIL] forwarding_mail` — forwarding email address
 - `[EMAIL] forwarding_mail_password` — forwarding email password
 
-> ⚠️ **Important:** after setting up forwarding, send a test email to make sure messages arrive. Some providers activate forwarding with a delay of up to 24 hours.
+:::caution[Important]
+After setting up forwarding, send a test email to make sure messages arrive. Some providers activate forwarding with a delay of up to 24 hours.
+:::
 
-> 🛡️ **Antivirus:** if you have issues connecting to mail — check if your antivirus is blocking IMAP ports (993, 143).
+:::note[Antivirus]
+If you have issues connecting to mail — check if your antivirus is blocking IMAP ports (993, 143).
+:::
 
-> 💬 **Your provider not listed?** Contact the developer — it will be added.
+:::note[Your provider not listed?]
+Contact the developer — it will be added.
+:::
 
 ---
 
@@ -90,9 +96,13 @@ flowchart LR
 - AutoPilot automatically generates and enters TOTP codes when needed
 - To manually generate a code from the secret key: [totp.danhersam.com](https://totp.danhersam.com/)
 
-> 💾 **Backup:** `totp_secret_code` is additionally saved to profile logs (`/logs` folder) — even if you accidentally clear the table, the secret key can always be found in the logs.
+:::note[Backup]
+`totp_secret_code` is additionally saved to profile logs (`/logs` folder) — even if you accidentally clear the table, the secret key can always be found in the logs.
+:::
 
-> ⚡ **Auto-setup:** actions `whitelist` and `withdraw` will automatically enable 2FA if it's not set up yet. No need to run `2fa` separately.
+:::tip[Auto-setup]
+Actions `whitelist` and `withdraw` will automatically enable 2FA if it's not set up yet. No need to run `2fa` separately.
+:::
 
 ---
 
@@ -108,7 +118,9 @@ flowchart LR
 
 **⌨️ Human Typing** (MEDIUM/SLOW): random delays between characters, random typos with auto-correction — like a real person.
 
-> 💡 **Recommendation:** FAST is sufficient for registration and login. For trading and actions on pages with anti-bot protection — use MEDIUM.
+:::tip[Recommendation]
+FAST is sufficient for registration and login. For trading and actions on pages with anti-bot protection — use MEDIUM.
+:::
 
 ---
 
@@ -118,11 +130,17 @@ flowchart LR
 
 Purpose: the captcha solving service (CapGuru/CapSolver) uses the proxy to solve the captcha from the profile's IP. The exchange sees the captcha was solved from the profile's IP.
 
-> ⚠️ **If not filled:** the captcha will be solved from the solver's proxy pool IP — this may raise suspicion on some exchanges.
+:::caution[If not filled]
+The captcha will be solved from the solver's proxy pool IP — this may raise suspicion on some exchanges.
+:::
 
-> 💰 **Captcha balance:** top up your CapGuru/CapSolver balance before running. Cost is ~$1 per 1000 solves. Check balance on the service's website.
+:::note[Captcha balance]
+Top up your CapGuru/CapSolver balance before running. Cost is ~$1 per 1000 solves. Check balance on the service's website.
+:::
 
-> 🔧 **Captcha errors:** if captcha keeps failing — verify the `captcha_key` in config and the solver account balance.
+:::note[Captcha errors]
+If captcha keeps failing — verify the `captcha_key` in config and the solver account balance.
+:::
 
 ---
 
@@ -151,11 +169,17 @@ flowchart LR
 3. `[PROFILE] mail` — email address
 4. `[EMAIL] mail_password` — email password
 
-> 💡 **Tip:** only fill the `ACTION` column for profiles you want to automate. Empty ACTION = profile will be skipped.
+:::tip[Tip]
+Only fill the `ACTION` column for profiles you want to automate. Empty ACTION = profile will be skipped.
+:::
 
-> 🔑 **Passwords:** if `password` is not filled — AutoPilot will generate a strong password automatically (8-30 chars, uppercase + lowercase + digits + special characters) and write it to the table.
+:::note[Passwords]
+If `password` is not filled — AutoPilot will generate a strong password automatically (8-30 chars, uppercase + lowercase + digits + special characters) and write it to the table.
+:::
 
-> 📁 **Excel closed?** The table must be closed while AutoPilot is running. If the table is open — the software will warn and wait for it to close.
+:::note[Excel closed?]
+The table must be closed while AutoPilot is running. If the table is open — the software will warn and wait for it to close.
+:::
 
 ---
 
@@ -185,7 +209,9 @@ flowchart LR
 
 **⏱️ Delay between cycles:** configured in settings `market_trading_delay=5,15` (random delay from 5 to 15 seconds).
 
-> 💵 **Minimum order:** make sure there's enough USDT for the minimum order on the exchange (usually ~5 USDT).
+:::note[Minimum order]
+Make sure there's enough USDT for the minimum order on the exchange (usually ~5 USDT).
+:::
 
 ---
 
@@ -224,7 +250,9 @@ flowchart TD
 | `[TRADING] trading_amount` | Position size per iteration (with leverage) in USDT | `1000` |
 | `[TRADING] trading_cycles` | Number of trading cycles | `15` |
 
-> 🔑 **Important:** `trading_amount` is the position size **including leverage**, not the actual balance used. Real balance per trade = `trading_amount / leverage`.
+:::caution[Important]
+`trading_amount` is the position size **including leverage**, not the actual balance used. Real balance per trade = `trading_amount / leverage`.
+:::
 
 **📐 Formula:**
 - **Real balance per trade** = `trading_amount ÷ leverage`
@@ -254,9 +282,13 @@ flowchart TD
 - `inverse_simple` — counter-trend: inverts the simple signal (rising → Short, falling → Long)
 - `advanced` — complex analysis: EMA 8/21 crossover + RSI 14 + Volume Spike (1.7x above average) + Funding Rate
 
-> ⚠️ **Risks:** leveraged futures trading carries liquidation risk. Use moderate leverage and small amounts for volume generation.
+:::caution[Risks]
+Leveraged futures trading carries liquidation risk. Use moderate leverage and small amounts for volume generation.
+:::
 
-> 💡 **Tip:** if an order isn't filled within `limit_futures_order_timeout` — the signal is recalculated. Increase `limit_futures_price_offset_ticks` for faster fills (but at a less favorable price).
+:::tip[Tip]
+If an order isn't filled within `limit_futures_order_timeout` — the signal is recalculated. Increase `limit_futures_price_offset_ticks` for faster fills (but at a less favorable price).
+:::
 
 ---
 
@@ -303,7 +335,9 @@ flowchart TD
 |--------|-------------|---------|
 | `[PUZZLE] event_code` | Puzzle code (or multiple, comma-separated) | `0768558741987` |
 
-> 📌 **Column type:** make the `[PUZZLE] event_code` column **text** (not numeric), otherwise Excel may truncate long codes.
+:::note[Column type]
+Make the `[PUZZLE] event_code` column **text** (not numeric), otherwise Excel may truncate long codes.
+:::
 
 **🔗 Where to get the puzzle code:**
 
@@ -341,9 +375,13 @@ The system processes each puzzle sequentially: social tasks → trading (batched
 
 With multiple puzzles, status is combined: `[CODE1] DONE, [CODE2] 3/10`
 
-> 💡 **Tip:** run `puzzle_hunt` daily — the software will determine what's already done and only perform the missing steps.
+:::tip[Tip]
+Run `puzzle_hunt` daily — the software will determine what's already done and only perform the missing steps.
+:::
 
-> ⚡ **puzzle_social:** to only complete social tasks without trading — use ACTION `puzzle_social`.
+:::tip[puzzle_social]
+To only complete social tasks without trading — use ACTION `puzzle_social`.
+:::
 
 ---
 
@@ -390,13 +428,21 @@ flowchart LR
 |--------|-------------|---------|
 | `[WITHDRAW] withdraw_amount` | Fixed USDT amount (optional) | `100` |
 
-> 💡 **Default:** if `withdraw_amount` is not filled — `earn` will send **all** available USDT to the pool, and `unearn` will withdraw **everything** from the pool.
+:::tip[Default]
+If `withdraw_amount` is not filled — `earn` will send **all** available USDT to the pool, and `unearn` will withdraw **everything** from the pool.
+:::
 
-> 📌 **Fixed amount:** enter a number in `withdraw_amount` to stake/withdraw a specific amount. If the requested amount exceeds available balance — the entire available balance will be used.
+:::note[Fixed amount]
+Enter a number in `withdraw_amount` to stake/withdraw a specific amount. If the requested amount exceeds available balance — the entire available balance will be used.
+:::
 
-> 🏦 **Flexible Savings:** this is flexible staking — funds can be withdrawn at any time, interest accrues daily. Withdrawal is instant.
+:::note[Flexible Savings]
+This is flexible staking — funds can be withdrawn at any time, interest accrues daily. Withdrawal is instant.
+:::
 
-> ⚡ **Auto-transfer:** with `earn`, funds are automatically transferred from Trading to Funding before staking — no manual action needed.
+:::tip[Auto-transfer]
+With `earn`, funds are automatically transferred from Trading to Funding before staking — no manual action needed.
+:::
 
 ---
 
@@ -424,9 +470,13 @@ flowchart LR
 - MEXC: `ERC20`, `TRC20`, `Aptos`
 - Bitget: `BSC`, `Arbitrum One`
 
-> ✅ **Whitelist + Withdraw:** if the withdrawal address matches the whitelisted address — code verification won't be required (fast withdrawal).
+:::tip[Whitelist + Withdraw]
+If the withdrawal address matches the whitelisted address — code verification won't be required (fast withdrawal).
+:::
 
-> 🏷️ **Memo/Tag:** if the network requires a memo (e.g., TON, ATOM) — fill in the `withdraw_memo` column. If not required — leave empty.
+:::note[Memo/Tag]
+If the network requires a memo (e.g., TON, ATOM) — fill in the `withdraw_memo` column. If not required — leave empty.
+:::
 
 ---
 
@@ -474,9 +524,13 @@ After withdrawal — open the **Distribute** tab and collect everything to one w
 | `aptos_distribution_master_index` | Index of the master wallet | `0` |
 | `aptos_distribution_amount` | USDT amount per distribution | `0.5` |
 
-> 💡 **Example:** you have old Bybit accounts with leftover funds. Instead of manually creating addresses, entering them one by one, and collecting from each wallet — run 3 actions and everything lands on your master wallet. Zero manual work, zero fees, zero links between accounts.
+:::tip[Example]
+You have old Bybit accounts with leftover funds. Instead of manually creating addresses, entering them one by one, and collecting from each wallet — run 3 actions and everything lands on your master wallet. Zero manual work, zero fees, zero links between accounts.
+:::
 
-> 🔁 **Safe to re-run:** if an account already has an address, `whitelist_aptos_hd` will reuse it — no duplicates.
+:::note[Safe to re-run]
+If an account already has an address, `whitelist_aptos_hd` will reuse it — no duplicates.
+:::
 
 ---
 
@@ -504,7 +558,9 @@ After withdrawal — open the **Distribute** tab and collect everything to one w
 | Browser not opening | Check paid AdsPower subscription |
 | Timeout loading page | Check proxy, change fingerprint |
 
-> 🚀 **Optimization:** install Ublock/AdBlock in profiles to block ads — pages will load faster.
+:::tip[Optimization]
+Install Ublock/AdBlock in profiles to block ads — pages will load faster.
+:::
 
 ---
 
@@ -514,7 +570,9 @@ The software automatically sets the resolution to **1920x1080** on the page, eve
 
 This ensures all UI elements display correctly and the software doesn't miss buttons.
 
-> 📐 The `window_size=1200,1000` parameter in config sets the browser window size, but the internal page resolution is always 1920x1080.
+:::note[Screen resolution]
+The `window_size=1200,1000` parameter in config sets the browser window size, but the internal page resolution is always 1920x1080.
+:::
 
 ---
 
@@ -538,7 +596,9 @@ This ensures all UI elements display correctly and the software doesn't miss but
 | `disable_kyc_protection` | 🛡️ Allow 2FA without KYC | `NO` |
 | `color_logs` | 🎨 Colored logs in console | `YES` |
 
-> 🕵️ **Anti-detect:** enable `shuffle_order=YES` and `sleep_between_accounts=YES` with `parallel_limit=3-5` for natural behavior.
+:::tip[Anti-detect]
+Enable `shuffle_order=YES` and `sleep_between_accounts=YES` with `parallel_limit=3-5` for natural behavior.
+:::
 
 ---
 
@@ -575,9 +635,13 @@ AutoPilot checks for updates on every launch. If a new version is available:
 3. Extract the `AutoPilot.zip` archive to the current folder with replacement
 4. Launch the updated version
 
-> ♾️ **Lifetime:** all updates are free forever.
+:::tip[Lifetime]
+All updates are free forever.
+:::
 
-> ⛔ **Don't interrupt the download:** if you close the software during download — the archive may be corrupted. Wait for completion.
+:::caution[Don't interrupt the download]
+If you close the software during download — the archive may be corrupted. Wait for completion.
+:::
 
 ---
 

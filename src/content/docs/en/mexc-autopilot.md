@@ -129,7 +129,9 @@ flowchart TD
     style RESULT fill:#607D8B,color:#fff,stroke:none,rx:10
 ```
 
-> All actions except registration will automatically log in to the account if needed. The whitelist and withdraw actions will automatically enable 2FA if it is not set up.
+:::note[Auto-login and Auto-2FA]
+All actions except registration will automatically log in to the account if needed. The whitelist and withdraw actions will automatically enable 2FA if it is not set up.
+:::
 
 ---
 
@@ -231,7 +233,9 @@ flowchart LR
 | **Updates** | `[WHITELIST_MEXC] whitelist_status` | 1 — successfully added |
 | **Updates** | `[RESULT] status` | `[WHITELIST_MX] SUCCESS` |
 
-> If 2FA is not enabled — AutoPilot will automatically set it up before adding to the whitelist
+:::note[Auto-2FA]
+If 2FA is not enabled — AutoPilot will automatically set it up before adding to the whitelist
+:::
 
 ---
 
@@ -258,7 +262,9 @@ flowchart LR
 | Optional | `[WITHDRAW_MEXC] withdraw_amount` | Amount in % (100 = all, 50 = half) |
 | **Updates** | `[RESULT] status` | `[WITHDRAW_MEXC] SUCCESS` |
 
-> If 2FA is not enabled — AutoPilot will automatically set it up before withdrawal
+:::note[Auto-2FA]
+If 2FA is not enabled — AutoPilot will automatically set it up before withdrawal
+:::
 
 ---
 
@@ -305,11 +311,15 @@ flowchart TD
 | **Required** | `[TRADING] trading_cycles` | Number of buy-sell cycles (e.g.: `3` or `3,5,2`) |
 | **Updates** | `[RESULT] status` | `[TRADING_MX] VOLUME: volume, FEES: fees` |
 
-> **Multi-coins**: specify multiple coins, amounts, and cycles separated by commas — AutoPilot will trade them sequentially.
-> Example: `BTC,ETH` + `10,20` + `3,5` = 3 cycles of BTC at 10 USDT, then 5 cycles of ETH at 20 USDT
+:::note[Multi-coins]
+Specify multiple coins, amounts, and cycles separated by commas — AutoPilot will trade them sequentially.
+Example: `BTC,ETH` + `10,20` + `3,5` = 3 cycles of BTC at 10 USDT, then 5 cycles of ETH at 20 USDT
+:::
 
-> **Volume formula**: cycles x order size x 2 (buy + sell)
-> Example: 3 cycles at 10 USDT = 3 x 10 x 2 = **60 USDT** volume
+:::note[Volume formula]
+Cycles x order size x 2 (buy + sell).
+Example: 3 cycles at 10 USDT = 3 x 10 x 2 = **60 USDT** volume
+:::
 
 ---
 

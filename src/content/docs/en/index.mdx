@@ -1,71 +1,58 @@
 ---
 title: AutoPilot — Ecosystem
 description: "AutoPilot Software — automation for Bybit, MEXC, Bitget + KYC platform"
+hero:
+  title: AutoPilot Ecosystem
+  tagline: Trade automation for Bybit, MEXC, Bitget + KYC verification through a global seller network
+  actions:
+    - text: Get Started
+      link: ./faq
+      icon: right-arrow
+      variant: primary
+    - text: KYC Platform
+      link: ./autopilot-kyc-subscription
+      icon: seti:lock
+      variant: minimal
 ---
 
-# AutoPilot Ecosystem
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-```mermaid
-flowchart TD
-    subgraph CORE ["⚡ AutoPilot Software"]
-        direction TB
-        BP["Bybit AutoPilot"]
-        MP["MEXC AutoPilot"]
-        BG["Bitget AutoPilot"]
-    end
-
-    subgraph KYC ["🔐 AutoPilot KYC"]
-        direction TB
-        BOT["@AutoPilotKYC_bot"]
-        APP["Mini-App Dashboard"]
-        NVS["NVS Shop Integration"]
-    end
-
-    CORE -->|"KYC verification"| KYC
-    KYC -->|"40+ countries"| SELLERS["👥 Global Seller Network"]
-
-    style CORE fill:#3b82f6,color:#fff,stroke:none,rx:12
-    style KYC fill:#8b5cf6,color:#fff,stroke:none,rx:12
-    style SELLERS fill:#f59e0b,color:#fff,stroke:none,rx:12
-    style BP fill:#2563eb,color:#fff,stroke:none,rx:8
-    style MP fill:#2563eb,color:#fff,stroke:none,rx:8
-    style BG fill:#2563eb,color:#fff,stroke:none,rx:8
-    style BOT fill:#7c3aed,color:#fff,stroke:none,rx:8
-    style APP fill:#7c3aed,color:#fff,stroke:none,rx:8
-    style NVS fill:#7c3aed,color:#fff,stroke:none,rx:8
-
-```
+<CardGrid>
+  <Card title="Exchange Automation" icon="rocket">
+    Registration, login, 2FA, trading, withdrawal — all on autopilot for Bybit, MEXC, and Bitget
+  </Card>
+  <Card title="KYC Platform" icon="approve-check-circle">
+    Automated KYC verification through 40+ countries — upload accounts, sellers do the rest
+  </Card>
+  <Card title="Global Seller Network" icon="group">
+    Verified sellers worldwide, anonymous task assignment, automated payouts
+  </Card>
+</CardGrid>
 
 ---
 
 ### ⚡ Exchange Automation
 
-> Registration, login, 2FA, trading, withdrawal — all on autopilot
-
-| | |
-|-|-|
-| 📖 [**FAQ — Full Guide**](./faq) | All settings, speed modes, proxies, email, trading |
-| 🟠 [**Bybit AutoPilot**](./bybit-autopilot) | Registration, whitelist, withdraw, trading, futures, TokenSplash, Puzzle |
-| 🔵 [**MEXC AutoPilot**](./mexc-autopilot) | Registration, trading, withdrawal, earn/staking |
-| 🟢 [**Bitget AutoPilot**](./bitget-autopilot) | Registration, trading, withdrawal |
+<CardGrid>
+  <LinkCard title="FAQ — Full Guide" description="All settings, speed modes, proxies, email, trading" href="./faq" />
+  <LinkCard title="Bybit AutoPilot" description="Registration, whitelist, withdraw, trading, futures" href="./bybit-autopilot" />
+  <LinkCard title="MEXC AutoPilot" description="Registration, trading, withdrawal, earn/staking" href="./mexc-autopilot" />
+  <LinkCard title="Bitget AutoPilot" description="Registration, trading, withdrawal" href="./bitget-autopilot" />
+</CardGrid>
 
 ---
 
 ### 🔐 KYC Platform
 
-> Automated KYC verification through a global seller network
-
-| | |
-|-|-|
-| 🎫 [**AutoPilot KYC Subscription**](./autopilot-kyc-subscription) | $30/mo — wholesale pricing, custom team, full Mini-App |
-| 📤 [**NVS Upload FAQ**](./nvs-faq) | How to upload accounts via NVS Shop |
-| 📋 [**NVS Pilot Guide**](./pilot-faq) | Full guide: upload, validation, dashboard, statuses |
-| 📜 [**Terms of Service**](./autopilot-kyc-tos) | Platform ToS |
+<CardGrid>
+  <LinkCard title="KYC Subscription" description="$30/mo — wholesale pricing, custom team, full Mini-App" href="./autopilot-kyc-subscription" />
+  <LinkCard title="NVS Upload FAQ" description="How to upload accounts via NVS Shop" href="./nvs-faq" />
+  <LinkCard title="NVS Pilot Guide" description="Upload, validation, dashboard, task statuses" href="./pilot-faq" />
+  <LinkCard title="Terms of Service" description="Platform terms and conditions" href="./autopilot-kyc-tos" />
+</CardGrid>
 
 ---
 
 ### 👥 For Sellers
 
-| | |
-|-|-|
-| 📚 [**Seller Guide**](./sellers-guide) | Guide for KYC platform sellers |
+<LinkCard title="Seller Guide" description="Guide for KYC platform sellers — tasks, ratings, payouts" href="./sellers-guide" />
