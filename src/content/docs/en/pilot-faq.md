@@ -302,41 +302,22 @@ After activation, the bot presents 5 action buttons:
 
 ---
 
-## Admin MiniApp Dashboard
+## MiniApp Dashboard
 
-The **Admin MiniApp** at `app.pilot.monster` provides a visual dashboard accessible directly from Telegram.
+MiniApp at `app.pilot.monster` — a visual dashboard right inside Telegram.
 
-### Navigation
+### MiniApp Tabs
 
-```mermaid
-flowchart LR
-    subgraph Tabs["📱 Bottom Tab Navigation"]
-        direction TB
-        T1["📦 Orders"]
-        T2["📋 Tasks"]
-        T3["📜 History"]
-        T4["📊 Analytics"]
-        T5["👥 Sellers"]
-        T6["🌍 Globe"]
-        T7["➕ New Order"]
-        T8["💬 Chat"]
-    end
-```
-
-### Tab Access by Role
-
-| Tab | Admin | Pilot | NVS User |
-|-|-|-|-|
-| Orders | All orders | Own orders | Own NVS orders |
-| Tasks | All tasks | Tasks from own orders | Own tasks |
-| History | Platform-wide | Own history | Own history |
-| Analytics | Platform-wide | Own analytics | Own analytics |
-| Sellers | All (full identity) | Workers + anonymized global | Hidden |
-| Globe | Full access | Full access | Hidden |
-| New Order | Full access | Full access | NVS order flow |
-| Chat | Admin→any seller | Task-linked, mutual anonymity | Hidden |
-| NVS | Full management | Hidden | Hidden |
-| AI | Anomaly detection | Hidden | Hidden |
+| Tab | Pilot | NVS User |
+|-|-|-|
+| 📦 Orders | Your orders | Your NVS orders |
+| 📋 Tasks | Tasks from your orders | Your tasks |
+| 📜 History | Your history | Your history |
+| 📊 Analytics | Your analytics | Your analytics |
+| 👥 Sellers | Workers + anonymized global | — |
+| 🌍 Globe | Country map | — |
+| ➕ New Order | Create order | NVS order flow |
+| 💬 Chat | Chat with seller (anonymous) | — |
 
 ### Orders Tab
 
