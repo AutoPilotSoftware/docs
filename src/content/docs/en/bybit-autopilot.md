@@ -83,24 +83,33 @@ mindmap
       Login
       KYC Check
       2FA Setup
+      Learn & Avatar
     Wallets
       Deposit Address
       Address Whitelist
       Withdrawal
       Full Withdrawal
-    Trading
+    Spot Trading
       Market Trading
+      Limit Trading
+      Buy / Sell
       Volume Boosting
-      Multi-coins
+    Futures
+      Futures Trading
+      Smart Futures
+    Staking
+      Earn / Stake
+      Unearn / Unstake
     Events
       TokenSplash
       LaunchPad
       Puzzle Hunt
+      Claim Rewards
     Utilities
       API Keys
       Profit Calculation
-      Email Verification
-      Asset Liquidation
+      Referral Code
+      KYC Link
 ```
 
 AutoPilot supports a wide range of automated actions for Bybit:
@@ -109,14 +118,22 @@ AutoPilot supports a wide range of automated actions for Bybit:
 - **Login**: signing into an account, checking verification and balance
 - **KYC Check**: verification level check displaying country, name, and document
 - **2FA Management**: setting up two-factor authentication
+- **Learn & Avatar**: completing learning modules and setting profile avatar
 - **Retrieving deposit addresses** for each account
 - **Adding addresses to the whitelist** with support for various networks
 - **Withdrawing funds** from an account, including full withdrawal with conversion of all assets
 - **Obtaining API keys** for trading
-- **Automated trading**: trading and volume boosting on specified pairs
-- **Selling all assets**: converting all coins to USDT with market orders
+- **Automated trading**: market and limit trading, volume boosting on specified pairs
+- **Buy / Sell**: buying assets and selling all coins to USDT
+- **Futures trading**: standard and smart futures with post-only orders (32% fee savings)
+- **Staking**: USDT Flexible Savings (earn / unearn)
 - **TokenSplash**: automatic participation in events with deposit task completion
+- **LaunchPad**: automatic registration in active LaunchPad events
 - **Puzzle Hunt**: automatic completion of puzzle tasks
+- **Claiming rewards**: coupons, batch claims, activity rewards
+- **Referral codes**: automatic extraction of account referral codes
+- **KYC link**: getting SUMSUB verification link
+- **Profit calculation**: automatic WITHDRAW - DEPOSIT analysis
 - Automatic captcha solving, email verification code retrieval, and more
 
 ---
@@ -443,13 +460,218 @@ Automatic participation in TokenSplash events on Bybit
 
 ---
 
-### `puzzle` — Puzzle Hunt
+### `puzzle_hunt` — Puzzle Hunt
 
-Automatic completion of Puzzle Hunt tasks on Bybit
+Automatic completion of Puzzle Hunt tasks on Bybit: registration, social tasks, trading, daily check-ins
 
 | Parameter | Column | Description |
 |-----------|--------|-------------|
-| **Updates** | `[RESULT] status` | `[PUZZLE] SUCCESS` |
+| **Required** | `[PUZZLE] event_code` | Puzzle code (comma-separated for multiple) |
+| **Updates** | `[RESULT] status` | `DONE`, `5/10` (progress), `ENDED`, or `FAIL` |
+
+> Specify multiple puzzles at once: `code1,code2,code3`. Make the column **text** type to avoid Excel truncating long codes.
+
+> See [FAQ → Puzzle Hunt](/docs/faq/#62--puzzle-hunt-puzzle_hunt) for detailed flow, statuses, and tips.
+
+---
+
+### `link` — Get KYC Verification Link
+
+Extract the SUMSUB verification link for the account
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Updates** | `[RESULT] status` | `[LINK] SUCCESS` with the verification URL |
+
+---
+
+### `learn` — Learn Articles & Set Avatar
+
+Complete Bybit learning modules and set a profile avatar automatically
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Updates** | `[RESULT] status` | `[LEARN] SUCCESS` |
+
+---
+
+### `profit` — Profit Calculation
+
+Calculate profit per account: total withdrawals - total deposits + current balance
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Updates** | `[RESULT] status` | `[PROFIT] profit_value` |
+
+---
+
+### `buy` — Buy Asset
+
+Buy a specific asset with USDT
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Required** | `[TRADING] trading_coin` | Asset to buy (e.g.: `BTC`) |
+| **Required** | `[TRADING] trading_amount` | Amount in USDT |
+| **Updates** | `[RESULT] status` | `[BUY] SUCCESS` |
+
+---
+
+### `limit_buy` — Limit Buy Order
+
+Place a limit buy order for an asset
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Required** | `[TRADING] trading_coin` | Asset to buy (e.g.: `ETH`) |
+| **Required** | `[TRADING] trading_amount` | Amount in USDT |
+| **Updates** | `[RESULT] status` | `[LIMIT_BUY] SUCCESS` |
+
+---
+
+### `limit` — Random Limit Trading
+
+Automated limit trading with randomized orders for natural volume generation
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Required** | `[TRADING] trading_coin` | Asset to trade (e.g.: `BTC`) |
+| Optional | `[TRADING] trading_amount` | Order size in USDT |
+| Optional | `[TRADING] trading_cycles` | Number of cycles |
+| **Updates** | `[RESULT] status` | Volume and fees report |
+
+---
+
+### `trading_limit` — Limit Trading Volume
+
+Volume boosting with limit orders instead of market orders
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Required** | `[TRADING] trading_coin` | Asset to trade (e.g.: `BTC` or `BTC,ETH`) |
+| **Required** | `[TRADING] trading_amount` | Order size in USDT (e.g.: `10` or `10,20`) |
+| Optional | `[TRADING] trading_cycles` | Number of cycles (e.g.: `3` or `3,5`) |
+| **Updates** | `[RESULT] status` | `[TRADING] VOLUME: volume, FEES: fees` |
+
+> Same multi-coin syntax as `trading`, but uses limit orders for better execution prices.
+
+---
+
+### `limit_sell` — Limit Sell on Funding
+
+Sell assets on the Funding account for USDT using limit orders
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Required** | `[TRADING] trading_coin` | Asset to sell (e.g.: `ETH`) |
+| **Updates** | `[RESULT] status` | `[LIMIT_SELL] SUCCESS` |
+
+---
+
+### `futures` — Futures Trading
+
+Leveraged futures trading with market orders
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Required** | `[TRADING] trading_coin` | Futures coin (e.g.: `BTC`) |
+| **Required** | `[TRADING] trading_amount` | Position size with leverage in USDT |
+| **Required** | `[TRADING] trading_cycles` | Number of trading cycles |
+| **Updates** | `[RESULT] status` | Volume and fees report |
+
+> Configure leverage with `leverage` parameter in config (default: `10`).
+
+---
+
+### `futures_smart` — Smart Futures Trading
+
+Automated futures trading with market analysis, post-only limit orders, and position management. **32% cheaper** than market orders.
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Required** | `[TRADING] trading_coin` | Futures coin (e.g.: `BTC`) |
+| **Required** | `[TRADING] trading_amount` | Position size with leverage in USDT |
+| **Required** | `[TRADING] trading_cycles` | Number of trading cycles |
+| **Updates** | `[RESULT] status` | Volume and fees report |
+
+> `trading_amount` is the position size **including leverage**. Real balance per trade = `trading_amount / leverage`.
+
+> See [FAQ → Smart Futures](/docs/faq/#61--smart-futures-trading-futures_smart) for algorithms, formulas, and config parameters.
+
+---
+
+### `stake` / `earn` — USDT Staking (Flexible Savings)
+
+Send USDT to the Bybit Flexible Savings pool. `stake` and `earn` are aliases — same action.
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| Optional | `[WITHDRAW] withdraw_amount` | Fixed USDT amount (default: all available) |
+| **Updates** | `[RESULT] status` | `[STAKE] SUCCESS - stake 150.25` |
+
+> Automatically transfers USDT from Trading → Funding before staking.
+
+---
+
+### `unstake` / `unearn` — Withdraw from Staking
+
+Withdraw USDT from the Flexible Savings pool back to Funding. `unstake` and `unearn` are aliases.
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Updates** | `[RESULT] status` | `[STAKE] SUCCESS - unstake 150.25` |
+
+> See [FAQ → Bybit Earn](/docs/faq/#63--bybit-earn--usdt-staking-earn--unearn) for detailed flow.
+
+---
+
+### `lp` — LaunchPad Event Registration
+
+Automatic registration in the current active LaunchPad event on Bybit. Fully automatic — no columns needed.
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Updates** | `[RESULT] status` | `[LP] SUCCESS` |
+
+---
+
+### `claim` — Claim Coupons
+
+Automatically claim available coupons on the account
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Updates** | `[RESULT] status` | `[CLAIM] SUCCESS` |
+
+---
+
+### `claim_batch` — Batch Claim Coupons
+
+Claim all available coupons in batch mode
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Updates** | `[RESULT] status` | `[CLAIM] SUCCESS` |
+
+---
+
+### `claim_activity` — Claim Activity Rewards
+
+Claim rewards from activity events, bypassing face verification
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Updates** | `[RESULT] status` | `[CLAIM_ACTIVITY] SUCCESS` |
+
+---
+
+### `ref_code` — Extract Referral Code
+
+Automatically extract the account's referral code
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Updates** | `[RESULT] status` | `[REF_CODE] code_value` |
 
 ---
 
@@ -475,10 +697,23 @@ flowchart TD
         S["sell — Sell Assets"]
     end
 
-    subgraph TRADE ["📊 Trading and Events"]
-        T["trading — Trading"]
+    subgraph TRADE ["📊 Trading"]
+        T["trading — Market Trading"]
+        TL["trading_limit — Limit Trading"]
+        B["buy — Buy Asset"]
+        FU["futures_smart — Smart Futures"]
+    end
+
+    subgraph EVENTS ["🎯 Events & Rewards"]
         TS["ts — TokenSplash"]
-        PZ["puzzle — Puzzle Hunt"]
+        LP["lp — LaunchPad"]
+        PZ["puzzle_hunt — Puzzle Hunt"]
+        CL["claim — Claim Rewards"]
+    end
+
+    subgraph STAKE ["🏦 Staking"]
+        ST["stake — Earn"]
+        UST["unstake — Unearn"]
     end
 
     R --> L
@@ -491,8 +726,15 @@ flowchart TD
     S --> WD
     L --> D
     L --> T
+    L --> TL
+    L --> B
+    L --> FU
     L --> TS
+    L --> LP
     L --> PZ
+    L --> CL
+    L --> ST
+    ST --> UST
 
     style R fill:#4CAF50,color:#fff,stroke:none,rx:8
     style L fill:#2196F3,color:#fff,stroke:none,rx:8
@@ -504,8 +746,15 @@ flowchart TD
     style WD fill:#f44336,color:#fff,stroke:none,rx:8
     style S fill:#E91E63,color:#fff,stroke:none,rx:8
     style T fill:#009688,color:#fff,stroke:none,rx:8
+    style TL fill:#00897B,color:#fff,stroke:none,rx:8
+    style B fill:#43A047,color:#fff,stroke:none,rx:8
+    style FU fill:#E65100,color:#fff,stroke:none,rx:8
     style TS fill:#00BCD4,color:#fff,stroke:none,rx:8
+    style LP fill:#0097A7,color:#fff,stroke:none,rx:8
     style PZ fill:#795548,color:#fff,stroke:none,rx:8
+    style CL fill:#AB47BC,color:#fff,stroke:none,rx:8
+    style ST fill:#66BB6A,color:#fff,stroke:none,rx:8
+    style UST fill:#81C784,color:#fff,stroke:none,rx:8
 ```
 
 | Action | Description | Auto-login | Auto-2FA |
@@ -513,14 +762,31 @@ flowchart TD
 | `register` | Account registration | — | — |
 | `login` | Sign into account | — | — |
 | `2fa` | Enable 2FA | ✅ | — |
+| `link` | Get KYC verification link | ✅ | — |
+| `learn` | Learn articles & set avatar | ✅ | — |
 | `deposit` | Deposit address | ✅ | — |
 | `whitelist` | Add to whitelist | ✅ | ✅ |
 | `withdraw` | Withdraw funds | ✅ | ✅ |
 | `sell` | Sell all assets | ✅ | — |
 | `api` | Create API keys | ✅ | — |
 | `trading` | Market trading | ✅ | — |
+| `trading_limit` | Limit trading | ✅ | — |
+| `buy` | Buy asset | ✅ | — |
+| `limit_buy` | Limit buy order | ✅ | — |
+| `limit` | Random limit trading | ✅ | — |
+| `limit_sell` | Limit sell on Funding | ✅ | — |
+| `futures` | Futures trading | ✅ | — |
+| `futures_smart` | Smart futures (32% cheaper) | ✅ | — |
+| `stake` / `earn` | USDT staking | ✅ | — |
+| `unstake` / `unearn` | Withdraw from staking | ✅ | — |
 | `ts` | TokenSplash events | ✅ | — |
-| `puzzle` | Puzzle Hunt | ✅ | — |
+| `lp` | LaunchPad events | ✅ | — |
+| `puzzle_hunt` | Puzzle Hunt | ✅ | — |
+| `claim` | Claim coupons | ✅ | — |
+| `claim_batch` | Batch claim coupons | ✅ | — |
+| `claim_activity` | Claim activity rewards | ✅ | — |
+| `profit` | Profit calculation | ✅ | — |
+| `ref_code` | Extract referral code | ✅ | — |
 
 ---
 

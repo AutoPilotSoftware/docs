@@ -16,6 +16,8 @@ description: "Frequently asked questions about AutoPilot Software"
    - [6.1 🤖 Smart Futures Trading (futures_smart)](#61--smart-futures-trading-futures_smart)
    - [6.2 🧩 Puzzle Hunt (puzzle_hunt)](#62--puzzle-hunt-puzzle_hunt)
    - [6.3 💰 Bybit Earn — USDT Staking (earn / unearn)](#63--bybit-earn--usdt-staking-earn--unearn)
+   - [6.4 🛒 Trading Variants (buy, limit, futures)](#64--trading-variants-buy-limit-futures)
+   - [6.5 🎁 Rewards & Events (claim, lp, learn, ref_code)](#65--rewards--events-claim-lp-learn-ref_code-link-profit)
 7. [💸 Withdrawal (withdraw)](#7--withdrawal-withdraw)
 8. [🌐 AdsPower / Dolphin / Vision](#8--adspower--dolphin--vision)
 9. [🖥️ Screen Size](#9-️-screen-size)
@@ -397,6 +399,51 @@ flowchart LR
 > 🏦 **Flexible Savings:** this is flexible staking — funds can be withdrawn at any time, interest accrues daily. Withdrawal is instant.
 
 > ⚡ **Auto-transfer:** with `earn`, funds are automatically transferred from Trading to Funding before staking — no manual action needed.
+
+> 🔄 **Aliases:** `stake` = `earn`, `unstake` = `unearn` — identical actions, use whichever you prefer.
+
+---
+
+### 6.4 🛒 Trading Variants (buy, limit, futures)
+
+AutoPilot offers several trading actions for different scenarios:
+
+| Action | Type | Description |
+|--------|------|-------------|
+| `trading` | Market | Buy-sell cycles with market orders. Volume = `cycles × amount × 2` |
+| `trading_limit` | Limit | Same as `trading`, but uses limit orders for better prices |
+| `buy` | Market | One-time buy of a specific asset |
+| `limit_buy` | Limit | One-time limit buy order |
+| `limit` | Limit | Random limit trading for natural volume |
+| `sell` | Market | Sell all assets for USDT |
+| `limit_sell` | Limit | Sell on Funding account with limit orders |
+| `futures` | Market | Leveraged futures with market orders |
+| `futures_smart` | Limit | Smart futures with post-only orders (32% cheaper) |
+
+> 💡 **When to use which:** `trading` for quick volume, `trading_limit` for better prices, `futures_smart` for cheapest fees. `buy` / `limit_buy` for one-off purchases.
+
+> 📊 **Columns:** all trading actions use `[TRADING] trading_coin`, `[TRADING] trading_amount`. Cycle-based actions also use `[TRADING] trading_cycles`.
+
+---
+
+### 6.5 🎁 Rewards & Events (claim, lp, learn, ref_code, link, profit)
+
+Quick-reference for actions that require **no extra columns** — just set the ACTION and run:
+
+| Action | Description |
+|--------|-------------|
+| `lp` | Automatic registration in the current LaunchPad event |
+| `claim` | Claim available coupons |
+| `claim_batch` | Claim all coupons in batch |
+| `claim_activity` | Claim activity rewards (bypasses face verification) |
+| `learn` | Complete learning modules and set profile avatar |
+| `ref_code` | Extract account referral code |
+| `link` | Get SUMSUB KYC verification link |
+| `profit` | Calculate profit: total withdrawals − total deposits + balance |
+
+> 💡 **All automatic:** these actions need only `profile_id` and login credentials. No extra columns to fill.
+
+> 🚀 **LaunchPad (`lp`):** fully automatic — finds the current active event and registers. Run periodically when new events appear.
 
 ---
 
