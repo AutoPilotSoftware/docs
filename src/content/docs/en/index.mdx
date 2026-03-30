@@ -3,6 +3,8 @@ title: AutoPilot — Ecosystem
 description: "AutoPilot Software — automation for Bybit, MEXC, Bitget + KYC platform"
 ---
 
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+
 # AutoPilot Ecosystem
 
 ```mermaid
@@ -42,12 +44,13 @@ flowchart TD
 
 > Registration, login, 2FA, trading, withdrawal — all on autopilot
 
-| | |
-|-|-|
-| 📖 [**FAQ — Full Guide**](./faq) | All settings, speed modes, proxies, email, trading |
-| 🟠 [**Bybit AutoPilot**](./bybit-autopilot) | Registration, whitelist, withdraw, trading, futures, TokenSplash, Puzzle |
-| 🔵 [**MEXC AutoPilot**](./mexc-autopilot) | Registration, trading, withdrawal, earn/staking |
-| 🟢 [**Bitget AutoPilot**](./bitget-autopilot) | Registration, trading, withdrawal |
+<LinkCard title="📖 FAQ — Full Guide" description="Complete knowledge base — from first launch to advanced configuration" href="./faq" />
+
+<CardGrid>
+  <LinkCard title="🟠 Bybit AutoPilot" description="Most complete module: 25+ actions including futures, TokenSplash, LaunchPad" href="./bybit-autopilot" />
+  <LinkCard title="🔵 MEXC AutoPilot" description="Full automation cycle: registration, trading, API, withdrawal" href="./mexc-autopilot" />
+  <LinkCard title="🟢 Bitget AutoPilot" description="Full automation: registration, trading, CandyBomb, withdrawal" href="./bitget-autopilot" />
+</CardGrid>
 
 ---
 
@@ -55,17 +58,15 @@ flowchart TD
 
 > Automated KYC verification through a global seller network
 
-| | |
-|-|-|
-| 🎫 [**AutoPilot KYC Subscription**](./autopilot-kyc-subscription) | $30/mo — wholesale pricing, custom team, full Mini-App |
-| 📤 [**NVS Upload FAQ**](./nvs-faq) | How to upload accounts via NVS Shop |
-| 📋 [**NVS Pilot Guide**](./pilot-faq) | Full guide: upload, validation, dashboard, statuses |
-| 📜 [**Terms of Service**](./autopilot-kyc-tos) | Platform ToS |
+<CardGrid>
+  <LinkCard title="🎫 AutoPilot KYC Subscription" description="$30/mo — wholesale pricing, custom team, full Mini-App" href="./autopilot-kyc-subscription" />
+  <LinkCard title="📤 NVS Upload FAQ" description="How to upload accounts via NVS Shop" href="./nvs-faq" />
+  <LinkCard title="📋 NVS Pilot Guide" description="Full guide: upload, validation, dashboard, statuses" href="./pilot-faq" />
+  <LinkCard title="📜 Terms of Service" description="Platform ToS" href="./autopilot-kyc-tos" />
+</CardGrid>
 
 ---
 
 ### 👥 For Sellers
 
-| | |
-|-|-|
-| 📚 [**Seller Guide**](./sellers-guide) | Guide for KYC platform sellers |
+<LinkCard title="📚 Seller Guide" description="Guide for KYC platform sellers" href="./sellers-guide" />

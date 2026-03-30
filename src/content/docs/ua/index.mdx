@@ -3,6 +3,8 @@ title: AutoPilot — Екосистема
 description: "AutoPilot Software — автоматизація Bybit, MEXC, Bitget + KYC платформа"
 ---
 
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+
 # AutoPilot Екосистема
 
 ```mermaid
@@ -42,12 +44,13 @@ flowchart TD
 
 > Реєстрація, логін, 2FA, торгівля, виведення — все на автопілоті
 
-| | |
-|-|-|
-| 📖 [**FAQ — Повний гайд**](./faq) | Всі налаштування, режими швидкості, проксі, пошта, торгівля |
-| 🟠 [**Bybit AutoPilot**](./bybit-autopilot) | Реєстрація, whitelist, withdraw, trading, futures, TokenSplash, Puzzle |
-| 🔵 [**MEXC AutoPilot**](./mexc-autopilot) | Реєстрація, торгівля, виведення, earn/staking |
-| 🟢 [**Bitget AutoPilot**](./bitget-autopilot) | Реєстрація, торгівля, виведення |
+<LinkCard title="📖 FAQ — Повний гайд" description="Повна база знань — від першого запуску до просунутих налаштувань" href="./faq" />
+
+<CardGrid>
+  <LinkCard title="🟠 Bybit AutoPilot" description="Найповніший модуль: 25+ дій включаючи futures, TokenSplash, LaunchPad" href="./bybit-autopilot" />
+  <LinkCard title="🔵 MEXC AutoPilot" description="Повний цикл автоматизації: реєстрація, трейдинг, API, виведення" href="./mexc-autopilot" />
+  <LinkCard title="🟢 Bitget AutoPilot" description="Повна автоматизація: реєстрація, трейдинг, CandyBomb, виведення" href="./bitget-autopilot" />
+</CardGrid>
 
 ---
 
@@ -55,17 +58,15 @@ flowchart TD
 
 > Автоматична KYC верифікація через глобальну мережу селлерів
 
-| | |
-|-|-|
-| 🎫 [**Підписка AutoPilot KYC**](./autopilot-kyc-subscription) | $30/міс — оптові ціни, своя команда, повний Mini-App |
-| 📤 [**NVS Upload FAQ**](./nvs-faq) | Як завантажувати акаунти через NVS Shop |
-| 📋 [**Гайд NVS Пілота**](./pilot-faq) | Повний гайд: завантаження, валідація, дашборд, статуси |
-| 📜 [**Умови використання**](./autopilot-kyc-tos) | ToS платформи |
+<CardGrid>
+  <LinkCard title="🎫 Підписка AutoPilot KYC" description="$30/міс — оптові ціни, своя команда, повний Mini-App" href="./autopilot-kyc-subscription" />
+  <LinkCard title="📤 NVS Upload FAQ" description="Як завантажувати акаунти через NVS Shop" href="./nvs-faq" />
+  <LinkCard title="📋 Гайд NVS Пілота" description="Повний гайд: завантаження, валідація, дашборд, статуси" href="./pilot-faq" />
+  <LinkCard title="📜 Умови використання" description="ToS платформи" href="./autopilot-kyc-tos" />
+</CardGrid>
 
 ---
 
 ### 👥 Для продавців
 
-| | |
-|-|-|
-| 📚 [**Seller Guide**](./sellers-guide) | Гайд для селлерів KYC платформи |
+<LinkCard title="📚 Seller Guide" description="Гайд для селлерів KYC платформи" href="./sellers-guide" />
