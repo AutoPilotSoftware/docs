@@ -97,6 +97,8 @@ flowchart LR
 
 > ⚡ **Auto-setup:** actions `whitelist` and `withdraw` will automatically enable 2FA if it's not set up yet. No need to run `2fa` separately.
 
+> 🌐 **Bybit: 2FA issues?** If the email code doesn't arrive when setting up Google Authenticator — set `bybitglobal` in the `[BYBIT] domain` column of your table. In some regions, `bybitglobal.com` is more reliable. See [Bybit AutoPilot → Bybit Global Domains](/docs/en/bybit-autopilot/#-bybit-global-domains) for details.
+
 ---
 
 ### 3. 🏎️ Speed Modes (speed_mode)
@@ -684,6 +686,7 @@ The countdown starts **from the first launch** of AutoPilot with that key. The e
 | 🔐 2FA code not working | Time desync | Sync your computer time (Settings → Time) |
 | ⏱️ Timeout on page | Slow proxy | Replace proxy or increase timeout |
 | ⏳ Registration hanging | Different captcha type | Update software — support for new captcha types |
+| 🌐 Bybit: 2FA / email / captcha unstable | Regional domain version | Set `bybitglobal` in `[BYBIT] domain` column (see [Bybit → Global Domains](/docs/en/bybit-autopilot/#-bybit-global-domains)) |
 | 🍎 Mac: file shown as "document" / `killed: 9` | Gatekeeper quarantine | See [section 16: Launching on macOS](#16--launching-on-macos) |
 
 ---

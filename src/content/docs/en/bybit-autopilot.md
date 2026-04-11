@@ -813,6 +813,33 @@ The `AutoPilot.config` file contains the main settings:
 
 ---
 
+## 🌐 Bybit Global Domains
+
+Bybit operates multiple regional domains for different jurisdictions. AutoPilot supports domain selection via the **`[BYBIT] domain`** column in `AutoPilot_table.xlsx`.
+
+**Available values:**
+
+| Column value | Resolved domain | When to use |
+|:---:|:---:|---|
+| (empty) | `bybit.com` | Default |
+| `bybitglobal` | `bybitglobal.com` | If you experience registration, 2FA, or captcha issues |
+
+**How to enable:**
+
+1. Add the **`[BYBIT] domain`** column to `AutoPilot_table.xlsx`
+2. Set `bybitglobal` for the profiles that need it (or leave empty for `bybit.com`)
+3. Run any action — AutoPilot will automatically use the selected domain
+
+> 💡 **When to switch to `bybitglobal`:**
+> - **Registration** fails on `bybit.com` but works on `bybitglobal.com`
+> - **2FA email codes** don't arrive when setting up Google Authenticator (common in some regions)
+> - **Captcha** solving is unstable on `bybit.com`
+> - In some regions, `bybitglobal.com` is generally more reliable
+
+> ⚠️ **Note:** `bybit.com` and `bybitglobal.com` are separate regional versions with independent accounts. A profile registered on one domain must continue using the same `[BYBIT] domain` — don't switch domains for existing accounts.
+
+---
+
 ## KYC Statuses
 
 During login, AutoPilot checks the verification status:
