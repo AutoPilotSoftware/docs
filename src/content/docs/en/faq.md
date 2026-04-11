@@ -27,6 +27,7 @@ description: "Frequently asked questions about AutoPilot Software"
 13. [⏰ License Duration](#13--license-duration)
 14. [🚨 Common Errors and Solutions](#14--common-errors-and-solutions)
 15. [💬 Contact Developer](#15--contact-developer)
+16. [🍎 Launching on macOS](#16--launching-on-macos)
 
 ---
 
@@ -645,6 +646,7 @@ The countdown starts **from the first launch** of AutoPilot with that key. The e
 | 🔐 2FA code not working | Time desync | Sync your computer time (Settings → Time) |
 | ⏱️ Timeout on page | Slow proxy | Replace proxy or increase timeout |
 | ⏳ Registration hanging | Different captcha type | Update software — support for new captcha types |
+| 🍎 Mac: file shown as "document" / `killed: 9` | Gatekeeper quarantine | See [section 16: Launching on macOS](#16--launching-on-macos) |
 
 ---
 
@@ -658,3 +660,26 @@ The countdown starts **from the first launch** of AutoPilot with that key. The e
 **When contacting, attach:**
 - 📄 Profile log file from the `/logs` folder
 - 📸 Screenshot or video of the issue (if possible)
+
+---
+
+### 16. 🍎 Launching on macOS
+
+On macOS, AutoPilot **won't launch with a double-click** from Finder — the system blocks unsigned binary files. Launch is only via the terminal, and only after removing the Gatekeeper quarantine.
+
+**What you'll see:**
+- The `AutoPilot` file appears as a "document" in Finder, not as a program
+- Errors: `cannot be opened because the developer cannot be verified`, `killed: 9`, `Operation not permitted`
+
+**Quick cheat sheet** (run in order in the terminal — we recommend [warp.dev](https://www.warp.dev/)):
+
+```bash
+cd ~/Downloads/AutoPilot            # your folder path
+sudo xattr -r -c ./AutoPilot        # remove macOS quarantine
+chmod +x ./AutoPilot                # make executable
+./AutoPilot                         # launch
+```
+
+> 🍎 **Full guide** (troubleshooting for `killed: 9` / Gatekeeper errors, Apple Silicon vs Intel, what to do after updates, FAQ): **[Launching AutoPilot on macOS →](/docs/en/macos-launch/)**
+
+> 💡 **After the first launch**, the `xattr` and `chmod` steps are no longer needed — subsequent launches only require `cd` into the folder and `./AutoPilot`. Repeat these steps after each update (the new binary comes with quarantine again).
