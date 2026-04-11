@@ -11,6 +11,24 @@ Complete instructions for the first run of AutoPilot on a Mac (Apple Silicon / I
 
 ---
 
+## 📥 Where to Download the macOS Build
+
+Current builds are published in **AutoPilot Chat** (Telegram) in separate topics per exchange:
+
+| Chat topic | Exchange |
+|------------|----------|
+| **Updates Bybit** | Bybit AutoPilot |
+| **Updates MEXC** | MEXC AutoPilot |
+| **Updates Bitget** | Bitget AutoPilot |
+
+Open the relevant topic → download the latest build tagged **macOS** → extract the archive to a convenient folder (e.g., `~/Downloads/AutoPilot/`) → proceed to the steps below.
+
+> 💡 **Apple Silicon vs Intel:** both builds are typically published in the chat — `darwin-arm64` for M1/M2/M3/M4 and `darwin-x64` for Intel. See the troubleshooting section below for how to identify your chip.
+
+> 📖 **About in-app auto-update** — see [FAQ → Updates](/docs/en/faq/#12--updates).
+
+---
+
 ## Why It's Harder Than on Windows
 
 By default, macOS blocks the execution of unsigned binary files downloaded from the internet:
@@ -64,7 +82,7 @@ Verify you're in the right folder:
 ls
 ```
 
-The output should contain the `AutoPilot` file, along with `BybitAutoPilot.config`, `data/`, and other pilot files.
+The output should contain the `AutoPilot` file, along with `AutoPilot.config`, `data/`, and other pilot files.
 
 ### Step 3 — Remove Quarantine (Most Important!)
 
@@ -92,7 +110,7 @@ chmod +x ./AutoPilot
 ./AutoPilot
 ```
 
-If everything was done correctly — AutoPilot will launch in the terminal window, read `BybitAutoPilot.config`, and start working.
+If everything was done correctly — AutoPilot will launch in the terminal window, read `AutoPilot.config`, and start working.
 
 ---
 

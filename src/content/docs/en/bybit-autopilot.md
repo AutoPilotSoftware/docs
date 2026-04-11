@@ -792,7 +792,7 @@ flowchart TD
 
 ## Configuration Setup
 
-The `BybitAutoPilot.config` file contains the main settings:
+The `AutoPilot.config` file contains the main settings:
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
@@ -841,7 +841,7 @@ AutoPilot uses the IMAP protocol to retrieve verification codes from email.
 
 1. **Download** `AutoPilot.zip` from the pinned message in the [@buykyc_bot](https://t.me/buykyc_bot) chat
 2. **Extract** the archive into a new folder
-3. **Configure** `BybitAutoPilot.config`:
+3. **Configure** `AutoPilot.config`:
    - Set the `activation_key` (received upon purchase)
    - Set the `captcha_key` (from [2captcha](https://2captcha.com/auth/register), [ruCaptcha](https://rucaptcha.com/auth/register), or [Capmonster](https://capmonster.cloud/Account/Signup))
 4. **Fill in** `AutoPilot_table.xlsx` with account data

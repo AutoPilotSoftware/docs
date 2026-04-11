@@ -617,6 +617,22 @@ flowchart LR
 
 ### 12. 🔄 Updates
 
+**📥 Where to download AutoPilot:**
+
+Current builds are published in **AutoPilot Chat** (Telegram) in separate topics per exchange:
+
+| Chat topic | Exchange | Platforms |
+|------------|----------|-----------|
+| **Updates Bybit** | Bybit AutoPilot | Windows / macOS / Linux |
+| **Updates MEXC** | MEXC AutoPilot | Windows / macOS / Linux |
+| **Updates Bitget** | Bitget AutoPilot | Windows / macOS / Linux |
+
+Open the relevant topic → download the latest build for your OS → extract the archive. For macOS, see [section 16: Launching on macOS](#16--launching-on-macos) — it describes the Gatekeeper quarantine removal process.
+
+---
+
+**🔄 In-app auto-update:**
+
 AutoPilot checks for updates on every launch. If a new version is available:
 1. Wait for the message: `"AutoPilot new version downloaded successfully!"`
 2. Close the software
@@ -664,6 +680,8 @@ The countdown starts **from the first launch** of AutoPilot with that key. The e
 ---
 
 ### 16. 🍎 Launching on macOS
+
+> 📥 **First, download the macOS build** from AutoPilot Chat (Telegram) — topic **Updates Bybit / MEXC / Bitget** depending on your exchange. See [section 12: Updates](#12--updates) for details.
 
 On macOS, AutoPilot **won't launch with a double-click** from Finder — the system blocks unsigned binary files. Launch is only via the terminal, and only after removing the Gatekeeper quarantine.
 

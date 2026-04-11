@@ -792,7 +792,7 @@ flowchart TD
 
 ## Налаштування конфiгурацiї
 
-Файл `BybitAutoPilot.config` мiстить основнi параметри:
+Файл `AutoPilot.config` мiстить основнi параметри:
 
 | Параметр | Опис | Приклад |
 |----------|------|---------|
@@ -841,7 +841,7 @@ AutoPilot використовує протокол IMAP для отриманн
 
 1. **Завантажте** `AutoPilot.zip` iз закрiпленого повiдомлення у чатi [@buykyc_bot](https://t.me/buykyc_bot)
 2. **Розпакуйте** архiв у нову папку
-3. **Налаштуйте** `BybitAutoPilot.config`:
+3. **Налаштуйте** `AutoPilot.config`:
    - Вкажiть `activation_key` (отримано при покупцi)
    - Вкажiть `captcha_key` (вiд [2captcha](https://2captcha.com/auth/register), [ruCaptcha](https://rucaptcha.com/auth/register) або [Capmonster](https://capmonster.cloud/Account/Signup))
 4. **Заповнiть** `AutoPilot_table.xlsx` даними акаунтiв
