@@ -799,7 +799,7 @@ The `AutoPilot.config` file contains the main settings:
 | `activation_key` | Activation key | `XXXX-XXXX-XXXX` |
 | `speed_mode` | Speed mode | `FAST`, `MEDIUM`, `SLOW` |
 | `captcha_key` | Captcha service API key | `abc123...` |
-| `captcha_provider` | Captcha provider | `2captcha`, `capmonster` |
+| `captcha_provider` | Captcha provider (⭐ `capsolver`, `capmonster`, `2captcha`, `capguru`) | `capsolver` |
 | `parallel_limit` | Parallel account limit | `3` |
 | `shuffle_order` | Shuffle account order | `YES` / `NO` |
 | `window_size` | Browser window size | `1280x720` |
@@ -843,7 +843,7 @@ AutoPilot uses the IMAP protocol to retrieve verification codes from email.
 2. **Extract** the archive into a new folder
 3. **Configure** `AutoPilot.config`:
    - Set the `activation_key` (received upon purchase)
-   - Set the `captcha_key` (from [2captcha](https://2captcha.com/auth/register), [ruCaptcha](https://rucaptcha.com/auth/register), or [Capmonster](https://capmonster.cloud/Account/Signup))
+   - Set `captcha_provider` and `captcha_key` — 4 providers supported: ⭐ [CapSolver](https://www.capsolver.com/) (recommended), [CapMonster](https://capmonster.cloud/), [2Captcha](https://2captcha.com/), [CapGuru](https://cap.guru/). See [FAQ → section 4](/docs/en/faq/#4--proxy-and-captcha) for details
 4. **Fill in** `AutoPilot_table.xlsx` with account data
 5. **Launch** the application
 

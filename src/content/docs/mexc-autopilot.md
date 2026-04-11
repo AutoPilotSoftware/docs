@@ -106,6 +106,26 @@ AutoPilot поддерживает множество автоматизиров
 
 ---
 
+## 🧩 Настройка капчи
+
+AutoPilot использует провайдеров решения капчи для регистрации и логина. Поддерживаются **4 провайдера**:
+
+- ⭐ **CapSolver** — [capsolver.com](https://www.capsolver.com/) — **рекомендуется**
+- **CapMonster** — [capmonster.cloud](https://capmonster.cloud/)
+- **2Captcha** — [2captcha.com](https://2captcha.com/)
+- **CapGuru** — [cap.guru](https://cap.guru/) — только визуальная капча
+
+Настраивается в `AutoPilot.config`:
+
+```
+captcha_provider=capsolver
+captcha_key=CAP-ВАШ_КЛЮЧ_ЗДЕСЬ
+```
+
+> ⭐ **CapSolver** рекомендуется — самый стабильный и быстрый на MEXC (token-based GeeTest v4). Подробнее о провайдерах капчи и их отличиях — [FAQ → секция 4: Прокси и капча](/docs/faq/#4--прокси-и-капча).
+
+---
+
 ## Полный список действий (ACTION)
 
 ### Общая схема работы действий

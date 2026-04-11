@@ -43,6 +43,26 @@ AutoPilot підтримує безліч автоматизованих дій:
 
 ---
 
+## 🧩 Налаштування капчі
+
+AutoPilot використовує провайдерів вирішення капчі для реєстрації та логіну. Підтримуються **4 провайдери**:
+
+- ⭐ **CapSolver** — [capsolver.com](https://www.capsolver.com/) — **рекомендовано**
+- **CapMonster** — [capmonster.cloud](https://capmonster.cloud/)
+- **2Captcha** — [2captcha.com](https://2captcha.com/)
+- **CapGuru** — [cap.guru](https://cap.guru/) — тільки візуальна капча
+
+Налаштовується в `AutoPilot.config`:
+
+```
+captcha_provider=capsolver
+captcha_key=CAP-ВАШ_КЛЮЧ_ТУТ
+```
+
+> ⭐ **CapSolver** рекомендовано — найстабільніший та найшвидший на Bitget (token-based GeeTest v4). Детальніше про провайдерів капчі та їх відмінності — [FAQ → секція 4: Проксі та капча](/docs/ua/faq/#4--проксі-та-капча).
+
+---
+
 ## Повний список дій (ACTION)
 
 ### `REGISTER` — Реєстрація акаунта

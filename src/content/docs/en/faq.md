@@ -119,13 +119,35 @@ flowchart LR
 
 **Column `[PROXY] proxy`** — profile proxy in format `ip:port:user:password`
 
-Purpose: the captcha solving service (CapGuru/CapSolver) uses the proxy to solve the captcha from the profile's IP. The exchange sees the captcha was solved from the profile's IP.
+Purpose: the captcha solving service uses the proxy to solve the captcha from the profile's IP. The exchange sees the captcha was solved from the profile's IP.
 
 > ⚠️ **If not filled:** the captcha will be solved from the solver's proxy pool IP — this may raise suspicion on some exchanges.
 
-> 💰 **Captcha balance:** top up your CapGuru/CapSolver balance before running. Cost is ~$1 per 1000 solves. Check balance on the service's website.
+#### 🧩 Supported Captcha Providers
 
-> 🔧 **Captcha errors:** if captcha keeps failing — verify the `captcha_key` in config and the solver account balance.
+AutoPilot supports **4 captcha-solving providers**. Set via `captcha_provider` in the config:
+
+| Provider | `captcha_provider` | Type | Website |
+|----------|:---:|------|---------|
+| **CapSolver** ⭐ | `capsolver` | Token (GeeTest v4) | [capsolver.com](https://www.capsolver.com/) |
+| **CapMonster** | `capmonster` | Token (GeeTest v4) | [capmonster.cloud](https://capmonster.cloud/) |
+| **2Captcha** | `2captcha` | Token (GeeTest v4) | [2captcha.com](https://2captcha.com/) |
+| **CapGuru** | `capguru` | Visual (slider drag) | [cap.guru](https://cap.guru/) |
+
+> ⭐ **Recommended: CapSolver** — the most stable and fastest across all exchanges (Bybit, MEXC, Bitget). Token-based GeeTest v4 solving, API-first approach, new captcha types supported immediately after release.
+
+> 🖼️ **CapGuru** — only works with **visual captcha** (slider dragging). Does not support token-based GeeTest v4. Used as a fallback where token-based solving doesn't work.
+
+**Example configuration:**
+
+```
+captcha_provider=capsolver
+captcha_key=CAP-YOUR_KEY_HERE
+```
+
+> 💰 **Captcha balance:** top up your chosen provider's balance before running. Cost is ~$1 per 1000 solves. Check balance on the service's website.
+
+> 🔧 **Captcha errors:** if captcha keeps failing — verify the `captcha_key` in config and the solver account balance. If the issue is specific to one exchange — try switching providers (e.g., `capsolver` → `capmonster`).
 
 ---
 
@@ -571,7 +593,7 @@ This ensures all UI elements display correctly and the software doesn't miss but
 | Parameter | Description | Default |
 |-----------|-------------|:-------:|
 | `activation_key` | 🔑 Activation key | — |
-| `captcha_key` | 🧩 CapGuru/CapSolver key | — |
+| `captcha_key` | 🧩 Captcha provider key (see [section 4](#4--proxy-and-captcha)) | — |
 | `speed_mode` | 🏎️ Operation speed | `FAST` |
 | `parallel_limit` | 🔢 Parallel accounts limit | `NO` |
 | `sleep_between_accounts` | 💤 Pause between accounts | `NO` |
@@ -656,7 +678,7 @@ The countdown starts **from the first launch** of AutoPilot with that key. The e
 | Problem | Cause | Solution |
 |---------|-------|----------|
 | 📧 Code not arriving by email | IMAP blocked / app password | Check mail_password, set up forwarding |
-| 🧩 Captcha not solving | No balance / wrong key | Top up CapGuru balance, check captcha_key |
+| 🧩 Captcha not solving | No balance / wrong key | Top up captcha provider balance, check `captcha_key` (recommended: [CapSolver](#4--proxy-and-captcha)) |
 | 🌐 Profile not opening | AdsPower not running / free plan | Launch AdsPower, check subscription |
 | 📊 Table not readable | Excel is open | Close Excel before launching |
 | 🔐 2FA code not working | Time desync | Sync your computer time (Settings → Time) |
