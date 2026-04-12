@@ -121,9 +121,7 @@ flowchart LR
 
 **Column `[PROXY] proxy`** — profile proxy in format `ip:port:user:password`
 
-Purpose: the captcha solving service uses the proxy to solve the captcha from the profile's IP. The exchange sees the captcha was solved from the profile's IP.
-
-> ⚠️ **If not filled:** the captcha will be solved from the solver's proxy pool IP — this may raise suspicion on some exchanges.
+> ✅ **No need to fill in** — AutoPilot automatically takes the proxy from your AdsPower / Dolphin / Vision profile on the fly. The proxy is passed to the captcha solving service so the captcha is solved from the profile's IP. Everything happens automatically.
 
 #### 🧩 Supported Captcha Providers
 
