@@ -143,13 +143,27 @@ AutoPilot supports **4 captcha-solving providers**. Set via `captcha_provider` i
 **Example configuration:**
 
 ```
-captcha_provider=capsolver
 captcha_key=CAP-YOUR_KEY_HERE
 ```
 
-> 💰 **Captcha balance:** top up your chosen provider's balance before running. Cost is ~$1 per 1000 solves. Check balance on the service's website.
+> 💡 **Auto-detection:** AutoPilot automatically detects the captcha provider from the key format. A key starting with `CAP-` means CapSolver. You don't need to set `captcha_provider` — just paste the key into `captcha_key`, and AutoPilot will figure out which service it is.
 
-> 🔧 **Captcha errors:** if captcha keeps failing — verify the `captcha_key` in config and the solver account balance. If the issue is specific to one exchange — try switching providers (e.g., `capsolver` → `capmonster`).
+#### 🔑 How to Set Up CapSolver (Step by Step)
+
+1. Register at [capsolver.com](https://www.capsolver.com/)
+2. Go to **Billing → Top Up** and add at least **$10** via crypto
+3. Copy your **API Key** from the dashboard (Overview → API Key)
+4. Paste the key into `AutoPilot.config`:
+   ```
+   captcha_key=CAP-your_key
+   ```
+5. Done — AutoPilot will automatically detect that it's CapSolver
+
+> ⚠️ **Do NOT buy packages on the Market page!** Those are subscriptions for specific captcha types (reCAPTCHA v2 50K for $36, reCAPTCHA v3, etc.) — **AutoPilot doesn't use them**. AutoPilot works with GeeTest v4 (token-based), which only requires **account balance**, not a package subscription. Top up $10 via Billing → Top Up — and everything will work.
+
+> 💰 **Cost:** ~$1 per 1000 GeeTest solves. A $10 top-up lasts a long time.
+
+> 🔧 **Captcha errors:** if captcha keeps failing — verify the `captcha_key` in config and the account balance on the provider's website. If the issue is specific to one exchange — try switching providers (e.g., `capsolver` → `capmonster`).
 
 ---
 
@@ -182,7 +196,16 @@ flowchart LR
 
 > 🔑 **Passwords:** if `password` is not filled — AutoPilot will generate a strong password automatically (8-30 chars, uppercase + lowercase + digits + special characters) and write it to the table.
 
-> 📁 **Excel closed?** The table must be closed while AutoPilot is running. If the table is open — the software will warn and wait for it to close.
+> 📁 **Is Excel fully closed?** The table must be completely closed while AutoPilot is running:
+> - Clicking ✕ in Excel is **often not enough** — Windows keeps `EXCEL.EXE` running in the background (due to OneDrive sync, AutoSave, multiple windows). Check Task Manager (`Ctrl+Shift+Esc` → Processes tab → find `EXCEL.EXE` → End task)
+> - Quick alternative — via command line: `taskkill /IM EXCEL.EXE /F`
+> - If `EXCEL.EXE` is lingering in the background, AutoPilot reads stale data or can't open the file at all. Classic symptom: "table data doesn't refresh in console, only a PC reboot helps"
+
+> ☁️ **AutoPilot must be in a local folder**, not OneDrive / Dropbox / iCloud Drive / Google Drive / any other cloud sync. Cloud-sync keeps `AutoPilot_table.xlsx` open in the background for syncing and blocks AutoPilot from reading/writing.
+>
+> **Where to put it:**
+> - `C:\AutoPilot\` or `D:\AutoPilot\` — any local drive
+> - Or most conveniently — on the desktop: `\Desktop\AutoPilot\` (on Windows 11, make sure Desktop isn't synced by OneDrive — OneDrive tray icon → Settings → Backup → disable Desktop)
 
 ---
 
