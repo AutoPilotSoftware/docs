@@ -163,7 +163,7 @@ captcha_key=CAP-YOUR_KEY_HERE
 
 > 💰 **Cost:** ~$1 per 1000 GeeTest solves. A $10 top-up lasts a long time.
 
-> 🔧 **Captcha errors:** if captcha keeps failing — verify the `captcha_key` in config and the account balance on the provider's website. If the issue is specific to one exchange — try switching providers (e.g., `capsolver` → `capmonster`).
+> 🔧 **Captcha errors:** if captcha keeps failing — verify the `captcha_key` in config and the account balance on the provider's website. If the issue is specific to one exchange — try switching the solving type — from token-based to visual (e.g., `capsolver` → `capguru`).
 
 ---
 
