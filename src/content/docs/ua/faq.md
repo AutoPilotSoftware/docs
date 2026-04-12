@@ -19,7 +19,7 @@ description: "Часті запитання щодо AutoPilot Software"
    - [6.4 🛒 Варіанти торгівлі (buy, limit, futures)](#64--варіанти-торгівлі-buy-limit-futures)
    - [6.5 🎁 Нагороди та івенти (claim, lp, learn, ref_code)](#65--нагороди-та-івенти-claim-lp-learn-ref_code-link-profit)
 7. [💸 Виведення коштів (withdraw)](#7--виведення-коштів-withdraw)
-8. [🌐 AdsPower / Dolphin / Vision](#8--adspower--dolphin--vision)
+8. [🌐 AdsPower / Dolphin / Vision / Afina](#8--adspower--dolphin--vision--afina)
 9. [🖥️ Розмір екрана](#9-️-розмір-екрана)
 10. [⚙️ Конфігурація: ключові параметри](#10-️-конфігурація-ключові-параметри)
 11. [🔒 Безпека та конфіденційність](#11--безпека-та-конфіденційність)
@@ -575,7 +575,7 @@ flowchart LR
 
 ---
 
-### 8. 🌐 AdsPower / Dolphin / Vision
+### 8. 🌐 AdsPower / Dolphin / Vision / Afina
 
 **AdsPower:**
 - 📥 Встановіть свіжу версію SunBrowser: Налаштування → Локальні налаштування
@@ -588,6 +588,9 @@ flowchart LR
 
 **Vision:**
 - В конфігу: `vision_config=ім'я_папки,API_ключ`
+
+**Afina:**
+- Працює аналогічно AdsPower — AutoPilot автоматично підключається до API Afina та керує профілями
 
 **🚨 Часті помилки:**
 

@@ -5,7 +5,7 @@ description: "AutoPilot Software — Bybit automation: registration, trading, wi
 
 # AutoPilot Software — Maximum Automation on Bybit
 
-**Supports AdsPower & Dolphin & Vision**
+**Supports AdsPower & Dolphin & Vision & Afina**
 **Windows / MacOS / Linux**
 
 ---
@@ -14,7 +14,7 @@ description: "AutoPilot Software — Bybit automation: registration, trading, wi
 
 Bybit is one of the world's leading cryptocurrency exchanges with earning opportunities through Airdrops, TokenSplash events, and special promotions.
 
-Managing accounts manually requires a lot of time, effort, and carries the risk of errors. AutoPilot Software turns routine tasks into an automated process. Integration with AdsPower, Dolphin, and Vision ensures digital fingerprint protection and secure multi-account management.
+Managing accounts manually requires a lot of time, effort, and carries the risk of errors. AutoPilot Software turns routine tasks into an automated process. Integration with AdsPower, Dolphin, Vision, and Afina ensures digital fingerprint protection and secure multi-account management.
 
 ---
 
@@ -42,7 +42,7 @@ Automation allows you to manage hundreds of accounts simultaneously
 **Ease of use:**
 Go about your day while AutoPilot automates actions in the background
 
-**Integration with AdsPower / Dolphin / Vision:**
+**Integration with AdsPower / Dolphin / Vision / Afina:**
 Safe and anonymous account usage. AutoPilot automatically launches and integrates into the anti-detect browser session with unique fingerprints
 
 **Parallel automation:**

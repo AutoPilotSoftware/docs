@@ -5,7 +5,7 @@ description: "AutoPilot Software — MEXC automation: registration, trading, wit
 
 # AutoPilot Software — Maximum Automation on MEXC
 
-**AdsPower & Dolphin & Vision Support**
+**AdsPower & Dolphin & Vision & Afina Support**
 **Windows / MacOS / Linux**
 
 ---
@@ -44,7 +44,7 @@ Automation allows you to manage hundreds of accounts simultaneously
 **Ease of use:**
 Go about your business while AutoPilot automates actions in the background. You can use your own applications while AutoPilot runs in browser windows behind the scenes
 
-**Integration with AdsPower / Dolphin / Vision:**
+**Integration with AdsPower / Dolphin / Vision / Afina:**
 Safe and anonymous account usage. AutoPilot automatically launches and integrates into the created anti-detect browser session with unique fingerprints. AutoPilot doesn't care whether profiles are already open or closed — it will start automating the process either way
 
 **Parallel automation:**

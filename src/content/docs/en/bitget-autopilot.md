@@ -5,7 +5,7 @@ description: "AutoPilot Software — Bitget automation: registration, trading, w
 
 # AutoPilot Software — Maximum Automation on Bitget
 
-**Supports AdsPower & Dolphin & Vision**
+**Supports AdsPower & Dolphin & Vision & Afina**
 **Windows / MacOS / Linux**
 
 ---

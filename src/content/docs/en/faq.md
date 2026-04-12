@@ -19,7 +19,7 @@ description: "Frequently asked questions about AutoPilot Software"
    - [6.4 🛒 Trading Variants (buy, limit, futures)](#64--trading-variants-buy-limit-futures)
    - [6.5 🎁 Rewards & Events (claim, lp, learn, ref_code)](#65--rewards--events-claim-lp-learn-ref_code-link-profit)
 7. [💸 Withdrawal (withdraw)](#7--withdrawal-withdraw)
-8. [🌐 AdsPower / Dolphin / Vision](#8--adspower--dolphin--vision)
+8. [🌐 AdsPower / Dolphin / Vision / Afina](#8--adspower--dolphin--vision--afina)
 9. [🖥️ Screen Size](#9-️-screen-size)
 10. [⚙️ Configuration: Key Parameters](#10-️-configuration-key-parameters)
 11. [🔒 Security and Privacy](#11--security-and-privacy)
@@ -575,7 +575,7 @@ After withdrawal — open the **Distribute** tab and collect everything to one w
 
 ---
 
-### 8. 🌐 AdsPower / Dolphin / Vision
+### 8. 🌐 AdsPower / Dolphin / Vision / Afina
 
 **AdsPower:**
 - 📥 Install the latest SunBrowser: Settings → Local Settings
@@ -588,6 +588,9 @@ After withdrawal — open the **Distribute** tab and collect everything to one w
 
 **Vision:**
 - In config: `vision_config=folder_name,API_key`
+
+**Afina:**
+- Works similarly to AdsPower — AutoPilot automatically connects to the Afina API and manages profiles
 
 **🚨 Common errors:**
 

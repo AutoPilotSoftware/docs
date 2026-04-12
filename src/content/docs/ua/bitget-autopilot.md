@@ -5,7 +5,7 @@ description: "AutoPilot Software — автоматизація Bitget: реєс
 
 # AutoPilot Software — Максимальна Автоматизація на Bitget
 
-**Підтримка AdsPower & Dolphin & Vision**
+**Підтримка AdsPower & Dolphin & Vision & Afina**
 **Windows / MacOS / Linux**
 
 ---
