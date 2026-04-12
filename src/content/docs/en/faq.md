@@ -97,6 +97,8 @@ flowchart LR
 
 > ⚡ **Auto-setup:** actions `whitelist` and `withdraw` will automatically enable 2FA if it's not set up yet. No need to run `2fa` separately.
 
+> ⏰ **2FA codes not working?** TOTP codes depend on your computer's exact time. If the exchange rejects a code — sync your clock: **Windows:** Settings → Time & Language → Date & time → Sync now. **macOS:** System Settings → General → Date & Time → Set time and date automatically.
+
 > 🌐 **Bybit: 2FA issues?** If the email code doesn't arrive when setting up Google Authenticator — set `bybitglobal` in the `[BYBIT] domain` column of your table. In some regions, `bybitglobal.com` is more reliable. See [Bybit AutoPilot → Bybit Global Domains](/docs/en/bybit-autopilot/#-bybit-global-domains) for details.
 
 ---

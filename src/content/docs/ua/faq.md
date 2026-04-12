@@ -97,6 +97,8 @@ flowchart LR
 
 > ⚡ **Автопідключення:** дії `whitelist` та `withdraw` автоматично підключать 2FA, якщо він ще не встановлений. Окремо запускати `2fa` не потрібно.
 
+> ⏰ **2FA коди не підходять?** TOTP-коди залежать від точного часу на комп'ютері. Якщо код відхиляється біржею — синхронізуйте годинник: **Windows:** Settings → Time & Language → Date & time → Sync now. **macOS:** System Settings → General → Date & Time → Set time and date automatically.
+
 > 🌐 **Bybit: проблеми з 2FA?** Якщо код на пошту не приходить при підключенні Google Authenticator — вкажіть `bybitglobal` у стовпці `[BYBIT] domain` таблиці. У деяких регіонах `bybitglobal.com` працює стабільніше. Детальніше — [Bybit AutoPilot → Bybit Global домени](/docs/ua/bybit-autopilot/#-bybit-global-домени).
 
 ---
