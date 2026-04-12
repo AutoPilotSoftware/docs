@@ -590,7 +590,8 @@ After withdrawal — open the **Distribute** tab and collect everything to one w
 - In config: `vision_config=folder_name,API_key`
 
 **Afina:**
-- Works similarly to AdsPower — AutoPilot automatically connects to the Afina API and manages profiles
+- In config: `afina_api_key=your_API_key` and `afina_port=50777` (default port)
+- The API key is found in Afina settings
 
 **🚨 Common errors:**
 
