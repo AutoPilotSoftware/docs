@@ -123,7 +123,7 @@ flowchart LR
 
 **Column `[PROXY] proxy`** — profile proxy in format `ip:port:user:password`
 
-> ✅ **No need to fill in** — AutoPilot automatically takes the proxy from your AdsPower / Dolphin / Vision profile on the fly. The proxy is passed to the captcha solving service so the captcha is solved from the profile's IP. Everything happens automatically.
+> ✅ **No need to fill in** — AutoPilot automatically takes the proxy from your AdsPower / Dolphin / Vision / Afina profile on the fly. The proxy is passed to the captcha solving service so the captcha is solved from the profile's IP. Everything happens automatically.
 
 #### 🧩 Supported Captcha Providers
 
