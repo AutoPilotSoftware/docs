@@ -19,3 +19,19 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# tool configs
+.claude/
+.serena/
+.playwright-mcp/
+
+# working files
+data/
+logs/
+cache/
+nvs-faq-docs/
+
+# design previews
+approach-*.png
+preview-*.png
+redesign-*.png
