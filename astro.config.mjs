@@ -78,11 +78,6 @@ export default defineConfig({
 					translations: { en: 'KYC Platform', uk: 'KYC Платформа' },
 					autogenerate: { directory: 'kyc' },
 				},
-				{
-					label: 'Юридическое',
-					translations: { en: 'Legal', uk: 'Юридичне' },
-					autogenerate: { directory: 'legal' },
-				},
 			],
 		}),
 	],
