@@ -6,8 +6,13 @@ backend:
 site_url: https://autopilotsoftware.github.io/docs
 display_url: https://autopilotsoftware.github.io/docs
 
-media_folder: src/assets/media
+media_folder: public/media
 public_folder: /docs/media
+
+slug:
+  encoding: unicode-normalized
+  clean_accents: false
+  sanitize_replacement: '-'
 
 i18n:
   structure: multiple_folders
@@ -16,24 +21,104 @@ i18n:
   omit_default_locale_from_file_path: true
 
 collections:
-  - name: docs
-    label: Documentation
-    folder: src/content/docs
-    extension: md
+  - name: getting-started
+    label: "Начало работы"
+    label_singular: "Статья"
+    folder: src/content/docs/getting-started
+    create: true
+    delete: true
     format: yaml-frontmatter
-    create: false
-    delete: false
+    extension: md
+    i18n: true
+    sortable_fields: [title]
+    summary: "{{title}}"
+    fields:
+      - { label: Title, name: title, widget: string, i18n: true }
+      - { label: Description, name: description, widget: string, i18n: true, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false, value_type: int }
+          - { label: Label, name: label, widget: string, required: false, i18n: true }
+      - { label: Body, name: body, widget: richtext, i18n: true }
+
+  - name: exchanges
+    label: "Биржи"
+    label_singular: "Гайд по бирже"
+    folder: src/content/docs/exchanges
+    create: true
+    delete: true
+    format: yaml-frontmatter
+    extension: md
+    i18n: true
+    sortable_fields: [title]
+    summary: "{{title}}"
+    fields:
+      - { label: Title, name: title, widget: string, i18n: true }
+      - { label: Description, name: description, widget: string, i18n: true, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false, value_type: int }
+          - { label: Label, name: label, widget: string, required: false, i18n: true }
+      - { label: Body, name: body, widget: richtext, i18n: true }
+
+  - name: kyc
+    label: "KYC Платформа"
+    label_singular: "Статья KYC"
+    folder: src/content/docs/kyc
+    create: true
+    delete: true
+    format: yaml-frontmatter
+    extension: md
+    i18n: true
+    sortable_fields: [title]
+    summary: "{{title}}"
+    fields:
+      - { label: Title, name: title, widget: string, i18n: true }
+      - { label: Description, name: description, widget: string, i18n: true, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false, value_type: int }
+          - { label: Label, name: label, widget: string, required: false, i18n: true }
+      - { label: Body, name: body, widget: richtext, i18n: true }
+
+  - name: legal
+    label: "Юридическое"
+    label_singular: "Документ"
+    folder: src/content/docs/legal
+    create: true
+    delete: true
+    format: yaml-frontmatter
+    extension: md
     i18n: true
     fields:
-      - label: Title
-        name: title
-        widget: string
-        i18n: true
-      - label: Description
-        name: description
-        widget: string
-        i18n: true
-      - label: Body
-        name: body
-        widget: markdown
-        i18n: true
+      - { label: Title, name: title, widget: string, i18n: true }
+      - { label: Description, name: description, widget: string, i18n: true, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false, value_type: int }
+          - { label: Label, name: label, widget: string, required: false, i18n: true }
+      - { label: Body, name: body, widget: richtext, i18n: true }
+
+  - name: landing
+    label: "Главная страница"
+    files:
+      - name: index
+        label: "Landing Page (RU)"
+        file: src/content/docs/index.mdx
+        format: yaml-frontmatter
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+          - { label: Body, name: body, widget: richtext }
