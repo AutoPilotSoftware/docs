@@ -1,8 +1,32 @@
-/* Center images and constrain to column width like Teletype */
+/* ===== Images ===== */
 .sl-markdown-content img {
   max-width: 520px;
   width: 100%;
   display: block;
   margin: 1.5rem auto;
   border-radius: 8px;
+}
+
+/* ===== Aside / callout refinements ===== */
+.starlight-aside {
+  border-radius: 8px;
+  border-left-width: 4px;
+}
+
+/* ===== Content spacing ===== */
+.sl-markdown-content h2 {
+  margin-top: 2.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--sl-color-gray-6);
+}
+
+/* ===== Tables ===== */
+.sl-markdown-content table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.sl-markdown-content th {
+  background: var(--sl-color-gray-6);
+  font-weight: 600;
 }
