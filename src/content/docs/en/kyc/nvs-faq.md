@@ -20,7 +20,7 @@ You purchased KYC in **NVS Shop** and received a link. Below is how to upload ac
 
 **Step 1.** Open the bot → **Upload Accounts** → **Manual**. Paste your proxy list into the chat (as text, one per line):
 
-![Sending proxies to the bot](../../../assets/nvs/manual-1.png)
+![Sending proxies to the bot](../../../../assets/nvs/manual-1.png)
 
 **Step 2.** Export cookies from your browser using the [Cookie Editor](https://cookie-editor.com/) extension → **Export → JSON** → save to a `.json` file.
 
@@ -38,13 +38,13 @@ You purchased KYC in **NVS Shop** and received a link. Below is how to upload ac
 
 **Step 1.** Select the profiles you need, click **Export** and choose **TXT** format.
 
-![AdsPower export — select profiles and Export button](../../../assets/nvs/ads-export-1.png)
+![AdsPower export — select profiles and Export button](../../../../assets/nvs/ads-export-1.png)
 
 **Step 2.** In the export settings, make sure to enable **User Agent**.
 
-![Export settings — TXT format](../../../assets/nvs/ads-export-2.png)
+![Export settings — TXT format](../../../../assets/nvs/ads-export-2.png)
 
-![Enable User Agent](../../../assets/nvs/ads-export-3.png)
+![Enable User Agent](../../../../assets/nvs/ads-export-3.png)
 
 **Step 3.** Open the bot [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot), press **Upload Accounts** → **AdsPower TXT** → send the file as a document 📎.
 

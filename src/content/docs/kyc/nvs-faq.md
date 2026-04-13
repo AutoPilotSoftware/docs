@@ -20,7 +20,7 @@ sidebar:
 
 **Шаг 1.** Откройте бот → **Загрузить аккаунты** → **Вручную**. Вставьте прокси-список в чат (текстом, по одному на строку):
 
-![Отправка прокси в бот](../../assets/nvs/manual-1.png)
+![Отправка прокси в бот](../../../assets/nvs/manual-1.png)
 
 **Шаг 2.** Экспортируйте куки из браузера с помощью расширения [Cookie Editor](https://cookie-editor.com/) → **Export → JSON** → сохраните в `.json` файл.
 
@@ -38,13 +38,13 @@ sidebar:
 
 **Шаг 1.** Выберите нужные профили, нажмите **Export** и выберите формат **TXT**.
 
-![Экспорт из AdsPower — выбор профилей и кнопка Export](../../assets/nvs/ads-export-1.png)
+![Экспорт из AdsPower — выбор профилей и кнопка Export](../../../assets/nvs/ads-export-1.png)
 
 **Шаг 2.** В настройках экспорта обязательно включите **User Agent**.
 
-![Настройки экспорта — формат TXT](../../assets/nvs/ads-export-2.png)
+![Настройки экспорта — формат TXT](../../../assets/nvs/ads-export-2.png)
 
-![Включите User Agent](../../assets/nvs/ads-export-3.png)
+![Включите User Agent](../../../assets/nvs/ads-export-3.png)
 
 **Шаг 3.** Откройте бот [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot), нажмите **Загрузить аккаунты** → **AdsPower TXT** → отправьте файл как документ 📎.
 

@@ -44,13 +44,13 @@ After accepting a task, you'll see the exchange (Bybit or MEXC), country, paymen
 
 Press **Take Task** in the bot to claim the order. Once claimed, the task is reserved for you.
 
-![Task detail view](../../assets/sellers/task-detail.png)
+![Task detail view](../../../assets/sellers/task-detail.png)
 
 ### Step 5 — Complete the KYC
 
 Follow the verification flow on the exchange. The bot provides everything needed — no account credentials are shared with you. You only complete the identity verification step.
 
-![Auto-verified task](../../assets/sellers/autoverified-task.png)
+![Auto-verified task](../../../assets/sellers/autoverified-task.png)
 
 ### Step 6 — Get Paid
 
@@ -68,7 +68,7 @@ After successful verification is confirmed, payment is credited to your bot bala
 | `Failed` | Verification was not accepted — no payment |
 | `ReKYC` | Re-verification requested (see below) |
 
-![Seller tasks list](../../assets/sellers/seller-tasks.png)
+![Seller tasks list](../../../assets/sellers/seller-tasks.png)
 
 ---
 
@@ -76,7 +76,7 @@ After successful verification is confirmed, payment is credited to your bot bala
 
 Access your dashboard anytime via the **My Dashboard** button in the bot. It shows your current balance, active tasks, completed task count, and your rating.
 
-![Seller dashboard](../../assets/sellers/seller-dashboard.png)
+![Seller dashboard](../../../assets/sellers/seller-dashboard.png)
 
 ---
 
@@ -89,7 +89,7 @@ Once your balance reaches the minimum threshold:
 3. Confirm the withdrawal
 4. Funds are sent automatically
 
-![Withdrawal screen](../../assets/sellers/withdraw.png)
+![Withdrawal screen](../../../assets/sellers/withdraw.png)
 
 ---
 
@@ -97,7 +97,7 @@ Once your balance reaches the minimum threshold:
 
 Sometimes an exchange requires re-verification of an account. You will receive a **ReKYC notification** in the bot with a new task link. Complete it the same way as a regular task — payment is provided for successful ReKYC as well.
 
-![ReKYC notification](../../assets/sellers/rekyc-notification.png)
+![ReKYC notification](../../../assets/sellers/rekyc-notification.png)
 
 ---
 
@@ -105,7 +105,7 @@ Sometimes an exchange requires re-verification of an account. You will receive a
 
 Top performers appear on the leaderboard. Complete more tasks to climb the ranks.
 
-![Leaderboard](../../assets/sellers/leaderboard.png)
+![Leaderboard](../../../assets/sellers/leaderboard.png)
 
 | Tier | Description |
 |------|-------------|
@@ -133,7 +133,7 @@ Top performers appear on the leaderboard. Complete more tasks to climb the ranks
 
 The bot provides detailed stats on your performance: total tasks completed, success rate, total earned, average completion time, and country breakdown.
 
-![Statistics](../../assets/sellers/statistics.png)
+![Statistics](../../../assets/sellers/statistics.png)
 
 ---
 
@@ -141,11 +141,11 @@ The bot provides detailed stats on your performance: total tasks completed, succ
 
 You can set which countries you want to work with in the bot settings. This filters the tasks you receive — only orders from your selected countries will be shown to you.
 
-![Manage countries](../../assets/sellers/manage-countries.png)
+![Manage countries](../../../assets/sellers/manage-countries.png)
 
-![Country list](../../assets/sellers/manage-countries-2.png)
+![Country list](../../../assets/sellers/manage-countries-2.png)
 
-![Search country](../../assets/sellers/search-country.png)
+![Search country](../../../assets/sellers/search-country.png)
 
 ---
 
