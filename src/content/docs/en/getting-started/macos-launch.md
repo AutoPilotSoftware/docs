@@ -1,6 +1,9 @@
 ---
 title: "Launching AutoPilot on macOS"
 description: "Complete guide for first-run AutoPilot on macOS — Gatekeeper quarantine removal, chmod, warp.dev, troubleshooting"
+sidebar:
+  order: 2
+  label: "Launch on macOS"
 ---
 
 # 🍎 Launching AutoPilot on macOS

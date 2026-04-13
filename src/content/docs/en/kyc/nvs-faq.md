@@ -1,6 +1,9 @@
 ---
 title: "NVS Upload — FAQ"
 description: "Step-by-step guide for uploading accounts to AutoPilot KYC bot after purchasing from NVS Shop"
+sidebar:
+  order: 2
+  label: "NVS Upload"
 ---
 
 # NVS Upload — FAQ

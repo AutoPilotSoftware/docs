@@ -1,6 +1,9 @@
 ---
 title: "Bitget AutoPilot"
 description: "AutoPilot Software — автоматизація Bitget: реєстрація, торгівля, виведення коштів"
+sidebar:
+  order: 3
+  label: "Bitget AutoPilot"
 ---
 
 # AutoPilot Software — Максимальна Автоматизація на Bitget

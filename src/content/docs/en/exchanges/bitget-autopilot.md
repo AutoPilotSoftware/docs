@@ -1,6 +1,9 @@
 ---
 title: "Bitget AutoPilot"
 description: "AutoPilot Software — Bitget automation: registration, trading, withdrawal"
+sidebar:
+  order: 3
+  label: "Bitget AutoPilot"
 ---
 
 # AutoPilot Software — Maximum Automation on Bitget

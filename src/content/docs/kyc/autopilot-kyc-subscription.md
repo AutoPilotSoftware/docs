@@ -1,6 +1,9 @@
 ---
 title: "Подписка AutoPilot KYC"
 description: "AutoPilot KYC бот — автоматизация KYC верификации на Bybit и MEXC. Подписка $30/мес."
+sidebar:
+  order: 1
+  label: "Подписка KYC"
 ---
 
 # Подписка AutoPilot KYC

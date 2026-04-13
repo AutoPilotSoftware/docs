@@ -1,6 +1,9 @@
 ---
 title: "Запуск AutoPilot на macOS"
 description: "Полный гайд по первому запуску AutoPilot на macOS — снятие карантина Gatekeeper, chmod, warp.dev, troubleshooting"
+sidebar:
+  order: 2
+  label: "Запуск на macOS"
 ---
 
 # 🍎 Запуск AutoPilot на macOS

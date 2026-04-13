@@ -1,6 +1,9 @@
 ---
 title: "Privacy Policy — AutoPilot Link Generator"
 description: "Privacy policy for the AutoPilot Link Generator Chrome extension"
+sidebar:
+  order: 1
+  label: "Privacy Policy"
 ---
 
 # Privacy Policy — AutoPilot Link Generator

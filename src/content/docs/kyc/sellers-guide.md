@@ -1,6 +1,9 @@
 ---
 title: "AutoPilot Seller Guide"
 description: "How to earn money by completing KYC verifications on Bybit and MEXC through the AutoPilot Seller bot"
+sidebar:
+  order: 4
+  label: "Seller Guide"
 ---
 
 # AutoPilot Seller Guide

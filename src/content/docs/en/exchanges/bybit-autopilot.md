@@ -1,6 +1,9 @@
 ---
 title: "Bybit AutoPilot"
 description: "AutoPilot Software — Bybit automation: registration, trading, withdrawals, TokenSplash, Puzzle Hunt"
+sidebar:
+  order: 1
+  label: "Bybit AutoPilot"
 ---
 
 # AutoPilot Software — Maximum Automation on Bybit

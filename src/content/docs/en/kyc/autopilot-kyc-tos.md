@@ -1,6 +1,9 @@
 ---
 title: "Terms of Service — AutoPilot KYC"
 description: "AutoPilot KYC platform Terms of Service"
+sidebar:
+  order: 5
+  label: "Terms of Service"
 ---
 
 # AutoPilot KYC — Terms of Service

@@ -1,6 +1,9 @@
 ---
 title: "AutoPilot KYC Subscription"
 description: "AutoPilot KYC bot — automated KYC verification on Bybit and MEXC. $30/mo subscription."
+sidebar:
+  order: 1
+  label: "KYC Subscription"
 ---
 
 # AutoPilot KYC Subscription

@@ -1,6 +1,9 @@
 ---
 title: "MEXC AutoPilot"
 description: "AutoPilot Software — автоматизация MEXC: регистрация, торговля, вывод средств"
+sidebar:
+  order: 2
+  label: "MEXC AutoPilot"
 ---
 
 # AutoPilot Software — Максимальная Автоматизация на MEXC

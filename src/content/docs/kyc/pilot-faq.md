@@ -1,6 +1,9 @@
 ---
 title: "Гайд NVS Пилота"
 description: "Полный гайд для NVS пилотов — методы загрузки, валидация, жизненный цикл заказов, MiniApp дашборд"
+sidebar:
+  order: 3
+  label: "Гайд Пилота"
 ---
 
 # Гайд NVS Пилота — AutoPilot KYC Bot

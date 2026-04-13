@@ -1,6 +1,9 @@
 ---
 title: "NVS Pilot Guide"
 description: "Comprehensive guide for NVS pilots — upload methods, validation, order lifecycle, MiniApp dashboard"
+sidebar:
+  order: 3
+  label: "Pilot Guide"
 ---
 
 # NVS Pilot Guide — AutoPilot KYC Bot

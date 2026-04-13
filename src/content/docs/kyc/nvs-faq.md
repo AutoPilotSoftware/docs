@@ -1,6 +1,9 @@
 ---
 title: "NVS Загрузка — FAQ"
 description: "Пошаговая инструкция по загрузке аккаунтов в бот AutoPilot KYC после покупки в NVS Shop"
+sidebar:
+  order: 2
+  label: "NVS Загрузка"
 ---
 
 # NVS Загрузка — FAQ

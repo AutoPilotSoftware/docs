@@ -1,6 +1,9 @@
 ---
 title: "Умови використання — AutoPilot KYC"
 description: "Умови використання платформи AutoPilot KYC"
+sidebar:
+  order: 5
+  label: "Умови використання"
 ---
 
 # AutoPilot KYC — Умови використання

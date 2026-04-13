@@ -1,6 +1,9 @@
 ---
 title: "FAQ — AutoPilot"
 description: "Часто задаваемые вопросы по AutoPilot Software"
+sidebar:
+  order: 1
+  label: "FAQ"
 ---
 
 # 📋 FAQ — AutoPilot
