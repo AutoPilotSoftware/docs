@@ -5,8 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>AutoPilot CMS</title>
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
 </head>
 <body>
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <script type="module">
+      import CMS from 'https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js';
+
+      // Starlight Aside / Callout block
+      // Produces :::note / :::tip / :::caution / :::danger syntax
+      CMS.registerEditorComponent({
+        id: 'aside',
+        label: 'Callout',
+        icon: 'campaign',
+        fields: [
+          {
+            name: 'type',
+            label: 'Type',
+            widget: 'select',
+            options: ['note', 'tip', 'caution', 'danger'],
+            default: 'note',
+          },
+          {
+            name: 'title',
+            label: 'Custom Title (optional)',
+            widget: 'string',
+            required: false,
+          },
+          {
+            name: 'content',
+            label: 'Content',
+            widget: 'text',
+          },
+        ],
+        pattern: /^:::(\w+)(?:\[(.+?)\])?\n([\s\S]+?)\n:::/m,
+        fromBlock: (match) => ({
+          type: match[1],
+          title: match[2] || '',
+          content: match[3] ? match[3].trim() : '',
+        }),
+        toBlock: (data) => {
+          const header = data.title
+            ? `:::${data.type}[${data.title}]`
+            : `:::${data.type}`;
+          return `${header}\n${data.content}\n:::`;
+        },
+        toPreview: (data) => {
+          const colors = { note: '#3b82f6', tip: '#22c55e', caution: '#f59e0b', danger: '#ef4444' };
+          const color = colors[data.type] || colors.note;
+          return `<div style="border-left:4px solid ${color};padding:8px 12px;margin:8px 0;background:${color}11;border-radius:4px"><strong>${data.type.toUpperCase()}${data.title ? ': ' + data.title : ''}</strong><br/>${data.content}</div>`;
+        },
+      });
+
+      CMS.init();
+    </script>
 </body>
 </html>
