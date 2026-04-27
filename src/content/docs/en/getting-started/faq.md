@@ -57,13 +57,17 @@ sidebar:
 | proton | Required 🔑 | Proton Mail Bridge (paid subscription) |
 
 ```mermaid
-flowchart LR
-    A["📧 Your provider"] -->|No app password| B["✅ Use directly"]
-    A -->|Requires app password 🔑| C["🔀 Set up forwarding"]
-    C --> D["firstmail / rambler / gmx"]
+flowchart TD
+    Start["📧 Email strategy"] --> Q{"What fits?"}
+    Q -->|"Simple and fast"| Direct["📦 Ready-made mailboxes<br/>firstmail · notletters · rambler"]
+    Q -->|"Large-scale farm<br/>hundreds of accounts"| Farm["🍎 iCloud Hide My Email<br/>1 inbox · up to 1000 sub-addresses"]
+    Q -->|"Existing accounts<br/>gmail / yahoo / outlook"| Fwd["🔀 Forwarding<br/>app-password → firstmail / rambler"]
 
-    style B fill:#4CAF50,color:#fff,stroke:none,rx:8
-    style D fill:#2196F3,color:#fff,stroke:none,rx:8
+    style Start fill:#37474F,color:#fff,stroke:none,rx:8
+    style Q fill:#455A64,color:#fff,stroke:none,rx:8
+    style Direct fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style Farm fill:#FF6F00,color:#fff,stroke:none,rx:8
+    style Fwd fill:#2196F3,color:#fff,stroke:none,rx:8
 ```
 
 **🔀 Forwarding** — if your provider requires an app password, set up email forwarding to firstmail/rambler/gmx and fill in the columns:
@@ -71,11 +75,56 @@ flowchart LR
 - `[EMAIL] forwarding_mail` — forwarding email address
 - `[EMAIL] forwarding_mail_password` — forwarding email password
 
+> 🍎 **App-Specific Password for iCloud / Apple ID:** Apple's official guide — [support.apple.com/en-us/102654](https://support.apple.com/en-us/102654)
+
 > ⚠️ **Important:** after setting up forwarding, send a test email to make sure messages arrive. Some providers activate forwarding with a delay of up to 24 hours.
 
 > 🛡️ **Antivirus:** if you have issues connecting to mail — check if your antivirus is blocking IMAP ports (993, 143).
 
 > 💬 **Your provider not listed?** Contact the developer — it will be added.
+
+#### 📦 Pattern 1: ready-made mailboxes (simple and fast)
+
+The simplest path — buy a pack of mailboxes from a trusted vendor and use them directly. No setup, no forwarding.
+
+**Where to buy:** [KYC SHOP by NVS](https://t.me/buykyc_bot) — packs of `firstmail` / `notletters` with ready login and password for IMAP.
+
+**How to plug in:**
+1. Buy a pack of mailboxes from the shop
+2. Fill only three columns in the AutoPilot table:
+   - `[EMAIL] mail` = email address from the pack
+   - `[EMAIL] mail_password` = password from the pack
+   - `[EMAIL] mail_provider` = `firstmail` / `notletters`
+3. Done — no forwarding needed, AutoPilot reads IMAP directly
+
+> 💡 Suitable for most tasks — KYC on any exchange, email verification, registrations.
+
+#### 🍎 Pattern 2: iCloud farm
+
+Alternative for those building a large-scale farm. Uses **Hide My Email** from iCloud+ — one main inbox receives mail from a thousand sub-addresses.
+
+| Pros | Cons |
+|------|------|
+| 🟢 $0.99/mo → up to 1000 hidden email addresses | ❌ iPhone required to activate iCloud+ |
+| 🟢 All emails arrive in one main inbox — read one IMAP instead of 1000 | ❌ Apple rate-limits creation (workaround — [hidemyemail-generator](https://github.com/rtunazzz/hidemyemail-generator)) |
+| 🟢 Apple signs domains — anti-spam, anti-detection | |
+| 🟢 Especially stable with Bybit | |
+
+**How to set up:**
+1. Buy an iPhone + subscribe to **iCloud+** at [icloud.com/icloudplus](https://www.icloud.com/icloudplus/)
+2. iCloud → **Hide My Email** → create new addresses (manually or via script)
+3. All hidden emails forward automatically to the main iCloud inbox
+4. App-Specific Password for the main mailbox — [support.apple.com/en-us/102654](https://support.apple.com/en-us/102654)
+5. Fill in the AutoPilot table:
+   - `[EMAIL] mail` = `hidden_xxxx@icloud.com` (one of 1000)
+   - `[EMAIL] mail_provider` = `icloud`
+   - `[EMAIL] forwarding_mail` = your main `main@icloud.com`
+   - `[EMAIL] forwarding_mail_password` = App-Specific Password of the main mailbox
+   - `[EMAIL] mail_forwarding_provider` = `icloud`
+
+**Detailed video guides:**
+- 📺 [Creating iCloud farms](https://t.me/kyctutorial/1574)
+- 📺 [iCloud forwarding setup](https://t.me/kyctutorial/1575)
 
 ---
 

@@ -57,13 +57,17 @@ sidebar:
 | proton | Потрібен 🔑 | Proton Mail Bridge (платна підписка) |
 
 ```mermaid
-flowchart LR
-    A["📧 Ваш сервіс"] -->|Без спецпароля| B["✅ Використовуйте напряму"]
-    A -->|Потребує спецпароль 🔑| C["🔀 Налаштуйте переадресацію"]
-    C --> D["firstmail / rambler / gmx"]
+flowchart TD
+    Start["📧 Стратегія пошти"] --> Q{"Що підходить?"}
+    Q -->|"Просто і швидко"| Direct["📦 Готові пошти<br/>firstmail · notletters · rambler"]
+    Q -->|"Масштабна ферма<br/>сотні акаунтів"| Farm["🍎 iCloud Hide My Email<br/>1 inbox · до 1000 sub-адрес"]
+    Q -->|"Вже є акаунти<br/>gmail / yahoo / outlook"| Fwd["🔀 Переадресація<br/>app-password → firstmail / rambler"]
 
-    style B fill:#4CAF50,color:#fff,stroke:none,rx:8
-    style D fill:#2196F3,color:#fff,stroke:none,rx:8
+    style Start fill:#37474F,color:#fff,stroke:none,rx:8
+    style Q fill:#455A64,color:#fff,stroke:none,rx:8
+    style Direct fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style Farm fill:#FF6F00,color:#fff,stroke:none,rx:8
+    style Fwd fill:#2196F3,color:#fff,stroke:none,rx:8
 ```
 
 **🔀 Переадресація (forwarding)** — якщо ваш сервіс вимагає спецпароль, налаштуйте пересилку листів на firstmail/rambler/gmx і заповніть стовпці:
@@ -71,11 +75,56 @@ flowchart LR
 - `[EMAIL] forwarding_mail` — адреса пошти переадресації
 - `[EMAIL] forwarding_mail_password` — пароль від пошти переадресації
 
+> 🍎 **App-Specific Password для iCloud / Apple ID:** офіційний гайд Apple — [support.apple.com/uk-ua/102654](https://support.apple.com/uk-ua/102654)
+
 > ⚠️ **Важливо:** після налаштування переадресації відправте тестовий лист, щоб переконатися, що листи доходять. Деякі сервіси активують переадресацію із затримкою до 24 годин.
 
 > 🛡️ **Антивірус:** якщо виникають проблеми з підключенням до пошти — перевірте, чи не блокує антивірус IMAP-порти (993, 143).
 
 > 💬 **Немає вашого сервісу?** Напишіть розробнику — його буде додано.
+
+#### 📦 Патерн 1: готові пошти (просто і швидко)
+
+Найпростіший шлях — купити пакет пошт у перевіреного постачальника і одразу використовувати. Жодних налаштувань, жодної переадресації.
+
+**Де купити:** [KYC SHOP by NVS](https://t.me/buykyc_bot) — пакети `firstmail` / `notletters` з готовим логіном і паролем для IMAP.
+
+**Як підключити:**
+1. Купити пакет пошт у шопі
+2. У таблиці AutoPilot заповнити лише три стовпці:
+   - `[EMAIL] mail` = адреса пошти з пакету
+   - `[EMAIL] mail_password` = пароль з пакету
+   - `[EMAIL] mail_provider` = `firstmail` / `notletters`
+3. Готово — переадресація не потрібна, AutoPilot читає IMAP напряму
+
+> 💡 Підходить для більшості завдань — KYC на будь-якій біржі, верифікація email, реєстрації.
+
+#### 🍎 Патерн 2: iCloud-ферма
+
+Альтернатива для тих, хто будує масштабну ферму. Використовує **Hide My Email** від iCloud+ — один основний inbox приймає пошту з тисячі sub-адрес.
+
+| Плюси | Мінуси |
+|-------|--------|
+| 🟢 0.99$/міс → до 1000 hidden email адрес | ❌ Потрібен iPhone для активації iCloud+ |
+| 🟢 Усі листи приходять на один основний inbox — читаєте один IMAP замість 1000 | ❌ Apple обмежує швидкість створення (обхід — [hidemyemail-generator](https://github.com/rtunazzz/hidemyemail-generator)) |
+| 🟢 Apple підписує домени — anti-spam, anti-detection | |
+| 🟢 Особливо стабільно працює з Bybit | |
+
+**Як налаштувати:**
+1. Купити iPhone + оформити підписку **iCloud+** на [icloud.com/icloudplus](https://www.icloud.com/icloudplus/)
+2. iCloud → **Hide My Email** → створити нові адреси (вручну або скриптом)
+3. Усі hidden emails автоматично пересилаються на основний iCloud
+4. App-Specific Password для основної пошти — [support.apple.com/uk-ua/102654](https://support.apple.com/uk-ua/102654)
+5. У таблиці AutoPilot заповнити:
+   - `[EMAIL] mail` = `hidden_xxxx@icloud.com` (одна з 1000)
+   - `[EMAIL] mail_provider` = `icloud`
+   - `[EMAIL] forwarding_mail` = ваш основний `main@icloud.com`
+   - `[EMAIL] forwarding_mail_password` = App-Specific Password основної пошти
+   - `[EMAIL] mail_forwarding_provider` = `icloud`
+
+**Детальні відео-гайди:**
+- 📺 [Створення iCloud-ферм](https://t.me/kyctutorial/1574)
+- 📺 [Налаштування переадресації iCloud](https://t.me/kyctutorial/1575)
 
 ---
 
