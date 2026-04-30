@@ -49,7 +49,7 @@ sidebar:
 | nic.ru | — | |
 | yahoo | Required 🔑 | App Password in security settings |
 | gmail | Required 🔑 | App Password (requires 2FA on Google account) |
-| outlook | Required 🔑 | App Password in Microsoft settings |
+| outlook | OAuth2 🔑 | Refresh token (`M.`-prefix) — auto-detected, see [Pattern 3](#-pattern-3-outlook--hotmail-via-refresh-token) |
 | mailru | Required 🔑 | App password in security settings |
 | yandex | Required 🔑 | App password in settings |
 | icloud | Required 🔑 | App-Specific Password at appleid.apple.com |
@@ -125,6 +125,32 @@ Alternative for those building a large-scale farm. Uses **Hide My Email** from i
 **Detailed video guides:**
 - 📺 [Creating iCloud farms](https://t.me/kyctutorial/1574)
 - 📺 [iCloud forwarding setup](https://t.me/kyctutorial/1575)
+
+#### 📨 Pattern 3: Outlook / Hotmail via refresh token
+
+Microsoft disabled Basic Auth for IMAP on consumer Outlook / Hotmail accounts in 2024 — a plain mailbox password no longer works. Only OAuth2 with a refresh token does.
+
+Mailbox vendors (e.g. [KYC SHOP by NVS](https://t.me/buykyc_bot)) sell Hotmail combos in this format:
+
+```
+email:password:recovery_email:recovery_url:2step_codes:M.C510_BAY...
+```
+
+AutoPilot only needs two fields: `email` and the long token at the end (starts with `M.`).
+
+**How to plug in:**
+1. Buy a Hotmail combo pack from the shop
+2. Fill three columns in the AutoPilot table:
+   - `[EMAIL] mail` = `name@hotmail.com` (first field of the combo)
+   - `[EMAIL] mail_password` = `M.C510_BAY...` (last field — the refresh token, **not** the regular password)
+   - `[EMAIL] mail_provider` = `outlook`
+3. Done — AutoPilot detects the refresh token by the `M.` prefix, exchanges it for an access token via Microsoft, and connects to IMAP using XOAUTH2
+
+> 🔄 **Auto-refresh:** the access token lives ~1 hour, AutoPilot refreshes it in the background without pilot interaction.
+
+> ⚠️ **Security:** the seller keeps a copy of the refresh token and could theoretically read your mailbox in parallel. If that's a concern — change the Microsoft account password (using the first password field from the combo), this invalidates ALL refresh tokens including yours. After that you need to re-do OAuth consent via a browser. For one-off tasks (KYC verification) rotation is usually overkill.
+
+> 💡 **Plain passwords still work** for accounts where Basic Auth isn't disabled (legacy corporate / forwarding mailboxes). If the password doesn't start with `M.` — classic IMAP login/password is used.
 
 ---
 

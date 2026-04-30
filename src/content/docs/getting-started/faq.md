@@ -49,7 +49,7 @@ sidebar:
 | nic.ru | — | |
 | yahoo | Требуется 🔑 | App Password в настройках безопасности |
 | gmail | Требуется 🔑 | App Password (нужна 2FA на Google аккаунте) |
-| outlook | Требуется 🔑 | App Password в настройках Microsoft |
+| outlook | OAuth2 🔑 | Refresh token (`M.`-prefix) — авто-детект, см. [Паттерн 3](#-паттерн-3-outlook--hotmail-через-refresh-token) |
 | mailru | Требуется 🔑 | Пароль приложения в настройках безопасности |
 | yandex | Требуется 🔑 | Пароль приложения в настройках |
 | icloud | Требуется 🔑 | App-Specific Password на appleid.apple.com |
@@ -125,6 +125,32 @@ flowchart TD
 **Подробные видео-гайды:**
 - 📺 [Создание iCloud-ферм](https://t.me/kyctutorial/1574)
 - 📺 [Настройка переадресации iCloud](https://t.me/kyctutorial/1575)
+
+#### 📨 Паттерн 3: Outlook / Hotmail через refresh-token
+
+Microsoft с 2024 отключил Basic Auth для IMAP на личных Outlook/Hotmail-аккаунтах — пароль почты сам по себе больше не подходит. Работает только OAuth2 с refresh-токеном.
+
+Селлеры почт (например, [KYC SHOP by NVS](https://t.me/buykyc_bot)) продают Hotmail-комбо в формате:
+
+```
+email:password:recovery_email:recovery_url:2step_codes:M.C510_BAY...
+```
+
+Из всех полей AutoPilot нужны только два: `email` и последний длинный токен (начинается с `M.`).
+
+**Как подключить:**
+1. Купить пакет Hotmail-комбо в шопе
+2. В таблице AutoPilot заполнить три столбца:
+   - `[EMAIL] mail` = `name@hotmail.com` (первое поле комбо)
+   - `[EMAIL] mail_password` = `M.C510_BAY...` (последнее поле — refresh-token, **не** обычный пароль)
+   - `[EMAIL] mail_provider` = `outlook`
+3. Готово — AutoPilot сам определит, что это refresh-токен (по префиксу `M.`), обменяет его на access-токен через Microsoft и подключится к IMAP по XOAUTH2
+
+> 🔄 **Автообновление:** access-токен живёт ~1 час, AutoPilot сам обновляет его в фоне без участия пилота.
+
+> ⚠️ **Безопасность:** селлер сохраняет копию refresh-токена и теоретически может читать вашу почту параллельно. Если это критично — смените пароль Microsoft-аккаунта (через первое поле комбо), это инвалидирует все refresh-токены, в т.ч. и ваш. Затем потребуется заново оформить OAuth-консент через браузер. Для одноразовых задач (KYC-верификация) ротация обычно избыточна.
+
+> 💡 **Обычный пароль тоже работает** для аккаунтов, где Basic Auth ещё не отключён (старые корпоративные / forwarding-почты). Если пароль не начинается с `M.` — используется классический IMAP с логином/паролем.
 
 ---
 
