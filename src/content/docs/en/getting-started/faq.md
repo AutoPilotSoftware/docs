@@ -321,99 +321,23 @@ ACTION: `futures_smart` — automated futures trading with market analysis, post
 
 ```mermaid
 flowchart TD
-    Start([🚀 Start futures_smart])
+    A["📊 Market Analysis"] --> B{"🧠 Signal"}
+    B -->|Long ↑| C["📝 Limit Buy Order"]
+    B -->|Short ↓| D["📝 Limit Sell Order"]
+    C --> E{"⏳ Filled?"}
+    D --> E
+    E -->|No, timeout| A
+    E -->|Yes| F["📈 Hold Position"]
+    F --> G["🔄 Close at Market"]
+    G --> H{"🎯 Target Volume?"}
+    H -->|No| I["💤 Pause"]
+    I --> A
+    H -->|Yes| J["✅ Done"]
 
-    subgraph Setup ["⚙️ Initialization"]
-        Init["📋 Read config<br/>━━━━━━━<br/>leverage<br/>futures_position_size<br/>tp_sl_percentage"]
-        SetLev["🔧 Set leverage on exchange"]
-        Init --> SetLev
-    end
-
-    subgraph SignalLoop ["🧠 Signal search"]
-        Analyze["📊 Market analysis<br/>orderbook + kline"]
-        Algo{"🎲 direction_algorithm"}
-        Simple["📈 simple<br/>trend-following"]
-        Inverse["📉 inverse_simple<br/>counter-trend"]
-        Advanced["🧪 advanced<br/>multi-factor"]
-        Direction{"🧭 Direction?"}
-    end
-
-    subgraph Entry ["🎯 Entry"]
-        PlaceBuy["🟢 Limit BUY<br/>price - offset_ticks"]
-        PlaceSell["🔴 Limit SELL<br/>price + offset_ticks"]
-        Fill{"⏳ Filled?<br/>━━━━━━━<br/>order_timeout<br/>check_interval"}
-        Cancel["❌ Cancel order"]
-    end
-
-    subgraph Hold ["📈 Hold"]
-        SetTP["🎯 TP/SL<br/>±tp_sl_percentage%"]
-        Monitor["👁️ Monitor<br/>hold_interval"]
-        ExitCond{"💥 TP/SL hit<br/>or timer?"}
-    end
-
-    subgraph ExitPhase ["🚪 Exit"]
-        MarketClose["🔄 Market close<br/>realize P&L"]
-    end
-
-    subgraph LoopCheck ["🔁 Loop"]
-        VolCheck{"🎯 Target volume?"}
-        Wait["💤 Pause<br/>iteration_wait_interval"]
-    end
-
-    Done(["✅ Done"])
-    Error(["❌ Error<br/>insufficient balance /<br/>exchange refused"])
-
-    Start --> Init
-    SetLev --> Analyze
-    Analyze --> Algo
-    Algo -->|simple| Simple
-    Algo -->|inverse_simple| Inverse
-    Algo -->|advanced| Advanced
-    Simple --> Direction
-    Inverse --> Direction
-    Advanced --> Direction
-    Direction -->|Long ↑| PlaceBuy
-    Direction -->|Short ↓| PlaceSell
-    Direction -->|No signal| Wait
-    PlaceBuy --> Fill
-    PlaceSell --> Fill
-    Fill -->|Filled| SetTP
-    Fill -->|Timeout| Cancel
-    Cancel --> Wait
-    SetTP --> Monitor
-    Monitor --> ExitCond
-    ExitCond -->|No, keep holding| Monitor
-    ExitCond -->|Yes| MarketClose
-    MarketClose --> VolCheck
-    VolCheck -->|Reached| Done
-    VolCheck -->|Not reached| Wait
-    Wait --> Analyze
-
-    SetLev -.->|API error| Error
-    PlaceBuy -.->|Insufficient balance| Error
-    PlaceSell -.->|Insufficient balance| Error
-
-    classDef setup fill:#e7f3ff,stroke:#0d6efd,stroke-width:2px
-    classDef signal fill:#f3e8ff,stroke:#7c3aed
-    classDef entry fill:#fff7e0,stroke:#d97706
-    classDef hold fill:#e6fffa,stroke:#0891b2
-    classDef exitPhase fill:#fef2f2,stroke:#dc2626
-    classDef loop fill:#f3f4f6,stroke:#6b7280
-    classDef terminal fill:#d1fae5,stroke:#059669,stroke-width:3px
-    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px
-    classDef buy fill:#d1e7dd,stroke:#198754,color:#0f5132
-    classDef sell fill:#f8d7da,stroke:#dc3545,color:#842029
-
-    class Init,SetLev setup
-    class Analyze,Algo,Simple,Inverse,Advanced,Direction signal
-    class Fill,Cancel entry
-    class PlaceBuy buy
-    class PlaceSell sell
-    class SetTP,Monitor,ExitCond hold
-    class MarketClose exitPhase
-    class VolCheck,Wait loop
-    class Start,Done terminal
-    class Error error
+    style A fill:#2196F3,color:#fff,stroke:none,rx:8
+    style J fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style C fill:#009688,color:#fff,stroke:none,rx:8
+    style D fill:#f44336,color:#fff,stroke:none,rx:8
 ```
 
 **💰 Fees:** post-only limit orders = 0.02% (maker), market close = 0.055% (taker). Total ~0.075% per cycle — **32% cheaper** than market orders (0.11%).
