@@ -321,23 +321,99 @@ ACTION: `futures_smart` — автоматическая торговля фью
 
 ```mermaid
 flowchart TD
-    A["📊 Анализ рынка"] --> B{"🧠 Сигнал"}
-    B -->|Long ↑| C["📝 Лимитный ордер Buy"]
-    B -->|Short ↓| D["📝 Лимитный ордер Sell"]
-    C --> E{"⏳ Заполнен?"}
-    D --> E
-    E -->|Нет, таймаут| A
-    E -->|Да| F["📈 Удержание позиции"]
-    F --> G["🔄 Закрытие по маркету"]
-    G --> H{"🎯 Целевой объём?"}
-    H -->|Нет| I["💤 Пауза"]
-    I --> A
-    H -->|Да| J["✅ Готово"]
+    Start([🚀 Запуск futures_smart])
 
-    style A fill:#2196F3,color:#fff,stroke:none,rx:8
-    style J fill:#4CAF50,color:#fff,stroke:none,rx:8
-    style C fill:#009688,color:#fff,stroke:none,rx:8
-    style D fill:#f44336,color:#fff,stroke:none,rx:8
+    subgraph Setup ["⚙️ Инициализация"]
+        Init["📋 Чтение конфига<br/>━━━━━━━<br/>leverage<br/>futures_position_size<br/>tp_sl_percentage"]
+        SetLev["🔧 Установка плеча на бирже"]
+        Init --> SetLev
+    end
+
+    subgraph SignalLoop ["🧠 Поиск сигнала"]
+        Analyze["📊 Анализ рынка<br/>orderbook + kline"]
+        Algo{"🎲 direction_algorithm"}
+        Simple["📈 simple<br/>по тренду"]
+        Inverse["📉 inverse_simple<br/>против тренда"]
+        Advanced["🧪 advanced<br/>multi-factor"]
+        Direction{"🧭 Направление?"}
+    end
+
+    subgraph Entry ["🎯 Вход"]
+        PlaceBuy["🟢 Лимитный BUY<br/>price - offset_ticks"]
+        PlaceSell["🔴 Лимитный SELL<br/>price + offset_ticks"]
+        Fill{"⏳ Заполнен?<br/>━━━━━━━<br/>order_timeout<br/>check_interval"}
+        Cancel["❌ Отменить ордер"]
+    end
+
+    subgraph Hold ["📈 Удержание"]
+        SetTP["🎯 TP/SL<br/>±tp_sl_percentage%"]
+        Monitor["👁️ Мониторинг<br/>hold_interval"]
+        ExitCond{"💥 TP/SL hit<br/>или таймер?"}
+    end
+
+    subgraph ExitPhase ["🚪 Выход"]
+        MarketClose["🔄 Market close<br/>фиксация P&L"]
+    end
+
+    subgraph LoopCheck ["🔁 Цикл"]
+        VolCheck{"🎯 Целевой объём?"}
+        Wait["💤 Пауза<br/>iteration_wait_interval"]
+    end
+
+    Done(["✅ Готово"])
+    Error(["❌ Ошибка<br/>нехватка баланса /<br/>биржа отказала"])
+
+    Start --> Init
+    SetLev --> Analyze
+    Analyze --> Algo
+    Algo -->|simple| Simple
+    Algo -->|inverse_simple| Inverse
+    Algo -->|advanced| Advanced
+    Simple --> Direction
+    Inverse --> Direction
+    Advanced --> Direction
+    Direction -->|Long ↑| PlaceBuy
+    Direction -->|Short ↓| PlaceSell
+    Direction -->|Нет сигнала| Wait
+    PlaceBuy --> Fill
+    PlaceSell --> Fill
+    Fill -->|Заполнен| SetTP
+    Fill -->|Таймаут| Cancel
+    Cancel --> Wait
+    SetTP --> Monitor
+    Monitor --> ExitCond
+    ExitCond -->|Нет, ждём| Monitor
+    ExitCond -->|Да| MarketClose
+    MarketClose --> VolCheck
+    VolCheck -->|Достигнут| Done
+    VolCheck -->|Не достигнут| Wait
+    Wait --> Analyze
+
+    SetLev -.->|API error| Error
+    PlaceBuy -.->|Insufficient balance| Error
+    PlaceSell -.->|Insufficient balance| Error
+
+    classDef setup fill:#e7f3ff,stroke:#0d6efd,stroke-width:2px
+    classDef signal fill:#f3e8ff,stroke:#7c3aed
+    classDef entry fill:#fff7e0,stroke:#d97706
+    classDef hold fill:#e6fffa,stroke:#0891b2
+    classDef exitPhase fill:#fef2f2,stroke:#dc2626
+    classDef loop fill:#f3f4f6,stroke:#6b7280
+    classDef terminal fill:#d1fae5,stroke:#059669,stroke-width:3px
+    classDef error fill:#fee2e2,stroke:#dc2626,stroke-width:2px
+    classDef buy fill:#d1e7dd,stroke:#198754,color:#0f5132
+    classDef sell fill:#f8d7da,stroke:#dc3545,color:#842029
+
+    class Init,SetLev setup
+    class Analyze,Algo,Simple,Inverse,Advanced,Direction signal
+    class Fill,Cancel entry
+    class PlaceBuy buy
+    class PlaceSell sell
+    class SetTP,Monitor,ExitCond hold
+    class MarketClose exitPhase
+    class VolCheck,Wait loop
+    class Start,Done terminal
+    class Error error
 ```
 
 **💰 Комиссии:** post-only лимитные ордера = 0.02% (maker), закрытие по маркету = 0.055% (taker). Итого ~0.075% за цикл — **на 32% дешевле** чем маркет ордера (0.11%).
