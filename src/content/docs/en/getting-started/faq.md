@@ -285,7 +285,7 @@ flowchart LR
 
 ---
 
-### 6. 📈 Trading: Details
+### 6. 📈 Trading: Details {#trading-details}
 
 ```mermaid
 flowchart LR
@@ -315,7 +315,7 @@ flowchart LR
 
 ---
 
-### 6.1 🤖 Smart Futures Trading (futures_smart)
+### 6.1 🤖 Smart Futures Trading (futures_smart) {#futures-smart}
 
 ACTION: `futures_smart` — automated futures trading with market analysis, post-only limit orders and position management.
 
@@ -462,7 +462,7 @@ flowchart TD
 
 ---
 
-### 6.2 🧩 Puzzle Hunt (puzzle_hunt)
+### 6.2 🧩 Puzzle Hunt (puzzle_hunt) {#puzzle-hunt}
 
 ACTION: `puzzle_hunt` — automatic registration, task completion and management of Bybit puzzles.
 
@@ -549,7 +549,7 @@ With multiple puzzles, status is combined: `[CODE1] DONE, [CODE2] 3/10`
 
 ---
 
-### 6.3 💰 Bybit Earn — USDT Staking (earn / unearn)
+### 6.3 💰 Bybit Earn — USDT Staking (earn / unearn) {#earn}
 
 ACTION: `earn` — send USDT to the Flexible Savings pool (automatic staking).
 ACTION: `unearn` (or `unstake`) — withdraw USDT from the pool back to Funding account.
@@ -604,7 +604,7 @@ flowchart LR
 
 ---
 
-### 6.4 🛒 Trading Variants (buy, limit, futures)
+### 6.4 🛒 Trading Variants (buy, limit, futures) {#trading-variants}
 
 AutoPilot offers several trading actions for different scenarios:
 
@@ -626,7 +626,7 @@ AutoPilot offers several trading actions for different scenarios:
 
 ---
 
-### 6.5 🎁 Rewards & Events (claim, lp, learn, ref_code, link, profit)
+### 6.5 🎁 Rewards & Events (claim, lp, learn, ref_code, link, profit) {#rewards-events}
 
 Quick-reference for actions that require **no extra columns** — just set the ACTION and run:
 
@@ -647,7 +647,7 @@ Quick-reference for actions that require **no extra columns** — just set the A
 
 ---
 
-### 7. 💸 Withdrawal (withdraw)
+### 7. 💸 Withdrawal (withdraw) {#withdraw}
 
 ```mermaid
 flowchart LR

@@ -2,6 +2,44 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightClientMermaid from '@pasqal-io/starlight-client-mermaid';
+import slugifyLib from '@sindresorhus/slugify';
+import rehypeSlugCustomId from 'rehype-slug-custom-id';
+import { visit } from 'unist-util-visit';
+
+const CYRILLIC_RE = /[Ѐ-ӿ]/;
+
+// Post-process: replace any heading ID containing Cyrillic chars with
+// transliterated Latin slug. Skips IDs already in Latin (custom {#id} syntax,
+// English/Ukrainian-Latin headings).
+function rehypeTransliterateHeadingIds() {
+	const seen = new Set();
+	return (tree) => {
+		seen.clear();
+		visit(tree, 'element', (node) => {
+			if (!/^h[1-6]$/.test(node.tagName)) return;
+			const id = node.properties?.id;
+			if (typeof id !== 'string' || !CYRILLIC_RE.test(id)) return;
+
+			let slug = slugifyLib(id, {
+				customReplacements: [
+					['AutoPilot', 'autopilot'],
+					['Bybit', 'bybit'],
+					['MEXC', 'mexc'],
+					['Bitget', 'bitget'],
+					['BitGP', 'bitgp'],
+					['OKX', 'okx'],
+				],
+			});
+			if (!slug) return;
+
+			let unique = slug;
+			let n = 1;
+			while (seen.has(unique)) unique = `${slug}-${n++}`;
+			seen.add(unique);
+			node.properties.id = unique;
+		});
+	};
+}
 
 export default defineConfig({
 	site: 'https://autopilotsoftware.github.io',
@@ -81,4 +119,13 @@ export default defineConfig({
 			],
 		}),
 	],
+	markdown: {
+		rehypePlugins: [
+			// 1. Honor explicit {#custom-id} syntax in markdown headings.
+			[rehypeSlugCustomId, { enableCustomId: true }],
+			// 2. Post-process: transliterate any Cyrillic heading IDs
+			//    that Starlight's default slugger left as-is.
+			rehypeTransliterateHeadingIds,
+		],
+	},
 });
