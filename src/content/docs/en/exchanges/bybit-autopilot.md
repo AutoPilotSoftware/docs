@@ -302,17 +302,17 @@ flowchart LR
 
 #### Tip: which chain to pick for USDT
 
-| Chain | Fee | Min withdraw | Notes |
-|-------|-----|--------------|-------|
-| `APTOS` | 0 USDT | 0 | Currently the cheapest |
-| `TRX` | 1 USDT | 2.6 | Good old USDT, accepted almost everywhere |
-| `BSC` | 0.2 USDT | 10 | Binance Smart Chain, a common destination |
-| `MATIC` | 0.1 USDT | 1 | Polygon, cheap |
-| `ARBI` | 0.1 USDT | 1 | Arbitrum, cheap |
-| `OP` | 1 USDT | 1 | Optimism |
-| `SOL` | 0.5 USDT | 10 | Solana, fast but not every wallet accepts it |
-| `ETH` | 0.8 USDT | 6 | Classic Ethereum, expensive — only if nothing else works |
-| `TON` | 0.15 USDT | 1 | Telegram chain, won't send without a memo |
+| Chain | Fee | Min withdraw |
+|-------|-----|--------------|
+| `APTOS` | 0 USDT | 0 |
+| `TRX` | 1 USDT | 2.6 |
+| `BSC` | 0.2 USDT | 10 |
+| `MATIC` | 0.1 USDT | 1 |
+| `ARBI` | 0.1 USDT | 1 |
+| `OP` | 1 USDT | 1 |
+| `SOL` | 0.5 USDT | 10 |
+| `ETH` | 0.8 USDT | 6 |
+| `TON` | 0.15 USDT | 1 |
 
 > Not a complete list — Bybit has ~20 USDT networks. The full current list appears in the log if you type a chain that doesn't exist. Bybit may change fees and minimums — double-check in the exchange UI before mass withdrawals.
 
