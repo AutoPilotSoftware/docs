@@ -275,7 +275,7 @@ flowchart LR
 
 ### `withdraw` — Withdraw Funds
 
-Fast HTTP-only withdrawal — direct calls to Bybit's API, email + 2FA confirmation, no browser. Replaces the older browser-based flow as the default (the old flow stays as a fallback only for `full_withdraw=YES + USDT`).
+Fast withdrawal from the account with automatic confirmation (email + 2FA).
 
 ```mermaid
 flowchart LR
@@ -299,6 +299,22 @@ flowchart LR
 > If 2FA is not enabled — AutoPilot will automatically set it up before withdrawal.
 >
 > 💡 **The chain must use Bybit's canonical code**, not a friendly alias. USDT-TRC20 is `TRX` on Bybit; USDT-BEP20 is `BSC`; USDT-ERC20 is `ETH`; Polygon is `MATIC`. Wrong code = action halts with a precise suggestion + the full list of working chains in the log.
+
+#### Tip: which chain to pick for USDT
+
+| Chain | Fee | Min withdraw | When to use |
+|-------|-----|--------------|-------------|
+| `APTOS` | 0 USDT | 0 | **Cheapest and fastest.** Use if the recipient supports Aptos |
+| `TRX` | 1 USDT | 2.6 | The most recognized USDT network (TRC20). Supported almost everywhere |
+| `BSC` | 0.2 USDT | 10 | BNB Smart Chain (BEP20). Cheap, broadly supported by exchanges |
+| `MATIC` | 0.1 USDT | 1 | Polygon. Cheap, convenient for DeFi |
+| `ARBI` | 0.1 USDT | 1 | Arbitrum One. Low fee, Ethereum L2 |
+| `OP` | 1 USDT | 1 | Optimism. Ethereum L2 |
+| `SOL` | 0.5 USDT | 10 | Solana. Fast |
+| `ETH` | 0.8 USDT | 6 | Ethereum (ERC20). Expensive — use only when the recipient doesn't support other chains |
+| `TON` | 0.15 USDT | 1 | **Requires memo** — make sure to fill `[WITHDRAW] withdraw_memo` |
+
+> Not a complete list — Bybit has ~20 USDT networks. The full current list appears in the log if you type a chain that doesn't exist. Bybit may change fees and minimums — double-check in the exchange UI before mass withdrawals.
 
 ---
 
