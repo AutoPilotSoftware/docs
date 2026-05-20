@@ -275,7 +275,7 @@ flowchart LR
 
 ### `withdraw` — Withdraw Funds
 
-Withdraw funds from the account with automatic confirmation
+Fast HTTP-only withdrawal — direct calls to Bybit's API, email + 2FA confirmation, no browser. Replaces the older browser-based flow as the default (the old flow stays as a fallback only for `full_withdraw=YES + USDT`).
 
 ```mermaid
 flowchart LR
@@ -290,13 +290,15 @@ flowchart LR
 | Parameter | Column | Description |
 |-----------|--------|-------------|
 | **Required** | `[WITHDRAW] withdraw_coin` | Coin to withdraw (e.g.: `USDT`) |
-| **Required** | `[WITHDRAW] withdraw_chain` | Withdrawal network (e.g.: `TRC20`, `Aptos`) |
+| **Required** | `[WITHDRAW] withdraw_chain` | Withdrawal network — Bybit's canonical chain code (e.g.: `TRX` for TRC20, `APTOS`, `BSC` for BEP20, `ETH` for ERC20). On mismatch, AutoPilot logs the full list of supported chains for the selected coin |
 | **Required** | `[WITHDRAW] withdraw_address` | Recipient wallet address |
-| Optional | `[WITHDRAW] withdraw_memo` | Memo/Tag |
-| Optional | `[WITHDRAW] withdraw_amount` | Amount in % (100 = all, 50 = half) |
+| Optional | `[WITHDRAW] withdraw_memo` | Memo/Tag (required for TON, XRP, and other memo-bearing chains) |
+| Optional | `[WITHDRAW] withdraw_amount` | Amount as % of the Funding balance (1–100). Empty or `100` = full balance, `50` = half. Values >100 are rejected |
 | **Updates** | `[RESULT] status` | `[WITHDRAW] SUCCESS` |
 
-> If 2FA is not enabled — AutoPilot will automatically set it up before withdrawal
+> If 2FA is not enabled — AutoPilot will automatically set it up before withdrawal.
+>
+> 💡 **The chain must use Bybit's canonical code**, not a friendly alias. USDT-TRC20 is `TRX` on Bybit; USDT-BEP20 is `BSC`; USDT-ERC20 is `ETH`; Polygon is `MATIC`. Wrong code = action halts with a precise suggestion + the full list of working chains in the log.
 
 ---
 
