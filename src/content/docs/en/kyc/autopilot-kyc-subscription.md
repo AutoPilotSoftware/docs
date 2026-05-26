@@ -36,12 +36,29 @@ flowchart LR
 - 🔁 **Auto-refund** on country mismatch
 - 🔄 **ReKYC** — face re-verification by the same seller when requested by exchange
 - 🔀 **Port rotation** for blocked proxies
-- ⏰ **Deadlines** — auto-reassignment on timeout
+- ⏰ **Smart deadlines** — configurable timeouts (24h / 36h / 48h / 60h / 72h) + on-timeout action: reassign / retry→refund / cancel
+- 🛡 **Anti-sybil protection** — seller phone + geo cross-checked with country of the phone number, wallet tracking and multi-account linkage detection
+
+### Automation
+- 🔄 **Smart Session Update** — the bot tracks cookie session lifetime (Bybit ≈3 days), refreshes them and warns before expiry
+- 💸 **Smart refunds** — the bot surfaces expired REKYC tasks, lapsed rewards, `not eligible` accounts and proposes one-click refunds
+- ⚡ **Smart REKYC for MEXC** — Face Verification within the first 30 minutes after KYC is **free**
+- 💬 **AI notifications** — neural net reminds sellers about tasks and runs personalized broadcasts
+
+### Team and Orders
+- ⭐ **Priority System** — preferred sellers get an exclusive 15-minute window on your orders
+- 🚫 **Blacklist** — block global sellers you don't want to work with again
+- 👥 **Workers** — flexible GEO limits, custom pricing/statistics, share via link, reassign and reset tasks right inside the Mini App
+- 🏆 **Seller rating** — motivation to deliver quality
+
+### KYC Providers
+- 🆔 **SumSub** — primary flow
+- 👤 **Jumio** — new provider supported for both KYC and REKYC
 
 ### Additional
 - 💳 Payment system with **USDT** balance
 - ⭐ Seller ratings with tiers (Gold / Silver / Bronze)
-- 📊 Analytics: expenses, activity graphs, success rate
+- 📊 REKYC analytics: verification stats, sortable by workers / global orders, breakdowns by date/time, deep seller research
 - 🔍 Filters by country, exchange, bulk orders
 - 🌍 Localization — EN / RU / UA
 - 💬 Built-in anonymous chat with sellers

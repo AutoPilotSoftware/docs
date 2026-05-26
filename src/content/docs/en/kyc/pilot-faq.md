@@ -111,11 +111,13 @@ flowchart TD
     F --> G["📤 Upload Accounts"]
     G --> L{"Method?"}
 
+    L -->|Afina| M0["📄 Send Afina file"]
     L -->|AdsPower| M["📄 Send .txt export"]
     L -->|Manual| N["✏️ Paste proxies"]
     N --> O["📎 Send .json cookies"]
 
-    M --> P["🔍 Validation"]
+    M0 --> P["🔍 Validation"]
+    M --> P
     O --> P
 
     P --> Q["📊 Results: ✅ Passed N | ❌ Failed M"]
@@ -130,7 +132,20 @@ flowchart TD
 
 ## Upload Methods
 
-### Method 1: AdsPower TXT (Recommended)
+**3 ways** to add accounts to the bot.
+
+### Method 1: Afina Browser
+
+Best when your profiles already live in **Afina** — export is fully automated.
+
+**Steps:**
+1. Open Afina → select profiles → **Export**
+2. You get a file with cookies + proxy + User-Agent
+3. In the bot: **Upload Accounts** → **Afina Browser** → send the file as document 📎
+
+> The bot recognizes the Afina format automatically and pulls in all required fields with zero manual setup.
+
+### Method 2: AdsPower TXT (Recommended for AdsPower)
 
 Best if you use AdsPower anti-detect browser.
 
@@ -160,7 +175,7 @@ acc_id=349
 ...
 ```
 
-### Method 2: Manual (Proxy + Cookies)
+### Method 3: Manual (Proxy + Cookies)
 
 Use when you have separate proxy lists and cookie files.
 
@@ -201,13 +216,13 @@ Use when you have separate proxy lists and cookie files.
 
 ### Method Comparison
 
-| Feature | AdsPower TXT | Manual |
-|-|-|-|
-| Difficulty | Easy | Medium |
-| Files needed | 1 `.txt` | Proxies (text) + N `.json` files |
-| Proxy included | Yes (in file) | Separate step |
-| User agent | Yes (if enabled) | Not included |
-| Best for | AdsPower users | Separate proxy/cookie sources |
+| Feature | Afina Browser | AdsPower TXT | Manual |
+|-|-|-|-|
+| Difficulty | Easy | Easy | Medium |
+| Files needed | 1 Afina file | 1 `.txt` | Proxies (text) + N `.json` files |
+| Proxy included | Yes | Yes | Separate step |
+| User agent | Yes | Yes (if enabled) | Not included |
+| Best for | Afina users | AdsPower users | Separate proxy/cookie sources |
 
 ---
 
@@ -338,20 +353,59 @@ MiniApp at `app.pilot.monster` — a visual dashboard right inside Telegram.
 
 ### Analytics Tab
 
-- **Overview cards**: Total verified, current balance, avg price/task, trend sparkline
-- **Period filters**: 7 days, 30 days, All time
+- **Overview cards**: Balance, Net Spent (for the selected period), Verified (with %), Initial KYC, REKYC real % (in-progress vs completed splits), Financials (Total Spent, Refunded, Avg Cost)
+- **Period filters**: 7D, 30D, All
 - **Order type filters**: All, Global (FCFS), Workers (assigned)
 - **Charts**:
-  - Daily verified trend (line chart)
+  - Verified Tasks — daily verification trend
   - Balance trend (sparkline)
-  - Product breakdown (donut chart)
-  - Country distribution (horizontal bar chart)
+  - REKYC donut — real success rate of re-verifications
+  - Product breakdown
+  - Country distribution
+
+> REKYC analytics has been rebuilt: sortable by workers and global orders, breakdowns by date, time and activity, deep research on every seller.
+
+### Tasks Tab — Refunds
+
+The new **Refunds** mode automatically surfaces tasks that need a refund:
+
+- **Available refunds** — amount returning to your balance
+- **Face tasks stale 24h+** — Face Verification overdue by 24h+
+- Sortable by exchange and reason (`not eligible`, lapsed reward, expired REKYC)
+- One **Return $X.XX** button refunds every selected task in a single click
 
 ### Sellers Tab (Pilot View)
 
-- **Workers section**: Your registered sellers with full `@username`, task counts, success rates
+- **Workers section**: Your registered sellers with full `@username`, task counts, success rates, average rating, online indicator
 - **Global section**: Anonymous sellers from FCFS orders shown as `Seller #UID` — no identity disclosed
 - **Tier badges**: Gold / Silver / Bronze based on performance
+- **Worker sharing** — copy a link and invite a worker in one tap
+- **Private pricing** — per-country rates split into KYC / Face
+- **Reset task** ("Reset" button) — if a worker isn't delivering, hand the task to another worker straight from the Mini App
+
+### Priorities Tab
+
+Manage the priority pool for global orders:
+
+- ⭐ **Preferred Sellers** — sellers who get an exclusive **15-minute window** on your orders
+- 🚫 **Blacklist** — global sellers who will never see your orders
+- Each card: country, flag, ID (`Seller #XXXXXX`), priority timer, remove button
+
+> Add a seller to favorites → for the first 15 minutes only they see the order → then it drops into the general global pool.
+
+### Settings Tab
+
+Pilot settings — collected on a single screen:
+
+- **Language**: English / Русский / Українська
+- **Port rotation** — only for providers where the port is the session key. Not sure — leave off.
+- **Session rotation** — rotates the session token in the proxy login. Auto-requested from NodeMaven / Proxyshard / Datapanrpulse / Bright Data.
+- **Task deadline** — 24h / 36h / 48h / 60h / 72h
+- **On-deadline action**:
+  - **Reassign** — hand to another seller
+  - **Retry → Refund** — retry once, then refund
+  - **Cancel** — close the task with a refund
+- **Seller data disclosure** — which fields a seller sees in task notifications
 
 ### Globe Tab
 
@@ -368,6 +422,101 @@ Task-linked messaging between pilots and sellers:
 - **AI moderation**: Contact information automatically censored
 - **Task context**: Messages tagged with task details (ID, AdsPower, country, product)
 - Unread badge counter (polls every 5 seconds)
+
+---
+
+## Smart Session Update
+
+The bot tracks cookie lifetime so sessions don't expire before the order even starts.
+
+```mermaid
+flowchart LR
+    A["📤 Account uploaded"] --> B["🔍 Bot finds account in KYC/REKYC"]
+    B --> C{"Session alive?"}
+    C -->|Yes| D["✅ Ready for order"]
+    C -->|Expiring soon| E["🔄 Auto-refresh"]
+    C -->|Expired| F["⚠️ Notification to refresh"]
+    E --> D
+```
+
+**What the bot does:**
+- Finds the account in the KYC / REKYC flow
+- Checks session validity
+- Auto-refreshes sessions that are about to expire
+- Notifies you when manual intervention is required
+
+> Example: Bybit sessions live for about **3 days** — the system tracks this and refreshes them without you lifting a finger.
+
+---
+
+## Smart Refunds
+
+The bot surfaces tasks that need a refund and groups them by reason.
+
+| Trigger | What it shows | Action |
+|-|-|-|
+| REKYC about to expire | List of tasks with a timer | Refund / retry |
+| Lapsed rewards | Tasks with no reward window left | Refund |
+| `not eligible` | Accounts flagged by exchange | Refund |
+| Face stale 24h+ | Overdue Face Verification | Refund |
+
+> Amounts are summed — hit **Return $X.XX** and the balance updates instantly.
+
+---
+
+## Smart REKYC for MEXC — free Face Verification in the first 30 minutes
+
+After KYC on MEXC the exchange often requests an extra face check — especially for trading. If that request arrives **within the first 30 minutes**, re-verification is **free**.
+
+**How it works:**
+
+1. Seller finishes the base KYC
+2. The bot **does not pay out immediately** — it polls the account every minute for 30 minutes looking for a Face Verification request
+3. If MEXC requests a Face Check:
+   - The bot notifies the seller
+   - The seller goes through the Face Scan
+   - Only then does the seller get paid
+4. If Face Verification fails — the seller gets nothing, not even the base KYC payment
+
+> If Face Verification lands **later** (hours or days) — it's a separate paid REKYC.
+
+**MEXC currently has two Face Verification types:**
+- Trading
+- Withdrawal
+
+> 📹 [Video demo](https://youtu.be/6zhf3ytgfkE) — MEXC mechanics mirror Bybit.
+
+---
+
+## Anti-Sybil and Risk System
+
+The platform protects pilot orders from multi-accounting and abuse on the seller side.
+
+**At registration every seller must:**
+- 📱 Confirm their phone number via Telegram
+- 📍 Share their geolocation
+- ✅ Pass a GEO ↔ phone country check
+
+If the data doesn't match — access is rejected.
+
+**Additional checks:**
+- 💰 Tracking of wallets sellers withdraw to
+- 🔗 Linkage detection between sellers via shared wallets
+- 👥 Multi-account signals
+- 📍 Seller geolocation proximity check (radius **down to 50 m**)
+
+> If the system spots abuse — accounts go to review and get banned. Your order is unaffected: the task is automatically reassigned to another seller.
+
+---
+
+## KYC Providers
+
+| Provider | KYC | REKYC | Exchanges |
+|-|-|-|-|
+| **SumSub** | ✅ | ✅ | Bybit, MEXC |
+| **Jumio** | ✅ | ✅ | Supported since the latest update |
+
+> Provider selection happens automatically based on what the exchange requests on a given account.
 
 ---
 
@@ -458,6 +607,7 @@ Sellers receive **only a unique one-time SumSub verification link**. They **cann
 ## FAQ
 
 **Q: Which files do I need?**
+- Afina Browser: One Afina export file
 - AdsPower TXT: One `.txt` file (contains everything)
 - Manual: Proxies (text in chat) + `.json` cookie files (one per account)
 
@@ -488,6 +638,21 @@ The account isn't configured for KYC verification, or the cookies are from a dif
 
 **Q: How do I access the MiniApp?**
 Open `app.pilot.monster` in Telegram's built-in browser. It authenticates automatically via your Telegram session.
+
+**Q: What is Smart Session Update?**
+The bot tracks cookie lifetime itself (e.g. Bybit ≈3 days), auto-refreshes expiring sessions and warns you if manual intervention is needed.
+
+**Q: How do Priority and Blacklist work?**
+In the Mini App → **Priorities** tab add a seller to favorites — for the first 15 minutes only they see your order. Blacklist fully blocks selected global sellers from your orders.
+
+**Q: What does "Reset" on a task do?**
+If your worker isn't delivering — hit **Reset** and the task moves to another worker (or to the global pool if you have no free workers left).
+
+**Q: How do I configure task deadlines?**
+Mini App → Settings → **Task deadline**: pick 24h / 36h / 48h / 60h / 72h. On-deadline action: **Reassign** / **Retry → Refund** / **Cancel**.
+
+**Q: I finished KYC on MEXC and got a Face Verification — is it paid?**
+If the request arrives **within 30 minutes after KYC** — re-verification is **free**. The bot tracks it itself and sends the seller to a Face Scan. Later requests (hours/days) are a separate paid REKYC.
 
 **Q: Who do I contact for issues?**
 Contact support via the NVS Shop or bot admin. Include screenshots of any errors.

@@ -12,6 +12,22 @@ You purchased KYC in **NVS Shop** and received a link. Below is how to upload ac
 
 > **Video guide:** KYC for Bybit and MEXC without authorization, without sharing links, with re-verification — [watch on YouTube](https://www.youtube.com/watch?v=WwYna2q5AfU)
 
+> **3 upload methods:** Afina Browser, AdsPower TXT, Manual (proxies + cookies). Pick the one that fits you below.
+
+---
+
+## Quick Start: Afina Browser
+
+> Using **Afina**? This is the most automated path — the bot detects the format itself.
+
+**Step 1.** Open Afina → select profiles → **Export**.
+
+**Step 2.** Save the resulting file.
+
+**Step 3.** Open the bot [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot), press **Upload Accounts** → **Afina Browser** → send the file as a document 📎.
+
+> **Done!** The bot extracts cookies, proxy and User-Agent automatically.
+
 ---
 
 ## Quick Start: Manual (proxies + cookies)
@@ -80,18 +96,22 @@ You purchased KYC in **NVS Shop** and received a link. Below is how to upload ac
 
 | Method | When to Use | Difficulty |
 |-|-|-|
-| **Manual** | Proxies and cookies separately | Medium |
+| **Afina Browser** | You use Afina | Easy |
 | **AdsPower TXT** | You use AdsPower | Easy |
+| **Manual** | Proxies and cookies separately | Medium |
 
 ```mermaid
 flowchart TD
-    A[You press Upload Accounts] --> B{Do you use AdsPower?}
-    B -->|Yes| C[Choose AdsPower TXT]
-    B -->|No| D[Choose Manual]
+    A[You press Upload Accounts] --> B{Which browser?}
+    B -->|Afina| C0[Choose Afina Browser]
+    B -->|AdsPower| C[Choose AdsPower TXT]
+    B -->|No anti-detect| D[Choose Manual]
+    C0 --> E0[Send Afina file]
     C --> E[Send one .txt file]
     D --> F[Step 1: Send proxies as text]
     F --> G[Step 2: Send .json cookie files]
-    E --> H[Bot validates accounts]
+    E0 --> H[Bot validates accounts]
+    E --> H
     G --> H
     H --> I[Press Confirm]
     I --> J[✅ Order created!]
@@ -330,8 +350,13 @@ Go back to NVS Shop and request a new link.
 
 | Method | What You Need |
 |-|-|
+| Afina Browser | One Afina export file |
 | AdsPower TXT | One `.txt` file from AdsPower |
 | Manual | Proxy text + `.json` cookie files |
+
+#### MEXC requested Face Verification after KYC — is it paid?
+
+If the request arrives **within the first 30 minutes after KYC** — re-verification is **free**. The bot tracks it itself and routes the seller to a Face Scan. Later (hours / days) — it's a separate paid REKYC. See the [pilot guide](/docs/en/pilot-faq/) for details.
 
 #### Where do I get proxies?
 
