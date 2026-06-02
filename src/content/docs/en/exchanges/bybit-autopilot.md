@@ -136,7 +136,7 @@ AutoPilot supports a wide range of automated actions for Bybit:
 - **Claiming rewards**: coupons, batch claims, activity rewards
 - **Referral codes**: automatic extraction of account referral codes
 - **KYC link**: getting SUMSUB verification link
-- **Profit calculation**: automatic WITHDRAW - DEPOSIT analysis
+- **Profit calculation**: automatic WITHDRAW − DEPOSIT − P2P purchase + balance analysis
 - Automatic captcha solving, email verification code retrieval, and more
 
 ---
@@ -275,7 +275,7 @@ flowchart LR
 
 ### `withdraw` — Withdraw Funds
 
-Fast withdrawal from the account with automatic confirmation (email + 2FA).
+Fast, stable withdrawal — switched to a request-based algorithm with no interaction with page elements, with automatic confirmation (email + 2FA).
 
 ```mermaid
 flowchart LR
@@ -293,7 +293,7 @@ flowchart LR
 | **Required** | `[WITHDRAW] withdraw_chain` | Withdrawal network — Bybit's canonical chain code (e.g.: `TRX` for TRC20, `APTOS`, `BSC` for BEP20, `ETH` for ERC20). On mismatch, AutoPilot logs the full list of supported chains for the selected coin |
 | **Required** | `[WITHDRAW] withdraw_address` | Recipient wallet address |
 | Optional | `[WITHDRAW] withdraw_memo` | Memo/Tag (required for TON, XRP, and other memo-bearing chains) |
-| Optional | `[WITHDRAW] withdraw_amount` | Amount as % of the Funding balance (1–100). Empty or `100` = full balance, `50` = half. Values >100 are rejected |
+| Optional | `[WITHDRAW] withdraw_amount` | Withdrawal amount: a fixed USDT number (`50` = 50 USDT), a percent of balance (`50%` = half), or `max` / `all` / empty = full balance |
 | **Updates** | `[RESULT] status` | `[WITHDRAW] SUCCESS` |
 
 > If 2FA is not enabled — AutoPilot will automatically set it up before withdrawal.
@@ -518,7 +518,7 @@ Complete Bybit learning modules and set a profile avatar automatically
 
 ### `profit` — Profit Calculation
 
-Calculate profit per account: total withdrawals - total deposits + current balance
+Calculate profit per account: total withdrawals − total deposits − cost of USDT bought via P2P + current balance. P2P purchases are counted as a cost so profit reflects the real result, not USDT bought with fiat.
 
 | Parameter | Column | Description |
 |-----------|--------|-------------|
