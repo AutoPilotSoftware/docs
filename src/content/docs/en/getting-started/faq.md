@@ -664,6 +664,7 @@ After withdrawal — open the **Distribute** tab and collect everything to one w
 
 **Vision:**
 - In config: `vision_config=folder_name,API_key`
+- Local API port: `vision_port=53633` (default 3030 — set your VisionM port)
 
 **Afina:**
 - In config: `afina_api_key=your_API_key` and `afina_port=50777` (default port)

@@ -664,6 +664,7 @@ flowchart LR
 
 **Vision:**
 - В конфігу: `vision_config=ім'я_папки,API_ключ`
+- Порт локального API: `vision_port=53633` (за замовчуванням 3030 — вкажіть порт вашого VisionM)
 
 **Afina:**
 - У конфігу: `afina_api_key=ваш_API_ключ` та `afina_port=50777` (порт за замовчуванням)
