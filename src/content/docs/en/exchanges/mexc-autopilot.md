@@ -87,6 +87,7 @@ mindmap
       Market Trading
       Volume Generation
       Multi-coins
+      Futures with stop-loss
     Utilities
       API Keys
       Profit Calculation
@@ -105,6 +106,7 @@ AutoPilot supports a wide range of automated actions for MEXC:
 - **Getting API keys** for trading with permission configuration
 - **Automated trading**: trading and volume generation with market orders in specified pairs
 - **Sequential trading**: support for multiple coins separated by commas
+- **Smart Futures**: market entry with an automatic stop-loss and position holding
 - Automatic captcha solving, verification code retrieval, and much more
 
 ---
@@ -348,6 +350,48 @@ Get a deposit address to fund the account
 
 ---
 
+### `futures_mx` — Smart Futures (market + stop-loss)
+
+Open a futures position **at market** with an automatic **stop-loss** in a single call. The position is held until the stop triggers — no take-profit, no opposite-side close.
+
+```mermaid
+flowchart TD
+    START["⚡ Start"] --> SPEC["📋 Contract spec"]
+    SPEC --> PRICE["💹 Current price"]
+    PRICE --> CALC["🧮 Compute volume & stop price"]
+    CALC --> LEV["⚙️ Set leverage"]
+    LEV --> OPEN["📈 MARKET open + stop-loss"]
+    OPEN --> HOLD["⏳ Position held until stop"]
+
+    style START fill:#FF9800,color:#fff,stroke:none,rx:10
+    style OPEN fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style HOLD fill:#607D8B,color:#fff,stroke:none,rx:10
+```
+
+| Parameter | Column | Description |
+|-----------|--------|-------------|
+| **Required** | `[TRADING] trading_coin` | Pair (e.g.: `BTC_USDT` or `BTC`) |
+| **Required** | `[TRADING] trading_amount` | Volume (defaults to USDT margin, see below) |
+| **Required** | `[MEXC] leverage` | Leverage (e.g.: `20`) |
+| **Required** | `[MEXC] side` | Direction: `long` or `short` |
+| Optional | `[MEXC] stop_pct` | Stop-loss as % of price movement (e.g.: `90`) |
+| Optional | `[MEXC] volume_unit` | Volume unit: `usdt_margin` (default) / `usdt_notional` / `contracts` |
+| Optional | `[MEXC] margin_mode` | Margin mode: `cross` (default) / `isolated` |
+| **Updates** | `[MEXC_FUTURES] order_id` | Opened order ID |
+| **Updates** | `[RESULT] status` | `[MEXC_FUTURES] SUCCESS` or failure reason |
+
+> **Market entry, not limit.** On MEXC futures fees = 0, a market order counts toward trading volume and fills instantly.
+
+> **Volume (`trading_amount`)** defaults to **USDT margin** (collateral). Position size = `margin × leverage`. Switch via `[MEXC] volume_unit`: `usdt_notional` — position size in USDT, `contracts` — number of contracts directly.
+
+> **Stop-loss (`stop_pct`)** is based on **price movement**: for `long` stop = `entry × (1 − stop_pct/100)`, for `short` = `entry × (1 + stop_pct/100)`. Without `stop_pct` the position opens with no stop.
+
+> **Hold.** There is no opposite-side close — the position is held indefinitely until the stop triggers.
+
+> ⚠️ Accounts under MEXC risk control (message “Position opening is unavailable…”, code `6026`) cannot open positions until they pass verification — the action reports this in the status.
+
+---
+
 ## Actions Summary Table
 
 ```mermaid
@@ -371,6 +415,7 @@ flowchart TD
 
     subgraph TRADE ["📊 Trading"]
         T["trading_mx — Trading"]
+        FU["futures_mx — Smart Futures"]
     end
 
     R --> L
@@ -380,6 +425,7 @@ flowchart TD
     W --> WD
     L --> D
     L --> T
+    L --> FU
 
     style R fill:#4CAF50,color:#fff,stroke:none,rx:8
     style L fill:#2196F3,color:#fff,stroke:none,rx:8
@@ -390,6 +436,7 @@ flowchart TD
     style W fill:#FF5722,color:#fff,stroke:none,rx:8
     style WD fill:#f44336,color:#fff,stroke:none,rx:8
     style T fill:#009688,color:#fff,stroke:none,rx:8
+    style FU fill:#FF9800,color:#fff,stroke:none,rx:8
 ```
 
 | Action | Description | Auto-login | Auto-2FA |
@@ -403,6 +450,7 @@ flowchart TD
 | `withdraw_mx` | Withdrawal | ✅ | ✅ |
 | `api_mx` | API key creation | ✅ | — |
 | `trading_mx` | Market trading | ✅ | — |
+| `futures_mx` | Smart Futures (market + stop-loss) | ✅ | — |
 
 ---
 
