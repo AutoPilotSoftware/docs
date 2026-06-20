@@ -368,23 +368,24 @@ flowchart TD
     style HOLD fill:#607D8B,color:#fff,stroke:none,rx:10
 ```
 
-| Parameter | Column | Description |
+| Parameter | Set in | Description |
 |-----------|--------|-------------|
-| **Required** | `[TRADING] trading_coin` | Pair (e.g.: `BTC_USDT` or `BTC`) |
-| **Required** | `[TRADING] trading_amount` | Volume (defaults to USDT margin, see below) |
-| **Required** | `[MEXC] leverage` | Leverage (e.g.: `20`) |
-| **Required** | `[MEXC] side` | Direction: `long` or `short` |
-| Optional | `[MEXC] stop_pct` | Stop-loss as % of price movement (e.g.: `90`) |
-| Optional | `[MEXC] volume_unit` | Volume unit: `usdt_margin` (default) / `usdt_notional` / `contracts` |
-| Optional | `[MEXC] margin_mode` | Margin mode: `cross` (default) / `isolated` |
+| **Required** | `[TRADING] trading_coin` (Excel) | Pair (e.g.: `SOL_USDT` or `SOL`) — the only per-profile input |
+| **Required** | `leverage` (config) | Leverage (e.g.: `15`) |
+| **Required** | `futures_position_size` (config) | Size as % of futures USDT balance (used as margin). E.g.: `25` |
+| **Required** | `tp_sl_percentages` (config) | `TP,SL` in % — the action uses **SL** (the 2nd value). E.g.: `5,5` |
+| Optional | `futures_side` (config) | Direction: `long` (default) / `short` |
+| Optional | `futures_margin_mode` (config) | Margin mode: `cross` (default) / `isolated` |
 | **Updates** | `[MEXC_FUTURES] order_id` | Opened order ID |
 | **Updates** | `[RESULT] status` | `[MEXC_FUTURES] SUCCESS` or failure reason |
 
+> **One shared config — no new columns.** Every parameter except the coin comes from the shared config file (the same keys the Bybit futures actions use). Per profile in Excel you set only the coin.
+
 > **Market entry, not limit.** On MEXC futures fees = 0, a market order counts toward trading volume and fills instantly.
 
-> **Volume (`trading_amount`)** defaults to **USDT margin** (collateral). Position size = `margin × leverage`. Switch via `[MEXC] volume_unit`: `usdt_notional` — position size in USDT, `contracts` — number of contracts directly.
+> **Position size (`futures_position_size`)** is a **% of the available futures USDT balance**, used as **margin**. Position size = `margin × leverage`. Example: 100 USDT balance, `futures_position_size=25`, `leverage=15` → 25 USDT margin, ~375 USDT position.
 
-> **Stop-loss (`stop_pct`)** is based on **price movement**: for `long` stop = `entry × (1 − stop_pct/100)`, for `short` = `entry × (1 + stop_pct/100)`. Without `stop_pct` the position opens with no stop.
+> **Stop-loss** is taken from `tp_sl_percentages` (2nd value = SL) and is based on **price movement**: for `long` stop = `entry × (1 − SL/100)`, for `short` = `entry × (1 + SL/100)`. Without SL the position opens with no stop.
 
 > **Hold.** There is no opposite-side close — the position is held indefinitely until the stop triggers.
 
