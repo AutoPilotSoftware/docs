@@ -667,8 +667,10 @@ After withdrawal — open the **Distribute** tab and collect everything to one w
 - Local API port: `vision_port=53633` (default 3030 — set your VisionM port)
 
 **Afina:**
-- In config: `afina_api_key=your_API_key` and `afina_port=50777` (default port)
-- The API key is found in Afina settings
+- In config: `afina_api_key=your_API_key` and `afina_port=50778` (default port)
+- The API key is found in Afina settings (Settings → API)
+- 🆔 `[PROFILE] profile_id` = **Account ID** (a UUID like `8e308a06-f9fd-4927-...`) — the **"Account ID"** column in Afina (copy icon next to it). **NOT** the profile name and **NOT** the "ID" column (that's an internal number the API does not accept). No such column? Top-right → **Columns** → enable **Account ID**.
+- ♻️ The profile is **reused** between actions automatically (not relaunched each time). Set `close_after=NO` to keep it open. Login/register always start with a clean session.
 
 **🚨 Common errors:**
 
