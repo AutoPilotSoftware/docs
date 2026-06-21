@@ -373,7 +373,7 @@ flowchart TD
 | **Required** | `[TRADING] trading_coin` (Excel) | Pair (e.g.: `SOL_USDT` or `SOL`) — the only per-profile input |
 | **Required** | `leverage` (config) | Leverage (e.g.: `15`) |
 | **Required** | `futures_position_size` (config) | Size as % of futures USDT balance (used as margin). E.g.: `25` |
-| **Required** | `tp_sl_percentages` (config) | `TP,SL` in % — the action uses **SL** (the 2nd value). E.g.: `5,5` |
+| **Required** | `tp_sl_percentages` (config) | `TP,SL` in % — the action uses **SL** (the 2nd value). 💡 For hedging we recommend `5,5` (SL 5%) |
 | Optional | `futures_side` (config) | Direction: `long` (default) / `short` |
 | Optional | `futures_margin_mode` (config) | Margin mode: `cross` (default) / `isolated` |
 | **Updates** | `[MEXC_FUTURES] order_id` | Opened order ID |
@@ -382,6 +382,8 @@ flowchart TD
 > **One shared config — no new columns.** Every parameter except the coin comes from the shared config file (the same keys the Bybit futures actions use). Per profile in Excel you set only the coin.
 
 > **Market entry, not limit.** On MEXC futures fees = 0, a market order counts toward trading volume and fills instantly.
+
+> 🛡️ **Perfect for hedging.** Open the opposite side to your main exposure (`futures_side=short` against a long, `long` against a short) — and your risk is covered. Why it works: instant market entry, 0 fees, the auto stop-loss caps the loss for you, the position is held unattended until the stop, and sizing as % of balance gives an **identical hedge across all profiles at once**. **Recommended start:** `leverage=10`, `futures_position_size=20`, `tp_sl_percentages=5,5`.
 
 > **Position size (`futures_position_size`)** is a **% of the available futures USDT balance**, used as **margin**. Position size = `margin × leverage`. Example: 100 USDT balance, `futures_position_size=25`, `leverage=15` → 25 USDT margin, ~375 USDT position.
 
