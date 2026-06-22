@@ -373,17 +373,17 @@ flowchart TD
 | **Required** | `[TRADING] trading_coin` (Excel) | Pair (e.g.: `SOL_USDT` or `SOL`) — the only per-profile input |
 | **Required** | `leverage` (config) | Leverage (e.g.: `15`) |
 | **Required** | `futures_position_size` (config) | Size as % of futures USDT balance (used as margin). E.g.: `25` |
-| **Required** | `tp_sl_percentages` (config) | `TP,SL` in % — the action uses **SL** (the 2nd value). 💡 For hedging we recommend `5,5` (SL 5%) |
+| **Required** | `tp_sl_percentages` (config) | `TP,SL` in % — the action uses **SL** (the 2nd value). 💡 For hedging we recommend `5,5` (SL 5%) — it gives the position ~95% of room to run so the hedge survives to the end and isn't stopped out prematurely |
 | Optional | `futures_side` (config) | Direction: `long` (default) / `short` |
 | Optional | `futures_margin_mode` (config) | Margin mode: `cross` (default) / `isolated` |
 | **Updates** | `[MEXC_FUTURES] order_id` | Opened order ID |
-| **Updates** | `[RESULT] status` | `[MEXC_FUTURES] SUCCESS` or failure reason |
+| **Updates** | `[RESULT] status` | Records **what trade was opened** — e.g. `[MEXC_FUTURES] SUCCESS - LONG SOL_USDT 5cont 10x SL@142.30 ~75.00USDT id=...` (direction / coin / contracts / leverage / stop / notional), or the failure reason. Visible right in the status column — no more getting confused. |
 
 > **One shared config — no new columns.** Every parameter except the coin comes from the shared config file (the same keys the Bybit futures actions use). Per profile in Excel you set only the coin.
 
 > **Market entry, not limit.** On MEXC futures fees = 0, a market order counts toward trading volume and fills instantly.
 
-> 🛡️ **Perfect for hedging.** Open the opposite side to your main exposure (`futures_side=short` against a long, `long` against a short) — and your risk is covered. Why it works: instant market entry, 0 fees, the auto stop-loss caps the loss for you, the position is held unattended until the stop, and sizing as % of balance gives an **identical hedge across all profiles at once**. **Recommended start:** `leverage=10`, `futures_position_size=20`, `tp_sl_percentages=5,5`.
+> 🛡️ **Perfect for hedging.** A hedge is opened **against a position on another exchange** (your main position lives there — here on MEXC you open the opposite side: `futures_side=short` against a long, `long` against a short), and your price risk is covered. Why it works: instant market entry, 0 fees, the auto stop-loss caps the loss for you, the position is held unattended until the stop, and sizing as % of balance gives an **identical hedge across all profiles at once**. **Why SL 5%:** it gives the hedge ~95% of room to run — the position survives to the end and isn't stopped out prematurely. **Recommended start:** `leverage=10`, `futures_position_size=20`, `tp_sl_percentages=5,5`.
 
 > **Position size (`futures_position_size`)** is a **% of the available futures USDT balance**, used as **margin**. Position size = `margin × leverage`. Example: 100 USDT balance, `futures_position_size=25`, `leverage=15` → 25 USDT margin, ~375 USDT position.
 
