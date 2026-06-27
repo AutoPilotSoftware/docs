@@ -512,7 +512,7 @@ flowchart TD
 
 | Параметр | Стовпець | Опис |
 |----------|----------|------|
-| **Потребує** | вхiд в акаунт | Дiя спочатку логiниться (потрiбнi валiднi данi профiлю); при невдачi — `[LEARN] FAIL - CAN'T LOGIN` |
+| **Потребує** | вхiд в акаунт | Якщо профiль не залогiнений — дiя **сама виконає вхiд** (логiн + 2FA за потреби); `[LEARN] FAIL - CAN'T LOGIN` лише якщо автологiн не вдався |
 | **Оновлює** | `[RESULT] status` | `[LEARN] SUCCESS` / `[LEARN] PARTIAL` / `[LEARN] FAIL` (див. нижче) |
 
 **Що робить дiя:**
@@ -525,9 +525,12 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A["Вхiд в акаунт<br/>(перевiрка прав)"] --> B{"Логiн успiшний?"}
-    B -- "Нi" --> X["❌ [LEARN] FAIL - CAN'T LOGIN"]
+    A["Перевiрка сесiї та прав<br/>(BybitCheckPermissions)"] --> B{"Вже залогiнений?"}
     B -- "Так" --> C["Читання bybit_learn_links.txt<br/>(91 посилання)"]
+    B -- "Нi" --> L["Автоматичний вхiд<br/>(логiн + 2FA за потреби)"]
+    L --> M{"Вхiд вдався?"}
+    M -- "Нi" --> X["❌ [LEARN] FAIL - CAN'T LOGIN"]
+    M -- "Так" --> C
     C --> D{"Аватар уже встановлено?"}
     D -- "Так" --> F["Вибiр 5 випадкових статей<br/>+ пiдмiна домену пiд профiль"]
     D -- "Нi" --> E["Встановлення випадкового аватара<br/>GET avatar/groups → POST update/avatar"]
@@ -542,6 +545,7 @@ flowchart TD
 
     style A fill:#2196F3,color:#fff,stroke:none,rx:8
     style C fill:#2196F3,color:#fff,stroke:none,rx:8
+    style L fill:#3F51B5,color:#fff,stroke:none,rx:8
     style E fill:#9C27B0,color:#fff,stroke:none,rx:8
     style I fill:#FF9800,color:#fff,stroke:none,rx:8
     style S fill:#4CAF50,color:#fff,stroke:none,rx:8

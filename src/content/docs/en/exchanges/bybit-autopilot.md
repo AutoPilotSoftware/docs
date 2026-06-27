@@ -512,7 +512,7 @@ Automatic account "warm-up" through the **Bybit Learn** section: the action sets
 
 | Parameter | Column | Description |
 |-----------|--------|-------------|
-| **Requires** | account login | The action logs in first (valid profile data required); on failure — `[LEARN] FAIL - CAN'T LOGIN` |
+| **Requires** | account login | If the profile isn't logged in, the action **signs in by itself** (login + 2FA if needed); `[LEARN] FAIL - CAN'T LOGIN` only if auto-login fails |
 | **Updates** | `[RESULT] status` | `[LEARN] SUCCESS` / `[LEARN] PARTIAL` / `[LEARN] FAIL` (see below) |
 
 **What the action does:**
@@ -525,9 +525,12 @@ Automatic account "warm-up" through the **Bybit Learn** section: the action sets
 
 ```mermaid
 flowchart TD
-    A["Account login<br/>(permission check)"] --> B{"Login successful?"}
-    B -- "No" --> X["❌ [LEARN] FAIL - CAN'T LOGIN"]
+    A["Session & permission check<br/>(BybitCheckPermissions)"] --> B{"Already logged in?"}
     B -- "Yes" --> C["Read bybit_learn_links.txt<br/>(91 links)"]
+    B -- "No" --> L["Automatic sign-in<br/>(login + 2FA if needed)"]
+    L --> M{"Sign-in succeeded?"}
+    M -- "No" --> X["❌ [LEARN] FAIL - CAN'T LOGIN"]
+    M -- "Yes" --> C
     C --> D{"Avatar already set?"}
     D -- "Yes" --> F["Pick 5 random articles<br/>+ swap domain to profile"]
     D -- "No" --> E["Set random avatar<br/>GET avatar/groups → POST update/avatar"]
@@ -542,6 +545,7 @@ flowchart TD
 
     style A fill:#2196F3,color:#fff,stroke:none,rx:8
     style C fill:#2196F3,color:#fff,stroke:none,rx:8
+    style L fill:#3F51B5,color:#fff,stroke:none,rx:8
     style E fill:#9C27B0,color:#fff,stroke:none,rx:8
     style I fill:#FF9800,color:#fff,stroke:none,rx:8
     style S fill:#4CAF50,color:#fff,stroke:none,rx:8

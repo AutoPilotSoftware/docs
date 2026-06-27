@@ -512,7 +512,7 @@ flowchart TD
 
 | Параметр | Столбец | Описание |
 |----------|---------|----------|
-| **Требует** | вход в аккаунт | Действие сначала логинится (нужны валидные данные профиля); при неудаче — `[LEARN] FAIL - CAN'T LOGIN` |
+| **Требует** | вход в аккаунт | Если профиль не залогинен — действие **само выполнит вход** (логин + 2FA при необходимости); `[LEARN] FAIL - CAN'T LOGIN` только если автологин не удался |
 | **Обновляет** | `[RESULT] status` | `[LEARN] SUCCESS` / `[LEARN] PARTIAL` / `[LEARN] FAIL` (см. ниже) |
 
 **Что делает действие:**
@@ -525,9 +525,12 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A["Вход в аккаунт<br/>(проверка прав)"] --> B{"Логин успешен?"}
-    B -- "Нет" --> X["❌ [LEARN] FAIL - CAN'T LOGIN"]
+    A["Проверка сессии и прав<br/>(BybitCheckPermissions)"] --> B{"Уже залогинен?"}
     B -- "Да" --> C["Чтение bybit_learn_links.txt<br/>(91 ссылка)"]
+    B -- "Нет" --> L["Автоматический вход<br/>(логин + 2FA при необходимости)"]
+    L --> M{"Вход удался?"}
+    M -- "Нет" --> X["❌ [LEARN] FAIL - CAN'T LOGIN"]
+    M -- "Да" --> C
     C --> D{"Аватар уже установлен?"}
     D -- "Да" --> F["Выбор 5 случайных статей<br/>+ подмена домена под профиль"]
     D -- "Нет" --> E["Установка случайного аватара<br/>GET avatar/groups → POST update/avatar"]
@@ -542,6 +545,7 @@ flowchart TD
 
     style A fill:#2196F3,color:#fff,stroke:none,rx:8
     style C fill:#2196F3,color:#fff,stroke:none,rx:8
+    style L fill:#3F51B5,color:#fff,stroke:none,rx:8
     style E fill:#9C27B0,color:#fff,stroke:none,rx:8
     style I fill:#FF9800,color:#fff,stroke:none,rx:8
     style S fill:#4CAF50,color:#fff,stroke:none,rx:8
