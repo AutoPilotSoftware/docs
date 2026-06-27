@@ -508,11 +508,156 @@ flowchart TD
 
 ### `learn` — Проходження навчання та встановлення аватара
 
-Автоматичне проходження навчальних модулiв Bybit та встановлення аватара профiлю
+Автоматичний «прогрiв» акаунта через роздiл **Bybit Learn**: дiя ставить випадковий аватар профiлю та проходить навчальнi статтi, виконуючи на кожнiй повний набiр дiй залученостi (лайк, перегляд, коментар, додавання в обране, репост). Це робить акаунт «живiшим» i зараховує прогрес у кампанiї Bybit Learn — завдання за коментарi та репости статей приносять бали й нагороди.
 
 | Параметр | Стовпець | Опис |
 |----------|----------|------|
-| **Оновлює** | `[RESULT] status` | `[LEARN] SUCCESS` |
+| **Потребує** | вхiд в акаунт | Дiя спочатку логiниться (потрiбнi валiднi данi профiлю); при невдачi — `[LEARN] FAIL - CAN'T LOGIN` |
+| **Оновлює** | `[RESULT] status` | `[LEARN] SUCCESS` / `[LEARN] PARTIAL` / `[LEARN] FAIL` (див. нижче) |
+
+**Що робить дiя:**
+
+- **Аватар** — бере випадковий аватар з галереї Bybit i ставить його профiлю. Якщо аватар уже було встановлено ранiше (запам'ятовується на серверi), крок пропускається — повторний запуск не змiнює аватар.
+- **5 випадкових статей** — з файлу `bybit_learn_links.txt` (91 посилання) випадково обираються 5 статей за запуск. Домен посилань автоматично пiдмiнюється на домен профiлю (`learn.bybit.com` → `learn.bybitglobal.com` тощо).
+- **На кожнiй статтi** послiдовно вiдправляються: **лайк** → сигнал **перегляду** (VIEW) → **коментар** (випадкова фраза з 15) → **в обране** (зiрка) → **репост** → сигнал **репосту** (SHARE). Коментар i репост додатково реєструються як завдання кампанiї Learn для нарахування нагород.
+
+#### Алгоритм роботи
+
+```mermaid
+flowchart TD
+    A["Вхiд в акаунт<br/>(перевiрка прав)"] --> B{"Логiн успiшний?"}
+    B -- "Нi" --> X["❌ [LEARN] FAIL - CAN'T LOGIN"]
+    B -- "Так" --> C["Читання bybit_learn_links.txt<br/>(91 посилання)"]
+    C --> D{"Аватар уже встановлено?"}
+    D -- "Так" --> F["Вибiр 5 випадкових статей<br/>+ пiдмiна домену пiд профiль"]
+    D -- "Нi" --> E["Встановлення випадкового аватара<br/>GET avatar/groups → POST update/avatar"]
+    E --> F
+    F --> G["Захоплення campaign_id кампанiї Learn"]
+    G --> H["Для кожної з 5 статей"]
+    H --> I["Лайк → VIEW → Коментар<br/>→ Обране → Репост → SHARE"]
+    I --> J{"Залишились статтi?"}
+    J -- "Так" --> H
+    J -- "Нi" --> K["Запис пiдсумкового статусу"]
+    K --> S["✅ [LEARN] SUCCESS / PARTIAL"]
+
+    style A fill:#2196F3,color:#fff,stroke:none,rx:8
+    style C fill:#2196F3,color:#fff,stroke:none,rx:8
+    style E fill:#9C27B0,color:#fff,stroke:none,rx:8
+    style I fill:#FF9800,color:#fff,stroke:none,rx:8
+    style S fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style X fill:#F44336,color:#fff,stroke:none,rx:8
+```
+
+**Статуси в `[RESULT] status`:**
+
+- `[LEARN] SUCCESS - Avatar set, 5/5 articles` — аватар встановлено i пройдено всi 5 статей.
+- `[LEARN] PARTIAL - Avatar: YES/NO, N/5 articles` — виконано не все: аватар не встановився, або одна зi статей завершилася помилкою (виняток пiд час завантаження/запиту зменшує лiчильник до `N < 5`).
+- `[LEARN] FAIL - ...` — не вдалося увiйти (`CAN'T LOGIN`), немає посилань (`NO LINKS IN FILE`) або помилка читання файлу (`LINKS FILE ERROR`).
+
+> Якщо на конкретнiй статтi не вдається визначити `groupId`, лайк/коментар/обране/репост на нiй пропускаються (надсилається лише сигнал VIEW), але стаття все одно вважається пройденою — на статус `SUCCESS` це не впливає.
+
+#### Файл `bybit_learn_links.txt`
+
+Список навчальних статей лежить у файлi `bybit_learn_links.txt` **поруч iз виконуваним файлом AutoPilot** — одне посилання на рядок. Дiя читає його при кожному запуску i бере **5 випадкових** посилань зi списку. Файл можна редагувати: додавайте або прибирайте посилання на статтi `learn.bybit.com`, щоб керувати тим, якi матерiали «проходить» бот. Порожнi рядки та рядки без `http` iгноруються.
+
+> Домен у посиланнях пiдмiнюється автоматично пiд `[BYBIT] domain` профiлю, тому у файлi можна тримати посилання у форматi `learn.bybit.com` — вони самi перенаправляться на потрiбний регiональний домен.
+
+<details>
+<summary>Повний список статей у комплектi (91 посилання)</summary>
+
+- https://learn.bybit.com/en/bybit-guide/create-a-bybit-account
+- https://learn.bybit.com/en/bybit-guide/how-to-do-kyc-on-bybit
+- https://learn.bybit.com/en/bybit-guide/protect-your-bybit-account
+- https://learn.bybit.com/en/bybit-guide/bybit-login
+- https://learn.bybit.com/en/bybit-guide/open-a-trade
+- https://learn.bybit.com/en/bybit-guide/close-a-trade
+- https://learn.bybit.com/en/bybit-guide/bybit-one-click-buy-how-to
+- https://learn.bybit.com/en/bybit-guide/how-to-download-the-bybit-app-on-ios-and-android-devices
+- https://learn.bybit.com/en/bybit-guide/how-to-buy-and-sell-crypto-bybit-app
+- https://learn.bybit.com/en/bybit-guide/how-to-trade-crypto-bybit-app
+- https://learn.bybit.com/en/bybit-guide/bybit-lite-pro
+- https://learn.bybit.com/en/bybit-guide/bybit-lite-sign-up
+- https://learn.bybit.com/en/bybit-guide/bybit-lite-crypto-deposit
+- https://learn.bybit.com/en/bybit-guide/bybit-lite-kyc
+- https://learn.bybit.com/en/bybit-guide/bybit-lite-withdraw-transfer-crypto
+- https://learn.bybit.com/en/bybit-guide/buy-crypto-bybit-lite
+- https://learn.bybit.com/en/bybit-guide/convert-crypto-bybit-lite
+- https://learn.bybit.com/en/crypto/what-is-crypto-volatility-trading
+- https://learn.bybit.com/en/bybit-guide/bybit-lite-referral-program
+- https://learn.bybit.com/en/bybit-guide/how-to-use-bybit-telegram-mini-app
+- https://learn.bybit.com/en/bybit-guide/promos-referral-codes
+- https://learn.bybit.com/en/trading/what-is-wsot
+- https://learn.bybit.com/en/bybit-guide/next-bull-run-with-bybit
+- https://learn.bybit.com/en/bybit-guide/ultimate-bear-market-trading-guide
+- https://learn.bybit.com/en/bybit-guide/ultimate-bear-market-trading-guide
+- https://learn.bybit.com/en/bybit-guide/what-is-bybit-card
+- https://learn.bybit.com/en/bybit-card/how-to-order-and-activate-your-bybit-card
+- https://learn.bybit.com/en/bybit-card/bybit-card-benefits
+- https://learn.bybit.com/en/bybit-card/bybit-card-google-pay
+- https://learn.bybit.com/en/bybit-card/bybit-card-apple-pay
+- https://learn.bybit.com/en/bybit-card/how-to-use-your-virtual-card-to-make-purchases-online
+- https://learn.bybit.com/en/bybit-card/bybit-card-earn-passive-income
+- https://learn.bybit.com/en/bybit-vip/bybit-vip-bybit-card
+- https://learn.bybit.com/en/bybit-guide/bybit-card-pay-mnt-rewards
+- https://learn.bybit.com/en/bybit-guide/bybit-card-bybit-lite
+- https://learn.bybit.com/en/crypto/buy-crypto-with-debit-card
+- https://learn.bybit.com/en/crypto/crypto-credit-cards-vs-crypto-debit-cards
+- https://learn.bybit.com/en/investing/best-crypto-credit-debit-cards
+- https://learn.bybit.com/en/crypto/traditional-debit-card-vs-crypto-debit-card
+- https://learn.bybit.com/en/crypto/crypto-cards-vs-conventional-credit-debit-cards
+- https://learn.bybit.com/en/crypto/reasons-why-you-should-own-a-crypto-card
+- https://learn.bybit.com/en/content/how-to-use-the-bybit-card-to-earn-15-cashback-on-top-of-all-black-friday-deals
+- https://learn.bybit.com/en/content/how-can-you-use-the-bybit-card-to-earn-15-cashback-on-top-of-all-black-friday-deals-
+- https://learn.bybit.com/en/bybit-card/tomorrowland-brasil-bybit-card-perks
+- https://learn.bybit.com/en/bybit-card/reasons-to-get-tomorrowland-brasil-presale-tickets-via-bybit-card
+- https://learn.bybit.com/en/bybit-lending/what-is-bybit-lending
+- https://learn.bybit.com/en/bybit-lending/bybit-lending-vs-bybit-earn
+- https://learn.bybit.com/en/bybit-lending/crypto-lending-comparison-guide-across-lending-platforms
+- https://learn.bybit.com/en/bybit-vip/what-is-byusdt
+- https://learn.bybit.com/en/bybit-vip/what-is-bybit-vip
+- https://learn.bybit.com/en/bybit-vip/bybit-vip-mnt
+- https://learn.bybit.com/en/bybit-vip/bybit-vip-to-supreme-vip-roadmap
+- https://learn.bybit.com/en/bybit-vip/bybit-vip-levels
+- https://learn.bybit.com/en/bybit-vip/bybit-vip-bybit-card
+- https://learn.bybit.com/en/bybit-vip/bybit-vip-referral-program
+- https://learn.bybit.com/en/bybit-vip/bybit-vip-on-bybit-app
+- https://learn.bybit.com/en/bybit-vip/how-to-join-bybit-vip-events
+- https://learn.bybit.com/en/bybit-vip/how-to-migrate-to-bybit-vip
+- https://learn.bybit.com/en/bybit-guide/bybit-unified-trading-account
+- https://learn.bybit.com/en/bybit-uta/how-to-customize-your-collateralized-assets
+- https://learn.bybit.com/en/bybit-guide/how-to-use-the-bybit-unified-trading-account-for-effective-risk-management
+- https://learn.bybit.com/en/bybit-uta/bybit-funding-vs-derivatives-vs-unified-trading-account
+- https://learn.bybit.com/en/bybit-guide/who-should-use-bybit-unified-trading-account
+- https://learn.bybit.com/en/bybit-uta/how-does-portfolio-margin-benefit-a-trader
+- https://learn.bybit.com/en/investing/how-to-earn-interest-on-crypto
+- https://learn.bybit.com/en/bybit-earn/best-ways-to-earn-crypto
+- https://learn.bybit.com/en/bybit-guide/what-is-bybit-easy-earn
+- https://learn.bybit.com/en/bybit-guide/what-is-bybit-auto-earn
+- https://learn.bybit.com/en/bybit-earn/what-is-bybit-dual-asset-mining
+- https://learn.bybit.com/en/bybit-liquidity-mining/what-is-bybit-liquidity-mining
+- https://learn.bybit.com/en/bybit-liquidity-mining/bybit-liquidity-mining-benefits
+- https://learn.bybit.com/en/bybit-shark-fin/crypto-structured-products
+- https://learn.bybit.com/en/bybit-vip/structured-products-upgraded-vip-exclusive-benefits
+- https://learn.bybit.com/en/bybit-earn/what-is-bybit-double-win
+- https://learn.bybit.com/en/bybit-earn/what-is-bybit-discount-buy
+- https://learn.bybit.com/en/bybit-earn/bybit-discount-buy-trading-strategies
+- https://learn.bybit.com/en/bybit-earn/what-is-bybit-smart-leverage
+- https://learn.bybit.com/en/bybit-liquidity-mining/adding-removing-liquidity
+- https://learn.bybit.com/en/bybit-p2p-guide/how-to-avoid-p2p-crypto-scams-fraud
+- https://learn.bybit.com/en/bybit-p2p-guide/bybit-p2p-advertising
+- https://learn.bybit.com/en/bybit-p2p-guide/what-is-bybit-p2p
+- https://learn.bybit.com/en/bybit-p2p-guide/how-to-sell-coins-on-bybit-p2p
+- https://learn.bybit.com/en/bybit-p2p-guide/how-to-buy-coins-on-bybit-p2p-platform
+- https://learn.bybit.com/en/bybit-p2p-guide/bybit-p2p-sell-crypto-on-off-ramping
+- https://learn.bybit.com/en/bybit-p2p-guide/earn-money-with-p2p-trading
+- https://learn.bybit.com/en/bybit-p2p-guide/buy-crypto-with-cash
+- https://learn.bybit.com/en/bybit-p2p-guide/how-to-buy-crypto-with-p2p-via-bybit-wallet
+- https://learn.bybit.com/en/bybit-p2p-guide/how-to-earn-money-with-p2p-hotswap
+- https://learn.bybit.com/en/bybit-nft-guide/bybit-nft-marketplace-vs-nft-pro
+- https://learn.bybit.com/en/nft/king-xolo-nft-a-deep-dive-into-rarity-and-value
+- https://learn.bybit.com/en/bybit-nft-guide/what-is-bybit-nft-marketplace
+
+</details>
 
 ---
 
