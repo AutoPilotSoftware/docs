@@ -489,7 +489,7 @@ Automatic participation in TokenSplash events on Bybit. The action runs in two s
 
 > To make accounts **register only** (no trading), set `ts_order=0,0`.
 
-#### `ts_order` config (in `BybitAutoPilot.config`)
+#### `ts_order` config (in `AutoPilot.config`)
 
 ```ini
 # Task order size in USDT — random between MIN and MAX

@@ -489,7 +489,7 @@ flowchart TD
 
 > Щоб акаунти **лише реєструвалися** (без торгiвлi), поставте `ts_order=0,0`.
 
-#### Налаштування `ts_order` (у `BybitAutoPilot.config`)
+#### Налаштування `ts_order` (у `AutoPilot.config`)
 
 ```ini
 # Розмiр ордера завдання в USDT — випадково мiж MIN та MAX
