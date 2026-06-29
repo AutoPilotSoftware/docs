@@ -493,10 +493,10 @@ Automatic participation in TokenSplash events on Bybit. The action runs in two s
 
 ```ini
 # Task order size in USDT — random between MIN and MAX
-ts_order=3,5
+ts_order=50,55
 ```
 
-- `ts_order=3,5` → each order is a random **3–5 USDT**.
+- `ts_order=50,55` → each order is a random **50–55 USDT** (buy ~50–55, then sell — the trading task is done).
 - `ts_order=0,0` → **skip** the trading task, register only.
 - The `(random 55-100)` comment in the default config is just an example; the real size comes from your `MIN,MAX`.
 
