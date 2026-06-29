@@ -395,6 +395,15 @@ flowchart TD
 
 ---
 
+### `link_mx` — Get KYC Verification Link
+
+> ⚠️ **No separate action needed.** Getting a KYC link for MEXC has moved into our ecosystem — use the bot and extension below.
+
+- 🤖 **Telegram bot [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot)** — automatic KYC verifications on the AutoPilot KYC platform. More: [KYC Platform](/docs/en/kyc/autopilot-kyc-subscription/).
+- 🧩 **Free [AutoPilot Link Generator](https://chromewebstore.google.com/detail/autopilot-link-generator/maogfegbjecdgkfnkemoalpbgodknmaa) extension** — generates verification links for Bybit, MEXC, Bitget and custom Sumsub/Onfido tokens right in the browser.
+
+---
+
 ## Actions Summary Table
 
 ```mermaid

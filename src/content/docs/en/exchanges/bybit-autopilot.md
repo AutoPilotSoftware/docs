@@ -532,7 +532,14 @@ Automatic completion of Puzzle Hunt tasks on Bybit: registration, social tasks, 
 
 ### `link` — Get KYC Verification Link
 
-Extract the SUMSUB verification link for the account
+> ⚠️ **Deprecated action.** You no longer need to pull the link manually via `link` — use the bot and extension below for verifications.
+
+**Recommended way:**
+
+- 🤖 **Telegram bot [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot)** — automatic KYC verifications on the AutoPilot KYC platform. More: [KYC Platform](/docs/en/kyc/autopilot-kyc-subscription/).
+- 🧩 **Free [AutoPilot Link Generator](https://chromewebstore.google.com/detail/autopilot-link-generator/maogfegbjecdgkfnkemoalpbgodknmaa) extension** — generates verification links for Bybit, MEXC, Bitget and custom Sumsub/Onfido tokens right in the browser.
+
+Legacy mode of the action itself (extracts the SUMSUB link for the account):
 
 | Parameter | Column | Description |
 |-----------|--------|-------------|

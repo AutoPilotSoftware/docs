@@ -147,6 +147,15 @@ captcha_key=CAP-ВАШ_КЛЮЧ_ЗДЕСЬ
 
 ---
 
+### `link_bit` — Получить ссылку KYC верификации
+
+> ⚠️ **Отдельное действие не нужно.** Получение ссылки KYC для Bitget переехало в нашу экосистему — используйте бота и расширение ниже.
+
+- 🤖 **Telegram-бот [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot)** — автоматические KYC-верификации на платформе AutoPilot KYC. Подробнее: [KYC Платформа](/docs/kyc/autopilot-kyc-subscription/).
+- 🧩 **Бесплатное расширение [AutoPilot Link Generator](https://chromewebstore.google.com/detail/autopilot-link-generator/maogfegbjecdgkfnkemoalpbgodknmaa)** — генерирует ссылки верификации для Bybit, MEXC, Bitget и произвольных Sumsub/Onfido токенов прямо в браузере.
+
+---
+
 ## Сводная таблица
 
 | Действие | Описание | Авто-логин | Авто-2FA |

@@ -532,7 +532,14 @@ ts_order=50,55
 
 ### `link` — Отримати посилання KYC верифiкацiї
 
-Витягування SUMSUB посилання для верифiкацiї акаунта
+> ⚠️ **Дiя застарiла.** Вручну отримувати посилання через `link` бiльше не потрiбно — для верифiкацiй використовуйте бота та розширення нижче.
+
+**Рекомендований спосiб:**
+
+- 🤖 **Telegram-бот [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot)** — автоматичнi KYC-верифiкацiї на платформi AutoPilot KYC. Детальнiше: [KYC Платформа](/docs/ua/kyc/autopilot-kyc-subscription/).
+- 🧩 **Безкоштовне розширення [AutoPilot Link Generator](https://chromewebstore.google.com/detail/autopilot-link-generator/maogfegbjecdgkfnkemoalpbgodknmaa)** — генерує посилання верифiкацiї для Bybit, MEXC, Bitget та довiльних Sumsub/Onfido токенiв прямо в браузерi.
+
+Legacy-режим самої дiї (витягує SUMSUB посилання для акаунта):
 
 | Параметр | Стовпець | Опис |
 |----------|----------|------|
