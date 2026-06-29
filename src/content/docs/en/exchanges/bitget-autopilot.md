@@ -151,7 +151,7 @@ Formula: total withdrawals - total deposits + account balance.
 
 > ⚠️ **No separate action needed.** Getting a KYC link for Bitget has moved into our ecosystem — use the bot and extension below.
 
-- 🤖 **Telegram bot [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot)** — automatic KYC verifications on the AutoPilot KYC platform. More: [KYC Platform](/docs/en/kyc/autopilot-kyc-subscription/).
+- 🤖 **Telegram bot + Miniapp [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot)** — automatic KYC verifications on the AutoPilot KYC platform. More: [KYC Platform](/docs/en/kyc/autopilot-kyc-subscription/).
 - 🧩 **Free [AutoPilot Link Generator](https://chromewebstore.google.com/detail/autopilot-link-generator/maogfegbjecdgkfnkemoalpbgodknmaa) extension** — generates verification links for Bybit, MEXC, Bitget and custom Sumsub/Onfido tokens right in the browser.
 
 ---

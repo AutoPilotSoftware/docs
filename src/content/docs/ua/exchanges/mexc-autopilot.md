@@ -399,7 +399,7 @@ flowchart TD
 
 > ⚠️ **Окрема дiя не потрiбна.** Отримання KYC-посилання для MEXC переїхало в нашу екосистему — використовуйте бота та розширення нижче.
 
-- 🤖 **Telegram-бот [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot)** — автоматичнi KYC-верифiкацiї на платформi AutoPilot KYC. Детальнiше: [KYC Платформа](/docs/ua/kyc/autopilot-kyc-subscription/).
+- 🤖 **Telegram-бот + Miniapp [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot)** — автоматичнi KYC-верифiкацiї на платформi AutoPilot KYC. Детальнiше: [KYC Платформа](/docs/ua/kyc/autopilot-kyc-subscription/).
 - 🧩 **Безкоштовне розширення [AutoPilot Link Generator](https://chromewebstore.google.com/detail/autopilot-link-generator/maogfegbjecdgkfnkemoalpbgodknmaa)** — генерує посилання верифiкацiї для Bybit, MEXC, Bitget та довiльних Sumsub/Onfido токенiв прямо в браузерi.
 
 ---

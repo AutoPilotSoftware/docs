@@ -536,7 +536,7 @@ ts_order=50,55
 
 **Рекомендуемый способ:**
 
-- 🤖 **Telegram-бот [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot)** — автоматические KYC-верификации на платформе AutoPilot KYC. Подробнее: [KYC Платформа](/docs/kyc/autopilot-kyc-subscription/).
+- 🤖 **Telegram-бот + Miniapp [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot)** — автоматические KYC-верификации на платформе AutoPilot KYC. Подробнее: [KYC Платформа](/docs/kyc/autopilot-kyc-subscription/).
 - 🧩 **Бесплатное расширение [AutoPilot Link Generator](https://chromewebstore.google.com/detail/autopilot-link-generator/maogfegbjecdgkfnkemoalpbgodknmaa)** — генерирует ссылки верификации для Bybit, MEXC, Bitget и произвольных Sumsub/Onfido токенов прямо в браузере.
 
 Legacy-режим самого действия (извлекает ссылку SUMSUB для аккаунта):
