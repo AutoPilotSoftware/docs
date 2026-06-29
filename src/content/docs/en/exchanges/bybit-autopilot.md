@@ -470,14 +470,48 @@ flowchart TD
 
 ### `ts` — TokenSplash
 
-Automatic participation in TokenSplash events on Bybit
+Automatic participation in TokenSplash events on Bybit. The action runs in two steps: **registering in the event** and (optionally) **completing the trading task**.
 
 | Parameter | Column | Description |
 |-----------|--------|-------------|
-| **Required** | `[TS] code` | TokenSplash event code |
-| **Updates** | `[RESULT] status` | `[TS] SUCCESS` |
+| **Required** | `[TS] code` | Event code (from the `…/token-splash/detail?code=` link) |
+| **Updates** | `[RESULT] status` | Registration/task status (see below) |
 
-> If the account balance is > 100 USDT — AutoPilot will automatically complete the deposit task
+#### How it works
+
+1. **Registration (join).** The pilot logs in if needed, checks KYC, and clicks "Participate" via the exchange API. **No balance is required** — even an account with 0 USDT gets registered in the event.
+2. **Trading task** (controlled by the `ts_order` config). If the account has USDT, the pilot buys the event token and immediately sells it (1 buy + 1 sell market order) — this fulfills the event's "deposit task". Each order size is a random number between the two `ts_order` values.
+
+#### Balance dependency
+
+- **No / 0 USDT** → the pilot only registers in the event. If it can't register, it writes the reason to the table.
+- **Has balance** (enough for the order size; ~60 USDT comfortably) → after registering it also trades buy/sell to fulfill the task.
+
+> To make accounts **register only** (no trading), set `ts_order=0,0`.
+
+#### `ts_order` config (in `BybitAutoPilot.config`)
+
+```ini
+# Task order size in USDT — random between MIN and MAX
+ts_order=3,5
+```
+
+- `ts_order=3,5` → each order is a random **3–5 USDT**.
+- `ts_order=0,0` → **skip** the trading task, register only.
+- The `(random 55-100)` comment in the default config is just an example; the real size comes from your `MIN,MAX`.
+
+#### `[RESULT] status` values
+
+| Status | Meaning |
+|--------|---------|
+| `[TS] {token} - SUCCESS REGISTERED` | Registered in the event |
+| `[TS] {token} - ALREADY JOINED` | Was already registered earlier |
+| `[TS] FAIL - NO KYC` | Account not verified |
+| `[TS] FAIL - NO CODE - fill column "[TS] code"` | `[TS] code` is empty |
+| `[TS] FAIL - Cannot get TokenSplash details` | Exchange returned no event data (wrong/expired code) |
+| `[TS] FAIL {token} - {reason}` | Registration failed |
+
+> If registration fails, the exchange returns a refusal reason — the **mark**. AutoPilot records it in `[RESULT] status` as `{reason}`.
 
 ---
 
