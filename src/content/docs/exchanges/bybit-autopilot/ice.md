@@ -1,0 +1,234 @@
+---
+title: "🧊 ICE-режимы (Bybit) — набив объёма под акции"
+description: "Внутренняя документация ICE-режимов AutoPilot для Bybit: spot_ice, futures_ice, ts_ice, sell_ice — настройка AutoPilot.config и Excel-таблицы."
+sidebar:
+  hidden: true
+pagefind: false
+---
+
+> 🚧 **Внутренняя страница (в разработке).** ICE-режимы ещё дорабатываются и тестируются. Страница скрыта из меню и поиска — доступна только по прямой ссылке. Пожалуйста, не распространяйте её широко.
+
+Семейство из четырёх действий — `spot_ice`, `futures_ice`, `ts_ice`, `sell_ice` — для естественного набива торгового объёма под биржевые акции и промо-ивенты. Все ордера исполняются **мгновенно** (лимитки заходят прямо в стакан), а между действиями стоят **случайные задержки** — поведение выглядит человеческим.
+
+> ⚠️ Как и `limit`, параметры ICE-режимов читаются **из `AutoPilot.config`**, а не из колонок `[TRADING]` Excel-таблицы. Из таблицы используются только базовые колонки для входа: `[PROFILE] profile_id`, `[PROFILE] mail`, `[PROFILE] bybit_password`, `[BYBIT] domain`, `[ACTION] action`. Дополнительно `ts_ice` требует колонку `[TS] code`.
+
+## Общие параметры (действуют во всех четырёх режимах)
+
+| Ключ | Описание | Пример |
+|------|----------|--------|
+| `market_trading_delay` | Случайная пауза в секундах **после каждого действия** (покупка, продажа, цикл). Работает во всех ICE-режимах, включая `ts_ice` и `sell_ice` | `30,60` |
+| `ice_dryrun` | `YES` — бот всё рассчитывает и пишет в лог (сторона, размер, стакан), но **ордера НЕ отправляет** (безопасный тест). `NO` — реальная торговля | `NO` |
+| `ice_order` | Размер одной **спот**-сделки в USDT, случайный из диапазона (для `spot_ice`, `ts_ice`, `sell_ice`) | `70,100` |
+| `ice_spot_offset` | На сколько % заходить в стакан, чтобы лимитка исполнилась мгновенно (buy чуть выше ask / sell чуть ниже bid) | `0.1` |
+
+> 💡 **Всегда начинайте с `ice_dryrun=YES`.** Прогоните действие на одном профиле, убедитесь по логам, что бот выбирает правильную сторону и размер, и только потом ставьте `ice_dryrun=NO`. Особенно важно для `futures_ice` (живые деньги + плечо).
+
+---
+
+## `spot_ice` — набив спот-объёма лимитками (мгновенно)
+
+Покупает и тут же продаёт монету лимитными ордерами, которые заходят в стакан и исполняются сразу — как маркет, но ордером типа «лимит». **Наценки нет** (цель — оборот, не прибыль). Продаёт **только то, что купил в этой сделке** (существующие остатки монеты на балансе не трогает).
+
+**Параметры из `AutoPilot.config`:**
+
+| Ключ | Описание | Пример |
+|------|----------|--------|
+| **Требует** `ice_required_list` | Обязательные монеты (нужные для акции). Торгуются ВСЕ, всегда. Пусто = фаза пропускается | `XRP` |
+| Опционально `ice_required_cycles` | Циклов на каждую обязательную монету. Одно число всем, или per-coin `3,2` (1-я монета 3 раза, 2-я 2 раза) | `1` |
+| **Требует** `ice_random_list` | Филлер-монеты. Бот берёт случайную из списка на каждую сделку. Пусто = фаза пропускается | `BTC,ETH,SOL` |
+| Опционально `ice_random_cycles` | Сколько случайных сделок за прогон. Число или диапазон `1,3` | `2` |
+| `ice_order`, `ice_spot_offset`, `market_trading_delay` | См. общие параметры выше | — |
+
+**Из Excel:** только базовые колонки + `[ACTION] action=spot_ice`.
+**Обновляет:** `[RESULT] status` — `[SPOT_ICE] PLACED <кол-во> trades, SPENT ~<сумма> USDT (монеты)`
+
+```mermaid
+flowchart TD
+    A["Чтение ICE-параметров из AutoPilot.config"] --> B["Фаза 1 — обязательные монеты<br/>ice_required_list, каждая × ice_required_cycles"]
+    B --> C["Фаза 2 — филлер<br/>ice_random_cycles раз, случайная монета из ice_random_list"]
+    C --> D["Для каждой сделки:"]
+    D --> E["BUY — лимит чуть выше ask + IOC<br/>→ заходит в стакан, исполняется сразу"]
+    E --> F["Замер купленной ДЕЛЬТЫ на балансе"]
+    F --> G["SELL — лимит чуть ниже bid + IOC<br/>→ исполняется сразу"]
+    G --> H["Случайная пауза market_trading_delay"]
+    H --> I["✅ [RESULT] status: [SPOT_ICE] PLACED N"]
+    style A fill:#2196F3,color:#fff,stroke:none,rx:8
+    style E fill:#FF9800,color:#fff,stroke:none,rx:8
+    style G fill:#FF9800,color:#fff,stroke:none,rx:8
+    style I fill:#4CAF50,color:#fff,stroke:none,rx:8
+```
+
+**Пример конфигурации:**
+
+```ini
+ice_required_list=XRP
+ice_required_cycles=1
+ice_random_list=BTC,ETH,SOL
+ice_random_cycles=2
+ice_order=70,100
+ice_spot_offset=0.1
+market_trading_delay=30,60
+ice_dryrun=NO
+```
+
+Что произойдёт: сначала бот один раз отторгует XRP (обязательная монета акции), затем сделает 2 случайные сделки из [BTC, ETH, SOL]. Каждая сделка — покупка на 70–100 USDT и мгновенная продажа, с паузой 30–60 сек между действиями.
+
+---
+
+## `futures_ice` — фьючерсы, фейд крупного ордера в стакане
+
+Ждёт, пока **вверху стакана** появится один крупный ордер размером с твою позицию, и открывает позицию **против толпы** (много покупателей сверху → бот в шорт; много продавцов → бот в лонг), **маркетом**, с плечом. Держит позицию несколько секунд и закрывает по маркету. Работает только на **ликвидных** монетах (BTC, ETH).
+
+> ⚠️ **Живые деньги + кредитное плечо.** Обязательно протестируйте с `ice_dryrun=YES` и мелким `ice_futures_order`, прежде чем запускать в бой.
+
+**Параметры из `AutoPilot.config`:**
+
+| Ключ | Описание | Пример |
+|------|----------|--------|
+| **Требует** `ice_futures_list` | Монеты (только ликвидные). Пусто = берётся `ice_random_list` | `BTC,ETH` |
+| **Требует** `ice_futures_order` | **МАРЖА** в USDT (диапазон, рандом). Позиция (notional) = маржа × `leverage` | `10000,15000` |
+| **Требует** `leverage` | Кредитное плечо (2–100) | `10` |
+| Опционально `ice_futures_cycles` | Циклов на монету (открыть+закрыть). Число или per-coin | `1` |
+| Опционально `ice_futures_wait` | Сколько ждать появления крупного ордера (сек), потом пропуск монеты | `300` |
+| Опционально `ice_futures_hold` | Держать позицию перед закрытием, сек (диапазон) | `5,20` |
+| `market_trading_delay`, `ice_dryrun` | См. общие параметры | — |
+
+**Из Excel:** только базовые колонки + `[ACTION] action=futures_ice`.
+**Обновляет:** `[RESULT] status` — `[FUTURES_ICE] TRADED <кол-во> (монеты:сторона)`. При проблеме с закрытием добавляется `WARN N CLOSE-FAILED (open positions!)`.
+
+```mermaid
+flowchart TD
+    A["config: маржа, плечо, монеты"] --> B["Проверка: баланс ≥ маржа"]
+    B --> C["Установка плеча + hedge-режим"]
+    C --> D{"Поллинг стакана ~1 сек:<br/>верхний ордер ≥ notional?"}
+    D -- "Нет — ждём" --> D
+    D -- "Таймаут ice_futures_wait" --> X["⏭ SKIP (нет ликвидности)"]
+    D -- "Да" --> E{"Где крупный ордер?"}
+    E -- "В bids (толпа в лонг)" --> F["Открыть SHORT маркетом"]
+    E -- "В asks (толпа в шорт)" --> G["Открыть LONG маркетом"]
+    F --> H["Держать ice_futures_hold сек"]
+    G --> H
+    H --> I["Закрыть позицию маркетом<br/>с подтверждением (re-query)"]
+    I --> J["✅ [RESULT] status: [FUTURES_ICE] TRADED N"]
+    style A fill:#2196F3,color:#fff,stroke:none,rx:8
+    style F fill:#f44336,color:#fff,stroke:none,rx:8
+    style G fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style I fill:#FF9800,color:#fff,stroke:none,rx:8
+    style J fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style X fill:#9E9E9E,color:#fff,stroke:none,rx:8
+```
+
+**Пример конфигурации:**
+
+```ini
+ice_futures_list=BTC,ETH
+ice_futures_order=10000,15000
+leverage=10
+ice_futures_cycles=1
+ice_futures_wait=300
+ice_futures_hold=5,20
+market_trading_delay=30,60
+ice_dryrun=YES
+```
+
+Здесь маржа 10 000–15 000 USDT × плечо 10 = позиция 100k–150k. Бот ждёт в стакане BTC/ETH одиночный ордер такого размера и входит против него. **Для теста** ставьте `ice_futures_order=10,20` (позиция всего 100–200 USDT) и `ice_dryrun=YES`.
+
+---
+
+## `ts_ice` — TokenSplash: вход в акцию + торговля токена
+
+Заходит в акцию **TokenSplash** по коду из колонки `[TS] code`, затем торгует токен акции спот-лимитками (та же мгновенная логика, что у `spot_ice`) с паузами между сделками.
+
+**Параметры:**
+
+| Параметр | Где | Описание | Пример |
+|----------|-----|----------|--------|
+| **Требует** `[TS] code` | Excel-колонка | Код акции TokenSplash | `20241217064550` |
+| Опционально `ts_ice_cycles` | `AutoPilot.config` | Сколько раз торговать токен. **`0` = только зайти в акцию, без торговли** | `2` |
+| `ice_order`, `ice_spot_offset`, `market_trading_delay` | `AutoPilot.config` | Размер, заход в стакан, паузы (как у `spot_ice`) | — |
+
+**Из Excel:** базовые колонки + `[TS] code` + `[ACTION] action=ts_ice`.
+**Обновляет:** `[RESULT] status` — `[TS_ICE] <токен> - REGISTERED/ALREADY JOINED, traded Nx ~<сумма> USDT`
+
+```mermaid
+flowchart TD
+    A["Зайти в акцию по [TS] code"] --> B{"Зашёл или уже в акции?"}
+    B -- "Нет / нет кода" --> X["❌ [TS_ICE] FAIL"]
+    B -- "Да" --> C{"ts_ice_cycles > 0?"}
+    C -- "Нет (=0)" --> Y["Только регистрация, без торговли"]
+    C -- "Да" --> D["Торговать токен акции × ts_ice_cycles<br/>лимитками spot_ice + паузы market_trading_delay"]
+    D --> Z["✅ [RESULT] status"]
+    Y --> Z
+    style A fill:#00BCD4,color:#fff,stroke:none,rx:8
+    style D fill:#FF9800,color:#fff,stroke:none,rx:8
+    style Z fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style X fill:#f44336,color:#fff,stroke:none,rx:8
+```
+
+> ✅ **Да, `ts_ice` с задержками** — после каждой сделки токеном бот ждёт случайное время из `market_trading_delay`.
+
+---
+
+## `sell_ice` — распродажа остатков с паузами
+
+Сливает все не-USDT монеты с баланса по очереди, marketable-лимитками (исполняются мгновенно), **с паузой между каждой продажей**. Удобно дочистить остатки после набива объёма.
+
+**Параметры из `AutoPilot.config`:** своих ключей нет — использует `ice_spot_offset` (заход в стакан), `market_trading_delay` (паузы), `ice_dryrun`.
+
+**Из Excel:** только базовые колонки + `[ACTION] action=sell_ice`.
+**Обновляет:** `[RESULT] status` — `[SELL_ICE] SOLD <продано>/<всего> coins (монеты)`
+
+> ✅ **Задержки работают** — пауза после каждой проданной монеты.
+
+---
+
+## Порядок безопасного запуска (для всех ICE-режимов)
+
+```mermaid
+flowchart LR
+    A["1. ice_dryrun=YES<br/>проверить логи"] --> B["2. ice_dryrun=NO<br/>мелкий размер, 1 профиль"]
+    B --> C["3. Масштабирование<br/>на все профили"]
+    style A fill:#2196F3,color:#fff,stroke:none,rx:8
+    style B fill:#FF9800,color:#fff,stroke:none,rx:8
+    style C fill:#4CAF50,color:#fff,stroke:none,rx:8
+```
+
+## Полный блок для `AutoPilot.config`
+
+Скопируйте нужные ключи в свой `AutoPilot.config` (строки без `#`):
+
+```ini
+# ---- Общее для ICE ----
+market_trading_delay=30,60
+ice_dryrun=NO
+ice_order=70,100
+ice_spot_offset=0.1
+
+# ---- spot_ice ----
+ice_required_list=XRP
+ice_required_cycles=1
+ice_random_list=BTC,ETH,SOL
+ice_random_cycles=2
+
+# ---- futures_ice ----
+ice_futures_list=BTC,ETH
+ice_futures_order=10000,15000
+leverage=10
+ice_futures_cycles=1
+ice_futures_wait=300
+ice_futures_hold=5,20
+
+# ---- ts_ice ----
+ts_ice_cycles=2
+```
+
+## Что вписывать в Excel-таблицу
+
+| Действие | Колонка `[ACTION] action` | Дополнительные колонки |
+|----------|---------------------------|------------------------|
+| `spot_ice` | `spot_ice` | — (всё из config) |
+| `futures_ice` | `futures_ice` | — (всё из config) |
+| `ts_ice` | `ts_ice` | `[TS] code` = код акции |
+| `sell_ice` | `sell_ice` | — |
+
+Плюс всегда базовые колонки профиля: `[PROFILE] profile_id`, `[PROFILE] mail`, `[PROFILE] bybit_password`, при необходимости `[BYBIT] domain`.
