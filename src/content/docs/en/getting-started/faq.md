@@ -122,6 +122,17 @@ Alternative for those building a large-scale farm. Uses **Hide My Email** from i
    - `[EMAIL] forwarding_mail_password` = App-Specific Password of the main mailbox
    - `[EMAIL] mail_forwarding_provider` = `icloud`
 
+**Deleting addresses and rotation (churning the farm):**
+
+You can free up slots for new addresses, with caveats (verified against [Apple Support](https://support.apple.com/guide/icloud/mm3adb030cbf/icloud)):
+
+1. Only **deactivated** addresses can be deleted — *Deactivate* first, then *Delete*. At `icloud.com/icloudplus` → **Hide My Email** → pick the address → *Deactivate*, then at the bottom under "N inactive addresses" → *Delete address*.
+2. Deletion is **permanent**: the old address can't be recovered or reused — recreating gives you a **new random** address.
+3. Deletion **frees a slot**: at the cap Apple literally says "*delete one before creating another*" — delete one, then create a new one.
+4. **Not infinite and not instant.** Apple throttles creation: **~5 new addresses / 30 min** (× number of family members), with a ~30–60 min cooldown when you hit it. Soft ceiling ~500–1000 addresses per account.
+
+> ⚙️ **What AutoPilot does itself.** The built-in HME generator (pure-HTTP, no browser) **creates and reserves** addresses respecting Apple's limits (5/30 min, auto-cooldown on 429). **Deletion is still manual** at `icloud.com`. So churning the farm = delete manually → AutoPilot generates new ones.
+
 **Detailed video guides:**
 - 📺 [Creating iCloud farms](https://t.me/kyctutorial/1574)
 - 📺 [iCloud forwarding setup](https://t.me/kyctutorial/1575)
@@ -658,6 +669,9 @@ After withdrawal — open the **Distribute** tab and collect everything to one w
 - 💳 Requires a **paid subscription** (minimum Base)
 - 📤 Export profiles: Select → Export → Number, ID, Name
 - 🔌 Default API port: `50325` (configurable in settings `adspower_port`)
+- ⚠️ **Be sure to disable "API verification"** (**API & MCP → API Settings**). If the toggle is on, every request to the local API requires a key, and AutoPilot won't be able to start and stop profiles. The toggle must be **off**:
+
+![AdsPower — disable API verification](../../../../assets/adspower/api-verification.png)
 
 **Dolphin:**
 - Enable Profile ID: Gear icon → Customize columns → Profile ID
