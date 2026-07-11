@@ -675,6 +675,10 @@ After withdrawal — open the **Distribute** tab and collect everything to one w
 
 **Dolphin:**
 - Enable Profile ID: Gear icon → Customize columns → Profile ID
+- ▶️ The **Dolphin Anty app must be running and you must be logged in** — AutoPilot manages profiles via the local API (port `3001`). Automation requires an **active paid subscription** (starting profiles via API is not available on the free plan).
+- 🔑 **You must set your own token in the config:** `dolphin_key=YOUR_API_TOKEN`. Without it AutoPilot cannot fetch the profile's proxy from Dolphin — the captcha will be solved from the wrong IP and registration/login will fail.
+  - Where to get it: **Dolphin Anty → Settings → API** (or on [dolphin-anty.com](https://dolphin-anty.com) → API section) → create a token → copy the long string like `eyJ0eXAi...`.
+  - ⚠️ The token in the config template is a **placeholder and already expired**. Replace it with your own fresh one, otherwise you'll get Dolphin errors.
 
 **Vision:**
 - In config: `vision_config=folder_name,API_key`
