@@ -241,9 +241,37 @@ Retrieve the deposit address for funding the account
 | Parameter | Column | Description |
 |-----------|--------|-------------|
 | **Required** | `[DEPOSIT] deposit_coin` | Coin for deposit (e.g.: `USDT`) |
-| **Required** | `[DEPOSIT] deposit_chain` | Network (e.g.: `TRC20`, `Aptos`, `Mantle`) |
+| **Required** | `[DEPOSIT] deposit_chain` | Network — **Bybit's canonical code** (e.g.: `TRX` for TRC20, `BSC` for BEP20, `ETH` for ERC20). Full list of codes below 👇 |
 | **Updates** | `[DEPOSIT] deposit_address` | Deposit address |
 | **Updates** | `[RESULT] status` | `[DEPOSIT] SUCCESS` |
+
+> ⚠️ **Enter the chain code — not "TRC20" / "Aptos" / "ERC20", and no spaces.** The value is sent to Bybit as-is. A wrong code **or a stray space** (`BSC ` instead of `BSC`) → Bybit returns `ret_code 10016 svc error` and no address is issued.
+
+**USDT chain codes** (Bybit's list may change):
+
+| Enter in `deposit_chain` | Network on Bybit | Memo |
+|---|---|---|
+| `TRX` | TRON (TRC20) | — |
+| `BSC` | BSC (BEP20) | — |
+| `ETH` | Ethereum (ERC20) | — |
+| `SOL` | Solana | — |
+| `TON` | TON | ✅ required |
+| `APTOS` | Aptos | — |
+| `ARBI` | Arbitrum One | — |
+| `OP` | OP Mainnet | — |
+| `MATIC` | Polygon PoS | — |
+| `CAVAX` | Avalanche C-Chain | — |
+| `MANTLE` | Mantle | — |
+| `PLASMA` | Plasma | — |
+| `HYPEREVM` | HyperEVM | — |
+| `BERA` | Berachain | — |
+| `CORN` | Corn | — |
+| `MONAD` | Monad | — |
+| `KLAY` | Kaia | — |
+| `CELO` | Celo | — |
+| `KAVAEVM` | Kava EVM | — |
+
+> 💡 The same codes work for `whitelist_chain` and `withdraw_chain`. If you get it wrong, AutoPilot prints the current chain list straight to the log.
 
 ---
 
@@ -264,7 +292,7 @@ flowchart LR
 | Parameter | Column | Description |
 |-----------|--------|-------------|
 | **Required** | `[WHITELIST] whitelist_address` | Wallet address |
-| **Required** | `[WHITELIST] whitelist_chain` | Network (e.g.: `TRC20`, `Aptos`, `Mantle`) |
+| **Required** | `[WHITELIST] whitelist_chain` | Network — **Bybit's canonical code** (`TRX`, `BSC`, `ETH`, `APTOS`…). See the code table above in the `deposit` section |
 | Optional | `[WHITELIST] whitelist_memo` | Memo/Tag (if required by the network) |
 | **Updates** | `[WHITELIST] whitelist_status` | 1 — successfully added |
 | **Updates** | `[RESULT] status` | `[WHITELIST] SUCCESS` |

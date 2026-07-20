@@ -241,9 +241,37 @@ flowchart LR
 | Параметр | Стовпець | Опис |
 |----------|----------|------|
 | **Потребує** | `[DEPOSIT] deposit_coin` | Монета для депозиту (наприклад: `USDT`) |
-| **Потребує** | `[DEPOSIT] deposit_chain` | Мережа (наприклад: `TRC20`, `Aptos`, `Mantle`) |
+| **Потребує** | `[DEPOSIT] deposit_chain` | Мережа — **канонiчний код Bybit** (наприклад: `TRX` для TRC20, `BSC` для BEP20, `ETH` для ERC20). Повний список кодiв — нижче 👇 |
 | **Оновлює** | `[DEPOSIT] deposit_address` | Адреса депозиту |
 | **Оновлює** | `[RESULT] status` | `[DEPOSIT] SUCCESS` |
+
+> ⚠️ **Пишiть код мережi — не «TRC20» / «Aptos» / «ERC20», i без пробiлiв.** Значення йде в Bybit як є. Невiрний код **або зайвий пробiл** (`BSC ` замiсть `BSC`) → Bybit поверне `ret_code 10016 svc error`, i адреса не прийде.
+
+**Коди мереж USDT** (список Bybit може змiнюватися):
+
+| Введiть у `deposit_chain` | Мережа на Bybit | Memo |
+|---|---|---|
+| `TRX` | TRON (TRC20) | — |
+| `BSC` | BSC (BEP20) | — |
+| `ETH` | Ethereum (ERC20) | — |
+| `SOL` | Solana | — |
+| `TON` | TON | ✅ потрiбен |
+| `APTOS` | Aptos | — |
+| `ARBI` | Arbitrum One | — |
+| `OP` | OP Mainnet | — |
+| `MATIC` | Polygon PoS | — |
+| `CAVAX` | Avalanche C-Chain | — |
+| `MANTLE` | Mantle | — |
+| `PLASMA` | Plasma | — |
+| `HYPEREVM` | HyperEVM | — |
+| `BERA` | Berachain | — |
+| `CORN` | Corn | — |
+| `MONAD` | Monad | — |
+| `KLAY` | Kaia | — |
+| `CELO` | Celo | — |
+| `KAVAEVM` | Kava EVM | — |
+
+> 💡 Тi самi коди працюють у `whitelist_chain` та `withdraw_chain`. Якщо помилитесь — AutoPilot виведе актуальний список мереж прямо в лог.
 
 ---
 
@@ -264,7 +292,7 @@ flowchart LR
 | Параметр | Стовпець | Опис |
 |----------|----------|------|
 | **Потребує** | `[WHITELIST] whitelist_address` | Адреса гаманця |
-| **Потребує** | `[WHITELIST] whitelist_chain` | Мережа (наприклад: `TRC20`, `Aptos`, `Mantle`) |
+| **Потребує** | `[WHITELIST] whitelist_chain` | Мережа — **канонiчний код Bybit** (`TRX`, `BSC`, `ETH`, `APTOS`…). Коди — у таблицi вище, у роздiлi `deposit` |
 | Опцiонально | `[WHITELIST] whitelist_memo` | Memo/Tag (якщо потрiбно мережею) |
 | **Оновлює** | `[WHITELIST] whitelist_status` | 1 — успiшно додано |
 | **Оновлює** | `[RESULT] status` | `[WHITELIST] SUCCESS` |
