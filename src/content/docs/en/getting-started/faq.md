@@ -274,7 +274,7 @@ flowchart LR
 - ⏳ Do not delete rows while the software is running — wait for completion
 
 **🚀 Minimum set to start (registration):**
-1. `[PROFILE] profile_id` — Profile ID from AdsPower/Dolphin (AdsPower: the **ID** column, not "Number" — [why it matters](#8--adspower--dolphin--vision--afina))
+1. `[PROFILE] profile_id` — Profile ID from AdsPower/Dolphin (in AdsPower that's the **ID** column, **NOT** "Number" — [why](#8--adspower--dolphin--vision--afina))
 2. `[EMAIL] mail_provider` — mail service
 3. `[PROFILE] mail` — email address
 4. `[EMAIL] mail_password` — email password
@@ -666,27 +666,27 @@ After withdrawal — open the **Distribute** tab and collect everything to one w
 
 **🔀 How AutoPilot picks the antidetect browser**
 
-There is **no browser switch** in AutoPilot — the antidetect is detected automatically from the format of `[PROFILE] profile_id` in your table. Rules are checked top to bottom; the first match wins:
+There is no browser switch in AutoPilot. The antidetect is picked for you, from what `[PROFILE] profile_id` looks like in your table. The rules run top to bottom, and the first match wins:
 
-| Condition | → Browser |
-|-----------|-----------|
+| Condition | Browser |
+|-----------|---------|
 | `vision_config` is set in the config | **Vision** (overrides everything else) |
 | `profile_id` is a UUID (`8e308a06-f9fd-4927-...`) **and** `afina_api_key` is set in the config | **Afina** |
 | `profile_id` is **digits only** (`1274563`) | **Dolphin** |
 | `profile_id` is **letters and digits** (`k1b0tidb`) | **AdsPower** |
 
-> ✅ **Consequence: you can mix antidetects in one table.** The browser is resolved **per row**, so a single run can drive AdsPower, Dolphin and Afina profiles at the same time. Before starting, AutoPilot checks that every involved app is running, then runs the profiles in parallel (`parallel_limit` sets how many at once).
+> 💡 **You can mix antidetects in one table.** The browser is picked per row, so a single run can drive AdsPower, Dolphin and Afina profiles together. AutoPilot checks that every app it needs is running before it starts, then runs the profiles in parallel — `parallel_limit` sets how many at once.
 >
-> Exception — **Vision**: `vision_config` is global and comes first in the chain, so it switches **all** profiles to Vision. Vision cannot be mixed with the others.
+> Vision is the odd one out: `vision_config` is set once for the whole config and is checked first, so **every** profile in the table goes to Vision.
 
-> ⚠️ **The most common trap.** AdsPower shows two different identifiers: **"Number"** (a sequential index — digits only) and **"ID"** (letters and digits, e.g. `k1b0tidb`). If you copy the "Number", AutoPilot sees digits only and goes to **Dolphin** — you get `Dolphin local server offline - Launch Dolphin then retry` even though Dolphin isn't installed at all. Copy the **ID** column.
+> ⚠️ **Common problem: "Number" and "ID" mixed up.** AdsPower shows two different identifiers: **"Number"** — a sequential index, digits only, and **"ID"** — letters and digits, e.g. `k1b0tidb`. Copy the "Number" and AutoPilot sees digits only, so it goes to **Dolphin**. That is where `Dolphin local server offline - Launch Dolphin then retry` comes from on a machine that never had Dolphin. You need the **ID** column.
 
-> ⚠️ **Second trap — Afina without the key.** Afina needs **both** conditions at once: a UUID in `profile_id` **and** `afina_api_key` in the config. If the key is missing, the row matches no rule — a UUID fails the "letters and digits" check because of the dashes — and the profile falls through to **AdsPower**. You then get an AdsPower error about a profile that doesn't exist in AdsPower. Make sure `afina_api_key` is filled in your config.
+> ⚠️ **Another problem: Afina without the key.** Afina needs **both** conditions at once — a UUID in `profile_id` and `afina_api_key` in the config. Without the key the row matches no rule (a UUID fails the "letters and digits" check because of the dashes), and the profile goes to **AdsPower**. You end up with an AdsPower error about a profile that isn't there. Check `afina_api_key` in your config.
 
 **AdsPower:**
 - 📥 Install the latest SunBrowser: Settings → Local Settings
 - 💳 Requires a **paid subscription** (minimum Base)
-- 📤 Export profiles: Select → Export → Number, ID, Name. Copy the **ID** (like `k1b0tidb`) into the AutoPilot table, **not** the "Number" — otherwise the profile is routed to Dolphin (see the warning above)
+- 📤 Export profiles: Select → Export → Number, ID, Name. The AutoPilot table takes the **ID** (`k1b0tidb`), **NOT** the "Number" — otherwise the profile goes to Dolphin (see above)
 - 🔌 Default API port: `50325` (configurable in settings `adspower_port`)
 - ⚠️ **Be sure to disable "API verification"** (**API & MCP → API Settings**). If the toggle is on, every request to the local API requires a key, and AutoPilot won't be able to start and stop profiles. The toggle must be **off**:
 
@@ -713,7 +713,7 @@ There is **no browser switch** in AutoPilot — the antidetect is detected autom
 
 | Error | Solution |
 |-------|----------|
-| `Dolphin local server offline` but Dolphin isn't installed | The AdsPower "Number" (digits only) ended up in `profile_id` instead of the **ID** — see the top of this section |
+| `Dolphin local server offline` but Dolphin isn't installed | The AdsPower "Number" ended up in `profile_id` instead of the **ID** — see the top of this section |
 | AdsPower connection error | Restart AdsPower, check port |
 | Proxy is bad | Replace proxy in profile |
 | Cache problems | Clear profile cache in AdsPower |
