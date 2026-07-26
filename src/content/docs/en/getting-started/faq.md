@@ -210,22 +210,35 @@ flowchart LR
 
 **Column `[PROXY] proxy`** — profile proxy in format `ip:port:user:password`
 
-> ✅ **No need to fill in** — AutoPilot automatically takes the proxy from your AdsPower / Dolphin / Vision / Afina profile on the fly. The proxy is passed to the captcha solving service so the captcha is solved from the profile's IP. Everything happens automatically.
+> ✅ **No need to fill in** — AutoPilot automatically takes the proxy from your AdsPower / Dolphin / Vision / Afina profile on the fly. The captcha is solved from the profile's IP so it matches the IP the rest of the traffic comes from. Everything happens automatically.
 
-#### 🧩 Supported Captcha Providers
+> 🏠 **The proxy must be residential.** The built-in solver submits the captcha check from the profile's IP, and GeeTest does not accept datacenter IPs — the check simply fails. A cheap datacenter proxy means constant captcha failures even when everything else is configured correctly.
 
-AutoPilot supports **4 captcha-solving providers**. Set via `captcha_provider` in the config:
+#### 🆓 Built-in Captcha Solver
+
+AutoPilot solves captcha **on its own, inside the exe** — no third-party services, no per-solve fees, no browser.
+
+| Exchange | Captcha | Solved by | Cost |
+|----------|---------|:---:|------|
+| **Bybit** | GeeTest v4 | 🆓 built-in solver | $0 |
+| **MEXC** | GeeTest v4 | 🆓 built-in solver | $0 |
+| **Bitget** | GeeTest v4 | 🆓 built-in solver | $0 |
+
+> ⚡ **How it works:** AutoPilot always tries to solve the captcha itself first and only reaches for a paid provider if it runs into a rare type the built-in solver doesn't handle yet. Most captchas on Bybit, MEXC and Bitget are covered — you pay nothing for those.
+
+> 🚀 **`captcha_key` is no longer required.** Without a key AutoPilot starts and runs normally — it just prints a warning that the paid backup is off. Older builds used to hang forever on an empty or drained balance; current builds don't.
+
+#### 💵 Paid Provider — Backup Only
+
+A key is only needed for the rare captcha types the built-in solver doesn't take yet, and as a backup if it fails on a retry. In everyday use that is uncommon — if you never run into it, you don't need a key at all.
 
 | Provider | `captcha_provider` | Type | Website |
 |----------|:---:|------|---------|
 | **CapSolver** ⭐ | `capsolver` | Token (GeeTest v4) | [capsolver.com](https://www.capsolver.com/) |
 | **CapMonster** | `capmonster` | Token (GeeTest v4) | [capmonster.cloud](https://capmonster.cloud/) |
 | **2Captcha** | `2captcha` | Token (GeeTest v4) | [2captcha.com](https://2captcha.com/) |
-| **CapGuru** | `capguru` | Visual (slider drag) | [cap.guru](https://cap.guru/) |
 
-> ⭐ **Recommended: CapSolver** — the most stable and fastest across all exchanges (Bybit, MEXC, Bitget). Token-based GeeTest v4 solving, API-first approach, new captcha types supported immediately after release.
-
-> 🖼️ **CapGuru** — only works with **visual captcha** (slider dragging). Does not support token-based GeeTest v4. Used as a fallback where token-based solving doesn't work.
+> ⭐ **If you do get a key — get CapSolver.** Token-based GeeTest v4 solving, API-first approach, new captcha types picked up quickly.
 
 **Example configuration:**
 
@@ -237,8 +250,10 @@ captcha_key=CAP-YOUR_KEY_HERE
 
 #### 🔑 How to Set Up CapSolver (Step by Step)
 
+> ℹ️ This step is **optional** — only needed if you want a paid backup for rare captcha types.
+
 1. Register at [capsolver.com](https://www.capsolver.com/)
-2. Go to **Billing → Top Up** and add at least **$10** via crypto
+2. Go to **Billing → Top Up** and add balance via crypto
 3. Copy your **API Key** from the dashboard (Overview → API Key)
 4. Paste the key into `AutoPilot.config`:
    ```
@@ -246,11 +261,15 @@ captcha_key=CAP-YOUR_KEY_HERE
    ```
 5. Done — AutoPilot will automatically detect that it's CapSolver
 
-> ⚠️ **Do NOT buy packages on the Market page!** Those are subscriptions for specific captcha types (reCAPTCHA v2 50K for $36, reCAPTCHA v3, etc.) — **AutoPilot doesn't use them**. AutoPilot works with GeeTest v4 (token-based), which only requires **account balance**, not a package subscription. Top up $10 via Billing → Top Up — and everything will work.
+> ⚠️ **Do NOT buy packages on the Market page!** Those are subscriptions for specific captcha types (reCAPTCHA v2 50K for $36, reCAPTCHA v3, etc.) — **AutoPilot doesn't use them**. AutoPilot works with GeeTest v4 (token-based), which only requires **account balance**, not a package subscription.
 
-> 💰 **Cost:** ~$1 per 1000 GeeTest solves. A $10 top-up lasts a long time.
+> 💰 **Cost:** the provider charges ~$1 per 1000 GeeTest solves, but you only pay for captchas the built-in solver didn't take — balance goes on rare types, not on every login.
 
-> 🔧 **Captcha errors:** if captcha keeps failing — verify the `captcha_key` in config and the account balance on the provider's website. If the issue is specific to one exchange — try switching the solving type — from token-based to visual (e.g., `capsolver` → `capguru`).
+> 🔧 **Captcha errors — what to do:**
+> - **Check the proxy first.** A datacenter IP breaks both the built-in solver and the paid one. You need residential.
+> - If the log shows AutoPilot handing off to the paid provider, you hit a rare type. Add a `captcha_key` from `capsolver` / `capmonster` / `2captcha`.
+> - If the captcha fails **before** any handoff to a provider, topping up won't help — it isn't a money problem. Check the proxy and update AutoPilot.
+> - The key must be from `capsolver`, `capmonster` or `2captcha` — only those do token-based GeeTest v4. A key from any other service gives you no backup.
 
 ---
 
@@ -824,12 +843,12 @@ The countdown starts **from the first launch** of AutoPilot with that key. The e
 | Problem | Cause | Solution |
 |---------|-------|----------|
 | 📧 Code not arriving by email | IMAP blocked / app password | Check mail_password, set up forwarding |
-| 🧩 Captcha not solving | No balance / wrong key | Top up captcha provider balance, check `captcha_key` (recommended: [CapSolver](#4--proxy-and-captcha)) |
+| 🧩 Captcha not solving | Datacenter proxy / rare captcha type | Switch to a residential proxy. If you hit a rare type — add a token provider `captcha_key`. Topping up the balance does **not** always help (see [section 4](#4--proxy-and-captcha)) |
 | 🌐 Profile not opening | AdsPower not running / free plan | Launch AdsPower, check subscription |
 | 📊 Table not readable | Excel is open | Close Excel before launching |
 | 🔐 2FA code not working | Time desync | Sync your computer time (Settings → Time) |
 | ⏱️ Timeout on page | Slow proxy | Replace proxy or increase timeout |
-| ⏳ Registration hanging | Different captcha type | Update software — support for new captcha types |
+| ⏳ Startup hangs on the captcha balance line | Old AutoPilot build | Update the software — older builds stopped dead when the provider balance fell below $0.05; now it's just a warning |
 | 🌐 Bybit: 2FA / email / captcha unstable | Regional domain version | Set `bybitglobal` in `[BYBIT] domain` column (see [Bybit → Global Domains](/docs/en/bybit-autopilot/#-bybit-global-domains)) |
 | 🍎 Mac: file shown as "document" / `killed: 9` | Gatekeeper quarantine | See [section 16: Launching on macOS](#16--launching-on-macos) |
 

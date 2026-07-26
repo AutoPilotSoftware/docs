@@ -942,8 +942,8 @@ flowchart TD
 |----------|------|---------|
 | `activation_key` | Ключ активацiї | `XXXX-XXXX-XXXX` |
 | `speed_mode` | Режим швидкостi | `FAST`, `MEDIUM`, `SLOW` |
-| `captcha_key` | API ключ сервiсу капчi | `abc123...` |
-| `captcha_provider` | Провайдер капчi (⭐ `capsolver`, `capmonster`, `2captcha`, `capguru`) | `capsolver` |
+| `captcha_key` | API ключ платного провайдера — **опційно**, лише як підстраховка | `abc123...` |
+| `captcha_provider` | Провайдер капчі (⭐ `capsolver`, `capmonster`, `2captcha`) — можна не вказувати, визначається за форматом ключа | `capsolver` |
 | `parallel_limit` | Лiмiт паралельних акаунтiв | `3` |
 | `shuffle_order` | Перемiшати порядок акаунтiв | `YES` / `NO` |
 | `window_size` | Розмiр вiкна браузера | `1280x720` |
@@ -1014,7 +1014,7 @@ AutoPilot використовує протокол IMAP для отриманн
 2. **Розпакуйте** архiв у нову папку
 3. **Налаштуйте** `AutoPilot.config`:
    - Вкажiть `activation_key` (отримано при покупцi)
-   - Вкажiть `captcha_provider` та `captcha_key` — пiдтримуються 4 провайдери: ⭐ [CapSolver](https://www.capsolver.com/) (рекомендовано), [CapMonster](https://capmonster.cloud/), [2Captcha](https://2captcha.com/), [CapGuru](https://cap.guru/). Детальнiше — [FAQ → секцiя 4](/docs/ua/faq/#4--проксі-та-капча)
+   - `captcha_key` вказувати **не обов'язково** — капчу AutoPilot вирішує сам, безкоштовно. Ключ потрібен лише як підстраховка на рідкісні типи: ⭐ [CapSolver](https://www.capsolver.com/) (рекомендовано), [CapMonster](https://capmonster.cloud/), [2Captcha](https://2captcha.com/). Детальніше — [FAQ → секція 4](/docs/ua/faq/#4--проксі-та-капча)
 4. **Заповнiть** `AutoPilot_table.xlsx` даними акаунтiв
 5. **Запустiть** застосунок
 

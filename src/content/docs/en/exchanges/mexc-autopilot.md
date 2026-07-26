@@ -113,21 +113,21 @@ AutoPilot supports a wide range of automated actions for MEXC:
 
 ## 🧩 Captcha Setup
 
-AutoPilot uses captcha-solving providers for registration and login. **4 providers** are supported:
+AutoPilot solves captcha **on its own, inside the exe** — free, with no third-party service and no browser. For most captchas on MEXC you don't need a paid key at all: the software starts and runs without one.
+
+A paid provider is only wired in as a backup for rare captcha types. If you do want a key, three services work:
 
 - ⭐ **CapSolver** — [capsolver.com](https://www.capsolver.com/) — **recommended**
 - **CapMonster** — [capmonster.cloud](https://capmonster.cloud/)
 - **2Captcha** — [2captcha.com](https://2captcha.com/)
-- **CapGuru** — [cap.guru](https://cap.guru/) — visual captcha only
 
 Configure in `AutoPilot.config`:
 
 ```
-captcha_provider=capsolver
 captcha_key=CAP-YOUR_KEY_HERE
 ```
 
-> ⭐ **CapSolver** is recommended — the most stable and fastest on MEXC (token-based GeeTest v4). For detailed provider comparison — see [FAQ → section 4: Proxy and Captcha](/docs/en/faq/#4--proxy-and-captcha).
+> 🏠 **The profile proxy must be residential** — the built-in solver submits the captcha check from the profile's IP, and datacenter IPs don't pass. See [FAQ → section 4: Proxy and Captcha](/docs/en/faq/#4--proxy-and-captcha).
 
 ---
 
