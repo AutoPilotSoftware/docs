@@ -147,12 +147,12 @@ captcha_key=CAP-ВАШ_КЛЮЧ_ТУТ
 
 ---
 
-### `link_bit` — Отримати посилання KYC верифiкацiї
+### `link_bit` — Отримати посилання KYC верифікації
 
-> ⚠️ **Окрема дiя не потрiбна.** Отримання KYC-посилання для Bitget переїхало в нашу екосистему — використовуйте бота та розширення нижче.
+> ⚠️ **Окрема дія не потрібна.** Отримання KYC-посилання для Bitget переїхало в нашу екосистему — використовуйте бота та розширення нижче.
 
-- 🤖 **Telegram-бот + Miniapp [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot)** — автоматичнi KYC-верифiкацiї на платформi AutoPilot KYC. Детальнiше: [KYC Платформа](/docs/ua/kyc/autopilot-kyc-subscription/).
-- 🧩 **Безкоштовне розширення [AutoPilot Link Generator](https://chromewebstore.google.com/detail/autopilot-link-generator/maogfegbjecdgkfnkemoalpbgodknmaa)** — генерує посилання верифiкацiї для Bybit, MEXC, Bitget та довiльних Sumsub/Onfido токенiв прямо в браузерi.
+- 🤖 **Telegram-бот + Miniapp [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot)** — автоматичні KYC-верифікації на платформі AutoPilot KYC. Детальніше: [KYC Платформа](/docs/ua/kyc/autopilot-kyc-subscription/).
+- 🧩 **Безкоштовне розширення [AutoPilot Link Generator](https://chromewebstore.google.com/detail/autopilot-link-generator/maogfegbjecdgkfnkemoalpbgodknmaa)** — генерує посилання верифікації для Bybit, MEXC, Bitget та довільних Sumsub/Onfido токенів прямо в браузері.
 
 ---
 
