@@ -143,6 +143,9 @@ AutoPilot supports a wide range of automated actions for Bybit:
 
 ## Full List of Actions (ACTION)
 
+> ➕ **Several actions in one pass.** The `ACTION` cell can hold a chain joined with `+` — for example `register+learn+whitelist`. The steps run in order on each account, and the profile browser is not relaunched between them. Details — [FAQ → Action chains](/docs/en/faq/#action-chains).
+
+
 ### General Action Workflow
 
 ```mermaid

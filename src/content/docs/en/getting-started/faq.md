@@ -300,6 +300,31 @@ flowchart LR
 
 > 💡 **Tip:** only fill the `ACTION` column for profiles you want to automate. Empty ACTION = profile will be skipped.
 
+#### ➕ Action chains: several ACTIONs in one pass {#action-chains}
+
+The `ACTION` cell can hold a whole scenario rather than a single action — steps joined with `+`:
+
+```
+register+learn+whitelist
+```
+
+The steps run **in order on each account**. Accounts still run in parallel (`parallel_limit`) — the ordering applies only within a single account.
+
+**Why it exists:**
+- Running three actions on the same accounts used to mean launching the batch three times in a row, waiting for each to finish and re-selecting the profiles every time
+- The profile browser is **not relaunched** between steps — one session for the whole chain instead of three antidetect profile starts
+
+**Config settings:**
+
+| Key | Default | What it does |
+|-----|---------|--------------|
+| `combo_action_delay` | `30,120` | Random pause in seconds between two steps of **one** account. Lower it for throughput, raise it to look less like a bot |
+| `combo_keep_browser` | `YES` | One browser for the whole chain. Set it to `NO` if you want a clean profile launch on every step |
+
+> ⚠️ If a step fails, the remaining steps for **that** account are skipped. Other accounts keep going.
+
+> 📝 Spaces around `+` do not matter, and neither does case: `Register + Learn` = `register+learn`. If even one step in the chain is misspelled or unavailable on your plan, the whole row is skipped.
+
 > 🔑 **Passwords:** if `password` is not filled — AutoPilot will generate a strong password automatically (8-30 chars, uppercase + lowercase + digits + special characters) and write it to the table.
 
 > 📁 **Is Excel fully closed?** The table must be completely closed while AutoPilot is running:
