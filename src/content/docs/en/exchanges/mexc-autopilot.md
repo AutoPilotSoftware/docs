@@ -157,7 +157,7 @@ flowchart TD
     style RESULT fill:#607D8B,color:#fff,stroke:none,rx:10
 ```
 
-> All actions except registration will automatically log in to the account if needed. The whitelist and withdraw actions will automatically enable 2FA if it is not set up.
+> All actions except registration will automatically log in to the account if needed. The whitelist, withdraw and api actions will automatically enable 2FA if it is not set up.
 
 ---
 
@@ -254,7 +254,7 @@ flowchart LR
 | Parameter | Column | Description |
 |-----------|--------|-------------|
 | **Required** | `[WHITELIST_MEXC] whitelist_address` | Wallet address |
-| **Required** | `[WHITELIST_MEXC] whitelist_chain` | Network (as shown on MEXC, e.g.: `ERC20`, `TRC20`, `Aptos`) |
+| **Required** | `[WHITELIST_MEXC] whitelist_chain` | Network — code or MEXC name (`TRC20`, `BEP20`, `Aptos`). Code list in the table below 👇 |
 | Optional | `[WHITELIST_MEXC] whitelist_memo` | Memo/Tag (if required by the network) |
 | **Updates** | `[WHITELIST_MEXC] whitelist_status` | 1 — successfully added |
 | **Updates** | `[RESULT] status` | `[WHITELIST_MX] SUCCESS` |
@@ -280,13 +280,36 @@ flowchart LR
 | Parameter | Column | Description |
 |-----------|--------|-------------|
 | **Required** | `[WITHDRAW_MEXC] withdraw_coin` | Coin to withdraw (e.g.: `USDT`) |
-| **Required** | `[WITHDRAW_MEXC] withdraw_chain` | Withdrawal network (as shown on MEXC, e.g.: `TRC20`) |
+| **Required** | `[WITHDRAW_MEXC] withdraw_chain` | Withdrawal network — code or MEXC name (`TRC20`, `BSC`, `NEAR`). Code list in the table below 👇 |
 | **Required** | `[WITHDRAW_MEXC] withdraw_address` | Recipient wallet address |
 | Optional | `[WITHDRAW_MEXC] withdraw_memo` | Memo/Tag |
-| Optional | `[WITHDRAW_MEXC] withdraw_amount` | Amount in % (100 = all, 50 = half) |
+| Optional | `[WITHDRAW_MEXC] withdraw_amount` | Amount **in the coin** (`25.5` = 25.5 USDT). Empty, `max` or `all` = withdraw the whole available balance |
 | **Updates** | `[RESULT] status` | `[WITHDRAW_MEXC] SUCCESS` |
 
 > If 2FA is not enabled — AutoPilot will automatically set it up before withdrawal
+
+**USDT network codes on MEXC** (read off MEXC on 2026-05-22 — the exchange changes the list, fees and minimums):
+
+| Put in `withdraw_chain` | Network on MEXC | Memo | Fee | Min. withdrawal |
+|---|---|---|---|---|
+| `TRX` / `TRC20` | Tron(TRC20) | — | 1 | 2 |
+| `BSC` / `BEP20` | BNB Smart Chain(BEP20) | — | 0.01 | 2 |
+| `ETH` / `ERC20` | Ethereum(ERC20) | — | 0.5 | 10 |
+| `SOL` | Solana(SOL) | — | 0.23 | 10 |
+| `TON` | Toncoin(TON) | ✅ required | 0.02 | 8 |
+| `APTOS` / `APT` | APTOS(APT) | — | 0.1 | 10 |
+| `ARB` | Arbitrum One(ARB) | — | 0.05 | 1 |
+| `OP` | Optimism(OP) | — | 0.017 | 3 |
+| `MATIC` | Polygon(MATIC) | — | 0.0071 | 5 |
+| `AVAX` | Avalanche C Chain(AVAX CCHAIN) | — | 0.001 | 4 |
+| `PLASMA` | PLASMA | — | 0 | 10 |
+| `CELO` | CELO | — | 0.05 | 2 |
+| `KAIA` / `KLAY` | Kaia (KAIA) | — | 1 | 2 |
+| `NEAR` | NEAR Protocol(NEAR) | — | 0.2 | 2 |
+| `CFX` | Conflux eSpace | — | 0.01 | 1 |
+| `DOT` | Polkadot AssetHub | — | 1 | 2 |
+
+> 💡 The same codes work in `whitelist_chain` and `deposit_chain`. The full network name is accepted too (`Tron(TRC20)`), as are the codes from the Bybit guide (`CAVAX` → Avalanche). If the network is not found, or the code fits several networks at once, AutoPilot **will not send the funds** — it prints the list of available networks to the log instead.
 
 ---
 
@@ -300,6 +323,8 @@ Create an API key with full permissions for SPOT and Futures trading
 | **Updates** | `[API] api_key` | Obtained API key |
 | **Updates** | `[API] api_secret` | API secret key |
 | **Updates** | `[RESULT] status` | `[API_MX] SUCCESS` |
+
+> If 2FA is not enabled — AutoPilot will automatically set it up before creating the key
 
 ---
 
@@ -348,7 +373,7 @@ Get a deposit address to fund the account
 | Parameter | Column | Description |
 |-----------|--------|-------------|
 | **Required** | `[DEPOSIT] deposit_coin` | Coin for deposit (e.g.: `USDT`) |
-| **Required** | `[DEPOSIT] deposit_chain` | Network (as shown on MEXC, e.g.: `TRC20`) |
+| **Required** | `[DEPOSIT] deposit_chain` | Network — code or MEXC name (`TRC20`). Code list in the `withdraw_mx` section 👆 |
 | **Updates** | `[DEPOSIT] deposit_address` | Deposit address (format: `address:memo`) |
 
 ---
@@ -463,7 +488,7 @@ flowchart TD
 | `deposit_mx` | Deposit address | ✅ | — |
 | `whitelist_mx` | Add to whitelist | ✅ | ✅ |
 | `withdraw_mx` | Withdrawal | ✅ | ✅ |
-| `api_mx` | API key creation | ✅ | — |
+| `api_mx` | API key creation | ✅ | ✅ |
 | `trading_mx` | Market trading | ✅ | — |
 | `futures_mx` | Smart Futures (market + stop-loss) | ✅ | — |
 

@@ -157,7 +157,7 @@ flowchart TD
     style RESULT fill:#607D8B,color:#fff,stroke:none,rx:10
 ```
 
-> Все действия кроме регистрации автоматически зайдут в аккаунт, если требуется. Действия whitelist и withdraw автоматически подключат 2FA, если не установлен.
+> Все действия кроме регистрации автоматически зайдут в аккаунт, если требуется. Действия whitelist, withdraw и api автоматически подключат 2FA, если не установлен.
 
 ---
 
@@ -254,7 +254,7 @@ flowchart LR
 | Параметр | Столбец | Описание |
 |----------|---------|----------|
 | **Требует** | `[WHITELIST_MEXC] whitelist_address` | Адрес кошелька |
-| **Требует** | `[WHITELIST_MEXC] whitelist_chain` | Сеть (как на MEXC, например: `ERC20`, `TRC20`, `Aptos`) |
+| **Требует** | `[WHITELIST_MEXC] whitelist_chain` | Сеть — код или имя как на MEXC (`TRC20`, `BEP20`, `Aptos`). Список кодов — в таблице ниже 👇 |
 | Опционально | `[WHITELIST_MEXC] whitelist_memo` | Memo/Tag (если требуется сетью) |
 | **Обновляет** | `[WHITELIST_MEXC] whitelist_status` | 1 — успешно добавлен |
 | **Обновляет** | `[RESULT] status` | `[WHITELIST_MX] SUCCESS` |
@@ -280,13 +280,36 @@ flowchart LR
 | Параметр | Столбец | Описание |
 |----------|---------|----------|
 | **Требует** | `[WITHDRAW_MEXC] withdraw_coin` | Монета для вывода (например: `USDT`) |
-| **Требует** | `[WITHDRAW_MEXC] withdraw_chain` | Сеть вывода (как на MEXC, например: `TRC20`) |
+| **Требует** | `[WITHDRAW_MEXC] withdraw_chain` | Сеть вывода — код или имя как на MEXC (`TRC20`, `BSC`, `NEAR`). Список кодов — в таблице ниже 👇 |
 | **Требует** | `[WITHDRAW_MEXC] withdraw_address` | Адрес кошелька получателя |
 | Опционально | `[WITHDRAW_MEXC] withdraw_memo` | Memo/Tag |
-| Опционально | `[WITHDRAW_MEXC] withdraw_amount` | Сумма в % (100 = всё, 50 = половина) |
+| Опционально | `[WITHDRAW_MEXC] withdraw_amount` | Сумма **в монете** (`25.5` = 25.5 USDT). Пусто, `max` или `all` = вывести весь доступный баланс |
 | **Обновляет** | `[RESULT] status` | `[WITHDRAW_MEXC] SUCCESS` |
 
 > Если 2FA не подключен — AutoPilot автоматически подключит его перед выводом
+
+**Коды сетей USDT на MEXC** (снято с MEXC 22.05.2026 — список, комиссии и минимумы биржа меняет):
+
+| Введите в `withdraw_chain` | Сеть на MEXC | Memo | Комиссия | Мин. вывод |
+|---|---|---|---|---|
+| `TRX` / `TRC20` | Tron(TRC20) | — | 1 | 2 |
+| `BSC` / `BEP20` | BNB Smart Chain(BEP20) | — | 0.01 | 2 |
+| `ETH` / `ERC20` | Ethereum(ERC20) | — | 0.5 | 10 |
+| `SOL` | Solana(SOL) | — | 0.23 | 10 |
+| `TON` | Toncoin(TON) | ✅ нужен | 0.02 | 8 |
+| `APTOS` / `APT` | APTOS(APT) | — | 0.1 | 10 |
+| `ARB` | Arbitrum One(ARB) | — | 0.05 | 1 |
+| `OP` | Optimism(OP) | — | 0.017 | 3 |
+| `MATIC` | Polygon(MATIC) | — | 0.0071 | 5 |
+| `AVAX` | Avalanche C Chain(AVAX CCHAIN) | — | 0.001 | 4 |
+| `PLASMA` | PLASMA | — | 0 | 10 |
+| `CELO` | CELO | — | 0.05 | 2 |
+| `KAIA` / `KLAY` | Kaia (KAIA) | — | 1 | 2 |
+| `NEAR` | NEAR Protocol(NEAR) | — | 0.2 | 2 |
+| `CFX` | Conflux eSpace | — | 0.01 | 1 |
+| `DOT` | Polkadot AssetHub | — | 1 | 2 |
+
+> 💡 Те же коды работают в `whitelist_chain` и `deposit_chain`. Полное имя сети тоже принимается (`Tron(TRC20)`), как и коды из инструкции по Bybit (`CAVAX` → Avalanche). Если сеть не найдена или код подходит сразу к нескольким — AutoPilot **не отправит средства**, а выведет список доступных сетей в лог.
 
 ---
 
@@ -300,6 +323,8 @@ flowchart LR
 | **Обновляет** | `[API] api_key` | Полученный API ключ |
 | **Обновляет** | `[API] api_secret` | Секретный ключ API |
 | **Обновляет** | `[RESULT] status` | `[API_MX] SUCCESS` |
+
+> Если 2FA не подключен — AutoPilot автоматически подключит его перед созданием ключа
 
 ---
 
@@ -348,7 +373,7 @@ flowchart TD
 | Параметр | Столбец | Описание |
 |----------|---------|----------|
 | **Требует** | `[DEPOSIT] deposit_coin` | Монета для депозита (например: `USDT`) |
-| **Требует** | `[DEPOSIT] deposit_chain` | Сеть (как на MEXC, например: `TRC20`) |
+| **Требует** | `[DEPOSIT] deposit_chain` | Сеть — код или имя как на MEXC (`TRC20`). Список кодов — в таблице раздела `withdraw_mx` 👆 |
 | **Обновляет** | `[DEPOSIT] deposit_address` | Адрес депозита (формат: `адрес:memo`) |
 
 ---
@@ -463,7 +488,7 @@ flowchart TD
 | `deposit_mx` | Адрес для депозита | ✅ | — |
 | `whitelist_mx` | Добавление в whitelist | ✅ | ✅ |
 | `withdraw_mx` | Вывод средств | ✅ | ✅ |
-| `api_mx` | Создание API ключей | ✅ | — |
+| `api_mx` | Создание API ключей | ✅ | ✅ |
 | `trading_mx` | Маркет торговля | ✅ | — |
 | `futures_mx` | Умные фьючерсы (рынок + стоп-лосс) | ✅ | — |
 
