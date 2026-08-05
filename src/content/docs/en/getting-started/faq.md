@@ -214,6 +214,40 @@ flowchart LR
 
 > 🏠 **The proxy must be residential.** The built-in solver submits the captcha check from the profile's IP, and GeeTest does not accept datacenter IPs — the check simply fails. A cheap datacenter proxy means constant captcha failures even when everything else is configured correctly.
 
+#### 🔄 Auto-rotation: Bybit mirrors and proxy sessions {#proxy-rotation}
+
+Sometimes registration is blocked not by the account but by where you came from: the exchange checks the reputation of the exit IP, and if too many accounts were created from that address, the refusal arrives before the confirmation code does. **AutoPilot handles this itself — in two steps.**
+
+**Step 1 — a different Bybit mirror.** Bybit is several domains, and each has its own gate. The very same IP the main domain refuses often passes on `bybitglobal.com` without a fuss. Pilots used to switch that domain by hand — now AutoPilot walks the mirrors itself:
+
+```
+bybit.com → bybitglobal.com → bybit-global.com → bytick.com
+```
+
+> 📌 **The working mirror is remembered.** Bybit's domains are separate exchanges with separate account pools: an account created on `bybitglobal.com` does not exist on `bybit.com`. So AutoPilot writes the mirror that worked into the `[BYBIT] domain` column, and every later action on that profile follows it there. No more setting it by hand.
+
+**Step 2 — a fresh proxy session.** If the mirrors run out, the address really is the problem. On residential proxies the session number is part of the login:
+
+```
+customer-country-ge-sid-9f4c2ab71e08
+         └─country┘     └─ session ┘
+```
+
+Only the session number changes — and you get a fresh IP **in the same country**. AutoPilot never touches the country: otherwise the account would quietly move to another geo.
+
+| Run mode | What happens |
+|---|---|
+| ⚡ **AutoPilot Engine** | Takes a fresh session and carries the registration through on its own — up to 3 tries, hands off |
+| 🌐 **Antidetect browser** | The proxy belongs to the AdsPower / Dolphin / Vision / Afina profile, so AutoPilot writes a ready login with a new session into the log |
+
+> 💚 **Neither the account nor the email is spent.** The refusal lands before AutoPilot requests the confirmation code, so the retry runs on the same address — nothing burns.
+
+**Providers with rotation support:** NodeMaven, Proxyshard, DataImpulse, Bright Data.
+
+> ⚠️ **A sticky plan is required** — one where the session number sits in the login. If it isn't there, there is nothing to change: AutoPilot says so and asks you to replace the proxy. The host alone guarantees nothing — the same providers also sell plain logins with no session.
+
+> 🎯 **AutoPilot no longer confuses a bad proxy with a bad account.** One refused IP is a question for the proxy. The same account refused through **two different** exit IPs is a question for the account. That way you don't replace a healthy proxy pool or delete a live account over a single error.
+
 #### 🆓 Built-in Captcha Solver
 
 AutoPilot solves captcha **on its own, inside the exe** — no third-party services, no per-solve fees, no browser.
