@@ -240,13 +240,7 @@ Only the session number changes — and you get a fresh IP **in the same country
 | ⚡ **AutoPilot Engine** | Takes a fresh session and carries the registration through on its own — up to 3 tries, hands off |
 | 🌐 **Antidetect browser** | The proxy belongs to the AdsPower / Dolphin / Vision / Afina profile, so AutoPilot writes a ready login with a new session into the log |
 
-> 💚 **Neither the account nor the email is spent.** The refusal lands before AutoPilot requests the confirmation code, so the retry runs on the same address — nothing burns.
-
 **Providers with rotation support:** NodeMaven, Proxyshard, DataImpulse, Bright Data.
-
-> ⚠️ **A sticky plan is required** — one where the session number sits in the login. If it isn't there, there is nothing to change: AutoPilot says so and asks you to replace the proxy. The host alone guarantees nothing — the same providers also sell plain logins with no session.
-
-> 🎯 **AutoPilot no longer confuses a bad proxy with a bad account.** One refused IP is a question for the proxy. The same account refused through **two different** exit IPs is a question for the account. That way you don't replace a healthy proxy pool or delete a live account over a single error.
 
 #### 🆓 Built-in Captcha Solver
 
