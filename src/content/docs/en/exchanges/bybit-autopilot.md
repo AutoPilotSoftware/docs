@@ -107,7 +107,6 @@ mindmap
       TokenSplash
       LaunchPad
       Puzzle Hunt
-      Claim Rewards
     Utilities
       API Keys
       Profit Calculation
@@ -133,7 +132,6 @@ AutoPilot supports a wide range of automated actions for Bybit:
 - **TokenSplash**: automatic participation in events with deposit task completion
 - **LaunchPad**: automatic registration in active LaunchPad events
 - **Puzzle Hunt**: automatic completion of puzzle tasks
-- **Claiming rewards**: coupons, batch claims, activity rewards
 - **Referral codes**: automatic extraction of account referral codes
 - **KYC link**: getting SUMSUB verification link
 - **Profit calculation**: automatic WITHDRAW − DEPOSIT − P2P purchase + balance analysis
@@ -782,36 +780,6 @@ Automatic registration in the current active LaunchPad event on Bybit. Fully aut
 
 ---
 
-### `claim` — Claim Coupons
-
-Automatically claim available coupons on the account
-
-| Parameter | Column | Description |
-|-----------|--------|-------------|
-| **Updates** | `[RESULT] status` | `[CLAIM] SUCCESS` |
-
----
-
-### `claim_batch` — Batch Claim Coupons
-
-Claim all available coupons in batch mode
-
-| Parameter | Column | Description |
-|-----------|--------|-------------|
-| **Updates** | `[RESULT] status` | `[CLAIM] SUCCESS` |
-
----
-
-### `claim_activity` — Claim Activity Rewards
-
-Claim rewards from activity events, bypassing face verification
-
-| Parameter | Column | Description |
-|-----------|--------|-------------|
-| **Updates** | `[RESULT] status` | `[CLAIM_ACTIVITY] SUCCESS` |
-
----
-
 ### `ref_code` — Extract Referral Code
 
 Automatically extract the account's referral code
@@ -855,7 +823,6 @@ flowchart TD
         TS["ts — TokenSplash"]
         LP["lp — LaunchPad"]
         PZ["puzzle_hunt — Puzzle Hunt"]
-        CL["claim — Claim Rewards"]
     end
 
     subgraph STAKE ["🏦 Staking"]
@@ -879,7 +846,6 @@ flowchart TD
     L --> TS
     L --> LP
     L --> PZ
-    L --> CL
     L --> ST
     ST --> UST
 
@@ -929,9 +895,6 @@ flowchart TD
 | `ts` | TokenSplash events | ✅ | — |
 | `lp` | LaunchPad events | ✅ | — |
 | `puzzle_hunt` | Puzzle Hunt | ✅ | — |
-| `claim` | Claim coupons | ✅ | — |
-| `claim_batch` | Batch claim coupons | ✅ | — |
-| `claim_activity` | Claim activity rewards | ✅ | — |
 | `profit` | Profit calculation | ✅ | — |
 | `ref_code` | Extract referral code | ✅ | — |
 

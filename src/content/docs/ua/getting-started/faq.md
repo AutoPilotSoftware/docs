@@ -20,7 +20,7 @@ sidebar:
    - [6.2 🧩 Пазл-хант (puzzle_hunt)](#62--пазл-хант-puzzle_hunt)
    - [6.3 💰 Bybit Earn — стейкінг USDT (earn / unearn)](#63--bybit-earn--стейкінг-usdt-earn--unearn)
    - [6.4 🛒 Варіанти торгівлі (buy, limit, futures)](#64--варіанти-торгівлі-buy-limit-futures)
-   - [6.5 🎁 Нагороди та івенти (claim, lp, learn, ref_code)](#65--нагороди-та-івенти-claim-lp-learn-ref_code-link-profit)
+   - [6.5 🎁 Нагороди та івенти (lp, learn, ref_code)](#65--нагороди-та-івенти-claim-lp-learn-ref_code-link-profit)
 7. [💸 Виведення коштів (withdraw)](#7--виведення-коштів-withdraw)
 8. [🌐 AdsPower / Dolphin / Vision / Afina](#8--adspower--dolphin--vision--afina)
 9. [🖥️ Розмір екрана](#9-️-розмір-екрана)
@@ -634,16 +634,13 @@ AutoPilot пропонує декілька торгових дій для рі�
 
 ---
 
-### 6.5 🎁 Нагороди та івенти (claim, lp, learn, ref_code, link, profit) {#rewards-events}
+### 6.5 🎁 Нагороди та івенти (lp, learn, ref_code, link, profit) {#rewards-events}
 
 Довідник дій, які **не потребують додаткових стовпців** — просто вкажіть ACTION і запустіть:
 
 | Дія | Опис |
 |-----|------|
 | `lp` | Автоматична реєстрація в поточному LaunchPad-івенті |
-| `claim` | Забрати доступні купони |
-| `claim_batch` | Забрати всі купони пакетно |
-| `claim_activity` | Забрати нагороди активностей (обходить перевірку обличчя) |
 | `learn` | Пройти навчальні модулі та встановити аватар профілю |
 | `ref_code` | Отримати реферальний код акаунта |
 | `link` | Отримати посилання на KYC-верифікацію SUMSUB |

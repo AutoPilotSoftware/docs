@@ -20,7 +20,7 @@ sidebar:
    - [6.2 🧩 Puzzle Hunt (puzzle_hunt)](#62--puzzle-hunt-puzzle_hunt)
    - [6.3 💰 Bybit Earn — USDT Staking (earn / unearn)](#63--bybit-earn--usdt-staking-earn--unearn)
    - [6.4 🛒 Trading Variants (buy, limit, futures)](#64--trading-variants-buy-limit-futures)
-   - [6.5 🎁 Rewards & Events (claim, lp, learn, ref_code)](#65--rewards--events-claim-lp-learn-ref_code-link-profit)
+   - [6.5 🎁 Rewards & Events (lp, learn, ref_code)](#65--rewards--events-claim-lp-learn-ref_code-link-profit)
 7. [💸 Withdrawal (withdraw)](#7--withdrawal-withdraw)
 8. [🌐 AdsPower / Dolphin / Vision / Afina](#8--adspower--dolphin--vision--afina)
 9. [🖥️ Screen Size](#9-️-screen-size)
@@ -634,16 +634,13 @@ AutoPilot offers several trading actions for different scenarios:
 
 ---
 
-### 6.5 🎁 Rewards & Events (claim, lp, learn, ref_code, link, profit) {#rewards-events}
+### 6.5 🎁 Rewards & Events (lp, learn, ref_code, link, profit) {#rewards-events}
 
 Quick-reference for actions that require **no extra columns** — just set the ACTION and run:
 
 | Action | Description |
 |--------|-------------|
 | `lp` | Automatic registration in the current LaunchPad event |
-| `claim` | Claim available coupons |
-| `claim_batch` | Claim all coupons in batch |
-| `claim_activity` | Claim activity rewards (bypasses face verification) |
 | `learn` | Complete learning modules and set profile avatar |
 | `ref_code` | Extract account referral code |
 | `link` | Get SUMSUB KYC verification link |
