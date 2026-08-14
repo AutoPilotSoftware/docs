@@ -31,6 +31,7 @@ sidebar:
 14. [🚨 Common Errors and Solutions](#14--common-errors-and-solutions)
 15. [💬 Contact Developer](#15--contact-developer)
 16. [🍎 Launching on macOS](#16--launching-on-macos)
+17. [📧 Outlook: the "Unexpected close" error](#17--outlook-the-unexpected-close-error)
 
 ---
 
@@ -942,3 +943,13 @@ chmod +x ./AutoPilot                # make executable
 > 🍎 **Full guide** (troubleshooting for `killed: 9` / Gatekeeper errors, Apple Silicon vs Intel, what to do after updates, FAQ): **[Launching AutoPilot on macOS →](/docs/en/macos-launch/)**
 
 > 💡 **After the first launch**, the `xattr` and `chmod` steps are no longer needed — subsequent launches only require `cd` into the folder and `./AutoPilot`. Repeat these steps after each update (the new binary comes with quarantine again).
+
+### 17. 📧 Outlook: the "Unexpected close" error
+
+> 🩺 **Symptom:** under heavy use Outlook mail occasionally stops connecting — the log shows `Email connection error: Unexpected close`. **Your mailboxes are fine.**
+
+This is a temporary limit on the mail provider's side — not a problem with your accounts, passwords, or antivirus. AutoPilot knows how to deal with it.
+
+**What to do:**
+- **Just run it again** — mail usually connects on the second or third try; AutoPilot retries the connection on its own.
+- **Working at large volumes** and it keeps happening? AutoPilot has a stable-mail-under-load mode. Setup is individual — message support (**[section 15](#15--contact-developer)**) and we'll help enable it for your case.
