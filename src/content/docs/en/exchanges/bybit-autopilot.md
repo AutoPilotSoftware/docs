@@ -591,13 +591,13 @@ Automatic account "warm-up" through the **Bybit Learn** section: the action sets
 
 - **Avatar** — picks a random avatar from the Bybit gallery and sets it on the profile. If an avatar was already set previously (remembered on the server), the step is skipped — re-running won't change the avatar.
 - **5 random articles** — 5 articles are randomly chosen per run from the `bybit_learn_links.txt` file (91 links). The link domain is automatically swapped to the profile's domain (`learn.bybit.com` → `learn.bybitglobal.com`, etc.).
-- **On each article** the following are sent in sequence: **like** → **view** signal (VIEW) → **comment** (a random phrase out of 15) → **add to favorites** (star) → **share** → **share** signal (SHARE). The comment and share are additionally registered as Learn campaign tasks to earn rewards.
+- **On each article** the following happen in sequence: **like** → **view** → **comment** (a random phrase out of 15) → **add to favorites** (star) → **share**. The comment and share additionally count as Learn campaign tasks to earn rewards.
 
 #### How It Works
 
 ```mermaid
 flowchart TD
-    A["Session & permission check<br/>(BybitCheckPermissions)"] --> B{"Already logged in?"}
+    A["🔍 Account check"] --> B{"Already logged in?"}
     B -- "Yes" --> C["Read bybit_learn_links.txt<br/>(91 links)"]
     B -- "No" --> L["Automatic sign-in<br/>(login + 2FA if needed)"]
     L --> M{"Sign-in succeeded?"}
@@ -605,11 +605,11 @@ flowchart TD
     M -- "Yes" --> C
     C --> D{"Avatar already set?"}
     D -- "Yes" --> F["Pick 5 random articles<br/>+ swap domain to profile"]
-    D -- "No" --> E["Set random avatar<br/>GET avatar/groups → POST update/avatar"]
+    D -- "No" --> E["Set random avatar"]
     E --> F
-    F --> G["Capture Learn campaign_id"]
+    F --> G["Join the Learn campaign"]
     G --> H["For each of the 5 articles"]
-    H --> I["Like → VIEW → Comment<br/>→ Favorites → Share → SHARE"]
+    H --> I["Like → View → Comment<br/>→ Favorites → Share"]
     I --> J{"Articles remaining?"}
     J -- "Yes" --> H
     J -- "No" --> K["Write final status"]
@@ -627,10 +627,10 @@ flowchart TD
 **Statuses in `[RESULT] status`:**
 
 - `[LEARN] SUCCESS - Avatar set, 5/5 articles` — avatar set and all 5 articles completed.
-- `[LEARN] PARTIAL - Avatar: YES/NO, N/5 articles` — not everything completed: the avatar wasn't set, or one of the articles failed with an error (an exception during load/request lowers the counter to `N < 5`).
+- `[LEARN] PARTIAL - Avatar: YES/NO, N/5 articles` — not everything completed: the avatar wasn't set, or one of the articles failed with an error (the completed-articles counter drops to `N < 5`).
 - `[LEARN] FAIL - ...` — login failed (`CAN'T LOGIN`), no links (`NO LINKS IN FILE`), or a file read error (`LINKS FILE ERROR`).
 
-> If `groupId` can't be determined on a given article, the like/comment/favorite/share on it are skipped (only the VIEW signal is sent), but the article still counts as processed — this does not affect a `SUCCESS` status.
+> If engagement actions aren't available on a given article, the like/comment/favorite/share on it are skipped (only the view counts), but the article still counts as processed — this does not affect a `SUCCESS` status.
 
 #### File `bybit_learn_links.txt`
 
