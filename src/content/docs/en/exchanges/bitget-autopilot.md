@@ -162,9 +162,9 @@ Formula: total withdrawals - total deposits + account balance.
 
 ### `export_bit` — Account Export for KYC
 
-One action packages a ready Bitget account into a protected file **exclusively for automatic KYC verification in our bot [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot)**.
+One action packages a ready Bitget account into a single file **exclusively for automatic KYC verification in our bot [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot)**.
 
-- 🔒 **Sealed export.** Only the AutoPilot KYC platform can read the file — useless in anyone else's hands.
+- ✅ **Everything Bitget needs for KYC.** Bitget's verification asks for profile information that ordinary cookie exports and antidetect browsers don't carry — `export_bit` collects exactly that.
 - 📦 **The whole account, one click.** Nothing to assemble or transfer by hand.
 - 🌍 **Geo-binding preserved** — the account stays in its own country.
 - ⚡ **Batch.** In a single pass it collects a whole group of accounts into one file, ready to upload to the bot.
