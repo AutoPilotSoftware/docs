@@ -169,6 +169,8 @@ One action packages a ready Bitget account into a single file **exclusively for 
 - 🌍 **Geo-binding preserved** — the account stays in its own country.
 - ⚡ **Batch.** In a single pass it collects a whole group of accounts into one file, ready to upload to the bot.
 
+> ⚠️ **Why an ordinary Bitget session no longer loads.** Every few minutes Bitget checks a security token against the active session, cookies and other authorization data. If that data differs between your machine and another device, Bitget logs the account out, raises its risk level, and ultimately blocks verification. That's why loading an account now works only through AutoPilot Bitget: it continuously pulls fresh authorization data and refreshes the keys and cookies the session needs to stay alive and correct. Ordinary sessions no longer fit Bitget — and given how Bitget keeps tightening its checks, that is unlikely to reverse.
+
 > 🤖 **AutoPilot KYC only.** The export exists solely to pass verification in [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot). More: [KYC Platform](/docs/en/kyc/autopilot-kyc-subscription/).
 
 ---
