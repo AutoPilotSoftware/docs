@@ -39,6 +39,7 @@ AutoPilot supports a wide range of automated actions:
 - **Auto cache clearing**: clearing Bitget cache when needed
 - **Auto trading**: trading and volume generation in a specified pair
 - **CandyBomb** event participation: event registration, label checking
+- **Account export for KYC**: packaging a ready account for verification in @AutoPilotKYC_bot
 - Email verification before launch
 - Email forwarding support and confirmation code checking in Spam folder
 - Total account profit calculation
@@ -159,6 +160,19 @@ Formula: total withdrawals - total deposits + account balance.
 
 ---
 
+### `export_bit` — Account Export for KYC
+
+One action packages a ready Bitget account into a protected file **exclusively for automatic KYC verification in our bot [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot)**.
+
+- 🔒 **Sealed export.** Only the AutoPilot KYC platform can read the file — useless in anyone else's hands.
+- 📦 **The whole account, one click.** Nothing to assemble or transfer by hand.
+- 🌍 **Geo-binding preserved** — the account stays in its own country.
+- ⚡ **Batch.** In a single pass it collects a whole group of accounts into one file, ready to upload to the bot.
+
+> 🤖 **AutoPilot KYC only.** The export exists solely to pass verification in [@AutoPilotKYC_bot](https://t.me/AutoPilotKYC_bot). More: [KYC Platform](/docs/en/kyc/autopilot-kyc-subscription/).
+
+---
+
 ## Summary Table
 
 | Action | Description | Auto-login | Auto-2FA |
@@ -173,6 +187,7 @@ Formula: total withdrawals - total deposits + account balance.
 | `CB` | CandyBomb | ✅ | — |
 | `SELL` | Sell assets | ✅ | — |
 | `PROFIT` | Profit calculation | ✅ | — |
+| `export_bit` | Account export for KYC | ✅ | — |
 
 ---
 
