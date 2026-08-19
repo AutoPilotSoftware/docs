@@ -32,6 +32,7 @@ sidebar:
 15. [💬 Contact Developer](#15--contact-developer)
 16. [🍎 Launching on macOS](#16--launching-on-macos)
 17. [📧 Outlook: the "Unexpected close" error](#17--outlook-the-unexpected-close-error)
+18. [🛡️ VPN for pilots: system proxy mode](#vpn-system-proxy)
 
 ---
 
@@ -902,6 +903,7 @@ The countdown starts **from the first launch** of AutoPilot with that key. The e
 | ⏳ Startup hangs on the captcha balance line | Old AutoPilot build | Update the software — older builds stopped dead when the provider balance fell below $0.05; now it's just a warning |
 | 🌐 Bybit: 2FA / email / captcha unstable | Regional domain version | Set `bybitglobal` in `[BYBIT] domain` column (see [Bybit → Global Domains](/docs/en/bybit-autopilot/#-bybit-global-domains)) |
 | 🍎 Mac: file shown as "document" / `killed: 9` | Gatekeeper quarantine | See [section 16: Launching on macOS](#16--launching-on-macos) |
+| 🛡️ VPN on — antidetect browser proxies stop working | Full-tunnel (TUN) mode | Switch the VPN to "System proxy" mode — see [section 18](#vpn-system-proxy) |
 
 ---
 
@@ -950,3 +952,42 @@ This is a temporary limit on the mail provider's side — not a problem with you
 **What to do:**
 - **Just run it again** — mail usually connects on the second or third try; AutoPilot retries the connection on its own.
 - **Working at large volumes** and it keeps happening? AutoPilot has a stable-mail-under-load mode. Setup is individual — message support (**[section 15](#15--contact-developer)**) and we'll help enable it for your case.
+
+### 18. 🛡️ VPN for pilots: system proxy mode {#vpn-system-proxy}
+
+> 🩺 **The pilot's pain:** you turn the VPN on — and proxies in your antidetect browser stop working: profiles don't open, endless loading, wrong IP. In full-tunnel (**TUN**) mode every bit of system traffic goes through the VPN, including the antidetect browser's connections to its own proxies — and the chain breaks.
+
+**The fix — "System proxy" mode.** The VPN covers regular apps (Chrome, Telegram, the terminal, `AutoPilot.exe`), while antidetect browsers keep using their profile proxies: the system proxy does not apply to them unless you explicitly enable "use system proxy" inside the antidetect browser.
+
+**Step 1. Install the INCY client** — Windows / macOS / Linux (Android too): **[GitHub → Releases](https://github.com/INCY-DEV/incy-platforms/releases)**
+
+| OS | File |
+|----|------|
+| 🪟 Windows | `incy-windows-setup.exe` (or `incy-windows-portable.zip`) |
+| 🍎 macOS | `incy-macos-arm64.dmg` (Apple Silicon) / `incy-macos-intel.dmg` (Intel) |
+| 🐧 Linux | `incy-linux-x64.deb` / `incy-linux-x64.rpm` / `incy-linux-x64-portable.zip` |
+
+**Step 2. Add your VLESS subscription.** You need a subscription link from a VPN provider — we recommend **BlancVPN** (VLESS + Reality, ~50 servers, 45 countries): **[get a subscription →](https://blnc.to/friend/1925609385c94484a352)** — this link gets you **1 free month plus a discount**. Copy the subscription link, open INCY and hit **"Paste"** (or **"+ Add"**) — the server list loads by itself.
+
+**Step 3. Settings → Connection → enable "LAN through proxy".**
+
+![INCY — Settings → Connection → LAN through proxy](../../../../assets/vpn/incy-lan-through-proxy.png)
+
+This toggle extends the VLESS proxy to local applications — to the terminal, and therefore to `AutoPilot.exe` itself.
+
+**Step 4. Home → pick the "System proxy" mode and press the power button.**
+
+![INCY — "System proxy" mode](../../../../assets/vpn/incy-system-proxy.png)
+
+**What you end up with:**
+
+| Traffic | Goes through |
+|---------|--------------|
+| Chrome, Telegram, terminal, `AutoPilot.exe` | VPN (your VLESS subscription) |
+| AdsPower / Dolphin / Vision / Afina | the profile's proxy — same as before |
+
+> 🔌 **If the antidetect app itself won't load** (panel doesn't open, license/API unreachable on your network) — route the app's own service traffic through the system proxy. In Afina: **Network Detection → "Use system proxy for connection"**, with the **Detect system proxy** and **Test via system proxy** buttons right there. Only the app's traffic (API, fingerprints, license) goes through the proxy — profile proxies stay untouched.
+
+> ⚠️ **Do not enable TUN** while working with antidetect browsers — full tunnel is exactly what breaks profile proxies. AutoPilot needs the **"System proxy"** mode.
+
+> 💡 Screenshots are INCY v3.4.2 with the Russian interface — the menu items are the same in other languages.
