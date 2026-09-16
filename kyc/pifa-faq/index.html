@@ -1,0 +1,387 @@
+<!DOCTYPE html><html lang="ru" dir="ltr" data-theme="dark" class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>PIFA Загрузка — FAQ | AutoPilot</title><link rel="canonical" href="https://autopilotsoftware.github.io/docs/kyc/pifa-faq/"/><link rel="alternate" hreflang="ru" href="https://autopilotsoftware.github.io/docs/kyc/pifa-faq/"/><link rel="alternate" hreflang="en" href="https://autopilotsoftware.github.io/docs/en/kyc/pifa-faq/"/><link rel="alternate" hreflang="uk" href="https://autopilotsoftware.github.io/docs/ua/kyc/pifa-faq/"/><link rel="sitemap" href="/docs/sitemap-index.xml"/><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&#34;token&#34;: &#34;d98cb2456dd9448bb66e095a800bb391&#34;}"></script><link rel="shortcut icon" href="/docs/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v5.17.3"/><meta name="generator" content="Starlight v0.37.6"/><meta property="og:title" content="PIFA Загрузка — FAQ"/><meta property="og:type" content="article"/><meta property="og:url" content="https://autopilotsoftware.github.io/docs/kyc/pifa-faq/"/><meta property="og:locale" content="ru"/><meta property="og:description" content="Пошаговая инструкция по загрузке аккаунтов в бот AutoPilot KYC после покупки в @pifashop"/><meta property="og:site_name" content="AutoPilot"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Пошаговая инструкция по загрузке аккаунтов в бот AutoPilot KYC после покупки в @pifashop"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/docs/_astro/print.DNXP8c50.css" media="print"><link rel="stylesheet" href="/docs/_astro/index.DJxFRPMf.css">
+<style>@layer starlight.components{:root{--sl-badge-default-border: var(--sl-color-accent);--sl-badge-default-bg: var(--sl-color-accent-low);--sl-badge-default-text: #fff;--sl-badge-note-border: var(--sl-color-blue);--sl-badge-note-bg: var(--sl-color-blue-low);--sl-badge-note-text: #fff;--sl-badge-danger-border: var(--sl-color-red);--sl-badge-danger-bg: var(--sl-color-red-low);--sl-badge-danger-text: #fff;--sl-badge-success-border: var(--sl-color-green);--sl-badge-success-bg: var(--sl-color-green-low);--sl-badge-success-text: #fff;--sl-badge-caution-border: var(--sl-color-orange);--sl-badge-caution-bg: var(--sl-color-orange-low);--sl-badge-caution-text: #fff;--sl-badge-tip-border: var(--sl-color-purple);--sl-badge-tip-bg: var(--sl-color-purple-low);--sl-badge-tip-text: #fff}[data-theme=light]:root{--sl-badge-default-bg: var(--sl-color-accent-high);--sl-badge-note-bg: var(--sl-color-blue-high);--sl-badge-danger-bg: var(--sl-color-red-high);--sl-badge-success-bg: var(--sl-color-green-high);--sl-badge-caution-bg: var(--sl-color-orange-high);--sl-badge-tip-bg: var(--sl-color-purple-high)}.sl-badge:where(.astro-avdet4wd){display:inline-block;border:1px solid var(--sl-color-border-badge);border-radius:.25rem;font-family:var(--sl-font-system-mono);line-height:normal;color:var(--sl-color-text-badge);background-color:var(--sl-color-bg-badge);overflow-wrap:anywhere}.sidebar-content .sl-badge:where(.astro-avdet4wd){line-height:1;font-size:var(--sl-text-xs);padding:.125rem .375rem}.sidebar-content a[aria-current=page]>.sl-badge:where(.astro-avdet4wd){--sl-color-bg-badge: transparent;--sl-color-border-badge: currentColor;color:inherit}.default:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-default-bg);--sl-color-border-badge: var(--sl-badge-default-border);--sl-color-text-badge: var(--sl-badge-default-text)}.note:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-note-bg);--sl-color-border-badge: var(--sl-badge-note-border);--sl-color-text-badge: var(--sl-badge-note-text)}.danger:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-danger-bg);--sl-color-border-badge: var(--sl-badge-danger-border);--sl-color-text-badge: var(--sl-badge-danger-text)}.success:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-success-bg);--sl-color-border-badge: var(--sl-badge-success-border);--sl-color-text-badge: var(--sl-badge-success-text)}.tip:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-tip-bg);--sl-color-border-badge: var(--sl-badge-tip-border);--sl-color-text-badge: var(--sl-badge-tip-text)}.caution:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-caution-bg);--sl-color-border-badge: var(--sl-badge-caution-border);--sl-color-text-badge: var(--sl-badge-caution-text)}.small:where(.astro-avdet4wd){font-size:var(--sl-text-xs);padding:.125rem .25rem}.medium:where(.astro-avdet4wd){font-size:var(--sl-text-sm);padding:.175rem .35rem}.large:where(.astro-avdet4wd){font-size:var(--sl-text-base);padding:.225rem .45rem}.sl-markdown-content :is(h1,h2,h3,h4,h5,h6) .sl-badge:where(.astro-avdet4wd){vertical-align:middle}}
+@layer starlight.components{.card-grid:where(.astro-zntqmydn){display:grid;grid-template-columns:100%;gap:1rem}.card-grid:where(.astro-zntqmydn)>*{margin-top:0!important}@media(min-width:50rem){.card-grid:where(.astro-zntqmydn){grid-template-columns:1fr 1fr;gap:1.5rem}.stagger:where(.astro-zntqmydn){--stagger-height: 5rem;padding-bottom:var(--stagger-height)}.stagger:where(.astro-zntqmydn)>*:nth-child(2n){transform:translateY(var(--stagger-height))}}}
+@layer starlight.components{svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-size, 1em);width:1em;height:1em}}
+@layer starlight.components{.sl-link-card:where(.astro-mf7fz2mj){display:grid;grid-template-columns:1fr auto;gap:.5rem;border:1px solid var(--sl-color-gray-5);border-radius:.5rem;padding:1rem;box-shadow:var(--sl-shadow-sm);position:relative}a:where(.astro-mf7fz2mj){text-decoration:none;line-height:var(--sl-line-height-headings)}a:where(.astro-mf7fz2mj):before{content:"";position:absolute;inset:0}.stack:where(.astro-mf7fz2mj){flex-direction:column;gap:.5rem}.title:where(.astro-mf7fz2mj){color:var(--sl-color-white);font-weight:600;font-size:var(--sl-text-lg)}.description:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3);line-height:1.5}.icon:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3)}.sl-link-card:where(.astro-mf7fz2mj):hover{background:var(--sl-color-gray-7, var(--sl-color-gray-6));border-color:var(--sl-color-gray-2)}.sl-link-card:where(.astro-mf7fz2mj):hover .icon:where(.astro-mf7fz2mj){color:var(--sl-color-white)}}
+@layer starlight.components{.sl-steps{--bullet-size: calc(var(--sl-line-height) * 1rem);--bullet-margin: .375rem;list-style:none;counter-reset:steps-counter var(--sl-steps-start, 0);padding-inline-start:0}.sl-steps>li{counter-increment:steps-counter;position:relative;padding-inline-start:calc(var(--bullet-size) + 1rem);padding-bottom:1px;min-height:calc(var(--bullet-size) + var(--bullet-margin))}.sl-steps>li+li{margin-top:0}.sl-steps>li:before{content:counter(steps-counter);position:absolute;top:0;inset-inline-start:0;width:var(--bullet-size);height:var(--bullet-size);line-height:var(--bullet-size);font-size:var(--sl-text-xs);font-weight:600;text-align:center;color:var(--sl-color-white);background-color:var(--sl-color-gray-6);border-radius:99rem;box-shadow:inset 0 0 0 1px var(--sl-color-gray-5)}.sl-steps>li:after{--guide-width: 1px;content:"";position:absolute;top:calc(var(--bullet-size) + var(--bullet-margin));bottom:var(--bullet-margin);inset-inline-start:calc((var(--bullet-size) - var(--guide-width)) / 2);width:var(--guide-width);background-color:var(--sl-color-hairline-light)}}@layer starlight.content{.sl-steps>li>:first-child{--lh: calc(1em * var(--sl-line-height));--shift-y: calc(.5 * (var(--bullet-size) - var(--lh)));transform:translateY(var(--shift-y));margin-bottom:var(--shift-y)}.sl-steps>li>:first-child:where(h1,h2,h3,h4,h5,h6){--lh: calc(1em * var(--sl-line-height-headings))}@supports (--prop: 1lh){.sl-steps>li>:first-child{--lh: 1lh}}}
+@layer starlight.components{.sl-link-button:where(.astro-xwgiixxa){align-items:center;border:1px solid transparent;border-radius:999rem;display:inline-flex;font-size:var(--sl-text-sm);gap:.5em;line-height:1.1875;outline-offset:.25rem;padding:.4375rem 1.125rem;text-decoration:none}.sl-link-button:where(.astro-xwgiixxa).primary{background:var(--sl-color-text-accent);border-color:var(--sl-color-text-accent);color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).primary:hover{color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).secondary{border-color:inherit;color:var(--sl-color-white)}.sl-link-button:where(.astro-xwgiixxa).minimal{color:var(--sl-color-white);padding-inline:0}.sl-link-button:where(.astro-xwgiixxa) svg{flex-shrink:0}@media(min-width:50rem){.sl-link-button:where(.astro-xwgiixxa){font-size:var(--sl-text-base);padding:.9375rem 1.25rem}}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa){margin-inline-end:1rem}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa):not(:where(p *)){margin-block:1rem}}
+</style><script type="module" src="/docs/_astro/page.B1D-nYk3.js"></script></head> <body class="astro-bguv2lll"> <a href="#_top" class="astro-7q3lir66">Перейти к содержимому</a>  <div class="page sl-flex astro-vrdttmbt"> <header class="header astro-vrdttmbt"><div class="isolated-header astro-3ef6ksr2"><img src="/docs/_astro/auto_pilot_logo.CfyEiyY2_qO0yh.webp" alt="AutoPilot" loading="lazy" decoding="async" fetchpriority="auto" width="32" height="32" class="astro-3ef6ksr2"><span class="astro-3ef6ksr2">AutoPilot</span></div></header>  <div class="main-frame astro-vrdttmbt">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-67yu43on">  <div class="main-pane astro-67yu43on">  <main class="astro-bguv2lll" lang="ru" dir="ltr">   <script type="module" src="/docs/_astro/MarkdownContent.astro_astro_type_script_index_0_lang.Be01RnYk.js"></script> <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <h1 id="_top" class="astro-j6tvhyss">PIFA Загрузка — FAQ</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content">  <div class="sl-heading-wrapper level-h1"><h1 id="pifa-zagruzka-faq">PIFA Загрузка — FAQ</h1><a class="sl-anchor-link" href="#pifa-zagruzka-faq"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «PIFA Загрузка — FAQ»</span></a></div>
+<p>Вы купили KYC в <strong>@pifashop</strong> и получили ссылку. Ниже — как загрузить аккаунты в бот.</p>
+<blockquote>
+<p><strong>Видео-гайд:</strong> KYC для Bybit и MEXC без авторизации, без передачи ссылок, с повторной верификацией — <a href="https://youtu.be/6zhf3ytgfkE">смотреть на YouTube</a></p>
+</blockquote>
+<blockquote>
+<p><strong>3 способа загрузки:</strong> Afina Browser, AdsPower TXT, Вручную (прокси + куки). Выберите подходящий вам ниже.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="bystriy-start-afina-browser">Быстрый старт: Afina Browser</h2><a class="sl-anchor-link" href="#bystriy-start-afina-browser"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Быстрый старт: Afina Browser»</span></a></div>
+<blockquote>
+<p>Используете <strong>Afina</strong>? Это самый автоматизированный способ — бот распознаёт формат сам.</p>
+</blockquote>
+<p><strong>Шаг 1.</strong> Откройте Afina → выберите профили → <strong>Export</strong>.</p>
+<p><strong>Шаг 2.</strong> Сохраните полученный файл.</p>
+<p><strong>Шаг 3.</strong> Откройте бот <a href="https://t.me/AutoPilotKYC_bot">@AutoPilotKYC_bot</a>, нажмите <strong>Загрузить аккаунты</strong> → <strong>Afina Browser</strong> → отправьте файл как документ 📎.</p>
+<blockquote>
+<p><strong>Готово!</strong> Бот распознает куки, прокси и User-Agent автоматически.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="bystriy-start-vruchnuyu-proksi-kuki">Быстрый старт: Вручную (прокси + куки)</h2><a class="sl-anchor-link" href="#bystriy-start-vruchnuyu-proksi-kuki"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Быстрый старт: Вручную (прокси + куки)»</span></a></div>
+<blockquote>
+<p>Загрузите прокси и куки по отдельности.</p>
+</blockquote>
+<p><strong>Шаг 1.</strong> Откройте бот → <strong>Загрузить аккаунты</strong> → <strong>Вручную</strong>. Вставьте прокси-список в чат (текстом, по одному на строку):</p>
+<p><img alt="Отправка прокси в бот" loading="lazy" decoding="async" fetchpriority="auto" width="601" height="339" src="/docs/_astro/manual-1.p_lHdkYJ_ZIaufJ.webp" ></p>
+<p><strong>Шаг 2.</strong> Экспортируйте куки из браузера с помощью расширения <a href="https://cookie-editor.com/">Cookie Editor</a> → <strong>Export → JSON</strong> → сохраните в <code dir="auto">.json</code> файл.</p>
+<blockquote>
+<p><strong>Только для Bybit:</strong> также можно извлечь только secure-токен — <a href="https://www.youtube.com/watch?v=AYrxVrHdroY">видео-инструкция на YouTube</a></p>
+</blockquote>
+<p><strong>Шаг 3.</strong> Отправьте <code dir="auto">.json</code> файлы куки как документы 📎 → бот проверит → нажмите <strong>Подтвердить</strong>.</p>
+<blockquote>
+<p><strong>Готово!</strong> Заказ создан, продавцы начнут KYC-верификацию.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="bystriy-start-adspower">Быстрый старт: AdsPower</h2><a class="sl-anchor-link" href="#bystriy-start-adspower"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Быстрый старт: AdsPower»</span></a></div>
+<blockquote>
+<p>Используете <strong>AdsPower</strong>? Экспортируйте профили в TXT и отправьте в бот — это самый простой способ.</p>
+</blockquote>
+<p><strong>Шаг 1.</strong> Выберите нужные профили, нажмите <strong>Export</strong> и выберите формат <strong>TXT</strong>.</p>
+<p><img alt="Экспорт из AdsPower — выбор профилей и кнопка Export" loading="lazy" decoding="async" fetchpriority="auto" width="841" height="499" src="/docs/_astro/ads-export-1.bzblVqYE_Z2fgKy0.webp" ></p>
+<p><strong>Шаг 2.</strong> В настройках экспорта обязательно включите <strong>User Agent</strong>.</p>
+<p><img alt="Настройки экспорта — формат TXT" loading="lazy" decoding="async" fetchpriority="auto" width="694" height="666" src="/docs/_astro/ads-export-2.DP0Tt0UW_q4RYU.webp" ></p>
+<p><img alt="Включите User Agent" loading="lazy" decoding="async" fetchpriority="auto" width="935" height="893" src="/docs/_astro/ads-export-3.D6GNRZ_z_Z2bioap.webp" ></p>
+<p><strong>Шаг 3.</strong> Откройте бот <a href="https://t.me/AutoPilotKYC_bot">@AutoPilotKYC_bot</a>, нажмите <strong>Загрузить аккаунты</strong> → <strong>AdsPower TXT</strong> → отправьте файл как документ 📎.</p>
+<blockquote>
+<p><strong>Готово!</strong> Бот проверит аккаунты и предложит создать заказ.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="kak-poluchit-kuki-cherez-cookie-editor">Как получить куки через Cookie Editor</h2><a class="sl-anchor-link" href="#kak-poluchit-kuki-cherez-cookie-editor"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Как получить куки через Cookie Editor»</span></a></div>
+<blockquote>
+<p>Нет Anti-Detect браузера? Экспортируйте куки прямо из обычного браузера с помощью расширения <strong>Cookie Editor</strong>.</p>
+<p><a href="https://youtu.be/c9ZX-KKaoFQ">Смотреть видео-инструкцию на YouTube</a></p>
+</blockquote>
+<p><a href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm">Cookie Editor</a> позволяет переносить аккаунты между браузерами без повторного входа. Это полезно для:</p>
+<ul>
+<li><strong>Передача доступа</strong> — можно дать доступ к аккаунту без передачи пароля</li>
+<li><strong>Обход блокировок</strong> — Gmail, Discord и другие сервисы часто блокируют вход с нового устройства. Cookie переносят сессию без повторной авторизации</li>
+<li><strong>Работа с несколькими устройствами</strong> — быстрое переключение между браузерами</li>
+</ul>
+<p><strong>Шаг 1.</strong> Установите расширение <a href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm">Cookie Editor для Chrome</a></p>
+<p><strong>Шаг 2.</strong> Откройте сайт (например, Bybit) в браузере, где вы уже авторизованы → нажмите на иконку Cookie Editor → <strong>Export → JSON</strong>. Куки скопируются в буфер обмена.</p>
+<p><strong>Шаг 3.</strong> Вставьте скопированные куки в текстовый файл и сохраните как <code dir="auto">.json</code> или <code dir="auto">.txt</code>. Отправьте этот файл боту как документ 📎.</p>
+<blockquote>
+<p><strong>Важно:</strong></p>
+<ul>
+<li>Используйте тот же IP-адрес или прокси, чтобы сервис не заподозрил подмену</li>
+<li>Cookie имеют срок действия — если сессия истечёт, придётся авторизоваться заново</li>
+</ul>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="kakoy-metod-vybrat">Какой метод выбрать?</h2><a class="sl-anchor-link" href="#kakoy-metod-vybrat"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Какой метод выбрать?»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Метод</th><th>Когда использовать</th><th>Сложность</th></tr></thead><tbody><tr><td><strong>Afina Browser</strong></td><td>Вы используете Afina</td><td>Легко</td></tr><tr><td><strong>AdsPower TXT</strong></td><td>Вы используете AdsPower</td><td>Легко</td></tr><tr><td><strong>Вручную</strong></td><td>Прокси и куки по отдельности</td><td>Средне</td></tr></tbody></table>
+<div class="mermaid" data-content="flowchart TD
+    A[Нажимаете Загрузить аккаунты] --> B{Какой браузер?}
+    B -->|Afina| C0[Выберите Afina Browser]
+    B -->|AdsPower| C[Выберите AdsPower TXT]
+    B -->|Нет анти-детекта| D[Выберите Вручную]
+    C0 --> E0[Отправьте файл Afina]
+    C --> E[Отправьте один .txt файл]
+    D --> F[Шаг 1: Отправьте прокси текстом]
+    F --> G[Шаг 2: Отправьте .json файлы куки]
+    E0 --> H[Бот проверяет аккаунты]
+    E --> H
+    G --> H
+    H --> I[Нажмите Подтвердить]
+    I --> J[✅ Заказ создан!]" data-status="loading"></div>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="chto-proiskhodit-posle-zagruzki">Что происходит после загрузки?</h2><a class="sl-anchor-link" href="#chto-proiskhodit-posle-zagruzki"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Что происходит после загрузки?»</span></a></div>
+<ol>
+<li>Бот проверяет каждый аккаунт (прокси, куки, доступ к бирже)</li>
+<li>Вы видите результат: <code dir="auto">✅ Прошли: 3 | ❌ Не прошли: 1</code></li>
+<li>Нажимаете <strong>Подтвердить</strong> → заказ создан</li>
+<li>Продавцы получают заказ и начинают KYC-верификацию</li>
+<li>Проверить статус можно через кнопку <strong>Мои заказы</strong></li>
+</ol>
+<blockquote>
+<p>Обычное время: <strong>от нескольких минут до 1 дня</strong>, в зависимости от страны и доступности продавцов.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="bezopasnost-kto-imeet-dostup-k-moim-akkauntam">Безопасность: кто имеет доступ к моим аккаунтам?</h2><a class="sl-anchor-link" href="#bezopasnost-kto-imeet-dostup-k-moim-akkauntam"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Безопасность: кто имеет доступ к моим аккаунтам?»</span></a></div>
+<p><strong>Воркеры (продавцы KYC) не имеют доступа к вашим аккаунтам.</strong> Они получают только уникальную одноразовую ссылку для прохождения верификации. Всё, что они могут сделать — пройти KYC (подтвердить личность). Они не могут:</p>
+<ul>
+<li>Войти в ваш аккаунт</li>
+<li>Просматривать баланс или историю</li>
+<li>Совершать сделки или выводить средства</li>
+<li>Изменять настройки аккаунта</li>
+</ul>
+<blockquote>
+<p>Ваши куки и данные остаются только в системе бота и никогда не передаются воркерам.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="podrobnaya-instruktsiya">Подробная инструкция</h2><a class="sl-anchor-link" href="#podrobnaya-instruktsiya"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Подробная инструкция»</span></a></div>
+<p>Ниже — детальное описание каждого шага для справки.</p>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="aktivatsiya-ssylki">Активация ссылки</h3><a class="sl-anchor-link" href="#aktivatsiya-ssylki"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Активация ссылки»</span></a></div>
+<p>После оплаты в @pifashop вы получаете ссылку вида:</p>
+<div class="expressive-code"><link rel="stylesheet" href="/docs/_astro/ec.v4551.css"><script type="module" src="/docs/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">https://t.me/AutoPilotKYC_bot?start=nvs_abc123def456</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="https://t.me/AutoPilotKYC_bot?start=nvs_abc123def456"><div></div></button></div></figure></div>
+<blockquote>
+<p>Префикс <code dir="auto">nvs_</code> в ссылке — это нормально: бот один и тот же для обоих магазинов, ваш заказ привязан к <strong>@pifashop</strong>.</p>
+</blockquote>
+<p><strong>Что делать:</strong></p>
+<ol>
+<li>Нажмите на ссылку — откроется Telegram с ботом</li>
+<li>Нажмите <strong>Start</strong> (или ссылка откроется автоматически)</li>
+<li>Вы увидите сообщение: <strong>”✅ Добро пожаловать в AutoPilot KYC!”</strong></li>
+</ol>
+<p>Бот покажет вам:</p>
+<ul>
+<li>🌍 <strong>Страна</strong> — выбранная при покупке страна</li>
+<li>💱 <strong>Биржа</strong> — Bybit или MEXC</li>
+<li>📦 <strong>Аккаунты</strong> — сколько аккаунтов вы купили</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>“Неверная или просроченная ссылка”</strong> — Вернитесь в @pifashop и получите новую.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="knopki-glavnogo-menyu">Кнопки главного меню</h3><a class="sl-anchor-link" href="#knopki-glavnogo-menyu"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Кнопки главного меню»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Кнопка</th><th>Что делает</th></tr></thead><tbody><tr><td>📤 <strong>Загрузить аккаунты</strong></td><td>Начать загрузку (основное действие)</td></tr><tr><td>📊 <strong>Мои заказы</strong></td><td>Проверить статус заказов</td></tr><tr><td>🔙 <strong>Назад</strong></td><td>Вернуться к предыдущему экрану</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="adspower-txt-podrobnosti">AdsPower TXT — подробности</h3><a class="sl-anchor-link" href="#adspower-txt-podrobnosti"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «AdsPower TXT — подробности»</span></a></div>
+<p><strong>Как экспортировать:</strong></p>
+<ol>
+<li>Откройте AdsPower</li>
+<li>Выберите нужные профили</li>
+<li>Нажмите <strong>Export</strong> → выберите <strong>формат TXT</strong></li>
+<li>Обязательно включите <strong>User Agent</strong></li>
+<li>Сохраните файл</li>
+</ol>
+<p><strong>Как отправить:</strong></p>
+<ol>
+<li>В боте нажмите <strong>Загрузить аккаунты</strong> → <strong>AdsPower TXT</strong></li>
+<li>Отправьте <code dir="auto">.txt</code> файл как <strong>документ</strong> (через 📎)</li>
+</ol>
+<blockquote>
+<p>⚠️ Отправляйте как <strong>документ</strong>, не как фото или текст.</p>
+</blockquote>
+<p><strong>Пример формата файла:</strong></p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">acc_id=348</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">id=k1894g0a</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">group=Share-1224</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">name=4623 RWANDA</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">cookie=[{"name":"token","value":"abc123"}]</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">proxytype=http</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">proxy=123.45.67.89:8080:user:pass</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">countrycode=rw</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">ua=Mozilla/5.0 ...</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">******************</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">acc_id=349</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">...</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="acc_id=348id=k1894g0agroup=Share-1224name=4623 RWANDAcookie=[{&#x22;name&#x22;:&#x22;token&#x22;,&#x22;value&#x22;:&#x22;abc123&#x22;}]proxytype=httpproxy=123.45.67.89:8080:user:passcountrycode=rwua=Mozilla/5.0 ...******************acc_id=349..."><div></div></button></div></figure></div>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="vruchnuyu-podrobnosti">Вручную — подробности</h3><a class="sl-anchor-link" href="#vruchnuyu-podrobnosti"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Вручную — подробности»</span></a></div>
+<div class="sl-heading-wrapper level-h4"><h4 id="shag-1-proksi">Шаг 1: Прокси</h4><a class="sl-anchor-link" href="#shag-1-proksi"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Шаг 1: Прокси»</span></a></div>
+<p>Вставьте текст с прокси прямо в чат (обычным сообщением). Количество строк = количество аккаунтов.</p>
+<p><strong>Поддерживаемые форматы:</strong></p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">123.45.67.89:8080:mylogin:mypassword</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">mylogin:mypassword@123.45.67.89:8080</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">http://mylogin:mypassword@123.45.67.89:8080</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">socks5://mylogin:mypassword@123.45.67.89:8080</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="123.45.67.89:8080:mylogin:mypasswordmylogin:mypassword@123.45.67.89:8080http://mylogin:mypassword@123.45.67.89:8080socks5://mylogin:mypassword@123.45.67.89:8080"><div></div></button></div></figure></div>
+<p><strong>Пример для 3 аккаунтов:</strong></p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">185.123.45.1:8080:user1:pass1</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">185.123.45.2:8080:user2:pass2</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">185.123.45.3:8080:user3:pass3</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="185.123.45.1:8080:user1:pass1185.123.45.2:8080:user2:pass2185.123.45.3:8080:user3:pass3"><div></div></button></div></figure></div>
+<p>После отправки бот проверит каждый прокси: рабочие ✅, нерабочие ❌.</p>
+<div class="sl-heading-wrapper level-h4"><h4 id="shag-2-fayly-kuki">Шаг 2: Файлы куки</h4><a class="sl-anchor-link" href="#shag-2-fayly-kuki"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Шаг 2: Файлы куки»</span></a></div>
+<p>Отправьте <code dir="auto">.json</code> файлы как <strong>документы</strong> (через 📎). Количество файлов = количество рабочих прокси.</p>
+<blockquote>
+<p>⚠️ НЕ вставляйте содержимое куки текстом — отправляйте файлы через 📎.</p>
+</blockquote>
+<p><strong>Формат файла:</strong></p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">[</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">token</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"value"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">abc123</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"domain"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">.bybit.com</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">},</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">session</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"value"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">xyz789</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"domain"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">.bybit.com</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="[  {&#x22;name&#x22;: &#x22;token&#x22;, &#x22;value&#x22;: &#x22;abc123&#x22;, &#x22;domain&#x22;: &#x22;.bybit.com&#x22;},  {&#x22;name&#x22;: &#x22;session&#x22;, &#x22;value&#x22;: &#x22;xyz789&#x22;, &#x22;domain&#x22;: &#x22;.bybit.com&#x22;}]"><div></div></button></div></figure></div>
+<p>Можно отправить <strong>один файл со всеми куки</strong> как вложенный массив:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">[</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">[{</span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">token</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"value"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">abc123</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">}],</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">[{</span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">token</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"value"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">def456</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">}]</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="[  [{&#x22;name&#x22;: &#x22;token&#x22;, &#x22;value&#x22;: &#x22;abc123&#x22;}],  [{&#x22;name&#x22;: &#x22;token&#x22;, &#x22;value&#x22;: &#x22;def456&#x22;}]]"><div></div></button></div></figure></div>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="podtverzhdenie-zakaza">Подтверждение заказа</h3><a class="sl-anchor-link" href="#podtverzhdenie-zakaza"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Подтверждение заказа»</span></a></div>
+<p>После проверки вы видите итог:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">📋 Проверка завершена</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">✅ Прошли: 3</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">❌ Не прошли: 1</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">🌍 Страна: KE</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">💱 Биржа: BYBIT</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">❓ Создать заказ на 3 аккаунт(а)?</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="📋 Проверка завершена✅ Прошли: 3❌ Не прошли: 1🌍 Страна: KE💱 Биржа: BYBIT❓ Создать заказ на 3 аккаунт(а)?"><div></div></button></div></figure></div>
+<ul>
+<li><strong>✅ Подтвердить</strong> — создать заказ</li>
+<li><strong>❌ Отмена</strong> — вернуться без создания</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="chastye-oshibki-i-kak-ikh-ispravit">Частые ошибки и как их исправить</h2><a class="sl-anchor-link" href="#chastye-oshibki-i-kak-ikh-ispravit"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Частые ошибки и как их исправить»</span></a></div>
+<div class="sl-heading-wrapper level-h4"><h4 id="fayl-ne-yavlyaetsya-korrektnym-json">❌ “Файл не является корректным JSON”</h4><a class="sl-anchor-link" href="#fayl-ne-yavlyaetsya-korrektnym-json"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «❌ “Файл не является корректным JSON”»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Проблема</th><th>Что вы сделали</th><th>Решение</th></tr></thead><tbody><tr><td>Не тот файл</td><td>Отправили скриншот, PDF или другой файл</td><td>Сохраните куки в <code dir="auto">.json</code> или <code dir="auto">.txt</code> файл и отправьте его</td></tr><tr><td>Вставили текст</td><td>Вставили куки текстом в чат</td><td>Вставьте куки в файл <code dir="auto">.json</code> / <code dir="auto">.txt</code>, отправьте как документ через 📎</td></tr><tr><td>Пустой файл</td><td>В файле нет содержимого</td><td>Экспортируйте куки заново через Cookie Editor или Anti-Detect браузер</td></tr><tr><td>Кодировка BOM</td><td>Невидимые символы в начале</td><td>Пересохраните как UTF-8 без BOM</td></tr></tbody></table>
+<blockquote>
+<p><strong>Если вы скопировали куки в буфер обмена</strong> (например, через Cookie Editor) — вставьте их в текстовый файл, сохраните как <code dir="auto">.json</code> или <code dir="auto">.txt</code>, и отправьте боту как документ 📎.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h4"><h4 id="ne-udalos-raspoznat-proksi">❌ “Не удалось распознать прокси”</h4><a class="sl-anchor-link" href="#ne-udalos-raspoznat-proksi"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «❌ “Не удалось распознать прокси”»</span></a></div>
+<ul>
+<li>Каждая строка: <code dir="auto">IP:ПОРТ:ЛОГИН:ПАРОЛЬ</code></li>
+<li>Не добавляйте лишний текст</li>
+<li>Просто вставьте строки с прокси</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h4"><h4 id="vse-proksi-ne-proshli-proverku">❌ “Все прокси не прошли проверку”</h4><a class="sl-anchor-link" href="#vse-proksi-ne-proshli-proverku"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «❌ “Все прокси не прошли проверку”»</span></a></div>
+<ul>
+<li>Прокси истекли — запросите новые у провайдера</li>
+<li>Неправильные данные — перепроверьте логин/пароль</li>
+<li>Сервер не работает — попробуйте позже</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h4"><h4 id="vse-akkaunty-ne-proshli-proverku">❌ “Все аккаунты не прошли проверку”</h4><a class="sl-anchor-link" href="#vse-akkaunty-ne-proshli-proverku"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «❌ “Все аккаунты не прошли проверку”»</span></a></div>
+<p>Бот показывает причины:</p>
+<ul>
+<li><code dir="auto">No KYC provider</code> — аккаунт не настроен для KYC</li>
+<li><code dir="auto">Session expired</code> — куки устарели</li>
+<li><code dir="auto">Proxy blocked</code> — биржа блокирует IP</li>
+<li><code dir="auto">Country mismatch</code> — страна прокси не совпадает</li>
+</ul>
+<p><strong>Решение:</strong> свежие куки + рабочие прокси от поставщика.</p>
+<hr>
+<div class="sl-heading-wrapper level-h4"><h4 id="nepravilnoe-kolichestvo-proksi">❌ “Неправильное количество прокси”</h4><a class="sl-anchor-link" href="#nepravilnoe-kolichestvo-proksi"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «❌ “Неправильное количество прокси”»</span></a></div>
+<p>Количество строк должно совпадать с количеством купленных аккаунтов.</p>
+<hr>
+<div class="sl-heading-wrapper level-h4"><h4 id="slishkom-mnogo-faylov-s-kuki">❌ “Слишком много файлов с куки”</h4><a class="sl-anchor-link" href="#slishkom-mnogo-faylov-s-kuki"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «❌ “Слишком много файлов с куки”»</span></a></div>
+<p>Каждому прокси — ровно один файл куки.</p>
+<hr>
+<div class="sl-heading-wrapper level-h4"><h4 id="nevernaya-ili-prosrochennaya-ssylka">❌ “Неверная или просроченная ссылка”</h4><a class="sl-anchor-link" href="#nevernaya-ili-prosrochennaya-ssylka"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «❌ “Неверная или просроченная ссылка”»</span></a></div>
+<p>Вернитесь в @pifashop и запросите новую ссылку.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="chasto-zadavaemye-voprosy">Часто задаваемые вопросы</h2><a class="sl-anchor-link" href="#chasto-zadavaemye-voprosy"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Часто задаваемые вопросы»</span></a></div>
+<div class="sl-heading-wrapper level-h4"><h4 id="kakie-fayly-mne-nuzhny">Какие файлы мне нужны?</h4><a class="sl-anchor-link" href="#kakie-fayly-mne-nuzhny"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Какие файлы мне нужны?»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Метод</th><th>Что нужно</th></tr></thead><tbody><tr><td>Afina Browser</td><td>Один файл-экспорт из Afina</td></tr><tr><td>AdsPower TXT</td><td>Один <code dir="auto">.txt</code> файл из AdsPower</td></tr><tr><td>Вручную</td><td>Прокси (текстом) + <code dir="auto">.json</code> файлы куки</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h4"><h4 id="mexc-posle-kyc-prosit-face-verification-eto-platno">MEXC после KYC просит Face Verification — это платно?</h4><a class="sl-anchor-link" href="#mexc-posle-kyc-prosit-face-verification-eto-platno"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «MEXC после KYC просит Face Verification — это платно?»</span></a></div>
+<p>Если запрос пришёл <strong>в первые 30 минут после KYC</strong> — реверификация <strong>бесплатная</strong>. Бот сам её отследит и довыпустит селлера на Face Scan. Если позже (часы/дни) — это уже отдельный платный REKYC.</p>
+<div class="sl-heading-wrapper level-h4"><h4 id="gde-vzyat-proksi">Где взять прокси?</h4><a class="sl-anchor-link" href="#gde-vzyat-proksi"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Где взять прокси?»</span></a></div>
+<p>У прокси-провайдера. Они дают текст вида <code dir="auto">IP:ПОРТ:ЛОГИН:ПАРОЛЬ</code>.</p>
+<div class="sl-heading-wrapper level-h4"><h4 id="gde-vzyat-fayly-kuki">Где взять файлы куки?</h4><a class="sl-anchor-link" href="#gde-vzyat-fayly-kuki"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Где взять файлы куки?»</span></a></div>
+<p>Экспортируйте через расширение <a href="https://cookie-editor.com/">Cookie Editor</a> (Chrome, Firefox, Edge, Safari), либо в вашем Anti-Detect браузере нажмите <strong>Экспортировать</strong>.</p>
+<div class="sl-heading-wrapper level-h4"><h4 id="mozhno-otpravit-kuki-tekstom">Можно отправить куки текстом?</h4><a class="sl-anchor-link" href="#mozhno-otpravit-kuki-tekstom"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Можно отправить куки текстом?»</span></a></div>
+<p><strong>Нет.</strong> Вставьте куки в файл <code dir="auto">.json</code> или <code dir="auto">.txt</code> и отправьте как документ через 📎.</p>
+<div class="sl-heading-wrapper level-h4"><h4 id="chto-esli-chast-akkauntov-ne-proshla">Что если часть аккаунтов не прошла?</h4><a class="sl-anchor-link" href="#chto-esli-chast-akkauntov-ne-proshla"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Что если часть аккаунтов не прошла?»</span></a></div>
+<p>Можно создать заказ с теми, что прошли. Неудачные исключаются.</p>
+<div class="sl-heading-wrapper level-h4"><h4 id="mozhno-zagruzit-eschyo-akkaunty-pozzhe">Можно загрузить ещё аккаунты позже?</h4><a class="sl-anchor-link" href="#mozhno-zagruzit-eschyo-akkaunty-pozzhe"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Можно загрузить ещё аккаунты позже?»</span></a></div>
+<p>Да! Нажмите <strong>Загрузить аккаунты</strong> ещё раз.</p>
+<div class="sl-heading-wrapper level-h4"><h4 id="chto-znachit-no-kyc-provider">Что значит “No KYC provider”?</h4><a class="sl-anchor-link" href="#chto-znachit-no-kyc-provider"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Что значит “No KYC provider”?»</span></a></div>
+<p>Аккаунт не настроен для KYC, либо куки от другого аккаунта. Свяжитесь с поставщиком.</p>
+<div class="sl-heading-wrapper level-h4"><h4 id="skolko-vremeni-zaymyot-kyc">Сколько времени займёт KYC?</h4><a class="sl-anchor-link" href="#skolko-vremeni-zaymyot-kyc"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Сколько времени займёт KYC?»</span></a></div>
+<p><strong>От нескольких минут до 1 дня</strong>, зависит от страны и доступности продавцов.</p>
+<div class="sl-heading-wrapper level-h4"><h4 id="chto-to-poshlo-ne-tak-k-komu-obraschatsya">Что-то пошло не так — к кому обращаться?</h4><a class="sl-anchor-link" href="#chto-to-poshlo-ne-tak-k-komu-obraschatsya"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Что-то пошло не так — к кому обращаться?»</span></a></div>
+<p>Напишите менеджеру <a href="https://t.me/poyof">@poyof</a> (поддержка @pifashop). Приложите скриншоты ошибок.</p>
+<hr>
+<blockquote>
+<p><strong>Резюме:</strong> Активируйте ссылку → Загрузить аккаунты → Выберите метод → Отправьте файлы → Подтвердите → Готово!</p>
+</blockquote>  <script>(function(){const className = "mermaid";
+
+    window.__mermaidClassName = className;
+  })();</script>   </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n">   </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr">   </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>

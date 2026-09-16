@@ -1,0 +1,581 @@
+<!DOCTYPE html><html lang="ru" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Bitget AutoPilot | AutoPilot</title><link rel="canonical" href="https://autopilotsoftware.github.io/docs/exchanges/bitget-autopilot/"/><link rel="alternate" hreflang="ru" href="https://autopilotsoftware.github.io/docs/exchanges/bitget-autopilot/"/><link rel="alternate" hreflang="en" href="https://autopilotsoftware.github.io/docs/en/exchanges/bitget-autopilot/"/><link rel="alternate" hreflang="uk" href="https://autopilotsoftware.github.io/docs/ua/exchanges/bitget-autopilot/"/><link rel="sitemap" href="/docs/sitemap-index.xml"/><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&#34;token&#34;: &#34;d98cb2456dd9448bb66e095a800bb391&#34;}"></script><link rel="shortcut icon" href="/docs/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v5.17.3"/><meta name="generator" content="Starlight v0.37.6"/><meta property="og:title" content="Bitget AutoPilot"/><meta property="og:type" content="article"/><meta property="og:url" content="https://autopilotsoftware.github.io/docs/exchanges/bitget-autopilot/"/><meta property="og:locale" content="ru"/><meta property="og:description" content="AutoPilot Software — автоматизация Bitget: регистрация, торговля, вывод средств"/><meta property="og:site_name" content="AutoPilot"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="AutoPilot Software — автоматизация Bitget: регистрация, торговля, вывод средств"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/docs/_astro/print.DNXP8c50.css" media="print"><link rel="stylesheet" href="/docs/_astro/index.DJxFRPMf.css">
+<style>@layer starlight.components{:root{--sl-badge-default-border: var(--sl-color-accent);--sl-badge-default-bg: var(--sl-color-accent-low);--sl-badge-default-text: #fff;--sl-badge-note-border: var(--sl-color-blue);--sl-badge-note-bg: var(--sl-color-blue-low);--sl-badge-note-text: #fff;--sl-badge-danger-border: var(--sl-color-red);--sl-badge-danger-bg: var(--sl-color-red-low);--sl-badge-danger-text: #fff;--sl-badge-success-border: var(--sl-color-green);--sl-badge-success-bg: var(--sl-color-green-low);--sl-badge-success-text: #fff;--sl-badge-caution-border: var(--sl-color-orange);--sl-badge-caution-bg: var(--sl-color-orange-low);--sl-badge-caution-text: #fff;--sl-badge-tip-border: var(--sl-color-purple);--sl-badge-tip-bg: var(--sl-color-purple-low);--sl-badge-tip-text: #fff}[data-theme=light]:root{--sl-badge-default-bg: var(--sl-color-accent-high);--sl-badge-note-bg: var(--sl-color-blue-high);--sl-badge-danger-bg: var(--sl-color-red-high);--sl-badge-success-bg: var(--sl-color-green-high);--sl-badge-caution-bg: var(--sl-color-orange-high);--sl-badge-tip-bg: var(--sl-color-purple-high)}.sl-badge:where(.astro-avdet4wd){display:inline-block;border:1px solid var(--sl-color-border-badge);border-radius:.25rem;font-family:var(--sl-font-system-mono);line-height:normal;color:var(--sl-color-text-badge);background-color:var(--sl-color-bg-badge);overflow-wrap:anywhere}.sidebar-content .sl-badge:where(.astro-avdet4wd){line-height:1;font-size:var(--sl-text-xs);padding:.125rem .375rem}.sidebar-content a[aria-current=page]>.sl-badge:where(.astro-avdet4wd){--sl-color-bg-badge: transparent;--sl-color-border-badge: currentColor;color:inherit}.default:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-default-bg);--sl-color-border-badge: var(--sl-badge-default-border);--sl-color-text-badge: var(--sl-badge-default-text)}.note:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-note-bg);--sl-color-border-badge: var(--sl-badge-note-border);--sl-color-text-badge: var(--sl-badge-note-text)}.danger:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-danger-bg);--sl-color-border-badge: var(--sl-badge-danger-border);--sl-color-text-badge: var(--sl-badge-danger-text)}.success:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-success-bg);--sl-color-border-badge: var(--sl-badge-success-border);--sl-color-text-badge: var(--sl-badge-success-text)}.tip:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-tip-bg);--sl-color-border-badge: var(--sl-badge-tip-border);--sl-color-text-badge: var(--sl-badge-tip-text)}.caution:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-caution-bg);--sl-color-border-badge: var(--sl-badge-caution-border);--sl-color-text-badge: var(--sl-badge-caution-text)}.small:where(.astro-avdet4wd){font-size:var(--sl-text-xs);padding:.125rem .25rem}.medium:where(.astro-avdet4wd){font-size:var(--sl-text-sm);padding:.175rem .35rem}.large:where(.astro-avdet4wd){font-size:var(--sl-text-base);padding:.225rem .45rem}.sl-markdown-content :is(h1,h2,h3,h4,h5,h6) .sl-badge:where(.astro-avdet4wd){vertical-align:middle}}
+@layer starlight.components{.card-grid:where(.astro-zntqmydn){display:grid;grid-template-columns:100%;gap:1rem}.card-grid:where(.astro-zntqmydn)>*{margin-top:0!important}@media(min-width:50rem){.card-grid:where(.astro-zntqmydn){grid-template-columns:1fr 1fr;gap:1.5rem}.stagger:where(.astro-zntqmydn){--stagger-height: 5rem;padding-bottom:var(--stagger-height)}.stagger:where(.astro-zntqmydn)>*:nth-child(2n){transform:translateY(var(--stagger-height))}}}
+@layer starlight.components{svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-size, 1em);width:1em;height:1em}}
+@layer starlight.components{.sl-link-card:where(.astro-mf7fz2mj){display:grid;grid-template-columns:1fr auto;gap:.5rem;border:1px solid var(--sl-color-gray-5);border-radius:.5rem;padding:1rem;box-shadow:var(--sl-shadow-sm);position:relative}a:where(.astro-mf7fz2mj){text-decoration:none;line-height:var(--sl-line-height-headings)}a:where(.astro-mf7fz2mj):before{content:"";position:absolute;inset:0}.stack:where(.astro-mf7fz2mj){flex-direction:column;gap:.5rem}.title:where(.astro-mf7fz2mj){color:var(--sl-color-white);font-weight:600;font-size:var(--sl-text-lg)}.description:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3);line-height:1.5}.icon:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3)}.sl-link-card:where(.astro-mf7fz2mj):hover{background:var(--sl-color-gray-7, var(--sl-color-gray-6));border-color:var(--sl-color-gray-2)}.sl-link-card:where(.astro-mf7fz2mj):hover .icon:where(.astro-mf7fz2mj){color:var(--sl-color-white)}}
+@layer starlight.components{.sl-steps{--bullet-size: calc(var(--sl-line-height) * 1rem);--bullet-margin: .375rem;list-style:none;counter-reset:steps-counter var(--sl-steps-start, 0);padding-inline-start:0}.sl-steps>li{counter-increment:steps-counter;position:relative;padding-inline-start:calc(var(--bullet-size) + 1rem);padding-bottom:1px;min-height:calc(var(--bullet-size) + var(--bullet-margin))}.sl-steps>li+li{margin-top:0}.sl-steps>li:before{content:counter(steps-counter);position:absolute;top:0;inset-inline-start:0;width:var(--bullet-size);height:var(--bullet-size);line-height:var(--bullet-size);font-size:var(--sl-text-xs);font-weight:600;text-align:center;color:var(--sl-color-white);background-color:var(--sl-color-gray-6);border-radius:99rem;box-shadow:inset 0 0 0 1px var(--sl-color-gray-5)}.sl-steps>li:after{--guide-width: 1px;content:"";position:absolute;top:calc(var(--bullet-size) + var(--bullet-margin));bottom:var(--bullet-margin);inset-inline-start:calc((var(--bullet-size) - var(--guide-width)) / 2);width:var(--guide-width);background-color:var(--sl-color-hairline-light)}}@layer starlight.content{.sl-steps>li>:first-child{--lh: calc(1em * var(--sl-line-height));--shift-y: calc(.5 * (var(--bullet-size) - var(--lh)));transform:translateY(var(--shift-y));margin-bottom:var(--shift-y)}.sl-steps>li>:first-child:where(h1,h2,h3,h4,h5,h6){--lh: calc(1em * var(--sl-line-height-headings))}@supports (--prop: 1lh){.sl-steps>li>:first-child{--lh: 1lh}}}
+@layer starlight.components{.sl-link-button:where(.astro-xwgiixxa){align-items:center;border:1px solid transparent;border-radius:999rem;display:inline-flex;font-size:var(--sl-text-sm);gap:.5em;line-height:1.1875;outline-offset:.25rem;padding:.4375rem 1.125rem;text-decoration:none}.sl-link-button:where(.astro-xwgiixxa).primary{background:var(--sl-color-text-accent);border-color:var(--sl-color-text-accent);color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).primary:hover{color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).secondary{border-color:inherit;color:var(--sl-color-white)}.sl-link-button:where(.astro-xwgiixxa).minimal{color:var(--sl-color-white);padding-inline:0}.sl-link-button:where(.astro-xwgiixxa) svg{flex-shrink:0}@media(min-width:50rem){.sl-link-button:where(.astro-xwgiixxa){font-size:var(--sl-text-base);padding:.9375rem 1.25rem}}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa){margin-inline-end:1rem}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa):not(:where(p *)){margin-block:1rem}}
+</style><script type="module" src="/docs/_astro/page.B1D-nYk3.js"></script></head> <body class="astro-bguv2lll"> <a href="#_top" class="astro-7q3lir66">Перейти к содержимому</a>  <div class="page sl-flex astro-vrdttmbt"> <header class="header astro-vrdttmbt"><div class="header astro-kmkmnagf"> <div class="title-wrapper sl-flex astro-kmkmnagf"> <a href="/docs/" class="site-title sl-flex astro-m46x6ez3">  <img class="astro-m46x6ez3" alt src="/docs/_astro/auto_pilot_logo.CfyEiyY2.png" width="600" height="600">  <span class="astro-m46x6ez3" translate="no"> AutoPilot </span> </a>  </div> <div class="sl-flex print:hidden astro-kmkmnagf"> <site-search class="astro-kmkmnagf astro-v37mnknz" data-translations="{&#34;placeholder&#34;:&#34;Поиск&#34;}"> <button data-open-modal disabled aria-label="Поиск" aria-keyshortcuts="Control+K" class="astro-v37mnknz"> <svg aria-hidden="true" class="astro-v37mnknz astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg> <span class="sl-hidden md:sl-block astro-v37mnknz" aria-hidden="true">Поиск</span> <kbd class="sl-hidden md:sl-flex astro-v37mnknz" style="display: none;"> <kbd class="astro-v37mnknz">Ctrl</kbd><kbd class="astro-v37mnknz">K</kbd> </kbd> </button> <dialog style="padding:0" aria-label="Поиск" class="astro-v37mnknz"> <div class="dialog-frame sl-flex astro-v37mnknz">  <button data-close-modal class="sl-flex md:sl-hidden astro-v37mnknz"> Отменить </button> <div class="search-container astro-v37mnknz"> <div id="starlight__search" class="astro-v37mnknz"></div> </div> </div> </dialog> </site-search>  <script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script> <script type="module" src="/docs/_astro/Search.astro_astro_type_script_index_0_lang.7TPqQKfI.js"></script>   </div> <div class="sl-hidden md:sl-flex print:hidden right-group astro-kmkmnagf"> <div class="sl-flex social-icons astro-kmkmnagf">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Выберите тему</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Тёмная</option><option value="light" class="astro-4yphtoen">Светлая</option><option value="auto" selected class="astro-4yphtoen">Авто</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script> <script type="module">const r="starlight-theme",o=e=>e==="auto"||e==="dark"||e==="light"?e:"auto",c=()=>o(typeof localStorage<"u"&&localStorage.getItem(r));function n(e){typeof localStorage<"u"&&localStorage.setItem(r,e==="light"||e==="dark"?e:"")}const l=()=>matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";function t(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e==="auto"?l():e,n(e)}matchMedia("(prefers-color-scheme: light)").addEventListener("change",()=>{c()==="auto"&&t("auto")});class s extends HTMLElement{constructor(){super(),t(c()),this.querySelector("select")?.addEventListener("change",a=>{a.currentTarget instanceof HTMLSelectElement&&t(o(a.currentTarget.value))})}}customElements.define("starlight-theme-select",s);</script> <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Выберите язык</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/exchanges/bitget-autopilot/" class="astro-4yphtoen">Русский</option><option value="/docs/en/exchanges/bitget-autopilot/" class="astro-4yphtoen">English</option><option value="/docs/ua/exchanges/bitget-autopilot/" class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select><script type="module">class s extends HTMLElement{constructor(){super();const e=this.querySelector("select");e&&(e.addEventListener("change",t=>{t.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=t.currentTarget.value)}),window.addEventListener("pageshow",t=>{if(!t.persisted)return;const n=e.querySelector("option[selected]")?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}}customElements.define("starlight-lang-select",s);</script> </div> </div> </header> <nav class="sidebar print:hidden astro-vrdttmbt" aria-label="Основное"> <starlight-menu-button class="print:hidden astro-jif73yzw"> <button aria-expanded="false" aria-label="Меню" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-jif73yzw"> <svg aria-hidden="true" class="open-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg> <svg aria-hidden="true" class="close-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg> </button> </starlight-menu-button> <script type="module">class s extends HTMLElement{constructor(){super(),this.btn=this.querySelector("button"),this.btn.addEventListener("click",()=>this.toggleExpanded());const t=this.closest("nav");t&&t.addEventListener("keyup",e=>this.closeOnEscape(e))}setExpanded(t){this.setAttribute("aria-expanded",String(t)),document.body.toggleAttribute("data-mobile-menu-expanded",t)}toggleExpanded(){this.setExpanded(this.getAttribute("aria-expanded")!=="true")}closeOnEscape(t){t.code==="Escape"&&(this.setExpanded(!1),this.btn.focus())}}customElements.define("starlight-menu-button",s);</script>   <div id="starlight__sidebar" class="sidebar-pane astro-vrdttmbt"> <div class="sidebar-content sl-flex astro-vrdttmbt"> <sl-sidebar-state-persist data-hash="1yfspf9" class="astro-kku4brbg"> <script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script>  <ul class="top-level astro-3ii7xxms"> <li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Начало работы</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="0"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/getting-started/faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">FAQ</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/getting-started/macos-launch/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Запуск на macOS</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Биржи</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="1"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/exchanges/bybit-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bybit AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/exchanges/mexc-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">MEXC AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/exchanges/bitget-autopilot/" aria-current="page" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bitget AutoPilot</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">KYC Платформа</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="2"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/kyc/autopilot-kyc-subscription/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Подписка KYC</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/kyc/nvs-faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">NVS Загрузка</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/kyc/pilot-faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Гайд Пилота</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/kyc/sellers-guide/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Seller Guide</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/kyc/autopilot-kyc-tos/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Условия использования</span>  </a> </li> </ul>  </details> </li> </ul>   <script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-wu23bvmt"> <div class="social-icons astro-wu23bvmt">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Выберите тему</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Тёмная</option><option value="light" class="astro-4yphtoen">Светлая</option><option value="auto" selected class="astro-4yphtoen">Авто</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>  <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Выберите язык</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/exchanges/bitget-autopilot/" class="astro-4yphtoen">Русский</option><option value="/docs/en/exchanges/bitget-autopilot/" class="astro-4yphtoen">English</option><option value="/docs/ua/exchanges/bitget-autopilot/" class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select> </div>  </div> </div> </div> </nav> <div class="main-frame astro-vrdttmbt">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-67yu43on"> <aside class="right-sidebar-container print:hidden astro-67yu43on"> <div class="right-sidebar astro-67yu43on"> <script type="module" src="/docs/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.hwBsy0Mo.js"></script><script type="module" src="/docs/_astro/TableOfContents.astro_astro_type_script_index_0_lang.FuRcXuRY.js"></script><div class="lg:sl-hidden astro-pb3aqygn"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-doynk5tl"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-doynk5tl"><details id="starlight__mobile-toc" class="astro-doynk5tl"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-doynk5tl"><span class="toggle sl-flex astro-doynk5tl">На этой странице<svg aria-hidden="true" class="caret astro-doynk5tl astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-doynk5tl"></span></summary><div class="dropdown astro-doynk5tl"><ul class="isMobile astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Обзор</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#zabudte-o-ruchnoy-rabote-reshenie-naydeno" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Забудьте о ручной работе: решение найдено</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#funktsional-bitget-autopilot" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Функционал Bitget AutoPilot</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#nastroyka-kapchi" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">🧩 Настройка капчи</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#polniy-spisok-deystviy-action" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Полный список действий (ACTION)</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#register-registratsiya-akkaunta" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">REGISTER — Регистрация аккаунта</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#login-login-v-akkaunt" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">LOGIN — Логин в аккаунт</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#deposit-poluchenie-adresa-depozita" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">DEPOSIT — Получение адреса депозита</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#2fa-podklyuchenie-2fa" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">2FA — Подключение 2FA</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#whitelist-dobavlenie-v-whitelist" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">WHITELIST — Добавление в Whitelist</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#withdraw-vyvod-sredstv" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">WITHDRAW — Вывод средств</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#trading-torgovlya" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">TRADING — Торговля</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#futures-bit-fyuchersy-usdt-m-nabiv-obyoma" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">futures_bit — Фьючерсы USDT-M (набив объёма)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#cb--candybomb" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">CB — CandyBomb</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sell-prodazha-vsekh-aktivov" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">SELL — Продажа всех активов</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#profit-podschet-pribyli" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">PROFIT — Подсчет прибыли</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#link-bit-poluchit-ssylku-kyc-verifikatsii" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">link_bit — Получить ссылку KYC верификации</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#export-bit-eksport-akkaunta-dlya-kyc" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">export_bit — Экспорт аккаунта для KYC</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#svodnaya-tablitsa" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Сводная таблица</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#pokupka" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Покупка</span> </a>  </li> </ul> </div></details></nav></mobile-starlight-toc></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-pb3aqygn"><div class="sl-container astro-pb3aqygn"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">На этой странице</h2><ul class="astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Обзор</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#zabudte-o-ruchnoy-rabote-reshenie-naydeno" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Забудьте о ручной работе: решение найдено</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#funktsional-bitget-autopilot" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Функционал Bitget AutoPilot</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#nastroyka-kapchi" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">🧩 Настройка капчи</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#polniy-spisok-deystviy-action" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Полный список действий (ACTION)</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#register-registratsiya-akkaunta" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">REGISTER — Регистрация аккаунта</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#login-login-v-akkaunt" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">LOGIN — Логин в аккаунт</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#deposit-poluchenie-adresa-depozita" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">DEPOSIT — Получение адреса депозита</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#2fa-podklyuchenie-2fa" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">2FA — Подключение 2FA</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#whitelist-dobavlenie-v-whitelist" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">WHITELIST — Добавление в Whitelist</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#withdraw-vyvod-sredstv" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">WITHDRAW — Вывод средств</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#trading-torgovlya" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">TRADING — Торговля</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#futures-bit-fyuchersy-usdt-m-nabiv-obyoma" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">futures_bit — Фьючерсы USDT-M (набив объёма)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#cb--candybomb" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">CB — CandyBomb</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sell-prodazha-vsekh-aktivov" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">SELL — Продажа всех активов</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#profit-podschet-pribyli" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">PROFIT — Подсчет прибыли</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#link-bit-poluchit-ssylku-kyc-verifikatsii" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">link_bit — Получить ссылку KYC верификации</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#export-bit-eksport-akkaunta-dlya-kyc" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">export_bit — Экспорт аккаунта для KYC</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#svodnaya-tablitsa" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Сводная таблица</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#pokupka" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Покупка</span> </a>  </li> </ul> </nav></starlight-toc></div></div> </div> </aside> <div class="main-pane astro-67yu43on">  <main data-pagefind-body class="astro-bguv2lll" lang="ru" dir="ltr">   <script type="module" src="/docs/_astro/MarkdownContent.astro_astro_type_script_index_0_lang.Be01RnYk.js"></script> <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <h1 id="_top" class="astro-j6tvhyss">Bitget AutoPilot</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content">  <div class="sl-heading-wrapper level-h1"><h1 id="autopilot-software-maksimalnaya-avtomatizatsiya-na-bitget">AutoPilot Software — Максимальная Автоматизация на Bitget</h1><a class="sl-anchor-link" href="#autopilot-software-maksimalnaya-avtomatizatsiya-na-bitget"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «AutoPilot Software — Максимальная Автоматизация на Bitget»</span></a></div>
+<p><strong>Поддержка AdsPower &#x26; Dolphin &#x26; Vision &#x26; Afina</strong>
+<strong>Windows / MacOS / Linux</strong></p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="zabudte-o-ruchnoy-rabote-reshenie-naydeno">Забудьте о ручной работе: решение найдено</h2><a class="sl-anchor-link" href="#zabudte-o-ruchnoy-rabote-reshenie-naydeno"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Забудьте о ручной работе: решение найдено»</span></a></div>
+<p>Ручное управление аккаунтами требует много времени, усилий и сопряжено с риском ошибок. Для масштабирования своих операций вам необходимо:</p>
+<ul>
+<li>Регулярно выполнять однотипные действия</li>
+<li>Оптимизировать время</li>
+</ul>
+<p>AutoPilot Software решает эти проблемы, превращая рутину в автоматический процесс. Интеграция с AdsPower &#x26; Dolphin обеспечивает защиту цифровых отпечатков и безопасную работу с множеством аккаунтов.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="funktsional-bitget-autopilot">Функционал Bitget AutoPilot</h2><a class="sl-anchor-link" href="#funktsional-bitget-autopilot"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Функционал Bitget AutoPilot»</span></a></div>
+<p>AutoPilot поддерживает множество автоматизированных действий:</p>
+<ul>
+<li><strong>Регистрация</strong> аккаунтов на Bitget: обычным методом, по ссылке партнера, по реферальной ссылке</li>
+<li><strong>Логин</strong>: вход в аккаунт, проверка верификации и баланса аккаунта</li>
+<li><strong>Проверка KYC</strong>: проверка уровня верификации, запись статуса при отклоненном KYC</li>
+<li><strong>Управление 2FA</strong>: подключение двухфакторной аутентификации и ввод кодов</li>
+<li><strong>Получение адреса депозита</strong></li>
+<li><strong>Вывод средств</strong> с аккаунта</li>
+<li><strong>Добавление адресов в whitelist</strong></li>
+<li><strong>Получение API-ключей</strong> для торговли</li>
+<li><strong>Автоматический трансфер</strong>: перевод средств между счетами</li>
+<li><strong>Автоматическая чистка кеша</strong>: чистка кеша Bitget, когда это требуется</li>
+<li><strong>Автоматический трейдинг</strong>: торговля и набив объёма в указанной паре</li>
+<li><strong>Фьючерсы (USDT-M)</strong>: набив объёма циклами «открыл → сразу закрыл» с плечом, без удержания позиции</li>
+<li><strong>Участие в CandyBomb</strong> событиях: регистрация в ивенте, проверка меток</li>
+<li><strong>Экспорт аккаунта для KYC</strong>: упаковка готового аккаунта для прохождения верификации в @AutoPilotKYC_bot</li>
+<li>Проверка почт перед запуском</li>
+<li>Поддержка перенаправления почты и проверка кодов подтверждения в папке Spam</li>
+<li>Подсчет общей прибыли аккаунта</li>
+<li>И многое другое под капотом</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="nastroyka-kapchi">🧩 Настройка капчи</h2><a class="sl-anchor-link" href="#nastroyka-kapchi"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «🧩 Настройка капчи»</span></a></div>
+<p>Капчу AutoPilot решает <strong>сам, внутри exe</strong> — бесплатно, без сторонних сервисов и без браузера. Для большинства капч на Bitget платный ключ не нужен: софт стартует и работает без него.</p>
+<p>Платный провайдер подключается только как подстраховка на редкие типы капчи. Если решите завести ключ — подходят три сервиса:</p>
+<ul>
+<li>⭐ <strong>CapSolver</strong> — <a href="https://www.capsolver.com/">capsolver.com</a> — <strong>рекомендуется</strong></li>
+<li><strong>CapMonster</strong> — <a href="https://capmonster.cloud/">capmonster.cloud</a></li>
+<li><strong>2Captcha</strong> — <a href="https://2captcha.com/">2captcha.com</a></li>
+</ul>
+<p>Настраивается в <code dir="auto">AutoPilot.config</code>:</p>
+<div class="expressive-code"><link rel="stylesheet" href="/docs/_astro/ec.v4551.css"><script type="module" src="/docs/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">captcha_key=CAP-ВАШ_КЛЮЧ_ЗДЕСЬ</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="captcha_key=CAP-ВАШ_КЛЮЧ_ЗДЕСЬ"><div></div></button></div></figure></div>
+<blockquote>
+<p>🏠 <strong>Прокси профиля обязан быть резидентским</strong> — встроенный решатель отправляет проверку капчи с IP профиля, а датацентровые IP не проходят. Подробнее — <a href="/docs/faq/#4--%D0%BF%D1%80%D0%BE%D0%BA%D1%81%D0%B8-%D0%B8-%D0%BA%D0%B0%D0%BF%D1%87%D0%B0">FAQ → секция 4: Прокси и капча</a>.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="polniy-spisok-deystviy-action">Полный список действий (ACTION)</h2><a class="sl-anchor-link" href="#polniy-spisok-deystviy-action"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Полный список действий (ACTION)»</span></a></div>
+<blockquote>
+<p>➕ <strong>Несколько действий за один проход.</strong> В ячейку <code dir="auto">ACTION</code> можно записать цепочку через <code dir="auto">+</code> — например <code dir="auto">register+learn+whitelist</code>. Шаги выполняются по очереди на каждом аккаунте, браузер профиля между ними не перезапускается. Подробнее — <a href="/docs/faq/#action-chains">FAQ → Цепочки действий</a>.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="register-registratsiya-akkaunta"><code dir="auto">REGISTER</code> — Регистрация аккаунта</h3><a class="sl-anchor-link" href="#register-registratsiya-akkaunta"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «REGISTER — Регистрация аккаунта»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Столбец</th><th>Описание</th></tr></thead><tbody><tr><td><strong>Требует</strong></td><td><code dir="auto">[EMAIL] mail_provider</code></td><td>Почтовый сервис</td></tr><tr><td><strong>Требует</strong></td><td><code dir="auto">[PROFILE] mail</code></td><td>Почтовый адрес</td></tr><tr><td><strong>Требует</strong></td><td><code dir="auto">[EMAIL] mail_password</code></td><td>Пароль почты / IMAP пароль</td></tr><tr><td>Опционально</td><td><code dir="auto">[PROFILE] bitget_password</code></td><td>Пароль от аккаунта (AutoPilot генерирует, если пустой)</td></tr><tr><td>Опционально</td><td><code dir="auto">[REG] referral_code</code></td><td>Реферальный код или ссылка партнера</td></tr><tr><td><strong>Обновляет</strong></td><td><code dir="auto">[REG] is_registered</code></td><td>Успешная регистрация</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="login-login-v-akkaunt"><code dir="auto">LOGIN</code> — Логин в аккаунт</h3><a class="sl-anchor-link" href="#login-login-v-akkaunt"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «LOGIN — Логин в аккаунт»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Столбец</th><th>Описание</th></tr></thead><tbody><tr><td><strong>Требует</strong></td><td><code dir="auto">[REG] is_registered</code></td><td>1 (зарегистрирован)</td></tr><tr><td><strong>Требует</strong></td><td><code dir="auto">[PROFILE] mail</code></td><td>Адрес почты</td></tr><tr><td><strong>Требует</strong></td><td><code dir="auto">[PROFILE] bitget_password</code></td><td>Пароль от аккаунта</td></tr><tr><td>Опционально</td><td><code dir="auto">[2FA] totp_secret_code</code></td><td>Секретный код 2FA</td></tr><tr><td><strong>Обновляет</strong></td><td><code dir="auto">[KYC] kyc_status</code></td><td>Уровень и страну верификации</td></tr><tr><td><strong>Обновляет</strong></td><td><code dir="auto">[BALANCE] account_balance</code></td><td>Баланс аккаунта в USDT</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="deposit-poluchenie-adresa-depozita"><code dir="auto">DEPOSIT</code> — Получение адреса депозита</h3><a class="sl-anchor-link" href="#deposit-poluchenie-adresa-depozita"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «DEPOSIT — Получение адреса депозита»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Столбец</th><th>Описание</th></tr></thead><tbody><tr><td><strong>Требует</strong></td><td><code dir="auto">[DEPOSIT] deposit_coin</code></td><td>Валюта депозита</td></tr><tr><td><strong>Требует</strong></td><td><code dir="auto">[DEPOSIT] deposit_chain</code></td><td>Сеть (как на Bitget, например: <code dir="auto">BSC</code>)</td></tr><tr><td><strong>Обновляет</strong></td><td><code dir="auto">[DEPOSIT] deposit_address</code></td><td>Адрес депозита (формат: <code dir="auto">адрес:memo</code>)</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="2fa-podklyuchenie-2fa"><code dir="auto">2FA</code> — Подключение 2FA</h3><a class="sl-anchor-link" href="#2fa-podklyuchenie-2fa"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «2FA — Подключение 2FA»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Столбец</th><th>Описание</th></tr></thead><tbody><tr><td><strong>Обновляет</strong></td><td><code dir="auto">[2FA] totp_secret_code</code></td><td>Секретный код 2FA</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="whitelist-dobavlenie-v-whitelist"><code dir="auto">WHITELIST</code> — Добавление в Whitelist</h3><a class="sl-anchor-link" href="#whitelist-dobavlenie-v-whitelist"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «WHITELIST — Добавление в Whitelist»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Столбец</th><th>Описание</th></tr></thead><tbody><tr><td><strong>Требует</strong></td><td><code dir="auto">[WHITELIST] whitelist_address</code></td><td>Адрес кошелька</td></tr><tr><td><strong>Требует</strong></td><td><code dir="auto">[WHITELIST] whitelist_chain</code></td><td>Сеть (как на Bitget, например: <code dir="auto">BSC</code>)</td></tr><tr><td>Опционально</td><td><code dir="auto">[WHITELIST] whitelist_memo</code></td><td>Memo (опционально)</td></tr><tr><td><strong>Обновляет</strong></td><td><code dir="auto">[WHITELIST] whitelist_status</code></td><td>Успешно подключен</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="withdraw-vyvod-sredstv"><code dir="auto">WITHDRAW</code> — Вывод средств</h3><a class="sl-anchor-link" href="#withdraw-vyvod-sredstv"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «WITHDRAW — Вывод средств»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Столбец</th><th>Описание</th></tr></thead><tbody><tr><td><strong>Требует</strong></td><td><code dir="auto">[WITHDRAW] withdraw_coin</code></td><td>Валюта вывода</td></tr><tr><td><strong>Требует</strong></td><td><code dir="auto">[WITHDRAW] withdraw_chain</code></td><td>Сеть (как на Bitget, например: <code dir="auto">BSC</code>)</td></tr><tr><td><strong>Требует</strong></td><td><code dir="auto">[WITHDRAW] withdraw_address</code></td><td>Адрес кошелька</td></tr><tr><td>Опционально</td><td><code dir="auto">[WITHDRAW] withdraw_memo</code></td><td>Memo (опционально)</td></tr><tr><td>Опционально</td><td><code dir="auto">[WITHDRAW] withdraw_amount</code></td><td>Сумма в % (100 = всё, 50 = половина)</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="trading-torgovlya"><code dir="auto">TRADING</code> — Торговля</h3><a class="sl-anchor-link" href="#trading-torgovlya"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «TRADING — Торговля»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Столбец</th><th>Описание</th></tr></thead><tbody><tr><td><strong>Требует</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Актив для торговли (например: <code dir="auto">BTC</code>)</td></tr><tr><td><strong>Требует</strong></td><td><code dir="auto">[TRADING] trading_amount</code></td><td>Размер ордера в USDT</td></tr><tr><td><strong>Требует</strong></td><td><code dir="auto">[TRADING] trading_cycles</code></td><td>Кол-во циклов покупки-продажи</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="futures-bit-fyuchersy-usdt-m-nabiv-obyoma"><code dir="auto">futures_bit</code> — Фьючерсы USDT-M (набив объёма)</h3><a class="sl-anchor-link" href="#futures-bit-fyuchersy-usdt-m-nabiv-obyoma"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «futures_bit — Фьючерсы USDT-M (набив объёма)»</span></a></div>
+<p>Открывает фьючерсную позицию <strong>по рынку</strong> и <strong>сразу закрывает её</strong> тем же объёмом. Позиция не удерживается — цель не прибыль, а <strong>торговый оборот</strong>, на котором завязаны награды биржи (CandyBomb, задачи, купоны). Платится только комиссия.</p>
+<div class="mermaid" data-content="flowchart TD
+    START[&#x22;⚡ Запуск&#x22;] --> SPEC[&#x22;📋 Параметры контракта + цена&#x22;]
+    SPEC --> CALC[&#x22;🧮 Расчёт размера<br/>(не ниже минимума биржи)&#x22;]
+    CALC --> FUND{&#x22;Хватает денег<br/>на фьючерсах?&#x22;}
+    FUND -- &#x22;Нет&#x22; --> TR[&#x22;💸 Перевод SPOT → USDT-M&#x22;]
+    FUND -- &#x22;Да&#x22; --> LEV
+    TR --> LEV[&#x22;⚙️ Установка плеча&#x22;]
+    LEV --> OPEN[&#x22;📈 Открыть по маркету&#x22;]
+    OPEN --> CLOSE[&#x22;📉 Закрыть тем же объёмом&#x22;]
+    CLOSE --> LOOP{&#x22;Ещё цикл?&#x22;}
+    LOOP -- &#x22;Да&#x22; --> OPEN
+    LOOP -- &#x22;Нет&#x22; --> SWEEP[&#x22;🏦 Вернуть маржу на SPOT&#x22;]
+    SWEEP --> DONE[&#x22;✅ [RESULT] status — сводка&#x22;]
+
+    style START fill:#FF9800,color:#fff,stroke:none,rx:10
+    style OPEN fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style CLOSE fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style SWEEP fill:#607D8B,color:#fff,stroke:none,rx:10
+    style DONE fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Где задаётся</th><th>Описание</th></tr></thead><tbody><tr><td>Опционально</td><td><code dir="auto">futures_symbol</code> (конфиг)</td><td>Контракт. По умолчанию <code dir="auto">DOGEUSDT_UMCBL</code> — самый дешёвый вход</td></tr><tr><td>Опционально</td><td><code dir="auto">futures_leverage</code> (конфиг)</td><td>Плечо, <code dir="auto">1</code>–<code dir="auto">75</code>. По умолчанию <code dir="auto">20</code></td></tr><tr><td>Опционально</td><td><code dir="auto">futures_notional</code> (конфиг)</td><td>Объём одного ордера в USDT. По умолчанию <code dir="auto">6</code>, <strong>минимум 5</strong> (ограничение биржи)</td></tr><tr><td>Опционально</td><td><code dir="auto">futures_wash_count</code> (конфиг)</td><td>Сколько циклов «открыл → закрыл» за прогон, <code dir="auto">1</code>–<code dir="auto">50</code>. По умолчанию <code dir="auto">1</code></td></tr><tr><td>Опционально</td><td><code dir="auto">futures_margin</code> (конфиг)</td><td>Сколько USDT разрешено перевести со SPOT на фьючерсы. По умолчанию считается само</td></tr><tr><td>Опционально</td><td><code dir="auto">futures_side</code> (конфиг)</td><td>Направление: <code dir="auto">long</code> (по умолч.) / <code dir="auto">short</code></td></tr><tr><td><strong>Обновляет</strong></td><td><code dir="auto">[RESULT] status</code></td><td>Сводка прогона — например <code dir="auto">[FUTURES_BIT] SUCCESS - 1/1 wash(es), opened 1, closed 1, ~12.08 USDT volume</code></td></tr></tbody></table>
+<blockquote>
+<p><strong>Ни одного нового столбца в Excel.</strong> Все параметры живут в общем файле конфигурации — на профиль ничего заполнять не нужно.</p>
+</blockquote>
+<blockquote>
+<p>💰 <strong>Сколько стоит оборот.</strong> На проверке круг «открыл → закрыл» на ~6 USDT нотионала обошёлся в <strong>0.008 USDT</strong>. Наблюдаемая стоимость набива — порядка <strong>0.05–0.08% от оборота</strong>.</p>
+</blockquote>
+<blockquote>
+<p>🏦 <strong>Деньги возвращаются сами.</strong> Если на фьючерсном счёте пусто, действие само переводит нужную маржу со SPOT, а после последнего цикла <strong>сметает остаток обратно на SPOT</strong>. Между запусками деньги не «залипают» на фьючерсах.</p>
+</blockquote>
+<blockquote>
+<p>🔁 <strong>Закрытие с ретраями.</strong> Закрытие повторяется до 3 раз. Если позицию всё же не удалось закрыть — это пишется в лог и в статус как <code dir="auto">PARTIAL</code>, чтобы её было видно, а не потерять молча.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>Сначала запишись в ивенты, потом торгуй.</strong> Оборот засчитывается только тем воронкам, куда аккаунт вступил <strong>до</strong> сделок. Порядок: сначала регистрация в ивентах и приём заданий, затем <code dir="auto">futures_bit</code>.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>Минимальный ордер — 5 USDT.</strong> Меньше биржа не примет; действие само поднимает размер до минимума, даже если в конфиге указано меньше.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="cb--candybomb"><code dir="auto">CB</code> — CandyBomb</h3><a class="sl-anchor-link" href="#cb--candybomb"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «CB — CandyBomb»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Столбец</th><th>Описание</th></tr></thead><tbody><tr><td><strong>Требует</strong></td><td><code dir="auto">[CB] code</code></td><td>Код события из ссылки</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="sell-prodazha-vsekh-aktivov"><code dir="auto">SELL</code> — Продажа всех активов</h3><a class="sl-anchor-link" href="#sell-prodazha-vsekh-aktivov"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «SELL — Продажа всех активов»</span></a></div>
+<p>Продажа всех активов на SPOT счете по маркету за USDT.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="profit-podschet-pribyli"><code dir="auto">PROFIT</code> — Подсчет прибыли</h3><a class="sl-anchor-link" href="#profit-podschet-pribyli"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «PROFIT — Подсчет прибыли»</span></a></div>
+<p>Формула: сумма выводов - сумма депозитов + баланс аккаунта.</p>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="link-bit-poluchit-ssylku-kyc-verifikatsii"><code dir="auto">link_bit</code> — Получить ссылку KYC верификации</h3><a class="sl-anchor-link" href="#link-bit-poluchit-ssylku-kyc-verifikatsii"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «link_bit — Получить ссылку KYC верификации»</span></a></div>
+<blockquote>
+<p>⚠️ <strong>Отдельное действие не нужно.</strong> Получение ссылки KYC для Bitget переехало в нашу экосистему — используйте бота и расширение ниже.</p>
+</blockquote>
+<ul>
+<li>🤖 <strong>Telegram-бот + Miniapp <a href="https://t.me/AutoPilotKYC_bot">@AutoPilotKYC_bot</a></strong> — автоматические KYC-верификации на платформе AutoPilot KYC. Подробнее: <a href="/docs/kyc/autopilot-kyc-subscription/">KYC Платформа</a>.</li>
+<li>🧩 <strong>Бесплатное расширение <a href="https://chromewebstore.google.com/detail/autopilot-link-generator/maogfegbjecdgkfnkemoalpbgodknmaa">AutoPilot Link Generator</a></strong> — генерирует ссылки верификации для Bybit, MEXC, Bitget и произвольных Sumsub/Onfido токенов прямо в браузере.</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="export-bit-eksport-akkaunta-dlya-kyc"><code dir="auto">export_bit</code> — Экспорт аккаунта для KYC</h3><a class="sl-anchor-link" href="#export-bit-eksport-akkaunta-dlya-kyc"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «export_bit — Экспорт аккаунта для KYC»</span></a></div>
+<p>Одно действие — и готовый аккаунт Bitget упакован в один файл <strong>эксклюзивно для автоматического прохождения KYC в нашем боте <a href="https://t.me/AutoPilotKYC_bot">@AutoPilotKYC_bot</a></strong>.</p>
+<ul>
+<li>✅ <strong>Всё, что нужно Bitget для KYC.</strong> Для верификации Bitget запрашивает информацию о профиле, которую обычный экспорт кук и антидетект-браузеры не передают — <code dir="auto">export_bit</code> собирает именно её.</li>
+<li>📦 <strong>Аккаунт целиком, в один клик.</strong> Ничего не нужно собирать и переносить вручную.</li>
+<li>🌍 <strong>Гео-привязка сохраняется</strong> — аккаунт остаётся в своей стране.</li>
+<li>⚡ <strong>Пакетно.</strong> За один проход собирает всю группу аккаунтов в единый файл, готовый к загрузке в бота.</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>Почему обычную сессию Bitget уже не загрузить.</strong> Bitget каждые несколько минут проверяет security-token и сверяет его с активной сессией, cookie и другими данными авторизации. Если на твоём устройстве и на другом эти данные расходятся — Bitget разлогинивает аккаунт, поднимает уровень риска и в итоге не даёт пройти проверку. Поэтому загрузка аккаунта сейчас работает только через AutoPilot Bitget: он постоянно подтягивает актуальные данные авторизации и обновляет нужные ключи и cookie, чтобы сессия оставалась живой и корректной. Обычные сессии для Bitget больше не подходят — и, судя по тому, как Bitget усиливает проверки, в обратную сторону это вряд ли изменится.</p>
+</blockquote>
+<blockquote>
+<p>🤖 <strong>Только для AutoPilot KYC.</strong> Экспорт создан исключительно для прохождения верификации в <a href="https://t.me/AutoPilotKYC_bot">@AutoPilotKYC_bot</a>. Подробнее — <a href="/docs/kyc/autopilot-kyc-subscription/">KYC Платформа</a>.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="svodnaya-tablitsa">Сводная таблица</h2><a class="sl-anchor-link" href="#svodnaya-tablitsa"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Сводная таблица»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Действие</th><th>Описание</th><th align="center">Авто-логин</th><th align="center">Авто-2FA</th></tr></thead><tbody><tr><td><code dir="auto">REGISTER</code></td><td>Регистрация</td><td align="center">—</td><td align="center">—</td></tr><tr><td><code dir="auto">LOGIN</code></td><td>Логин</td><td align="center">—</td><td align="center">—</td></tr><tr><td><code dir="auto">DEPOSIT</code></td><td>Адрес депозита</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">2FA</code></td><td>Подключение 2FA</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">WHITELIST</code></td><td>Whitelist</td><td align="center">✅</td><td align="center">✅</td></tr><tr><td><code dir="auto">WITHDRAW</code></td><td>Вывод средств</td><td align="center">✅</td><td align="center">✅</td></tr><tr><td><code dir="auto">TRADING</code></td><td>Торговля</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">futures_bit</code></td><td>Фьючерсы USDT-M (набив объёма)</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">CB</code></td><td>CandyBomb</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">SELL</code></td><td>Продажа активов</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">PROFIT</code></td><td>Подсчет прибыли</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">export_bit</code></td><td>Экспорт аккаунта для KYC</td><td align="center">✅</td><td align="center">—</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="pokupka">Покупка</h2><a class="sl-anchor-link" href="#pokupka"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Покупка»</span></a></div>
+<p>Сразу после покупки вы получаете готовую сборку для работы.</p>
+<p>Купить ключ активации для Bitget AutoPilot: <a href="https://t.me/buykyc_bot">https://t.me/buykyc_bot</a></p>
+<p>Вместе с ключом вы получаете доступ к тематическому чату AutoPilot. Время жизни ключа отсчитывается от первого запуска.</p>  <script>(function(){const className = "mermaid";
+
+    window.__mermaidClassName = className;
+  })();</script>   </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n">   </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr"> <a href="/docs/exchanges/mexc-autopilot/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg> <span class="astro-u2l5gyhi"> Предыдущая <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">MEXC AutoPilot</span> </span> </a> <a href="/docs/kyc/autopilot-kyc-subscription/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg> <span class="astro-u2l5gyhi"> Следующая <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Подписка KYC</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>

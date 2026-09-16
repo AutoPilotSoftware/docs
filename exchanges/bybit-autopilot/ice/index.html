@@ -1,0 +1,523 @@
+<!DOCTYPE html><html lang="ru" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>🧊 ICE-режимы (Bybit) — набив объёма под акции | AutoPilot</title><link rel="canonical" href="https://autopilotsoftware.github.io/docs/exchanges/bybit-autopilot/ice/"/><link rel="alternate" hreflang="ru" href="https://autopilotsoftware.github.io/docs/exchanges/bybit-autopilot/ice/"/><link rel="alternate" hreflang="en" href="https://autopilotsoftware.github.io/docs/en/exchanges/bybit-autopilot/ice/"/><link rel="alternate" hreflang="uk" href="https://autopilotsoftware.github.io/docs/ua/exchanges/bybit-autopilot/ice/"/><link rel="sitemap" href="/docs/sitemap-index.xml"/><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&#34;token&#34;: &#34;d98cb2456dd9448bb66e095a800bb391&#34;}"></script><link rel="shortcut icon" href="/docs/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v5.17.3"/><meta name="generator" content="Starlight v0.37.6"/><meta property="og:title" content="🧊 ICE-режимы (Bybit) — набив объёма под акции"/><meta property="og:type" content="article"/><meta property="og:url" content="https://autopilotsoftware.github.io/docs/exchanges/bybit-autopilot/ice/"/><meta property="og:locale" content="ru"/><meta property="og:description" content="Внутренняя документация ICE-режимов AutoPilot для Bybit: spot_ice, futures_ice, ts_ice, sell_ice — настройка AutoPilot.config и Excel-таблицы."/><meta property="og:site_name" content="AutoPilot"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Внутренняя документация ICE-режимов AutoPilot для Bybit: spot_ice, futures_ice, ts_ice, sell_ice — настройка AutoPilot.config и Excel-таблицы."/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/docs/_astro/print.DNXP8c50.css" media="print"><link rel="stylesheet" href="/docs/_astro/index.DJxFRPMf.css">
+<style>@layer starlight.components{:root{--sl-badge-default-border: var(--sl-color-accent);--sl-badge-default-bg: var(--sl-color-accent-low);--sl-badge-default-text: #fff;--sl-badge-note-border: var(--sl-color-blue);--sl-badge-note-bg: var(--sl-color-blue-low);--sl-badge-note-text: #fff;--sl-badge-danger-border: var(--sl-color-red);--sl-badge-danger-bg: var(--sl-color-red-low);--sl-badge-danger-text: #fff;--sl-badge-success-border: var(--sl-color-green);--sl-badge-success-bg: var(--sl-color-green-low);--sl-badge-success-text: #fff;--sl-badge-caution-border: var(--sl-color-orange);--sl-badge-caution-bg: var(--sl-color-orange-low);--sl-badge-caution-text: #fff;--sl-badge-tip-border: var(--sl-color-purple);--sl-badge-tip-bg: var(--sl-color-purple-low);--sl-badge-tip-text: #fff}[data-theme=light]:root{--sl-badge-default-bg: var(--sl-color-accent-high);--sl-badge-note-bg: var(--sl-color-blue-high);--sl-badge-danger-bg: var(--sl-color-red-high);--sl-badge-success-bg: var(--sl-color-green-high);--sl-badge-caution-bg: var(--sl-color-orange-high);--sl-badge-tip-bg: var(--sl-color-purple-high)}.sl-badge:where(.astro-avdet4wd){display:inline-block;border:1px solid var(--sl-color-border-badge);border-radius:.25rem;font-family:var(--sl-font-system-mono);line-height:normal;color:var(--sl-color-text-badge);background-color:var(--sl-color-bg-badge);overflow-wrap:anywhere}.sidebar-content .sl-badge:where(.astro-avdet4wd){line-height:1;font-size:var(--sl-text-xs);padding:.125rem .375rem}.sidebar-content a[aria-current=page]>.sl-badge:where(.astro-avdet4wd){--sl-color-bg-badge: transparent;--sl-color-border-badge: currentColor;color:inherit}.default:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-default-bg);--sl-color-border-badge: var(--sl-badge-default-border);--sl-color-text-badge: var(--sl-badge-default-text)}.note:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-note-bg);--sl-color-border-badge: var(--sl-badge-note-border);--sl-color-text-badge: var(--sl-badge-note-text)}.danger:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-danger-bg);--sl-color-border-badge: var(--sl-badge-danger-border);--sl-color-text-badge: var(--sl-badge-danger-text)}.success:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-success-bg);--sl-color-border-badge: var(--sl-badge-success-border);--sl-color-text-badge: var(--sl-badge-success-text)}.tip:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-tip-bg);--sl-color-border-badge: var(--sl-badge-tip-border);--sl-color-text-badge: var(--sl-badge-tip-text)}.caution:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-caution-bg);--sl-color-border-badge: var(--sl-badge-caution-border);--sl-color-text-badge: var(--sl-badge-caution-text)}.small:where(.astro-avdet4wd){font-size:var(--sl-text-xs);padding:.125rem .25rem}.medium:where(.astro-avdet4wd){font-size:var(--sl-text-sm);padding:.175rem .35rem}.large:where(.astro-avdet4wd){font-size:var(--sl-text-base);padding:.225rem .45rem}.sl-markdown-content :is(h1,h2,h3,h4,h5,h6) .sl-badge:where(.astro-avdet4wd){vertical-align:middle}}
+@layer starlight.components{.card-grid:where(.astro-zntqmydn){display:grid;grid-template-columns:100%;gap:1rem}.card-grid:where(.astro-zntqmydn)>*{margin-top:0!important}@media(min-width:50rem){.card-grid:where(.astro-zntqmydn){grid-template-columns:1fr 1fr;gap:1.5rem}.stagger:where(.astro-zntqmydn){--stagger-height: 5rem;padding-bottom:var(--stagger-height)}.stagger:where(.astro-zntqmydn)>*:nth-child(2n){transform:translateY(var(--stagger-height))}}}
+@layer starlight.components{svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-size, 1em);width:1em;height:1em}}
+@layer starlight.components{.sl-link-card:where(.astro-mf7fz2mj){display:grid;grid-template-columns:1fr auto;gap:.5rem;border:1px solid var(--sl-color-gray-5);border-radius:.5rem;padding:1rem;box-shadow:var(--sl-shadow-sm);position:relative}a:where(.astro-mf7fz2mj){text-decoration:none;line-height:var(--sl-line-height-headings)}a:where(.astro-mf7fz2mj):before{content:"";position:absolute;inset:0}.stack:where(.astro-mf7fz2mj){flex-direction:column;gap:.5rem}.title:where(.astro-mf7fz2mj){color:var(--sl-color-white);font-weight:600;font-size:var(--sl-text-lg)}.description:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3);line-height:1.5}.icon:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3)}.sl-link-card:where(.astro-mf7fz2mj):hover{background:var(--sl-color-gray-7, var(--sl-color-gray-6));border-color:var(--sl-color-gray-2)}.sl-link-card:where(.astro-mf7fz2mj):hover .icon:where(.astro-mf7fz2mj){color:var(--sl-color-white)}}
+@layer starlight.components{.sl-steps{--bullet-size: calc(var(--sl-line-height) * 1rem);--bullet-margin: .375rem;list-style:none;counter-reset:steps-counter var(--sl-steps-start, 0);padding-inline-start:0}.sl-steps>li{counter-increment:steps-counter;position:relative;padding-inline-start:calc(var(--bullet-size) + 1rem);padding-bottom:1px;min-height:calc(var(--bullet-size) + var(--bullet-margin))}.sl-steps>li+li{margin-top:0}.sl-steps>li:before{content:counter(steps-counter);position:absolute;top:0;inset-inline-start:0;width:var(--bullet-size);height:var(--bullet-size);line-height:var(--bullet-size);font-size:var(--sl-text-xs);font-weight:600;text-align:center;color:var(--sl-color-white);background-color:var(--sl-color-gray-6);border-radius:99rem;box-shadow:inset 0 0 0 1px var(--sl-color-gray-5)}.sl-steps>li:after{--guide-width: 1px;content:"";position:absolute;top:calc(var(--bullet-size) + var(--bullet-margin));bottom:var(--bullet-margin);inset-inline-start:calc((var(--bullet-size) - var(--guide-width)) / 2);width:var(--guide-width);background-color:var(--sl-color-hairline-light)}}@layer starlight.content{.sl-steps>li>:first-child{--lh: calc(1em * var(--sl-line-height));--shift-y: calc(.5 * (var(--bullet-size) - var(--lh)));transform:translateY(var(--shift-y));margin-bottom:var(--shift-y)}.sl-steps>li>:first-child:where(h1,h2,h3,h4,h5,h6){--lh: calc(1em * var(--sl-line-height-headings))}@supports (--prop: 1lh){.sl-steps>li>:first-child{--lh: 1lh}}}
+@layer starlight.components{.sl-link-button:where(.astro-xwgiixxa){align-items:center;border:1px solid transparent;border-radius:999rem;display:inline-flex;font-size:var(--sl-text-sm);gap:.5em;line-height:1.1875;outline-offset:.25rem;padding:.4375rem 1.125rem;text-decoration:none}.sl-link-button:where(.astro-xwgiixxa).primary{background:var(--sl-color-text-accent);border-color:var(--sl-color-text-accent);color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).primary:hover{color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).secondary{border-color:inherit;color:var(--sl-color-white)}.sl-link-button:where(.astro-xwgiixxa).minimal{color:var(--sl-color-white);padding-inline:0}.sl-link-button:where(.astro-xwgiixxa) svg{flex-shrink:0}@media(min-width:50rem){.sl-link-button:where(.astro-xwgiixxa){font-size:var(--sl-text-base);padding:.9375rem 1.25rem}}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa){margin-inline-end:1rem}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa):not(:where(p *)){margin-block:1rem}}
+</style><script type="module" src="/docs/_astro/page.B1D-nYk3.js"></script></head> <body class="astro-bguv2lll"> <a href="#_top" class="astro-7q3lir66">Перейти к содержимому</a>  <div class="page sl-flex astro-vrdttmbt"> <header class="header astro-vrdttmbt"><div class="header astro-kmkmnagf"> <div class="title-wrapper sl-flex astro-kmkmnagf"> <a href="/docs/" class="site-title sl-flex astro-m46x6ez3">  <img class="astro-m46x6ez3" alt src="/docs/_astro/auto_pilot_logo.CfyEiyY2.png" width="600" height="600">  <span class="astro-m46x6ez3" translate="no"> AutoPilot </span> </a>  </div> <div class="sl-flex print:hidden astro-kmkmnagf"> <site-search class="astro-kmkmnagf astro-v37mnknz" data-translations="{&#34;placeholder&#34;:&#34;Поиск&#34;}"> <button data-open-modal disabled aria-label="Поиск" aria-keyshortcuts="Control+K" class="astro-v37mnknz"> <svg aria-hidden="true" class="astro-v37mnknz astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg> <span class="sl-hidden md:sl-block astro-v37mnknz" aria-hidden="true">Поиск</span> <kbd class="sl-hidden md:sl-flex astro-v37mnknz" style="display: none;"> <kbd class="astro-v37mnknz">Ctrl</kbd><kbd class="astro-v37mnknz">K</kbd> </kbd> </button> <dialog style="padding:0" aria-label="Поиск" class="astro-v37mnknz"> <div class="dialog-frame sl-flex astro-v37mnknz">  <button data-close-modal class="sl-flex md:sl-hidden astro-v37mnknz"> Отменить </button> <div class="search-container astro-v37mnknz"> <div id="starlight__search" class="astro-v37mnknz"></div> </div> </div> </dialog> </site-search>  <script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script> <script type="module" src="/docs/_astro/Search.astro_astro_type_script_index_0_lang.7TPqQKfI.js"></script>   </div> <div class="sl-hidden md:sl-flex print:hidden right-group astro-kmkmnagf"> <div class="sl-flex social-icons astro-kmkmnagf">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Выберите тему</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Тёмная</option><option value="light" class="astro-4yphtoen">Светлая</option><option value="auto" selected class="astro-4yphtoen">Авто</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script> <script type="module">const r="starlight-theme",o=e=>e==="auto"||e==="dark"||e==="light"?e:"auto",c=()=>o(typeof localStorage<"u"&&localStorage.getItem(r));function n(e){typeof localStorage<"u"&&localStorage.setItem(r,e==="light"||e==="dark"?e:"")}const l=()=>matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";function t(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e==="auto"?l():e,n(e)}matchMedia("(prefers-color-scheme: light)").addEventListener("change",()=>{c()==="auto"&&t("auto")});class s extends HTMLElement{constructor(){super(),t(c()),this.querySelector("select")?.addEventListener("change",a=>{a.currentTarget instanceof HTMLSelectElement&&t(o(a.currentTarget.value))})}}customElements.define("starlight-theme-select",s);</script> <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Выберите язык</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/exchanges/bybit-autopilot/ice/" class="astro-4yphtoen">Русский</option><option value="/docs/en/exchanges/bybit-autopilot/ice/" class="astro-4yphtoen">English</option><option value="/docs/ua/exchanges/bybit-autopilot/ice/" class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select><script type="module">class s extends HTMLElement{constructor(){super();const e=this.querySelector("select");e&&(e.addEventListener("change",t=>{t.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=t.currentTarget.value)}),window.addEventListener("pageshow",t=>{if(!t.persisted)return;const n=e.querySelector("option[selected]")?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}}customElements.define("starlight-lang-select",s);</script> </div> </div> </header> <nav class="sidebar print:hidden astro-vrdttmbt" aria-label="Основное"> <starlight-menu-button class="print:hidden astro-jif73yzw"> <button aria-expanded="false" aria-label="Меню" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-jif73yzw"> <svg aria-hidden="true" class="open-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg> <svg aria-hidden="true" class="close-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg> </button> </starlight-menu-button> <script type="module">class s extends HTMLElement{constructor(){super(),this.btn=this.querySelector("button"),this.btn.addEventListener("click",()=>this.toggleExpanded());const t=this.closest("nav");t&&t.addEventListener("keyup",e=>this.closeOnEscape(e))}setExpanded(t){this.setAttribute("aria-expanded",String(t)),document.body.toggleAttribute("data-mobile-menu-expanded",t)}toggleExpanded(){this.setExpanded(this.getAttribute("aria-expanded")!=="true")}closeOnEscape(t){t.code==="Escape"&&(this.setExpanded(!1),this.btn.focus())}}customElements.define("starlight-menu-button",s);</script>   <div id="starlight__sidebar" class="sidebar-pane astro-vrdttmbt"> <div class="sidebar-content sl-flex astro-vrdttmbt"> <sl-sidebar-state-persist data-hash="1yfspf9" class="astro-kku4brbg"> <script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script>  <ul class="top-level astro-3ii7xxms"> <li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Начало работы</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="0"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/getting-started/faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">FAQ</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/getting-started/macos-launch/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Запуск на macOS</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Биржи</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="1"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/exchanges/bybit-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bybit AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/exchanges/mexc-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">MEXC AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/exchanges/bitget-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bitget AutoPilot</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">KYC Платформа</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="2"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/kyc/autopilot-kyc-subscription/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Подписка KYC</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/kyc/nvs-faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">NVS Загрузка</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/kyc/pilot-faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Гайд Пилота</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/kyc/sellers-guide/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Seller Guide</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/kyc/autopilot-kyc-tos/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Условия использования</span>  </a> </li> </ul>  </details> </li> </ul>   <script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-wu23bvmt"> <div class="social-icons astro-wu23bvmt">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Выберите тему</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Тёмная</option><option value="light" class="astro-4yphtoen">Светлая</option><option value="auto" selected class="astro-4yphtoen">Авто</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>  <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Выберите язык</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/exchanges/bybit-autopilot/ice/" class="astro-4yphtoen">Русский</option><option value="/docs/en/exchanges/bybit-autopilot/ice/" class="astro-4yphtoen">English</option><option value="/docs/ua/exchanges/bybit-autopilot/ice/" class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select> </div>  </div> </div> </div> </nav> <div class="main-frame astro-vrdttmbt">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-67yu43on"> <aside class="right-sidebar-container print:hidden astro-67yu43on"> <div class="right-sidebar astro-67yu43on"> <script type="module" src="/docs/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.hwBsy0Mo.js"></script><script type="module" src="/docs/_astro/TableOfContents.astro_astro_type_script_index_0_lang.FuRcXuRY.js"></script><div class="lg:sl-hidden astro-pb3aqygn"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-doynk5tl"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-doynk5tl"><details id="starlight__mobile-toc" class="astro-doynk5tl"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-doynk5tl"><span class="toggle sl-flex astro-doynk5tl">На этой странице<svg aria-hidden="true" class="caret astro-doynk5tl astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-doynk5tl"></span></summary><div class="dropdown astro-doynk5tl"><ul class="isMobile astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Обзор</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#obschie-parametry-deystvuyut-vo-vsekh-chetyryokh-rezhimakh" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Общие параметры (действуют во всех четырёх режимах)</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#bektest-obyom-komissii-i-stoimost-nabiva" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">📊 Бэктест: объём, комиссии и стоимость набива</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#spot-ice-nabiv-spot-obyoma-limitkami-mgnovenno" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">spot_ice — набив спот-объёма лимитками (мгновенно)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#futures-ice-fyuchersy-feyd-krupnogo-ordera-v-stakane" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">futures_ice — фьючерсы: «фейд» крупного ордера в стакане</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#chto-takoe-feyd-prostymi-slovami" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">🧭 Что такое «фейд» простыми словами</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#dva-rezhima-vkhoda-hedge-mode" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">⚙️ Два режима входа (hedge_mode)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#hedge-mode-feyd-protiv-dual" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">🛡️ hedge_mode — фейд против dual</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#ts-ice-tokensplash-vkhod-v-aktsiyu-torgovlya-tokena" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">ts_ice — TokenSplash: вход в акцию + торговля токена</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#sell-ice-rasprodazha-ostatkov-s-pauzami" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">sell_ice — распродажа остатков с паузами</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#poryadok-bezopasnogo-zapuska-dlya-vsekh-ice-rezhimov" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Порядок безопасного запуска (для всех ICE-режимов)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#polniy-blok-dlya-autopilotconfig" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Полный блок для AutoPilot.config</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#chto-vpisyvat-v-excel-tablitsu" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Что вписывать в Excel-таблицу</span> </a>  </li> </ul> </div></details></nav></mobile-starlight-toc></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-pb3aqygn"><div class="sl-container astro-pb3aqygn"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">На этой странице</h2><ul class="astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Обзор</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#obschie-parametry-deystvuyut-vo-vsekh-chetyryokh-rezhimakh" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Общие параметры (действуют во всех четырёх режимах)</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#bektest-obyom-komissii-i-stoimost-nabiva" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">📊 Бэктест: объём, комиссии и стоимость набива</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#spot-ice-nabiv-spot-obyoma-limitkami-mgnovenno" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">spot_ice — набив спот-объёма лимитками (мгновенно)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#futures-ice-fyuchersy-feyd-krupnogo-ordera-v-stakane" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">futures_ice — фьючерсы: «фейд» крупного ордера в стакане</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#chto-takoe-feyd-prostymi-slovami" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">🧭 Что такое «фейд» простыми словами</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#dva-rezhima-vkhoda-hedge-mode" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">⚙️ Два режима входа (hedge_mode)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#hedge-mode-feyd-protiv-dual" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">🛡️ hedge_mode — фейд против dual</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#ts-ice-tokensplash-vkhod-v-aktsiyu-torgovlya-tokena" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">ts_ice — TokenSplash: вход в акцию + торговля токена</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#sell-ice-rasprodazha-ostatkov-s-pauzami" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">sell_ice — распродажа остатков с паузами</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#poryadok-bezopasnogo-zapuska-dlya-vsekh-ice-rezhimov" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Порядок безопасного запуска (для всех ICE-режимов)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#polniy-blok-dlya-autopilotconfig" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Полный блок для AutoPilot.config</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#chto-vpisyvat-v-excel-tablitsu" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Что вписывать в Excel-таблицу</span> </a>  </li> </ul> </nav></starlight-toc></div></div> </div> </aside> <div class="main-pane astro-67yu43on">  <main class="astro-bguv2lll" lang="ru" dir="ltr">   <script type="module" src="/docs/_astro/MarkdownContent.astro_astro_type_script_index_0_lang.Be01RnYk.js"></script> <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <h1 id="_top" class="astro-j6tvhyss">🧊 ICE-режимы (Bybit) — набив объёма под акции</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content">  <blockquote>
+<p>🚧 <strong>Внутренняя страница (в разработке).</strong> ICE-режимы ещё дорабатываются и тестируются. Страница скрыта из меню и поиска — доступна только по прямой ссылке. Пожалуйста, не распространяйте её широко.</p>
+</blockquote>
+<p>Семейство из четырёх действий — <code dir="auto">spot_ice</code>, <code dir="auto">futures_ice</code>, <code dir="auto">ts_ice</code>, <code dir="auto">sell_ice</code> — для естественного набива торгового объёма под биржевые акции и промо-ивенты. Все ордера исполняются <strong>мгновенно</strong> (лимитки заходят прямо в стакан), а между действиями стоят <strong>случайные задержки</strong> — поведение выглядит человеческим.</p>
+<blockquote>
+<p>⚠️ Как и <code dir="auto">limit</code>, параметры ICE-режимов читаются <strong>из <code dir="auto">AutoPilot.config</code></strong>, а не из колонок <code dir="auto">[TRADING]</code> Excel-таблицы. Из таблицы используются только базовые колонки для входа: <code dir="auto">[PROFILE] profile_id</code>, <code dir="auto">[PROFILE] mail</code>, <code dir="auto">[PROFILE] bybit_password</code>, <code dir="auto">[BYBIT] domain</code>, <code dir="auto">[ACTION] action</code>. Дополнительно <code dir="auto">ts_ice</code> требует колонку <code dir="auto">[TS] code</code>.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h2"><h2 id="obschie-parametry-deystvuyut-vo-vsekh-chetyryokh-rezhimakh">Общие параметры (действуют во всех четырёх режимах)</h2><a class="sl-anchor-link" href="#obschie-parametry-deystvuyut-vo-vsekh-chetyryokh-rezhimakh"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Общие параметры (действуют во всех четырёх режимах)»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Ключ</th><th>Описание</th><th>Пример</th></tr></thead><tbody><tr><td><code dir="auto">market_trading_delay</code></td><td>Случайная пауза в секундах <strong>после каждого действия</strong> (покупка, продажа, цикл). Работает во всех ICE-режимах, включая <code dir="auto">ts_ice</code> и <code dir="auto">sell_ice</code></td><td><code dir="auto">30,60</code></td></tr><tr><td><code dir="auto">ice_dryrun</code></td><td><code dir="auto">YES</code> — бот всё рассчитывает по живому стакану, пишет в лог <strong>и считает объём/комиссию/стоимость</strong> (бэктест, см. ниже), но <strong>ордера НЕ отправляет</strong>. <code dir="auto">NO</code> — реальная торговля</td><td><code dir="auto">NO</code></td></tr><tr><td><code dir="auto">ice_spot_fee</code></td><td>Ставка спот-комиссии (taker) в <strong>%</strong> для расчёта экономики. Меняйте только при нестандартном тарифе</td><td><code dir="auto">0.1</code></td></tr><tr><td><code dir="auto">ice_futures_fee</code></td><td>Ставка фьючерс-комиссии (taker) в <strong>%</strong> для расчёта экономики</td><td><code dir="auto">0.055</code></td></tr><tr><td><code dir="auto">ice_order</code></td><td>Размер одной <strong>спот</strong>-сделки в USDT, случайный из диапазона (для <code dir="auto">spot_ice</code>, <code dir="auto">ts_ice</code>, <code dir="auto">sell_ice</code>)</td><td><code dir="auto">70,100</code></td></tr><tr><td><code dir="auto">ice_spot_offset</code></td><td>На сколько % заходить в стакан, чтобы лимитка исполнилась мгновенно (buy чуть выше ask / sell чуть ниже bid)</td><td><code dir="auto">0.1</code></td></tr></tbody></table>
+<blockquote>
+<p>💡 <strong>Всегда начинайте с <code dir="auto">ice_dryrun=YES</code>.</strong> Прогоните действие на одном профиле, убедитесь по логам, что бот выбирает правильную сторону и размер, и только потом ставьте <code dir="auto">ice_dryrun=NO</code>. Особенно важно для <code dir="auto">futures_ice</code> (живые деньги + плечо).</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="bektest-obyom-komissii-i-stoimost-nabiva">📊 Бэктест: объём, комиссии и стоимость набива</h3><a class="sl-anchor-link" href="#bektest-obyom-komissii-i-stoimost-nabiva"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «📊 Бэктест: объём, комиссии и стоимость набива»</span></a></div>
+<p><code dir="auto">ice_dryrun=YES</code> — это не просто «сухой прогон», а полноценный <strong>бэктест 1:1 с реальной торговлей</strong>: цены берутся из <strong>живого стакана</strong> (как в бою), проходят те же проверки, но ордер не отправляется. Дополнительно бот считает <strong>экономику</strong> каждой сделки и выводит итог — сколько объёма набьётся и во сколько это обойдётся, ещё до того как потрачен хоть один доллар.</p>
+<p>По каждому режиму в лог пишется строка <code dir="auto">SUMMARY</code>, а в <code dir="auto">[RESULT] status</code> — краткая сводка:</p>
+<ul>
+<li><strong>VOL</strong> — суммарный биржевой <strong>оборот</strong> (объём), который набьётся. Это то, ради чего запускается ICE.</li>
+<li><strong>FEES</strong> — <strong>комиссия</strong> биржи (taker), которую съест этот оборот.</li>
+<li><strong>COST</strong> (spot / ts / sell) — <strong>чистая стоимость</strong> набива = рыночный спред (bid-ask) + комиссия. Считается по <strong>реальной цене исполнения</strong> (buy по ask, sell по bid): marketable-лимитка исполняется по лучшей цене стакана, поэтому <code dir="auto">ice_spot_offset</code> только гарантирует проход ордера и <strong>сам по себе не является расходом</strong>. На ликвидных монетах спред крошечный, так что COST ≈ комиссия.</li>
+</ul>
+<p><strong>Ставки комиссии</strong> (taker; все ICE-ордера исполняются как IOC/маркет, значит всегда taker, maker-ноги нет):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Ключ</th><th>Что</th><th>По умолчанию</th></tr></thead><tbody><tr><td><code dir="auto">ice_spot_fee</code></td><td>Спот taker, <strong>%</strong></td><td><code dir="auto">0.1</code></td></tr><tr><td><code dir="auto">ice_futures_fee</code></td><td>Фьючерс taker, <strong>%</strong></td><td><code dir="auto">0.055</code></td></tr></tbody></table>
+<blockquote>
+<p>💡 Те же ставки применяются и в <strong>live</strong>-логах — строка <code dir="auto">SUMMARY</code> считается одинаково в dry и в бою (один источник правды). Меняйте <code dir="auto">ice_spot_fee</code>/<code dir="auto">ice_futures_fee</code> <strong>только</strong> если у аккаунта нестандартный тариф (VIP / скидка за BNB-подобный токен).</p>
+<p>⚠️ Для <code dir="auto">futures_ice</code> PnL от движения цены в оценку <strong>не входит</strong> (это live-only, предсказать нельзя) — считается только гарантированная стоимость (комиссия за открытие+закрытие).</p>
+<p>⏱️ <strong>Тайминги в dry настоящие.</strong> Прогон соблюдает реальные задержки — удержание между покупкой и продажей (<code dir="auto">ice_spot_hold</code> / <code dir="auto">ice_futures_hold</code>) и паузы между сделками (<code dir="auto">market_trading_delay</code>), — чтобы бэктест шёл в том же темпе, что и бой.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="spot-ice-nabiv-spot-obyoma-limitkami-mgnovenno"><code dir="auto">spot_ice</code> — набив спот-объёма лимитками (мгновенно)</h2><a class="sl-anchor-link" href="#spot-ice-nabiv-spot-obyoma-limitkami-mgnovenno"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «spot_ice — набив спот-объёма лимитками (мгновенно)»</span></a></div>
+<p>Покупает и тут же продаёт монету лимитными ордерами, которые заходят в стакан и исполняются сразу — как маркет, но ордером типа «лимит». <strong>Наценки нет</strong> (цель — оборот, не прибыль). Продаёт <strong>только то, что купил в этой сделке</strong> (существующие остатки монеты на балансе не трогает).</p>
+<blockquote>
+<p>🔒 <strong>Продажа гарантированно добивается.</strong> Если из-за резкого движения против нас или тонкого стакана IOC-лимитка исполнилась не полностью, бот перечитывает баланс и <strong>до-продаёт остаток</strong> со всё более глубоким заходом (0.1% → 0.2% → 0.3%), пока монета не уйдёт в ноль (до 3 попыток). Так спот закрывается так же надёжно, как фьючерс маркетом. Рост цены продаже не мешает — наоборот, исполнится ещё выгоднее.</p>
+</blockquote>
+<p><strong>Параметры из <code dir="auto">AutoPilot.config</code>:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Ключ</th><th>Описание</th><th>Пример</th></tr></thead><tbody><tr><td><strong>Требует</strong> <code dir="auto">ice_required_list</code></td><td>Обязательные монеты (нужные для акции). Торгуются ВСЕ, всегда. Пусто = фаза пропускается</td><td><code dir="auto">XRP</code></td></tr><tr><td>Опционально <code dir="auto">ice_required_cycles</code></td><td>Циклов на каждую обязательную монету. Одно число всем, или per-coin <code dir="auto">3,2</code> (1-я монета 3 раза, 2-я 2 раза)</td><td><code dir="auto">1</code></td></tr><tr><td><strong>Требует</strong> <code dir="auto">ice_random_list</code></td><td>Филлер-монеты. Бот берёт случайную из списка на каждую сделку. Пусто = фаза пропускается</td><td><code dir="auto">BTC,ETH,SOL</code></td></tr><tr><td>Опционально <code dir="auto">ice_random_cycles</code></td><td>Сколько случайных сделок за прогон. Число или диапазон <code dir="auto">1,3</code></td><td><code dir="auto">2</code></td></tr><tr><td>Опционально <code dir="auto">ice_spot_hold</code></td><td>Держать монету <strong>между покупкой и продажей</strong>, сек (диапазон, рандом) — как <code dir="auto">ice_futures_hold</code> у фьючерсов. Делает паузу buy→sell человеческой, а не фиксированной. По умолчанию <code dir="auto">3,8</code></td><td><code dir="auto">3,8</code></td></tr><tr><td><code dir="auto">ice_order</code>, <code dir="auto">ice_spot_offset</code>, <code dir="auto">market_trading_delay</code></td><td>См. общие параметры выше</td><td>—</td></tr></tbody></table>
+<p><strong>Из Excel:</strong> только базовые колонки + <code dir="auto">[ACTION] action=spot_ice</code>.
+<strong>Обновляет:</strong> <code dir="auto">[RESULT] status</code> — <code dir="auto">[SPOT_ICE] &#x3C;кол-во> trades, VOL ~&#x3C;оборот>, FEES ~&#x3C;комиссия>, COST ~&#x3C;стоимость> USDT (монеты)</code>. В dry добавляется метка <code dir="auto">[DRY]</code>.</p>
+<div class="mermaid" data-content="flowchart TD
+    A[&#x22;Чтение ICE-параметров из AutoPilot.config&#x22;] --> B[&#x22;Фаза 1 — обязательные монеты<br/>ice_required_list, каждая × ice_required_cycles&#x22;]
+    B --> C[&#x22;Фаза 2 — филлер<br/>ice_random_cycles раз, случайная монета из ice_random_list&#x22;]
+    C --> D[&#x22;Для каждой сделки:&#x22;]
+    D --> E[&#x22;BUY — лимит чуть выше ask + IOC<br/>→ заходит в стакан, исполняется сразу&#x22;]
+    E --> EH[&#x22;Держим ice_spot_hold сек (рандом)<br/>пауза buy→sell, как человек&#x22;]
+    EH --> F[&#x22;Замер купленной ДЕЛЬТЫ на балансе&#x22;]
+    F --> G[&#x22;SELL — лимит чуть ниже bid + IOC<br/>verify+retry, пока не продано&#x22;]
+    G --> H[&#x22;Случайная пауза market_trading_delay&#x22;]
+    H --> I[&#x22;✅ [RESULT] status: [SPOT_ICE] N trades, VOL/FEES/COST&#x22;]
+    style A fill:#2196F3,color:#fff,stroke:none,rx:8
+    style E fill:#FF9800,color:#fff,stroke:none,rx:8
+    style EH fill:#7E57C2,color:#fff,stroke:none,rx:8
+    style G fill:#FF9800,color:#fff,stroke:none,rx:8
+    style I fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<p><strong>Пример конфигурации:</strong></p>
+<div class="expressive-code"><link rel="stylesheet" href="/docs/_astro/ec.v4551.css"><script type="module" src="/docs/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="ini"><code><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_required_list</span><span style="--0:#D6DEEB;--1:#403F53">=XRP</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_required_cycles</span><span style="--0:#D6DEEB;--1:#403F53">=1</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_random_list</span><span style="--0:#D6DEEB;--1:#403F53">=BTC,ETH,SOL</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_random_cycles</span><span style="--0:#D6DEEB;--1:#403F53">=2</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_order</span><span style="--0:#D6DEEB;--1:#403F53">=70,100</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_spot_offset</span><span style="--0:#D6DEEB;--1:#403F53">=0.1</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_spot_hold</span><span style="--0:#D6DEEB;--1:#403F53">=3,8</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">market_trading_delay</span><span style="--0:#D6DEEB;--1:#403F53">=30,60</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_dryrun</span><span style="--0:#D6DEEB;--1:#403F53">=NO</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="ice_required_list=XRPice_required_cycles=1ice_random_list=BTC,ETH,SOLice_random_cycles=2ice_order=70,100ice_spot_offset=0.1ice_spot_hold=3,8market_trading_delay=30,60ice_dryrun=NO"><div></div></button></div></figure></div>
+<p>Что произойдёт: сначала бот один раз отторгует XRP (обязательная монета акции), затем сделает 2 случайные сделки из [BTC, ETH, SOL]. Каждая сделка — покупка на 70–100 USDT, <strong>удержание 3–8 сек</strong> (<code dir="auto">ice_spot_hold</code>), затем продажа; между сделками пауза 30–60 сек (<code dir="auto">market_trading_delay</code>).</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="futures-ice-fyuchersy-feyd-krupnogo-ordera-v-stakane"><code dir="auto">futures_ice</code> — фьючерсы: «фейд» крупного ордера в стакане</h2><a class="sl-anchor-link" href="#futures-ice-fyuchersy-feyd-krupnogo-ordera-v-stakane"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «futures_ice — фьючерсы: «фейд» крупного ордера в стакане»</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="chto-takoe-feyd-prostymi-slovami">🧭 Что такое «фейд» простыми словами</h3><a class="sl-anchor-link" href="#chto-takoe-feyd-prostymi-slovami"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «🧭 Что такое «фейд» простыми словами»</span></a></div>
+<p><strong>Фейд (fade)</strong> — это торговля <strong>против</strong> видимого движения рынка. Не «вместе с толпой», а <strong>навстречу</strong> ей.</p>
+<p>Стакан заявок (orderbook) — очередь из тех, кто хочет купить (<strong>bids</strong>) и продать (<strong>asks</strong>). Когда на <strong>вершине</strong> стакана всплывает <strong>один очень крупный ордер</strong>, кто-то большой давит в одну сторону — и бот ставит наоборот:</p>
+<ul>
+<li>Гигантский ордер на <strong>покупку</strong> (в bids) → толпа тарит вверх → бот открывает <strong>ШОРТ</strong>.</li>
+<li>Гигантский ордер на <strong>продажу</strong> (в asks) → толпа льёт вниз → бот открывает <strong>ЛОНГ</strong>.</li>
+</ul>
+<p><strong>Зачем против?</strong> Крупные заявки часто «съедаются», после чего цена откатывает — фейд ловит этот короткий откат. Плюс так набивается <strong>естественный двухсторонний объём</strong> (иногда лонг, иногда шорт, а не однобоко) — выглядит человечнее.</p>
+<blockquote>
+<p>🎣 <strong>Аналогия:</strong> толпа ломится в одну дверь. Ты не толкаешься с ней, а заходишь сбоку в момент, когда напор выдохся. Держишь пару секунд — выходишь.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="dva-rezhima-vkhoda-hedge-mode">⚙️ Два режима входа (<code dir="auto">hedge_mode</code>)</h3><a class="sl-anchor-link" href="#dva-rezhima-vkhoda-hedge-mode"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «⚙️ Два режима входа (hedge_mode)»</span></a></div>
+<p>У <code dir="auto">futures_ice</code> <strong>два разных режима</strong>, переключаются флагом <code dir="auto">hedge_mode</code>:</p>
+<ul>
+<li><strong><code dir="auto">hedge_mode=NO</code> — one-way «фейд» (по умолчанию).</strong> Опрашивает вершину стакана ~раз в секунду. Как только <strong>один</strong> верхний ордер (цена × объём) ≥ размера позиции — бот открывает <strong>маркетом одну ногу ПРОТИВ него</strong>, держит несколько секунд, закрывает маркетом (с перепроверкой). Не дождался за <code dir="auto">ice_futures_wait</code> — монета пропускается. Это <strong>направленная</strong> ставка (иногда лонг, иногда шорт).</li>
+<li><strong><code dir="auto">hedge_mode=YES</code> — dual (обе стороны).</strong> Тоже <strong>смотрит в стакан</strong>, но ждёт момент, когда ликвидности хватает <strong>с ОБЕИХ сторон</strong> (топ bid И топ ask ≥ размера позиции) — тогда обе ноги войдут чисто, без проскальзывания. В этот момент открывает <strong>одновременно long И short</strong> одинакового размера, держит <code dir="auto">ice_futures_hold</code>, закрывает обе. Не дождался за <code dir="auto">ice_futures_wait</code> — монета пропускается. <strong>Дельта-нейтрал:</strong> направление не важно (одна нога в плюс, другая в минус — гасят друг друга), объём <strong>×2</strong>, риск = только комиссии+спред. Нужно <strong>2× маржи</strong> на балансе. Это тот же приём, что в обычном action <code dir="auto">futures</code>.</li>
+</ul>
+<p>Только <strong>ликвидные</strong> монеты (BTC, ETH). В обоих режимах бот <strong>сам закрывает</strong> позиции после удержания и перепроверяет запросом, что всё реально закрылось.</p>
+<blockquote>
+<p>⚠️ <strong>Живые деньги + кредитное плечо.</strong> Сначала обязательно <code dir="auto">ice_dryrun=YES</code> и мелкий <code dir="auto">ice_futures_order</code> (напр. <code dir="auto">10,20</code>), только потом в бой.</p>
+</blockquote>
+<p><strong>Параметры из <code dir="auto">AutoPilot.config</code>:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Ключ</th><th>Описание</th><th>Пример</th></tr></thead><tbody><tr><td><strong>Требует</strong> <code dir="auto">ice_futures_list</code></td><td>Монеты (только ликвидные). Пусто = берётся <code dir="auto">ice_random_list</code></td><td><code dir="auto">BTC,ETH</code></td></tr><tr><td><strong>Требует</strong> <code dir="auto">ice_futures_order</code></td><td><strong>МАРЖА</strong> в USDT (диапазон, рандом). Позиция (notional) = маржа × <code dir="auto">leverage</code></td><td><code dir="auto">10000,15000</code></td></tr><tr><td><strong>Требует</strong> <code dir="auto">leverage</code></td><td>Кредитное плечо (2–100)</td><td><code dir="auto">10</code></td></tr><tr><td>Опционально <code dir="auto">ice_futures_cycles</code></td><td>Циклов на монету (открыть+закрыть). Число или per-coin</td><td><code dir="auto">1</code></td></tr><tr><td>Опционально <code dir="auto">ice_futures_wait</code></td><td>Сколько ждать нужной ликвидности в стакане (сек), потом пропуск монеты. Работает в <strong>обоих</strong> режимах (<code dir="auto">NO</code> — один крупный ордер; <code dir="auto">YES</code> — хватает с обеих сторон)</td><td><code dir="auto">300</code></td></tr><tr><td>Опционально <code dir="auto">ice_futures_hold</code></td><td>Держать позицию перед закрытием, сек (диапазон). Работает в обоих режимах</td><td><code dir="auto">5,20</code></td></tr><tr><td>Опционально <code dir="auto">hedge_mode</code></td><td><code dir="auto">NO</code> = one-way фейд (одна нога против стакана). <code dir="auto">YES</code> = dual — открывает <strong>сразу обе стороны</strong> (long+short), дельта-нейтрал, нужно <strong>2× маржи</strong>. <strong>По умолчанию <code dir="auto">NO</code></strong></td><td><code dir="auto">NO</code></td></tr><tr><td><code dir="auto">market_trading_delay</code>, <code dir="auto">ice_dryrun</code></td><td>См. общие параметры</td><td>—</td></tr></tbody></table>
+<p><strong>Из Excel:</strong> только базовые колонки + <code dir="auto">[ACTION] action=futures_ice</code>.
+<strong>Обновляет:</strong> <code dir="auto">[RESULT] status</code> — <code dir="auto">[FUTURES_ICE] TRADED &#x3C;кол-во> (монеты:сторона), VOL ~&#x3C;оборот>, FEES ~&#x3C;комиссия> USDT</code>. В dry — метка <code dir="auto">[DRY]</code>. При проблеме с закрытием добавляется <code dir="auto">WARN N CLOSE-FAILED (open positions!)</code>.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="hedge-mode-feyd-protiv-dual">🛡️ <code dir="auto">hedge_mode</code> — фейд против dual</h3><a class="sl-anchor-link" href="#hedge-mode-feyd-protiv-dual"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «🛡️ hedge_mode — фейд против dual»</span></a></div>
+<p>Этот флаг определяет <strong>всю стратегию входа</strong>, а не просто режим позиции на бирже. <strong>По умолчанию <code dir="auto">NO</code>.</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th><code dir="auto">hedge_mode=NO</code> — one-way фейд</th><th><code dir="auto">hedge_mode=YES</code> — dual (обе стороны)</th></tr></thead><tbody><tr><td>Что открывает</td><td><strong>одну</strong> ногу против крупного ордера</td><td><strong>обе</strong> ноги сразу: long + short</td></tr><tr><td>Ждёт стакан?</td><td>да — один топ-ордер ≥ notional (<code dir="auto">ice_futures_wait</code>)</td><td>да — пока <strong>обе</strong> стороны ≥ notional (<code dir="auto">ice_futures_wait</code>)</td></tr><tr><td>Направление</td><td>направленная ставка (лонг <strong>или</strong> шорт)</td><td>дельта-нейтрал (направление не важно)</td></tr><tr><td>Объём за цикл</td><td>×1 (одна нога)</td><td><strong>×2</strong> (две ноги)</td></tr><tr><td>Риск</td><td>зависит от движения цены</td><td>только комиссии + спред (цена гасится)</td></tr><tr><td>Маржа на балансе</td><td>1×</td><td><strong>2×</strong> (две ноги одновременно)</td></tr><tr><td>Позиции на бирже</td><td>idx 0 (нетто)</td><td>long → idx 1, short → idx 2 (раздельно)</td></tr></tbody></table>
+<p><strong>Когда что.</strong> <code dir="auto">NO</code> — направленная ICE-торговля «против толпы», меньше расход маржи. <code dir="auto">YES</code> — <strong>чистый набив объёма без риска направления</strong>: обе ноги гасят движение цены, платишь только комиссии. <code dir="auto">YES</code> = тот же приём, что в обычном action <code dir="auto">futures</code>.</p>
+<div class="mermaid" data-content="flowchart TB
+    subgraph NO[&#x22;hedge_mode = NO · one-way фейд&#x22;]
+        direction TB
+        n1[&#x22;Ждёт крупный ордер<br/>в стакане&#x22;] --> n2[&#x22;Открывает ОДНУ ногу<br/>ПРОТИВ него&#x22;]
+    end
+    subgraph YES[&#x22;hedge_mode = YES · dual (обе стороны)&#x22;]
+        direction TB
+        y1[&#x22;Ждёт: в стакане хватает<br/>с ОБЕИХ сторон&#x22;] --> y2[&#x22;Открывает обе: LONG + SHORT<br/>дельта-нейтрал, объём ×2&#x22;]
+    end
+    style n1 fill:#2196F3,color:#fff,stroke:none,rx:8
+    style n2 fill:#FF9800,color:#fff,stroke:none,rx:8
+    style y1 fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style y2 fill:#7E57C2,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<p>В обоих режимах бот <strong>сам закрывает</strong> позиции после удержания и перепроверяет запросом, что всё реально закрылось.</p>
+<div class="mermaid" data-content="flowchart TD
+    A[&#x22;config: маржа, плечо, монеты&#x22;] --> B{&#x22;hedge_mode?&#x22;}
+    B -- &#x22;YES · dual&#x22; --> DU1[&#x22;Проверка: баланс ≥ 2× маржи&#x22;]
+    DU1 --> DU2[&#x22;Плечо на обе ноги + режим hedge&#x22;]
+    DU2 --> DUW{&#x22;Поллинг стакана ~1 сек:<br/>ОБЕ стороны ≥ notional?&#x22;}
+    DUW -- &#x22;Нет — ждём&#x22; --> DUW
+    DUW -- &#x22;Таймаут ice_futures_wait&#x22; --> X
+    DUW -- &#x22;Да&#x22; --> DU3[&#x22;Открыть LONG + SHORT маркетом&#x22;]
+    DU3 --> H[&#x22;Держать ice_futures_hold сек&#x22;]
+    B -- &#x22;NO · фейд&#x22; --> C[&#x22;Проверка: баланс ≥ маржа<br/>плечо + one-way&#x22;]
+    C --> D{&#x22;Поллинг стакана ~1 сек:<br/>верхний ордер ≥ notional?&#x22;}
+    D -- &#x22;Нет — ждём&#x22; --> D
+    D -- &#x22;Таймаут ice_futures_wait&#x22; --> X[&#x22;⏭ SKIP (нет ликвидности)&#x22;]
+    D -- &#x22;Да&#x22; --> E{&#x22;Где крупный ордер?&#x22;}
+    E -- &#x22;В bids (толпа в лонг)&#x22; --> F[&#x22;Открыть SHORT маркетом&#x22;]
+    E -- &#x22;В asks (толпа в шорт)&#x22; --> G[&#x22;Открыть LONG маркетом&#x22;]
+    F --> H
+    G --> H
+    H --> I[&#x22;Закрыть позицию(и) маркетом<br/>с подтверждением (re-query)&#x22;]
+    I --> J[&#x22;✅ [RESULT] status: [FUTURES_ICE] TRADED N&#x22;]
+    style A fill:#2196F3,color:#fff,stroke:none,rx:8
+    style DU3 fill:#7E57C2,color:#fff,stroke:none,rx:8
+    style F fill:#f44336,color:#fff,stroke:none,rx:8
+    style G fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style I fill:#FF9800,color:#fff,stroke:none,rx:8
+    style J fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style X fill:#9E9E9E,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<p><strong>Пример конфигурации:</strong></p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="ini"><code><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_futures_list</span><span style="--0:#D6DEEB;--1:#403F53">=BTC,ETH</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_futures_order</span><span style="--0:#D6DEEB;--1:#403F53">=10000,15000</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">leverage</span><span style="--0:#D6DEEB;--1:#403F53">=10</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_futures_cycles</span><span style="--0:#D6DEEB;--1:#403F53">=1</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_futures_wait</span><span style="--0:#D6DEEB;--1:#403F53">=300</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_futures_hold</span><span style="--0:#D6DEEB;--1:#403F53">=5,20</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">hedge_mode</span><span style="--0:#D6DEEB;--1:#403F53">=NO</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">market_trading_delay</span><span style="--0:#D6DEEB;--1:#403F53">=30,60</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_dryrun</span><span style="--0:#D6DEEB;--1:#403F53">=YES</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="ice_futures_list=BTC,ETHice_futures_order=10000,15000leverage=10ice_futures_cycles=1ice_futures_wait=300ice_futures_hold=5,20hedge_mode=NOmarket_trading_delay=30,60ice_dryrun=YES"><div></div></button></div></figure></div>
+<p>Здесь маржа 10 000–15 000 USDT × плечо 10 = позиция 100k–150k. При <code dir="auto">hedge_mode=NO</code> бот ждёт в стакане BTC/ETH одиночный ордер такого размера и входит против него. При <strong><code dir="auto">hedge_mode=YES</code></strong> вместо фейда дождётся момента, когда в стакане хватает <strong>с обеих сторон</strong>, и откроет <strong>long+short</strong> одновременно (нужно <strong>2× маржи</strong> на балансе). <strong>Для теста</strong> ставьте <code dir="auto">ice_futures_order=10,20</code> (позиция 100–200 USDT) и <code dir="auto">ice_dryrun=YES</code>.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="ts-ice-tokensplash-vkhod-v-aktsiyu-torgovlya-tokena"><code dir="auto">ts_ice</code> — TokenSplash: вход в акцию + торговля токена</h2><a class="sl-anchor-link" href="#ts-ice-tokensplash-vkhod-v-aktsiyu-torgovlya-tokena"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «ts_ice — TokenSplash: вход в акцию + торговля токена»</span></a></div>
+<p>Заходит в акцию <strong>TokenSplash</strong> по коду из колонки <code dir="auto">[TS] code</code>, затем торгует токен акции спот-лимитками (та же мгновенная логика, что у <code dir="auto">spot_ice</code>) с паузами между сделками.</p>
+<p><strong>Параметры:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Где</th><th>Описание</th><th>Пример</th></tr></thead><tbody><tr><td><strong>Требует</strong> <code dir="auto">[TS] code</code></td><td>Excel-колонка</td><td>Код акции TokenSplash</td><td><code dir="auto">20241217064550</code></td></tr><tr><td>Опционально <code dir="auto">ts_ice_cycles</code></td><td><code dir="auto">AutoPilot.config</code></td><td>Сколько раз торговать токен. <strong><code dir="auto">0</code> = только зайти в акцию, без торговли</strong></td><td><code dir="auto">2</code></td></tr><tr><td><code dir="auto">ice_order</code>, <code dir="auto">ice_spot_offset</code>, <code dir="auto">ice_spot_hold</code>, <code dir="auto">market_trading_delay</code></td><td><code dir="auto">AutoPilot.config</code></td><td>Размер, заход в стакан, удержание buy→sell, паузы (всё как у <code dir="auto">spot_ice</code>)</td><td>—</td></tr></tbody></table>
+<p><strong>Из Excel:</strong> базовые колонки + <code dir="auto">[TS] code</code> + <code dir="auto">[ACTION] action=ts_ice</code>.
+<strong>Обновляет:</strong> <code dir="auto">[RESULT] status</code> — <code dir="auto">[TS_ICE] &#x3C;токен> - REGISTERED/ALREADY JOINED, traded Nx, VOL ~&#x3C;оборот>, FEES ~&#x3C;комиссия>, COST ~&#x3C;стоимость> USDT</code>. В dry — метка <code dir="auto">[DRY]</code>.</p>
+<div class="mermaid" data-content="flowchart TD
+    A[&#x22;Зайти в акцию по [TS] code&#x22;] --> B{&#x22;Зашёл или уже в акции?&#x22;}
+    B -- &#x22;Нет / нет кода&#x22; --> X[&#x22;❌ [TS_ICE] FAIL&#x22;]
+    B -- &#x22;Да&#x22; --> C{&#x22;ts_ice_cycles > 0?&#x22;}
+    C -- &#x22;Нет (=0)&#x22; --> Y[&#x22;Только регистрация, без торговли&#x22;]
+    C -- &#x22;Да&#x22; --> D[&#x22;Торговать токен акции × ts_ice_cycles<br/>лимитками spot_ice + паузы market_trading_delay&#x22;]
+    D --> Z[&#x22;✅ [RESULT] status&#x22;]
+    Y --> Z
+    style A fill:#00BCD4,color:#fff,stroke:none,rx:8
+    style D fill:#FF9800,color:#fff,stroke:none,rx:8
+    style Z fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style X fill:#f44336,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<blockquote>
+<p>✅ <strong>Да, <code dir="auto">ts_ice</code> с задержками</strong> — после каждой сделки токеном бот ждёт случайное время из <code dir="auto">market_trading_delay</code>.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="sell-ice-rasprodazha-ostatkov-s-pauzami"><code dir="auto">sell_ice</code> — распродажа остатков с паузами</h2><a class="sl-anchor-link" href="#sell-ice-rasprodazha-ostatkov-s-pauzami"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «sell_ice — распродажа остатков с паузами»</span></a></div>
+<p>Сливает все не-USDT монеты с баланса по очереди, marketable-лимитками (исполняются мгновенно), <strong>с паузой между каждой продажей</strong>. Удобно дочистить остатки после набива объёма.</p>
+<blockquote>
+<p>👀 <strong>Видит ВСЕ монеты, включая Funding.</strong> Перед распродажей бот сначала переводит все монеты из <strong>Funding-аккаунта в Trading</strong> (как action <code dir="auto">sell</code>), поэтому остатки, лежащие вне торгового кошелька, тоже продаются. В dry-режиме перевод не делается — Funding показывается только для предпросмотра (что было бы продано). В конце «пыль» (суб-тиковые остатки) конвертируется в USDT, чтобы аккаунт ушёл в ~0.</p>
+</blockquote>
+<p><strong>Параметры из <code dir="auto">AutoPilot.config</code>:</strong> своих ключей нет — использует <code dir="auto">ice_spot_offset</code> (заход в стакан), <code dir="auto">market_trading_delay</code> (паузы), <code dir="auto">ice_dryrun</code>.</p>
+<p><strong>Из Excel:</strong> только базовые колонки + <code dir="auto">[ACTION] action=sell_ice</code>.
+<strong>Обновляет:</strong> <code dir="auto">[RESULT] status</code> — <code dir="auto">[SELL_ICE] SOLD &#x3C;продано>/&#x3C;всего> coins, VOL ~&#x3C;оборот>, FEES ~&#x3C;комиссия> USDT (монеты)</code>. В dry — метка <code dir="auto">[DRY]</code>. Если сконвертирована «пыль» — добавляется примечание.</p>
+<blockquote>
+<p>✅ <strong>Задержки работают</strong> — пауза после каждой проданной монеты.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="poryadok-bezopasnogo-zapuska-dlya-vsekh-ice-rezhimov">Порядок безопасного запуска (для всех ICE-режимов)</h2><a class="sl-anchor-link" href="#poryadok-bezopasnogo-zapuska-dlya-vsekh-ice-rezhimov"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Порядок безопасного запуска (для всех ICE-режимов)»</span></a></div>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;1. ice_dryrun=YES<br/>проверить логи&#x22;] --> B[&#x22;2. ice_dryrun=NO<br/>мелкий размер, 1 профиль&#x22;]
+    B --> C[&#x22;3. Масштабирование<br/>на все профили&#x22;]
+    style A fill:#2196F3,color:#fff,stroke:none,rx:8
+    style B fill:#FF9800,color:#fff,stroke:none,rx:8
+    style C fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="polniy-blok-dlya-autopilotconfig">Полный блок для <code dir="auto">AutoPilot.config</code></h2><a class="sl-anchor-link" href="#polniy-blok-dlya-autopilotconfig"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Полный блок для AutoPilot.config»</span></a></div>
+<p>Скопируйте ICE-блок в свой <code dir="auto">AutoPilot.config</code>. Каждый параметр с комментарием — в стиле оригинального конфига.</p>
+<blockquote>
+<p>ℹ️ <strong><code dir="auto">market_trading_delay</code> и <code dir="auto">leverage</code> уже есть</strong> в вашем <code dir="auto">AutoPilot.config</code> (общие для других действий) — <strong>не добавляйте второй раз</strong>. Второй <code dir="auto">leverage=</code> перетрёт первый (readConfig берёт последнее значение).</p>
+<p>⚠️ <strong>Не удаляйте <code dir="auto">ice_futures_order</code></strong> — без него маржа фьючерса тихо падает на <code dir="auto">ice_order</code> (позиция ~700–1000 вместо 100k–150k при 10x).</p>
+</blockquote>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="ini"><code><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># ============ SPOT_ICE — набив объёма лимитками по цене маркета (мгновенно, IOC) ============</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Обязательные монеты (для акции) — торгуются ВСЕ, всегда. Пусто = фаза скипается.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_required_list</span><span style="--0:#D6DEEB;--1:#403F53">=XRP</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Циклов на каждую обязательную монету. Одно число всем; per-coin "3,2" = позиционно по списку.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_required_cycles</span><span style="--0:#D6DEEB;--1:#403F53">=1</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Филлер-объём — рандом-выбор монеты из списка каждую сделку. Пусто = фаза скипается.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_random_list</span><span style="--0:#D6DEEB;--1:#403F53">=BTC,ETH,SOL</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Сколько рандом-сделок за прогон. Одно число или диапазон "1,3".</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_random_cycles</span><span style="--0:#D6DEEB;--1:#403F53">=2</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Размер одной сделки в USDT, рандом из диапазона.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_order</span><span style="--0:#D6DEEB;--1:#403F53">=70,100</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># % захода в стакан для мгновенного исполнения (buy чуть выше ask / sell чуть ниже bid).</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_spot_offset</span><span style="--0:#D6DEEB;--1:#403F53">=0.1</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Держать монету между покупкой и продажей, сек (диапазон, рандом). Действует и на ts_ice. По умолчанию 3,8.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_spot_hold</span><span style="--0:#D6DEEB;--1:#403F53">=3,8</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># ============ FUTURES_ICE — фейд топ-ордера стакана, маркет + плечо ============</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># ВНИМАНИЕ: живые деньги + плечо. Сначала ice_dryrun=YES и мелкий ice_futures_order.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Монеты (ТОЛЬКО ликвидные — BTC/ETH). Пусто = берётся ice_random_list.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_futures_list</span><span style="--0:#D6DEEB;--1:#403F53">=BTC,ETH</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Циклов на монету (открыть+закрыть). Одно число или per-coin "1,1".</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_futures_cycles</span><span style="--0:#D6DEEB;--1:#403F53">=1</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># МАРЖА в USDT (диапазон, рандом). Позиция (notional) = маржа × leverage. Для ТЕСТА ставь 10,20.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_futures_order</span><span style="--0:#D6DEEB;--1:#403F53">=10000,15000</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Плечо — из общего параметра leverage (2-100x), тот же что у futures_smart. Своего ice-ключа НЕТ.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Сколько ждать нужной ликвидности в стакане, сек. Не дождался → skip. Оба режима: NO=один крупный ордер, YES=хватает с обеих сторон.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_futures_wait</span><span style="--0:#D6DEEB;--1:#403F53">=300</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Держать позицию перед закрытием, сек (диапазон, рандом). Работает в обоих режимах.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_futures_hold</span><span style="--0:#D6DEEB;--1:#403F53">=5,20</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Режим входа: NO = one-way фейд (одна нога против стакана, по умолчанию). YES = dual — ждёт когда в стакане</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># хватает с ОБЕИХ сторон, потом открывает обе (long+short); дельта-нейтрал, объём x2, риск = комиссии+спред, нужно 2x маржи.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">hedge_mode</span><span style="--0:#D6DEEB;--1:#403F53">=NO</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># ============ ICE DRY-RUN / BACKTEST (безопасный тест + расчёт экономики, на ВСЕ ICE-режимы) ============</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># YES = всё считается по живому стакану + логируется ОБЪЁМ/КОМИССИЯ/СТОИМОСТЬ, ОРДЕР НЕ ШЛЁТСЯ. NO = реальная торговля.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_dryrun</span><span style="--0:#D6DEEB;--1:#403F53">=NO</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Ставки комиссии (taker, в %) для расчёта. Меняй ТОЛЬКО при нестандартном тарифе (VIP/скидка).</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_spot_fee</span><span style="--0:#D6DEEB;--1:#403F53">=0.1</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ice_futures_fee</span><span style="--0:#D6DEEB;--1:#403F53">=0.055</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># ============ TS_ICE — TokenSplash по коду + торговля токена ============</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Заходит в акцию по колонке [TS] code, торгует токен. 0 = только зайти. Размер = ice_order выше.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ts_ice_cycles</span><span style="--0:#D6DEEB;--1:#403F53">=2</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># ============ SELL_ICE — распродажа всех не-USDT остатков ============</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># СВОИХ ключей НЕТ — использует ice_spot_offset + market_trading_delay + ice_dryrun.</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># ---- УЖЕ ЕСТЬ в вашем конфиге, НЕ дублировать (показаны для справки) ----</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># market_trading_delay=30,60   # пауза после каждого действия (общая для всех режимов)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># leverage=10                  # плечо для futures_ice (тот же ключ, что у futures_smart)</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="# ============ SPOT_ICE — набив объёма лимитками по цене маркета (мгновенно, IOC) ============# Обязательные монеты (для акции) — торгуются ВСЕ, всегда. Пусто = фаза скипается.ice_required_list=XRP# Циклов на каждую обязательную монету. Одно число всем; per-coin &#x22;3,2&#x22; = позиционно по списку.ice_required_cycles=1# Филлер-объём — рандом-выбор монеты из списка каждую сделку. Пусто = фаза скипается.ice_random_list=BTC,ETH,SOL# Сколько рандом-сделок за прогон. Одно число или диапазон &#x22;1,3&#x22;.ice_random_cycles=2# Размер одной сделки в USDT, рандом из диапазона.ice_order=70,100# % захода в стакан для мгновенного исполнения (buy чуть выше ask / sell чуть ниже bid).ice_spot_offset=0.1# Держать монету между покупкой и продажей, сек (диапазон, рандом). Действует и на ts_ice. По умолчанию 3,8.ice_spot_hold=3,8# ============ FUTURES_ICE — фейд топ-ордера стакана, маркет + плечо ============# ВНИМАНИЕ: живые деньги + плечо. Сначала ice_dryrun=YES и мелкий ice_futures_order.# Монеты (ТОЛЬКО ликвидные — BTC/ETH). Пусто = берётся ice_random_list.ice_futures_list=BTC,ETH# Циклов на монету (открыть+закрыть). Одно число или per-coin &#x22;1,1&#x22;.ice_futures_cycles=1# МАРЖА в USDT (диапазон, рандом). Позиция (notional) = маржа × leverage. Для ТЕСТА ставь 10,20.ice_futures_order=10000,15000# Плечо — из общего параметра leverage (2-100x), тот же что у futures_smart. Своего ice-ключа НЕТ.# Сколько ждать нужной ликвидности в стакане, сек. Не дождался → skip. Оба режима: NO=один крупный ордер, YES=хватает с обеих сторон.ice_futures_wait=300# Держать позицию перед закрытием, сек (диапазон, рандом). Работает в обоих режимах.ice_futures_hold=5,20# Режим входа: NO = one-way фейд (одна нога против стакана, по умолчанию). YES = dual — ждёт когда в стакане# хватает с ОБЕИХ сторон, потом открывает обе (long+short); дельта-нейтрал, объём x2, риск = комиссии+спред, нужно 2x маржи.hedge_mode=NO# ============ ICE DRY-RUN / BACKTEST (безопасный тест + расчёт экономики, на ВСЕ ICE-режимы) ============# YES = всё считается по живому стакану + логируется ОБЪЁМ/КОМИССИЯ/СТОИМОСТЬ, ОРДЕР НЕ ШЛЁТСЯ. NO = реальная торговля.ice_dryrun=NO# Ставки комиссии (taker, в %) для расчёта. Меняй ТОЛЬКО при нестандартном тарифе (VIP/скидка).ice_spot_fee=0.1ice_futures_fee=0.055# ============ TS_ICE — TokenSplash по коду + торговля токена ============# Заходит в акцию по колонке [TS] code, торгует токен. 0 = только зайти. Размер = ice_order выше.ts_ice_cycles=2# ============ SELL_ICE — распродажа всех не-USDT остатков ============# СВОИХ ключей НЕТ — использует ice_spot_offset + market_trading_delay + ice_dryrun.# ---- УЖЕ ЕСТЬ в вашем конфиге, НЕ дублировать (показаны для справки) ----# market_trading_delay=30,60   # пауза после каждого действия (общая для всех режимов)# leverage=10                  # плечо для futures_ice (тот же ключ, что у futures_smart)"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="chto-vpisyvat-v-excel-tablitsu">Что вписывать в Excel-таблицу</h2><a class="sl-anchor-link" href="#chto-vpisyvat-v-excel-tablitsu"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Что вписывать в Excel-таблицу»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Действие</th><th>Колонка <code dir="auto">[ACTION] action</code></th><th>Дополнительные колонки</th></tr></thead><tbody><tr><td><code dir="auto">spot_ice</code></td><td><code dir="auto">spot_ice</code></td><td>— (всё из config)</td></tr><tr><td><code dir="auto">futures_ice</code></td><td><code dir="auto">futures_ice</code></td><td>— (всё из config)</td></tr><tr><td><code dir="auto">ts_ice</code></td><td><code dir="auto">ts_ice</code></td><td><code dir="auto">[TS] code</code> = код акции</td></tr><tr><td><code dir="auto">sell_ice</code></td><td><code dir="auto">sell_ice</code></td><td>—</td></tr></tbody></table>
+<p>Плюс всегда базовые колонки профиля: <code dir="auto">[PROFILE] profile_id</code>, <code dir="auto">[PROFILE] mail</code>, <code dir="auto">[PROFILE] bybit_password</code>, при необходимости <code dir="auto">[BYBIT] domain</code>.</p>  <script>(function(){const className = "mermaid";
+
+    window.__mermaidClassName = className;
+  })();</script>   </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n">   </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr">   </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>

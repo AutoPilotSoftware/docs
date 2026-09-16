@@ -1,0 +1,958 @@
+<!DOCTYPE html><html lang="uk" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Гайд NVS Пілота | AutoPilot</title><link rel="canonical" href="https://autopilotsoftware.github.io/docs/ua/kyc/pilot-faq/"/><link rel="alternate" hreflang="ru" href="https://autopilotsoftware.github.io/docs/kyc/pilot-faq/"/><link rel="alternate" hreflang="en" href="https://autopilotsoftware.github.io/docs/en/kyc/pilot-faq/"/><link rel="alternate" hreflang="uk" href="https://autopilotsoftware.github.io/docs/ua/kyc/pilot-faq/"/><link rel="sitemap" href="/docs/sitemap-index.xml"/><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&#34;token&#34;: &#34;d98cb2456dd9448bb66e095a800bb391&#34;}"></script><link rel="shortcut icon" href="/docs/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v5.17.3"/><meta name="generator" content="Starlight v0.37.6"/><meta property="og:title" content="Гайд NVS Пілота"/><meta property="og:type" content="article"/><meta property="og:url" content="https://autopilotsoftware.github.io/docs/ua/kyc/pilot-faq/"/><meta property="og:locale" content="uk"/><meta property="og:description" content="Повний гайд для NVS пілотів — методи завантаження, валідація, життєвий цикл замовлень, MiniApp дашборд"/><meta property="og:site_name" content="AutoPilot"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Повний гайд для NVS пілотів — методи завантаження, валідація, життєвий цикл замовлень, MiniApp дашборд"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/docs/_astro/print.DNXP8c50.css" media="print"><link rel="stylesheet" href="/docs/_astro/index.DJxFRPMf.css">
+<style>@layer starlight.components{:root{--sl-badge-default-border: var(--sl-color-accent);--sl-badge-default-bg: var(--sl-color-accent-low);--sl-badge-default-text: #fff;--sl-badge-note-border: var(--sl-color-blue);--sl-badge-note-bg: var(--sl-color-blue-low);--sl-badge-note-text: #fff;--sl-badge-danger-border: var(--sl-color-red);--sl-badge-danger-bg: var(--sl-color-red-low);--sl-badge-danger-text: #fff;--sl-badge-success-border: var(--sl-color-green);--sl-badge-success-bg: var(--sl-color-green-low);--sl-badge-success-text: #fff;--sl-badge-caution-border: var(--sl-color-orange);--sl-badge-caution-bg: var(--sl-color-orange-low);--sl-badge-caution-text: #fff;--sl-badge-tip-border: var(--sl-color-purple);--sl-badge-tip-bg: var(--sl-color-purple-low);--sl-badge-tip-text: #fff}[data-theme=light]:root{--sl-badge-default-bg: var(--sl-color-accent-high);--sl-badge-note-bg: var(--sl-color-blue-high);--sl-badge-danger-bg: var(--sl-color-red-high);--sl-badge-success-bg: var(--sl-color-green-high);--sl-badge-caution-bg: var(--sl-color-orange-high);--sl-badge-tip-bg: var(--sl-color-purple-high)}.sl-badge:where(.astro-avdet4wd){display:inline-block;border:1px solid var(--sl-color-border-badge);border-radius:.25rem;font-family:var(--sl-font-system-mono);line-height:normal;color:var(--sl-color-text-badge);background-color:var(--sl-color-bg-badge);overflow-wrap:anywhere}.sidebar-content .sl-badge:where(.astro-avdet4wd){line-height:1;font-size:var(--sl-text-xs);padding:.125rem .375rem}.sidebar-content a[aria-current=page]>.sl-badge:where(.astro-avdet4wd){--sl-color-bg-badge: transparent;--sl-color-border-badge: currentColor;color:inherit}.default:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-default-bg);--sl-color-border-badge: var(--sl-badge-default-border);--sl-color-text-badge: var(--sl-badge-default-text)}.note:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-note-bg);--sl-color-border-badge: var(--sl-badge-note-border);--sl-color-text-badge: var(--sl-badge-note-text)}.danger:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-danger-bg);--sl-color-border-badge: var(--sl-badge-danger-border);--sl-color-text-badge: var(--sl-badge-danger-text)}.success:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-success-bg);--sl-color-border-badge: var(--sl-badge-success-border);--sl-color-text-badge: var(--sl-badge-success-text)}.tip:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-tip-bg);--sl-color-border-badge: var(--sl-badge-tip-border);--sl-color-text-badge: var(--sl-badge-tip-text)}.caution:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-caution-bg);--sl-color-border-badge: var(--sl-badge-caution-border);--sl-color-text-badge: var(--sl-badge-caution-text)}.small:where(.astro-avdet4wd){font-size:var(--sl-text-xs);padding:.125rem .25rem}.medium:where(.astro-avdet4wd){font-size:var(--sl-text-sm);padding:.175rem .35rem}.large:where(.astro-avdet4wd){font-size:var(--sl-text-base);padding:.225rem .45rem}.sl-markdown-content :is(h1,h2,h3,h4,h5,h6) .sl-badge:where(.astro-avdet4wd){vertical-align:middle}}
+@layer starlight.components{.card-grid:where(.astro-zntqmydn){display:grid;grid-template-columns:100%;gap:1rem}.card-grid:where(.astro-zntqmydn)>*{margin-top:0!important}@media(min-width:50rem){.card-grid:where(.astro-zntqmydn){grid-template-columns:1fr 1fr;gap:1.5rem}.stagger:where(.astro-zntqmydn){--stagger-height: 5rem;padding-bottom:var(--stagger-height)}.stagger:where(.astro-zntqmydn)>*:nth-child(2n){transform:translateY(var(--stagger-height))}}}
+@layer starlight.components{svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-size, 1em);width:1em;height:1em}}
+@layer starlight.components{.sl-link-card:where(.astro-mf7fz2mj){display:grid;grid-template-columns:1fr auto;gap:.5rem;border:1px solid var(--sl-color-gray-5);border-radius:.5rem;padding:1rem;box-shadow:var(--sl-shadow-sm);position:relative}a:where(.astro-mf7fz2mj){text-decoration:none;line-height:var(--sl-line-height-headings)}a:where(.astro-mf7fz2mj):before{content:"";position:absolute;inset:0}.stack:where(.astro-mf7fz2mj){flex-direction:column;gap:.5rem}.title:where(.astro-mf7fz2mj){color:var(--sl-color-white);font-weight:600;font-size:var(--sl-text-lg)}.description:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3);line-height:1.5}.icon:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3)}.sl-link-card:where(.astro-mf7fz2mj):hover{background:var(--sl-color-gray-7, var(--sl-color-gray-6));border-color:var(--sl-color-gray-2)}.sl-link-card:where(.astro-mf7fz2mj):hover .icon:where(.astro-mf7fz2mj){color:var(--sl-color-white)}}
+@layer starlight.components{.sl-steps{--bullet-size: calc(var(--sl-line-height) * 1rem);--bullet-margin: .375rem;list-style:none;counter-reset:steps-counter var(--sl-steps-start, 0);padding-inline-start:0}.sl-steps>li{counter-increment:steps-counter;position:relative;padding-inline-start:calc(var(--bullet-size) + 1rem);padding-bottom:1px;min-height:calc(var(--bullet-size) + var(--bullet-margin))}.sl-steps>li+li{margin-top:0}.sl-steps>li:before{content:counter(steps-counter);position:absolute;top:0;inset-inline-start:0;width:var(--bullet-size);height:var(--bullet-size);line-height:var(--bullet-size);font-size:var(--sl-text-xs);font-weight:600;text-align:center;color:var(--sl-color-white);background-color:var(--sl-color-gray-6);border-radius:99rem;box-shadow:inset 0 0 0 1px var(--sl-color-gray-5)}.sl-steps>li:after{--guide-width: 1px;content:"";position:absolute;top:calc(var(--bullet-size) + var(--bullet-margin));bottom:var(--bullet-margin);inset-inline-start:calc((var(--bullet-size) - var(--guide-width)) / 2);width:var(--guide-width);background-color:var(--sl-color-hairline-light)}}@layer starlight.content{.sl-steps>li>:first-child{--lh: calc(1em * var(--sl-line-height));--shift-y: calc(.5 * (var(--bullet-size) - var(--lh)));transform:translateY(var(--shift-y));margin-bottom:var(--shift-y)}.sl-steps>li>:first-child:where(h1,h2,h3,h4,h5,h6){--lh: calc(1em * var(--sl-line-height-headings))}@supports (--prop: 1lh){.sl-steps>li>:first-child{--lh: 1lh}}}
+@layer starlight.components{.sl-link-button:where(.astro-xwgiixxa){align-items:center;border:1px solid transparent;border-radius:999rem;display:inline-flex;font-size:var(--sl-text-sm);gap:.5em;line-height:1.1875;outline-offset:.25rem;padding:.4375rem 1.125rem;text-decoration:none}.sl-link-button:where(.astro-xwgiixxa).primary{background:var(--sl-color-text-accent);border-color:var(--sl-color-text-accent);color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).primary:hover{color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).secondary{border-color:inherit;color:var(--sl-color-white)}.sl-link-button:where(.astro-xwgiixxa).minimal{color:var(--sl-color-white);padding-inline:0}.sl-link-button:where(.astro-xwgiixxa) svg{flex-shrink:0}@media(min-width:50rem){.sl-link-button:where(.astro-xwgiixxa){font-size:var(--sl-text-base);padding:.9375rem 1.25rem}}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa){margin-inline-end:1rem}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa):not(:where(p *)){margin-block:1rem}}
+</style><script type="module" src="/docs/_astro/page.B1D-nYk3.js"></script></head> <body class="astro-bguv2lll"> <a href="#_top" class="astro-7q3lir66">Перейти до вмісту</a>  <div class="page sl-flex astro-vrdttmbt"> <header class="header astro-vrdttmbt"><div class="header astro-kmkmnagf"> <div class="title-wrapper sl-flex astro-kmkmnagf"> <a href="/docs/ua" class="site-title sl-flex astro-m46x6ez3">  <img class="astro-m46x6ez3" alt src="/docs/_astro/auto_pilot_logo.CfyEiyY2.png" width="600" height="600">  <span class="astro-m46x6ez3" translate="no"> AutoPilot </span> </a>  </div> <div class="sl-flex print:hidden astro-kmkmnagf"> <site-search class="astro-kmkmnagf astro-v37mnknz" data-translations="{&#34;placeholder&#34;:&#34;Пошук&#34;}"> <button data-open-modal disabled aria-label="Пошук" aria-keyshortcuts="Control+K" class="astro-v37mnknz"> <svg aria-hidden="true" class="astro-v37mnknz astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg> <span class="sl-hidden md:sl-block astro-v37mnknz" aria-hidden="true">Пошук</span> <kbd class="sl-hidden md:sl-flex astro-v37mnknz" style="display: none;"> <kbd class="astro-v37mnknz">Ctrl</kbd><kbd class="astro-v37mnknz">K</kbd> </kbd> </button> <dialog style="padding:0" aria-label="Пошук" class="astro-v37mnknz"> <div class="dialog-frame sl-flex astro-v37mnknz">  <button data-close-modal class="sl-flex md:sl-hidden astro-v37mnknz"> Скасувати </button> <div class="search-container astro-v37mnknz"> <div id="starlight__search" class="astro-v37mnknz"></div> </div> </div> </dialog> </site-search>  <script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script> <script type="module" src="/docs/_astro/Search.astro_astro_type_script_index_0_lang.7TPqQKfI.js"></script>   </div> <div class="sl-hidden md:sl-flex print:hidden right-group astro-kmkmnagf"> <div class="sl-flex social-icons astro-kmkmnagf">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Обрати тему</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Темна</option><option value="light" class="astro-4yphtoen">Світла</option><option value="auto" selected class="astro-4yphtoen">Авто</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script> <script type="module">const r="starlight-theme",o=e=>e==="auto"||e==="dark"||e==="light"?e:"auto",c=()=>o(typeof localStorage<"u"&&localStorage.getItem(r));function n(e){typeof localStorage<"u"&&localStorage.setItem(r,e==="light"||e==="dark"?e:"")}const l=()=>matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";function t(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e==="auto"?l():e,n(e)}matchMedia("(prefers-color-scheme: light)").addEventListener("change",()=>{c()==="auto"&&t("auto")});class s extends HTMLElement{constructor(){super(),t(c()),this.querySelector("select")?.addEventListener("change",a=>{a.currentTarget instanceof HTMLSelectElement&&t(o(a.currentTarget.value))})}}customElements.define("starlight-theme-select",s);</script> <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Обрати мову</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/kyc/pilot-faq/" class="astro-4yphtoen">Русский</option><option value="/docs/en/kyc/pilot-faq/" class="astro-4yphtoen">English</option><option value="/docs/ua/kyc/pilot-faq/" selected class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select><script type="module">class s extends HTMLElement{constructor(){super();const e=this.querySelector("select");e&&(e.addEventListener("change",t=>{t.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=t.currentTarget.value)}),window.addEventListener("pageshow",t=>{if(!t.persisted)return;const n=e.querySelector("option[selected]")?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}}customElements.define("starlight-lang-select",s);</script> </div> </div> </header> <nav class="sidebar print:hidden astro-vrdttmbt" aria-label="Головне"> <starlight-menu-button class="print:hidden astro-jif73yzw"> <button aria-expanded="false" aria-label="Меню" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-jif73yzw"> <svg aria-hidden="true" class="open-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg> <svg aria-hidden="true" class="close-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg> </button> </starlight-menu-button> <script type="module">class s extends HTMLElement{constructor(){super(),this.btn=this.querySelector("button"),this.btn.addEventListener("click",()=>this.toggleExpanded());const t=this.closest("nav");t&&t.addEventListener("keyup",e=>this.closeOnEscape(e))}setExpanded(t){this.setAttribute("aria-expanded",String(t)),document.body.toggleAttribute("data-mobile-menu-expanded",t)}toggleExpanded(){this.setExpanded(this.getAttribute("aria-expanded")!=="true")}closeOnEscape(t){t.code==="Escape"&&(this.setExpanded(!1),this.btn.focus())}}customElements.define("starlight-menu-button",s);</script>   <div id="starlight__sidebar" class="sidebar-pane astro-vrdttmbt"> <div class="sidebar-content sl-flex astro-vrdttmbt"> <sl-sidebar-state-persist data-hash="03zb76w" class="astro-kku4brbg"> <script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script>  <ul class="top-level astro-3ii7xxms"> <li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Початок роботи</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="0"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/ua/getting-started/faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">FAQ</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/ua/getting-started/macos-launch/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Запуск на macOS</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Біржі</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="1"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/ua/exchanges/bybit-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bybit AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/ua/exchanges/mexc-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">MEXC AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/ua/exchanges/bitget-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bitget AutoPilot</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">KYC Платформа</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="2"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/ua/kyc/autopilot-kyc-subscription/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Підписка KYC</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/ua/kyc/nvs-faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">NVS Завантаження</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/ua/kyc/pilot-faq/" aria-current="page" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Гайд Пілота</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/ua/kyc/sellers-guide/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Seller Guide</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/ua/kyc/autopilot-kyc-tos/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Умови використання</span>  </a> </li> </ul>  </details> </li> </ul>   <script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-wu23bvmt"> <div class="social-icons astro-wu23bvmt">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Обрати тему</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Темна</option><option value="light" class="astro-4yphtoen">Світла</option><option value="auto" selected class="astro-4yphtoen">Авто</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>  <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Обрати мову</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/kyc/pilot-faq/" class="astro-4yphtoen">Русский</option><option value="/docs/en/kyc/pilot-faq/" class="astro-4yphtoen">English</option><option value="/docs/ua/kyc/pilot-faq/" selected class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select> </div>  </div> </div> </div> </nav> <div class="main-frame astro-vrdttmbt">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-67yu43on"> <aside class="right-sidebar-container print:hidden astro-67yu43on"> <div class="right-sidebar astro-67yu43on"> <script type="module" src="/docs/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.hwBsy0Mo.js"></script><script type="module" src="/docs/_astro/TableOfContents.astro_astro_type_script_index_0_lang.FuRcXuRY.js"></script><div class="lg:sl-hidden astro-pb3aqygn"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-doynk5tl"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-doynk5tl"><details id="starlight__mobile-toc" class="astro-doynk5tl"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-doynk5tl"><span class="toggle sl-flex astro-doynk5tl">На цій сторінці<svg aria-hidden="true" class="caret astro-doynk5tl astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-doynk5tl"></span></summary><div class="dropdown astro-doynk5tl"><ul class="isMobile astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Огляд</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#zmist" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Зміст</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#scho-take-nvs" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Що таке NVS?</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#pochatok-roboti" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Початок роботи</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#krok-1-otrimayte-diplink" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Крок 1: Отримайте діплінк</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#krok-2-aktivuyte-v-telegram" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Крок 2: Активуйте в Telegram</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#krok-3-zavantazhte-akaunti" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Крок 3: Завантажте акаунти</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#yak-tse-pratsyuye" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Як це працює</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#povniy-potik-nvs" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Повний потік NVS</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#metodi-zavantazhennya" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Методи завантаження</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#metod-1-afina-browser" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Метод 1: Afina Browser</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#metod-2-adspower-txt-rekomendovano-dlya-adspower" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Метод 2: AdsPower TXT (Рекомендовано для AdsPower)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#metod-3-ruchniy-proksi-kuki" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Метод 3: Ручний (Проксі + Кукі)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#porivnyannya-metodiv" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Порівняння методів</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#konveyer-validatsiyi-akauntiv" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Конвеєр валідації акаунтів</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#zhittyeviy-tsikl-zamovlennya" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Життєвий цикл замовлення</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#dovidnik-menyu-nvs" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Довідник меню NVS</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#ikonki-statusiv-zavdan" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Іконки статусів завдань</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#dashbord-miniapp" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Дашборд MiniApp</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladki-miniapp" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладки MiniApp</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-zamovlennya" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Замовлення</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-zavdannya" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Завдання</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-analitika" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Аналітика</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-zavdannya-povernennya-refunds" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Завдання — Повернення (Refunds)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-selleri-viglyad-pilota" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Селлери (Вигляд пілота)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-priorities" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Priorities</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-settings" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Settings</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-globus" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Глобус</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-chat" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Чат</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#smart-session-update" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Smart Session Update</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#rozumni-povernennya-smart-refunds" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Розумні повернення (Smart Refunds)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#smart-rekyc-dlya-mexc-face-verification-bezkoshtovno-u-pershi-30-khvilin" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Smart REKYC для MEXC — Face Verification безкоштовно у перші 30 хвилин</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#anti-sibil-ta-risk-system" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Анти-сибіл та risk-system</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#provayderi-kyc" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Провайдери KYC</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#vidstezhennya-statusiv-zavdan" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Відстеження статусів завдань</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#mashina-staniv-zavdan" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Машина станів завдань</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#perevirka-statusu" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Перевірка статусу</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#usunennya-pomilok" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Усунення помилок</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#korotka-dovidka-z-pomilok" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Коротка довідка з помилок</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#potik-rekyc" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Потік ReKYC</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#bezpeka-ta-privatnist" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Безпека та приватність</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#scho-dostupno-selleram" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Що доступно селлерам</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#obrobka-danikh" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Обробка даних</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#poradi" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Поради</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#faq" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">FAQ</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#korotka-dovidka" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Коротка довідка</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#cheklist-zavantazhennya" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Чекліст завантаження</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#poryadok-zavantazhennya" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Порядок завантаження</span> </a>  </li> </ul>  </li> </ul> </div></details></nav></mobile-starlight-toc></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-pb3aqygn"><div class="sl-container astro-pb3aqygn"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">На цій сторінці</h2><ul class="astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Огляд</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#zmist" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Зміст</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#scho-take-nvs" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Що таке NVS?</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#pochatok-roboti" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Початок роботи</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#krok-1-otrimayte-diplink" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Крок 1: Отримайте діплінк</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#krok-2-aktivuyte-v-telegram" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Крок 2: Активуйте в Telegram</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#krok-3-zavantazhte-akaunti" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Крок 3: Завантажте акаунти</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#yak-tse-pratsyuye" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Як це працює</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#povniy-potik-nvs" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Повний потік NVS</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#metodi-zavantazhennya" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Методи завантаження</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#metod-1-afina-browser" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Метод 1: Afina Browser</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#metod-2-adspower-txt-rekomendovano-dlya-adspower" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Метод 2: AdsPower TXT (Рекомендовано для AdsPower)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#metod-3-ruchniy-proksi-kuki" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Метод 3: Ручний (Проксі + Кукі)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#porivnyannya-metodiv" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Порівняння методів</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#konveyer-validatsiyi-akauntiv" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Конвеєр валідації акаунтів</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#zhittyeviy-tsikl-zamovlennya" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Життєвий цикл замовлення</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#dovidnik-menyu-nvs" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Довідник меню NVS</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#ikonki-statusiv-zavdan" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Іконки статусів завдань</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#dashbord-miniapp" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Дашборд MiniApp</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladki-miniapp" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладки MiniApp</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-zamovlennya" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Замовлення</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-zavdannya" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Завдання</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-analitika" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Аналітика</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-zavdannya-povernennya-refunds" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Завдання — Повернення (Refunds)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-selleri-viglyad-pilota" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Селлери (Вигляд пілота)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-priorities" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Priorities</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-settings" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Settings</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-globus" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Глобус</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-chat" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Чат</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#smart-session-update" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Smart Session Update</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#rozumni-povernennya-smart-refunds" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Розумні повернення (Smart Refunds)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#smart-rekyc-dlya-mexc-face-verification-bezkoshtovno-u-pershi-30-khvilin" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Smart REKYC для MEXC — Face Verification безкоштовно у перші 30 хвилин</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#anti-sibil-ta-risk-system" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Анти-сибіл та risk-system</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#provayderi-kyc" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Провайдери KYC</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#vidstezhennya-statusiv-zavdan" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Відстеження статусів завдань</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#mashina-staniv-zavdan" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Машина станів завдань</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#perevirka-statusu" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Перевірка статусу</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#usunennya-pomilok" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Усунення помилок</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#korotka-dovidka-z-pomilok" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Коротка довідка з помилок</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#potik-rekyc" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Потік ReKYC</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#bezpeka-ta-privatnist" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Безпека та приватність</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#scho-dostupno-selleram" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Що доступно селлерам</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#obrobka-danikh" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Обробка даних</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#poradi" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Поради</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#faq" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">FAQ</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#korotka-dovidka" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Коротка довідка</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#cheklist-zavantazhennya" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Чекліст завантаження</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#poryadok-zavantazhennya" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Порядок завантаження</span> </a>  </li> </ul>  </li> </ul> </nav></starlight-toc></div></div> </div> </aside> <div class="main-pane astro-67yu43on">  <main data-pagefind-body class="astro-bguv2lll" lang="uk" dir="ltr">   <script type="module" src="/docs/_astro/MarkdownContent.astro_astro_type_script_index_0_lang.Be01RnYk.js"></script> <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <h1 id="_top" class="astro-j6tvhyss">Гайд NVS Пілота</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content">  <div class="sl-heading-wrapper level-h1"><h1 id="gayd-nvs-pilota-autopilot-kyc-bot">Гайд NVS Пілота — AutoPilot KYC Бот</h1><a class="sl-anchor-link" href="#gayd-nvs-pilota-autopilot-kyc-bot"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Гайд NVS Пілота — AutoPilot KYC Бот”</span></a></div>
+<p>Повний гайд для користувачів NVS (New Verification System) бота <code dir="auto">@AutoPilotKYC_bot</code> та дашборду Admin MiniApp.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="zmist">Зміст</h2><a class="sl-anchor-link" href="#zmist"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Зміст”</span></a></div>
+<ol>
+<li><a href="#%D1%89%D0%BE-%D1%82%D0%B0%D0%BA%D0%B5-nvs">Що таке NVS?</a></li>
+<li><a href="#%D0%BF%D0%BE%D1%87%D0%B0%D1%82%D0%BE%D0%BA-%D1%80%D0%BE%D0%B1%D0%BE%D1%82%D0%B8">Початок роботи</a></li>
+<li><a href="#%D0%BF%D0%BE%D0%B2%D0%BD%D0%B8%D0%B9-%D0%BF%D0%BE%D1%82%D1%96%D0%BA-nvs">Повний потік NVS</a></li>
+<li><a href="#%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%B8-%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F">Методи завантаження</a></li>
+<li><a href="#%D0%BA%D0%BE%D0%BD%D0%B2%D0%B5%D1%94%D1%80-%D0%B2%D0%B0%D0%BB%D1%96%D0%B4%D0%B0%D1%86%D1%96%D1%97-%D0%B0%D0%BA%D0%B0%D1%83%D0%BD%D1%82%D1%96%D0%B2">Конвеєр валідації акаунтів</a></li>
+<li><a href="#%D0%B6%D0%B8%D1%82%D1%82%D1%94%D0%B2%D0%B8%D0%B9-%D1%86%D0%B8%D0%BA%D0%BB-%D0%B7%D0%B0%D0%BC%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F">Життєвий цикл замовлення</a></li>
+<li><a href="#%D0%B4%D0%BE%D0%B2%D1%96%D0%B4%D0%BD%D0%B8%D0%BA-%D0%BC%D0%B5%D0%BD%D1%8E-nvs">Довідник меню NVS</a></li>
+<li><a href="#%D0%B4%D0%B0%D1%88%D0%B1%D0%BE%D1%80%D0%B4-miniapp">Дашборд MiniApp</a></li>
+<li><a href="#%D0%B2%D1%96%D0%B4%D1%81%D1%82%D0%B5%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F-%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%D1%96%D0%B2-%D0%B7%D0%B0%D0%B2%D0%B4%D0%B0%D0%BD%D1%8C">Відстеження статусів завдань</a></li>
+<li><a href="#%D1%83%D1%81%D1%83%D0%BD%D0%B5%D0%BD%D0%BD%D1%8F-%D0%BF%D0%BE%D0%BC%D0%B8%D0%BB%D0%BE%D0%BA">Усунення помилок</a></li>
+<li><a href="#%D0%B1%D0%B5%D0%B7%D0%BF%D0%B5%D0%BA%D0%B0-%D1%82%D0%B0-%D0%BF%D1%80%D0%B8%D0%B2%D0%B0%D1%82%D0%BD%D1%96%D1%81%D1%82%D1%8C">Безпека та приватність</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ol>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="scho-take-nvs">Що таке NVS?</h2><a class="sl-anchor-link" href="#scho-take-nvs"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Що таке NVS?”</span></a></div>
+<p>NVS (New Verification System) — це спрощений потік KYC замовлень для пілотів, які купують слоти верифікації через <strong>NVS Shop</strong>. Замість управління замовленнями безпосередньо в боті, користувачі NVS отримують одноразове діплінк-посилання, яке активує попередньо налаштоване замовлення з уже вказаними країною, біржею та кількістю.</p>
+<p><strong>Ключові відмінності від звичайних замовлень пілота:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Функція</th><th>Звичайний пілот</th><th>NVS пілот</th></tr></thead><tbody><tr><td>Створення замовлення</td><td>Меню в боті</td><td>Через діплінк NVS Shop</td></tr><tr><td>Ціноутворення</td><td>Стандартна ціна платформи</td><td>Ціна NVS Shop</td></tr><tr><td>Потрібна ліцензія</td><td>Так</td><td>Ні (на основі діплінку)</td></tr><tr><td>Опції меню</td><td>Повна панель пілота</td><td>Сфокусоване меню з 5 кнопок</td></tr><tr><td>Доступ до MiniApp</td><td>Всі вкладки</td><td>Замовлення, Завдання, Історія, Аналітика</td></tr><tr><td>Завантаження акаунтів</td><td>Ті ж методи</td><td>Ті ж методи</td></tr><tr><td>Призначення селлера</td><td>FCFS глобальний пул</td><td>FCFS глобальний пул</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="pochatok-roboti">Початок роботи</h2><a class="sl-anchor-link" href="#pochatok-roboti"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Початок роботи”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="krok-1-otrimayte-diplink">Крок 1: Отримайте діплінк</h3><a class="sl-anchor-link" href="#krok-1-otrimayte-diplink"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Крок 1: Отримайте діплінк”</span></a></div>
+<p>Придбайте замовлення верифікації в NVS Shop. Ви отримаєте посилання:</p>
+<div class="expressive-code"><link rel="stylesheet" href="/docs/_astro/ec.v4551.css"><script type="module" src="/docs/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">https://t.me/AutoPilotKYC_bot?start=nvs_abc123def456</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="https://t.me/AutoPilotKYC_bot?start=nvs_abc123def456"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="krok-2-aktivuyte-v-telegram">Крок 2: Активуйте в Telegram</h3><a class="sl-anchor-link" href="#krok-2-aktivuyte-v-telegram"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Крок 2: Активуйте в Telegram”</span></a></div>
+<p>Натисніть на посилання — воно відкриє бота. Нові користувачі обирають мову (English / Russian / Ukrainian). Бот відображає деталі вашого замовлення:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">✅ Замовлення активовано</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">🌍 Країна: BR (Brazil)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">💱 Біржа: Bybit</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">📦 Акаунтів: 4</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="✅ Замовлення активовано🌍 Країна: BR (Brazil)💱 Біржа: Bybit📦 Акаунтів: 4"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="krok-3-zavantazhte-akaunti">Крок 3: Завантажте акаунти</h3><a class="sl-anchor-link" href="#krok-3-zavantazhte-akaunti"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Крок 3: Завантажте акаунти”</span></a></div>
+<p>Оберіть метод (AdsPower TXT або Ручний), завантажте дані, підтвердіть — селлери починають роботу.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="yak-tse-pratsyuye">Як це працює</h3><a class="sl-anchor-link" href="#yak-tse-pratsyuye"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Як це працює”</span></a></div>
+<div class="mermaid" data-content="flowchart TD
+    subgraph Shop[&#x22;🛒 NVS Shop&#x22;]
+        NS[&#x22;Купівля замовлення верифікації&#x22;] --> DL[&#x22;Отримання діплінк-посилання&#x22;]
+    end
+
+    subgraph Bot[&#x22;🤖 AutoPilot KYC Бот&#x22;]
+        DL --> ACT[&#x22;Активація замовлення в Telegram&#x22;]
+        ACT --> UPLOAD[&#x22;Завантаження акаунтів&#x22;]
+        UPLOAD --> VAL[&#x22;Автоматична перевірка&#x22;]
+        VAL --> ORD[&#x22;Замовлення підтверджено&#x22;]
+    end
+
+    subgraph Work[&#x22;👥 Верифікація&#x22;]
+        ORD --> SEL[&#x22;Селлери виконують KYC&#x22;]
+        SEL --> DONE[&#x22;✅ Акаунти верифіковано&#x22;]
+    end
+
+    DONE --> TRACK[&#x22;📊 Відстежуйте прогрес у боті або MiniApp&#x22;]" data-status="loading"></div>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="povniy-potik-nvs">Повний потік NVS</h2><a class="sl-anchor-link" href="#povniy-potik-nvs"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Повний потік NVS”</span></a></div>
+<div class="mermaid" data-content="flowchart TD
+    A[&#x22;🔗 Купівля в NVS Shop&#x22;] --> B[&#x22;📱 Перехід за посиланням&#x22;]
+    B --> C{&#x22;Новий користувач?&#x22;}
+    C -->|Так| D[&#x22;🌐 Вибір мови&#x22;]
+    C -->|Ні| E[&#x22;✅ Замовлення активовано&#x22;]
+    D --> E
+
+    E --> F[&#x22;📋 Головне меню NVS&#x22;]
+    F --> G[&#x22;📤 Завантажити акаунти&#x22;]
+    G --> L{&#x22;Метод?&#x22;}
+
+    L -->|Afina| M0[&#x22;📄 Відправити файл Afina&#x22;]
+    L -->|AdsPower| M[&#x22;📄 Відправити .txt файл&#x22;]
+    L -->|Ручний| N[&#x22;✏️ Вставити проксі&#x22;]
+    N --> O[&#x22;📎 Відправити .json кукі&#x22;]
+
+    M0 --> P[&#x22;🔍 Валідація&#x22;]
+    M --> P
+    O --> P
+
+    P --> Q[&#x22;📊 Результат: ✅ Пройшли N | ❌ Не пройшли M&#x22;]
+    Q --> R{&#x22;Підтвердити?&#x22;}
+    R -->|Так| S[&#x22;📦 Замовлення створено — селлери повідомлені&#x22;]
+    R -->|Ні| F
+    S --> T[&#x22;⏳ Селлери виконують завдання&#x22;]
+    T --> U[&#x22;✅ ВЕРИФІКОВАНО&#x22;]" data-status="loading"></div>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="metodi-zavantazhennya">Методи завантаження</h2><a class="sl-anchor-link" href="#metodi-zavantazhennya"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Методи завантаження”</span></a></div>
+<p>Підтримується <strong>3 способи</strong> додати акаунти в бот.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="metod-1-afina-browser">Метод 1: Afina Browser</h3><a class="sl-anchor-link" href="#metod-1-afina-browser"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Метод 1: Afina Browser”</span></a></div>
+<p>Найкращий варіант, якщо ваші профілі вже в <strong>Afina</strong> — експорт повністю автоматизований.</p>
+<p><strong>Кроки:</strong></p>
+<ol>
+<li>Відкрийте Afina → виберіть профілі → <strong>Export</strong></li>
+<li>Отримайте файл із кукі + проксі + User-Agent</li>
+<li>У боті: <strong>Завантажити акаунти</strong> → <strong>Afina Browser</strong> → відправте файл як документ 📎</li>
+</ol>
+<blockquote>
+<p>Бот розпізнає формат Afina автоматично та підтягує всі потрібні поля без ручного налаштування.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="metod-2-adspower-txt-rekomendovano-dlya-adspower">Метод 2: AdsPower TXT (Рекомендовано для AdsPower)</h3><a class="sl-anchor-link" href="#metod-2-adspower-txt-rekomendovano-dlya-adspower"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Метод 2: AdsPower TXT (Рекомендовано для AdsPower)”</span></a></div>
+<p>Найкращий варіант, якщо ви використовуєте антидетект-браузер AdsPower.</p>
+<p><strong>Кроки експорту:</strong></p>
+<ol>
+<li>Відкрийте AdsPower → виберіть профілі</li>
+<li>Експорт → оберіть формат <strong>TXT</strong></li>
+<li>Увімкніть <strong>User Agent</strong> в налаштуваннях експорту</li>
+<li>Збережіть файл <code dir="auto">.txt</code></li>
+</ol>
+<p><strong>Відправте боту:</strong></p>
+<ul>
+<li>Меню бота → <strong>Завантажити акаунти</strong> → <strong>AdsPower TXT</strong></li>
+<li>Відправте файл <code dir="auto">.txt</code> як <strong>документ</strong> (через 📎)</li>
+</ul>
+<p><strong>Формат файлу (блоки акаунтів розділені <code dir="auto">******************</code>):</strong></p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">acc_id=348</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">id=k1a2ge6p</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">group=Share-1224</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">name=4623 RWANDA</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">cookie=[{"name":"token","value":"abc123","domain":".bybit.com"}]</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">proxytype=http</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">proxy=123.45.67.89:8080:user:pass</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">countrycode=rw</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64)...</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">******************</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">acc_id=349</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">...</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="acc_id=348id=k1a2ge6pgroup=Share-1224name=4623 RWANDAcookie=[{&#x22;name&#x22;:&#x22;token&#x22;,&#x22;value&#x22;:&#x22;abc123&#x22;,&#x22;domain&#x22;:&#x22;.bybit.com&#x22;}]proxytype=httpproxy=123.45.67.89:8080:user:passcountrycode=rwua=Mozilla/5.0 (Windows NT 10.0; Win64; x64)...******************acc_id=349..."><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="metod-3-ruchniy-proksi-kuki">Метод 3: Ручний (Проксі + Кукі)</h3><a class="sl-anchor-link" href="#metod-3-ruchniy-proksi-kuki"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Метод 3: Ручний (Проксі + Кукі)”</span></a></div>
+<p>Використовуйте, коли у вас є окремі списки проксі та файли кукі.</p>
+<p><strong>Крок 1 — Відправте проксі текстом</strong> (по одному на рядок, кількість має відповідати акаунтам):</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">185.123.45.1:8080:user1:pass1</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">185.123.45.2:8080:user2:pass2</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">185.123.45.3:8080:user3:pass3</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="185.123.45.1:8080:user1:pass1185.123.45.2:8080:user2:pass2185.123.45.3:8080:user3:pass3"><div></div></button></div></figure></div>
+<p><strong>Підтримувані формати проксі:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Формат</th><th>Приклад</th></tr></thead><tbody><tr><td><code dir="auto">IP:PORT:LOGIN:PASS</code></td><td><code dir="auto">185.1.2.3:8080:user:pass</code></td></tr><tr><td><code dir="auto">LOGIN:PASS@IP:PORT</code></td><td><code dir="auto">user:pass@185.1.2.3:8080</code></td></tr><tr><td><code dir="auto">http://LOGIN:PASS@IP:PORT</code></td><td><code dir="auto">http://user:pass@185.1.2.3:8080</code></td></tr><tr><td><code dir="auto">socks5://LOGIN:PASS@IP:PORT</code></td><td><code dir="auto">socks5://user:pass@185.1.2.3:8080</code></td></tr></tbody></table>
+<p><strong>Крок 2 — Відправте файли кукі</strong> через 📎 скріпку (один <code dir="auto">.json</code> на акаунт):</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">[</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">token</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"value"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">abc123</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"domain"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">.bybit.com</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">},</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">session</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"value"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">xyz789</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"domain"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">.bybit.com</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="[  {&#x22;name&#x22;: &#x22;token&#x22;, &#x22;value&#x22;: &#x22;abc123&#x22;, &#x22;domain&#x22;: &#x22;.bybit.com&#x22;},  {&#x22;name&#x22;: &#x22;session&#x22;, &#x22;value&#x22;: &#x22;xyz789&#x22;, &#x22;domain&#x22;: &#x22;.bybit.com&#x22;}]"><div></div></button></div></figure></div>
+<p><strong>Альтернатива:</strong> Один файл з вкладеним масивом для всіх акаунтів:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">[</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">[{</span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">token</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#7FDBCA;--1:#096E72">"value"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">abc1</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#7FDBCA;--1:#096E72">"domain"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">.bybit.com</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">}],</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">[{</span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">token</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#7FDBCA;--1:#096E72">"value"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">abc2</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#7FDBCA;--1:#096E72">"domain"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">.bybit.com</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">}]</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="[  [{&#x22;name&#x22;:&#x22;token&#x22;,&#x22;value&#x22;:&#x22;abc1&#x22;,&#x22;domain&#x22;:&#x22;.bybit.com&#x22;}],  [{&#x22;name&#x22;:&#x22;token&#x22;,&#x22;value&#x22;:&#x22;abc2&#x22;,&#x22;domain&#x22;:&#x22;.bybit.com&#x22;}]]"><div></div></button></div></figure></div>
+<blockquote>
+<p><strong>Важливо:</strong> Завжди відправляйте кукі як файли-документи через 📎 — ніколи не вставляйте вміст кукі текстом.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="porivnyannya-metodiv">Порівняння методів</h3><a class="sl-anchor-link" href="#porivnyannya-metodiv"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Порівняння методів”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Функція</th><th>Afina Browser</th><th>AdsPower TXT</th><th>Ручний</th></tr></thead><tbody><tr><td>Складність</td><td>Легко</td><td>Легко</td><td>Середньо</td></tr><tr><td>Потрібні файли</td><td>1 файл з Afina</td><td>1 <code dir="auto">.txt</code></td><td>Проксі (текст) + N файлів <code dir="auto">.json</code></td></tr><tr><td>Проксі включено</td><td>Так</td><td>Так</td><td>Окремий крок</td></tr><tr><td>User agent</td><td>Так</td><td>Так (якщо увімкнено)</td><td>Не включено</td></tr><tr><td>Найкраще для</td><td>Користувачів Afina</td><td>Користувачів AdsPower</td><td>Окремих джерел проксі/кукі</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="konveyer-validatsiyi-akauntiv">Конвеєр валідації акаунтів</h2><a class="sl-anchor-link" href="#konveyer-validatsiyi-akauntiv"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Конвеєр валідації акаунтів”</span></a></div>
+<p>Кожен завантажений акаунт проходить 3-етапну валідацію перед створенням замовлення.</p>
+<div class="mermaid" data-content="flowchart TD
+    A[&#x22;📎 Акаунт завантажено&#x22;] --> B[&#x22;Крок 1: Перевірка проксі&#x22;]
+
+    B -->|&#x22;✅ Підключено&#x22;| C[&#x22;Крок 2: Доступ до біржі&#x22;]
+    B -->|&#x22;❌ Помилка&#x22;| X1[&#x22;❌ Проксі не працює&#x22;]
+
+    C -->|&#x22;✅ Доступна&#x22;| D[&#x22;Крок 3: Статус акаунта&#x22;]
+    C -->|&#x22;❌ Заблоковано&#x22;| X2[&#x22;❌ Проксі заблоковано біржею&#x22;]
+
+    D -->|&#x22;Сесія активна&#x22;| E{&#x22;Статус KYC?&#x22;}
+    D -->|&#x22;Сесія недійсна&#x22;| X3[&#x22;❌ Кукі прострочені&#x22;]
+
+    E -->|&#x22;Не розпочато&#x22;| F[&#x22;✅ Готовий до замовлення&#x22;]
+    E -->|&#x22;В процесі&#x22;| G[&#x22;⚠️ Вже відправлено&#x22;]
+    E -->|&#x22;Завершено&#x22;| H[&#x22;⚠️ KYC вже пройдено&#x22;]
+    E -->|&#x22;Немає провайдера&#x22;| X4[&#x22;❌ Акаунт не налаштовано&#x22;]" data-status="loading"></div>
+<p><strong>Після валідації бот показує:</strong></p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">📋 Перевірка завершена</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">✅ Пройшли: 3</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">❌ Не пройшли: 1</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">🌍 Країна: BR</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">💱 Біржа: BYBIT</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">❓ Створити замовлення для 3 акаунтів?</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">[✅ Підтвердити]  [❌ Скасувати]</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="📋 Перевірка завершена✅ Пройшли: 3❌ Не пройшли: 1🌍 Країна: BR💱 Біржа: BYBIT❓ Створити замовлення для 3 акаунтів?[✅ Підтвердити]  [❌ Скасувати]"><div></div></button></div></figure></div>
+<p>Лише акаунти, що пройшли перевірку, включаються до замовлення. Акаунти, що не пройшли, виключаються з конкретною причиною помилки.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="zhittyeviy-tsikl-zamovlennya">Життєвий цикл замовлення</h2><a class="sl-anchor-link" href="#zhittyeviy-tsikl-zamovlennya"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Життєвий цикл замовлення”</span></a></div>
+<div class="mermaid" data-content="stateDiagram-v2
+    [*] --> PENDING: Замовлення створено в NVS Shop
+    PENDING --> ACTIVATED: Пілот відкрив посилання
+    ACTIVATED --> UPLOADING: Завантаження розпочато
+    UPLOADING --> PROCESSING: Підтверджено
+    PROCESSING --> COMPLETED: Всі завдання завершені
+    ACTIVATED --> EXPIRED: 48 год без завантаження" data-status="loading"></div>
+<p><strong>Визначення статусів:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Статус</th><th>Значення</th></tr></thead><tbody><tr><td>PENDING</td><td>Токен згенеровано, очікується активація пілотом</td></tr><tr><td>ACTIVATED</td><td>Пілот відкрив діплінк, готовий до завантаження</td></tr><tr><td>UPLOADING</td><td>Завантаження в процесі</td></tr><tr><td>PROCESSING</td><td>Селлери працюють над завданнями (автоматична перевірка верифікації)</td></tr><tr><td>COMPLETED</td><td>Всі завдання досягли кінцевого статусу</td></tr><tr><td>EXPIRED</td><td>Минуло 48 годин без завантаження</td></tr></tbody></table>
+<p><strong>Часові рамки:</strong> Від завантаження до завершення займає <strong>від кількох хвилин до 1 дня</strong>, залежно від країни та доступності селлерів.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="dovidnik-menyu-nvs">Довідник меню NVS</h2><a class="sl-anchor-link" href="#dovidnik-menyu-nvs"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Довідник меню NVS”</span></a></div>
+<p>Після активації бот показує 5 кнопок дій:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Кнопка</th><th>Функція</th><th>Коли використовувати</th></tr></thead><tbody><tr><td>📤 <strong>Завантажити акаунти</strong></td><td>Почати завантаження через AdsPower або Ручний метод</td><td>Перша дія після активації</td></tr><tr><td>🔄 <strong>ReKYC замовлення</strong></td><td>Повторна верифікація обличчя за запитом біржі</td><td>Коли біржа запитує повторну перевірку</td></tr><tr><td>📋 <strong>Мої завдання</strong></td><td>Переглянути всі завдання та їхні статуси</td><td>Відстежувати прогрес після створення замовлення</td></tr><tr><td>💳 <strong>Поповнити</strong></td><td>BSC USDT адреса для поповнення</td><td>Поповнити рахунок для платних завантажень</td></tr><tr><td>🚀 <strong>Отримати повний доступ</strong></td><td>Оновити до повної ліцензії пілота</td><td>Доступ до всіх функцій бота</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="ikonki-statusiv-zavdan">Іконки статусів завдань</h3><a class="sl-anchor-link" href="#ikonki-statusiv-zavdan"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Іконки статусів завдань”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Статус</th><th>Іконка</th><th>Значення</th></tr></thead><tbody><tr><td>Available</td><td>⏳</td><td>Очікує, поки селлер візьме завдання</td></tr><tr><td>Taken</td><td>📋</td><td>Селлер призначений, ще не почав</td></tr><tr><td>In Progress</td><td>🔄</td><td>Селлер працює над KYC</td></tr><tr><td>Completed</td><td>✅</td><td>KYC відправлено, очікує верифікацію</td></tr><tr><td>Verified</td><td>✅</td><td>KYC підтверджено біржею</td></tr><tr><td>Rejected</td><td>❌</td><td>KYC відхилено біржею</td></tr><tr><td>Country Mismatch</td><td>❌</td><td>Країна KYC не відповідає країні замовлення</td></tr><tr><td>Deadline Cancelled</td><td>⏰</td><td>Селлер не завершив вчасно</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="dashbord-miniapp">Дашборд MiniApp</h2><a class="sl-anchor-link" href="#dashbord-miniapp"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Дашборд MiniApp”</span></a></div>
+<p>MiniApp за адресою <code dir="auto">app.pilot.monster</code> — візуальна панель управління прямо в Telegram.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladki-miniapp">Вкладки MiniApp</h3><a class="sl-anchor-link" href="#vkladki-miniapp"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Вкладки MiniApp”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Вкладка</th><th>Пілот</th><th>NVS користувач</th></tr></thead><tbody><tr><td>📦 Замовлення</td><td>Власні замовлення</td><td>Власні NVS замовлення</td></tr><tr><td>📋 Завдання</td><td>Завдання з власних замовлень</td><td>Власні завдання</td></tr><tr><td>📜 Історія</td><td>Власна історія</td><td>Власна історія</td></tr><tr><td>📊 Аналітика</td><td>Власна аналітика</td><td>Власна аналітика</td></tr><tr><td>👥 Селлери</td><td>Воркери + анонімізовані глобальні</td><td>—</td></tr><tr><td>🌍 Глобус</td><td>Карта країн</td><td>—</td></tr><tr><td>➕ Нове замовлення</td><td>Створення замовлення</td><td>Потік NVS замовлення</td></tr><tr><td>💬 Чат</td><td>Чат із селлером (анонімний)</td><td>—</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-zamovlennya">Вкладка Замовлення</h3><a class="sl-anchor-link" href="#vkladka-zamovlennya"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Вкладка Замовлення”</span></a></div>
+<ul>
+<li><strong>Пошук</strong> за номером замовлення, країною</li>
+<li><strong>Фільтр</strong> за статусом (активні / завершені)</li>
+<li><strong>Картки замовлень</strong> показують: прапор країни, продукт, кількість, прогрес виконання</li>
+<li><strong>Натисніть на замовлення</strong> → детальний перегляд: воронка завдань (Available → Taken → In Progress → Verified), призначення селлерів, попередження про стан</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-zavdannya">Вкладка Завдання</h3><a class="sl-anchor-link" href="#vkladka-zavdannya"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Вкладка Завдання”</span></a></div>
+<ul>
+<li><strong>Фільтри</strong>: тип продукту, статус, селлер</li>
+<li><strong>Картки завдань</strong>: номер завдання, селлер, країна, статус, дата</li>
+<li><strong>Сортування</strong>: за датою створення, статусом або селлером</li>
+<li><strong>Детальний перегляд</strong>: етапи валідації акаунту, історія селлера, дані верифікації обличчя</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-analitika">Вкладка Аналітика</h3><a class="sl-anchor-link" href="#vkladka-analitika"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Вкладка Аналітика”</span></a></div>
+<ul>
+<li><strong>Огляд карток</strong>: Balance, Net Spent (витрачено за період), Verified (з %), Initial KYC, REKYC реальний % (з частками «у процесі» та «по завершеним»), Financials (Total Spent, Refunded, Avg Cost)</li>
+<li><strong>Фільтри періоду</strong>: 7D, 30D, All</li>
+<li><strong>Фільтри типу замовлення</strong>: All, Global (FCFS), Workers (призначені)</li>
+<li><strong>Графіки</strong>:
+<ul>
+<li>Verified Tasks — щоденний тренд верифікацій</li>
+<li>Тренд балансу (спарклайн)</li>
+<li>REKYC донат — реальний відсоток успішних реверифікацій</li>
+<li>Розподіл за продуктами</li>
+<li>Розподіл за країнами</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Аналітика REKYC перероблена: сортування за воркерами та global-замовленнями, розрізи за датами, часом і активністю, глибокий ресерч на кожного селлера.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-zavdannya-povernennya-refunds">Вкладка Завдання — Повернення (Refunds)</h3><a class="sl-anchor-link" href="#vkladka-zavdannya-povernennya-refunds"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Вкладка Завдання — Повернення (Refunds)”</span></a></div>
+<p>Новий режим <strong>«Повернення»</strong> автоматично збирає завдання, по яких потрібно повернути гроші:</p>
+<ul>
+<li><strong>Доступні повернення</strong> — сума до повернення на новий баланс</li>
+<li><strong>Face tasks stale 24h+</strong> — завдання, де Face Verification прострочений добу і більше</li>
+<li>Сортування за біржами та причинами (<code dir="auto">not eligible</code>, втрачена винагорода, прострочений REKYC)</li>
+<li>Кнопка <strong>Повернути $X.XX</strong> повертає вибрані таски одним кліком</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-selleri-viglyad-pilota">Вкладка Селлери (Вигляд пілота)</h3><a class="sl-anchor-link" href="#vkladka-selleri-viglyad-pilota"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Вкладка Селлери (Вигляд пілота)”</span></a></div>
+<ul>
+<li><strong>Секція Воркери</strong>: Ваші зареєстровані селлери з повним <code dir="auto">@username</code>, кількістю завдань, показниками успішності, середнім рейтингом, онлайн-індикатором</li>
+<li><strong>Глобальна секція</strong>: Анонімні селлери з FCFS замовлень відображаються як <code dir="auto">Seller #UID</code> — ідентичність не розкривається</li>
+<li><strong>Значки рівнів</strong>: Gold / Silver / Bronze на основі продуктивності</li>
+<li><strong>Шарінг воркерів</strong> — копіюєте посилання й запрошуєте виконавця одним натисканням</li>
+<li><strong>Приватні ціни</strong> — індивідуальні ставки на країну в розрізі KYC / Face</li>
+<li><strong>Скидання таска</strong> (кнопка «Скинути») — якщо воркер не справився, передаєте таск іншому виконавцю прямо з Mini App</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-priorities">Вкладка Priorities</h3><a class="sl-anchor-link" href="#vkladka-priorities"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Вкладка Priorities”</span></a></div>
+<p>Керування пріоритетним пулом для global-замовлень:</p>
+<ul>
+<li>⭐ <strong>Preferred Sellers</strong> — список селлерів, яким ваші замовлення доступні перші <strong>15 хвилин</strong></li>
+<li>🚫 <strong>Blacklist</strong> — глобальні виконавці, яким ваше замовлення показуватися не буде</li>
+<li>Картка кожного селлера: країна, прапор, ID (<code dir="auto">Seller #XXXXXX</code>), таймер пріоритету, кнопка видалення</li>
+</ul>
+<blockquote>
+<p>Спочатку додаєте селлера в обране → перші 15 хвилин замовлення видно лише йому → потім іде в загальний global-пул.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-settings">Вкладка Settings</h3><a class="sl-anchor-link" href="#vkladka-settings"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Вкладка Settings”</span></a></div>
+<p>Налаштування пілота — зібрані на одному екрані:</p>
+<ul>
+<li><strong>Мова інтерфейсу</strong>: English / Русский / Українська</li>
+<li><strong>Ротація портів</strong> — тільки для провайдерів, де порт = ключ сесії. Не впевнені — залиште вимкненим</li>
+<li><strong>Ротація сесій</strong> — змінює токен сесії в логіні проксі. Автоперезапитує в NodeMaven / Proxyshard / Datapanrpulse / Bright Data</li>
+<li><strong>Дедлайн завдання</strong> — 24h / 36h / 48h / 60h / 72h</li>
+<li><strong>Дія за дедлайном</strong>:
+<ul>
+<li><strong>Перепризначити</strong> — віддати іншому селлеру</li>
+<li><strong>Повтор → Повернення</strong> — повторно видати, потім повернути гроші</li>
+<li><strong>Скасувати</strong> — закрити завдання з поверненням</li>
+</ul>
+</li>
+<li><strong>Розкриття даних продавцю</strong> — які поля видно селлеру в сповіщеннях про завдання</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-globus">Вкладка Глобус</h3><a class="sl-anchor-link" href="#vkladka-globus"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Вкладка Глобус”</span></a></div>
+<p>Інтерактивна візуалізація D3 глобуса:</p>
+<ul>
+<li>Обертання дотиком/перетягуванням</li>
+<li>Підсвічування країн за обсягом завдань/замовлень</li>
+<li>Групування за континентами</li>
+<li>Рейтинги країн зі спарклайнами в реальному часі</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-chat">Вкладка Чат</h3><a class="sl-anchor-link" href="#vkladka-chat"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Вкладка Чат”</span></a></div>
+<p>Прив’язаний до завдань обмін повідомленнями між пілотами та селлерами:</p>
+<ul>
+<li><strong>Взаємна анонімність</strong>: Пілот бачить <code dir="auto">Seller #UID</code>, селлер бачить <code dir="auto">Customer #ID</code></li>
+<li><strong>AI модерація</strong>: Контактна інформація автоматично цензурується</li>
+<li><strong>Контекст завдання</strong>: Повідомлення позначені деталями завдання (ID, AdsPower, країна, продукт)</li>
+<li>Лічильник непрочитаних повідомлень (опитування кожні 5 секунд)</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="smart-session-update">Smart Session Update</h2><a class="sl-anchor-link" href="#smart-session-update"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Smart Session Update”</span></a></div>
+<p>Бот сам стежить за терміном життя сесій і не дає кукі протухнути до старту замовлення.</p>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;📤 Акаунт завантажено&#x22;] --> B[&#x22;🔍 Бот знаходить акаунт у KYC/REKYC&#x22;]
+    B --> C{&#x22;Сесія жива?&#x22;}
+    C -->|Так| D[&#x22;✅ Готовий до замовлення&#x22;]
+    C -->|Скоро закінчиться| E[&#x22;🔄 Авто-оновлення&#x22;]
+    C -->|Закінчилась| F[&#x22;⚠️ Сповіщення про необхідність оновити&#x22;]
+    E --> D" data-status="loading"></div>
+<p><strong>Що робить бот:</strong></p>
+<ul>
+<li>Знаходить акаунт у потоці KYC / REKYC</li>
+<li>Перевіряє актуальність сесії</li>
+<li>Автоматично оновлює сесії, що скоро закінчаться</li>
+<li>Сповіщає, якщо потрібне ваше втручання</li>
+</ul>
+<blockquote>
+<p>Наприклад, у Bybit сесії живуть близько <strong>3 днів</strong> — система відстежує це й оновлює без вашої участі.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="rozumni-povernennya-smart-refunds">Розумні повернення (Smart Refunds)</h2><a class="sl-anchor-link" href="#rozumni-povernennya-smart-refunds"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Розумні повернення (Smart Refunds)”</span></a></div>
+<p>Бот автоматично показує завдання, по яких потрібне повернення, та групує їх за причинами.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Тригер</th><th>Що показує</th><th>Дія</th></tr></thead><tbody><tr><td>REKYC скоро прострочиться</td><td>Список тасків з таймером</td><td>Повернення / повтор</td></tr><tr><td>Втрачені винагороди</td><td>Завдання без винагороди</td><td>Повернення</td></tr><tr><td><code dir="auto">not eligible</code></td><td>Акаунти, позначені біржею</td><td>Повернення</td></tr><tr><td>Face stale 24h+</td><td>Прострочений Face Verification</td><td>Повернення</td></tr></tbody></table>
+<blockquote>
+<p>Усі суми сумуються — натискаєте <strong>Повернути $X.XX</strong> і гроші падають на баланс.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="smart-rekyc-dlya-mexc-face-verification-bezkoshtovno-u-pershi-30-khvilin">Smart REKYC для MEXC — Face Verification безкоштовно у перші 30 хвилин</h2><a class="sl-anchor-link" href="#smart-rekyc-dlya-mexc-face-verification-bezkoshtovno-u-pershi-30-khvilin"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Smart REKYC для MEXC — Face Verification безкоштовно у перші 30 хвилин”</span></a></div>
+<p>Після проходження KYC на MEXC біржа часто запитує додаткову перевірку обличчя — особливо для торгівлі. Якщо запит надходить <strong>у перші 30 хвилин</strong>, повторна верифікація виконується <strong>безкоштовно</strong>.</p>
+<p><strong>Як це працює:</strong></p>
+<ol>
+<li>Селлер завершив базовий KYC</li>
+<li>Бот <strong>не видає оплату одразу</strong> — 30 хвилин опитує акаунт щохвилини на предмет Face Verification</li>
+<li>Якщо MEXC запитав Face Check:
+<ul>
+<li>Бот сповіщає селлера</li>
+<li>Селлер проходить Face Scan</li>
+<li>Лише після цього селлер отримує оплату</li>
+</ul>
+</li>
+<li>Якщо Face Verification не пройдено — селлер не отримує навіть базову оплату за KYC</li>
+</ol>
+<blockquote>
+<p>Якщо Face Check прилітає <strong>пізніше</strong> (через години чи дні) — це вже окремий платний REKYC.</p>
+</blockquote>
+<p><strong>На MEXC два типи Face Verification:</strong></p>
+<ul>
+<li>На торгівлю</li>
+<li>На виведення коштів</li>
+</ul>
+<blockquote>
+<p>📹 <a href="https://youtu.be/6zhf3ytgfkE">Відео-демо</a> — механіка на MEXC аналогічна Bybit.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="anti-sibil-ta-risk-system">Анти-сибіл та risk-system</h2><a class="sl-anchor-link" href="#anti-sibil-ta-risk-system"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Анти-сибіл та risk-system”</span></a></div>
+<p>Платформа захищає замовлення пілота від мультиакаунтингу та абузу з боку селлерів.</p>
+<p><strong>При реєстрації селлер зобов’язаний:</strong></p>
+<ul>
+<li>📱 Підтвердити номер телефону через Telegram</li>
+<li>📍 Відправити геолокацію</li>
+<li>✅ Пройти звірку: GEO ↔ країна номера</li>
+</ul>
+<p>Якщо дані не збігаються — доступ відхиляється.</p>
+<p><strong>Додаткові перевірки:</strong></p>
+<ul>
+<li>💰 Трекінг гаманців, на які селлери виводять кошти</li>
+<li>🔗 Виявлення зв’язків між селлерами через спільні гаманці</li>
+<li>👥 Аналіз ознак мультиакаунтингу</li>
+<li>📍 Звірка геолокацій селлерів (радіус <strong>до 50 м</strong>)</li>
+</ul>
+<blockquote>
+<p>Якщо система бачить ознаки абузу — акаунти йдуть на аналіз і блокуються. Ваше замовлення при цьому не постраждає: завдання автоматично піде іншому виконавцю.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="provayderi-kyc">Провайдери KYC</h2><a class="sl-anchor-link" href="#provayderi-kyc"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Провайдери KYC”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Провайдер</th><th>KYC</th><th>REKYC</th><th>Біржі</th></tr></thead><tbody><tr><td><strong>SumSub</strong></td><td>✅</td><td>✅</td><td>Bybit, MEXC</td></tr><tr><td><strong>Jumio</strong></td><td>✅</td><td>✅</td><td>Підтримується з останнього оновлення</td></tr></tbody></table>
+<blockquote>
+<p>Вибір провайдера відбувається автоматично залежно від того, який запитує біржа на конкретному акаунті.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="vidstezhennya-statusiv-zavdan">Відстеження статусів завдань</h2><a class="sl-anchor-link" href="#vidstezhennya-statusiv-zavdan"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Відстеження статусів завдань”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="mashina-staniv-zavdan">Машина станів завдань</h3><a class="sl-anchor-link" href="#mashina-staniv-zavdan"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Машина станів завдань”</span></a></div>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;⏳ Очікування&#x22;] --> B[&#x22;📋 Призначено&#x22;]
+    B --> C[&#x22;🔄 В роботі&#x22;]
+    C --> D[&#x22;✅ Верифіковано&#x22;]
+    C --> E[&#x22;❌ Відхилено&#x22;]" data-status="loading"></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="perevirka-statusu">Перевірка статусу</h3><a class="sl-anchor-link" href="#perevirka-statusu"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Перевірка статусу”</span></a></div>
+<p><strong>У боті:</strong> Натисніть <strong>📋 Мої завдання</strong>, щоб побачити статуси всіх завдань.</p>
+<p><strong>У MiniApp:</strong> Відкрийте вкладку <strong>Завдання</strong> для візуальної панелі з фільтрами та сортуванням.</p>
+<p><strong>Автооновлення:</strong> Статуси завдань оновлюються автоматично. NVS Shop відображає актуальний прогрес у реальному часі.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="usunennya-pomilok">Усунення помилок</h2><a class="sl-anchor-link" href="#usunennya-pomilok"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Усунення помилок”</span></a></div>
+<p>Використовуйте таблицю нижче для швидкого вирішення проблем.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="korotka-dovidka-z-pomilok">Коротка довідка з помилок</h3><a class="sl-anchor-link" href="#korotka-dovidka-z-pomilok"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Коротка довідка з помилок”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Помилка</th><th>Причина</th><th>Рішення</th></tr></thead><tbody><tr><td>File is not valid JSON</td><td>Невірний тип файлу або вставлений як текст</td><td>Збережіть у файл <code dir="auto">.json</code>, відправте через 📎</td></tr><tr><td>Could not recognize proxy</td><td>Невірний формат або зайвий текст</td><td>По одному проксі на рядок: <code dir="auto">IP:PORT:LOGIN:PASS</code></td></tr><tr><td>All proxies failed</td><td>Прострочені, невірні дані, сервер недоступний</td><td>Запросіть свіжі проксі у провайдера</td></tr><tr><td>No KYC provider</td><td>Акаунт не налаштований для верифікації</td><td>Зверніться до постачальника акаунтів</td></tr><tr><td>Session expired</td><td>Старі кукі, вийшли з акаунту</td><td>Повторно експортуйте кукі, будучи залогіненим</td></tr><tr><td>Proxy blocked</td><td>Біржа блокує IP</td><td>Використовуйте проксі з іншого регіону</td></tr><tr><td>Country mismatch</td><td>Країна проксі ≠ країна замовлення</td><td>Використовуйте проксі, що відповідає країні замовлення</td></tr><tr><td>Incorrect proxy quantity</td><td>Кількість рядків ≠ кількість акаунтів</td><td>Відправте рівно N проксі для N акаунтів</td></tr><tr><td>Too many cookie files</td><td>Більше файлів кукі ніж проксі</td><td>Один <code dir="auto">.json</code> на кожен робочий проксі</td></tr><tr><td>Invalid/expired link</td><td>Токен прострочений (48 год) або вже використаний</td><td>Отримайте новий діплінк у NVS Shop</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="potik-rekyc">Потік ReKYC</h3><a class="sl-anchor-link" href="#potik-rekyc"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Потік ReKYC”</span></a></div>
+<p>Іноді біржа запитує повторну верифікацію обличчя для вже верифікованого акаунта. У такому випадку використовуйте <strong>🔄 ReKYC замовлення</strong>:</p>
+<ol>
+<li>Оберіть замовлення, для якого біржа запитала повторну перевірку</li>
+<li>Бот створює нове завдання reKYC з актуальними даними</li>
+<li>Той самий селлер, який виконав початкову KYC, проходить повторну верифікацію обличчя</li>
+<li>Результат оновлюється автоматично</li>
+</ol>
+<blockquote>
+<p>ReKYC призначається тому ж селлеру, який виконав початкову верифікацію — це обов’язково, оскільки біржа очікує те саме обличчя.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="bezpeka-ta-privatnist">Безпека та приватність</h2><a class="sl-anchor-link" href="#bezpeka-ta-privatnist"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Безпека та приватність”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="scho-dostupno-selleram">Що доступно селлерам</h3><a class="sl-anchor-link" href="#scho-dostupno-selleram"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Що доступно селлерам”</span></a></div>
+<p>Селлери отримують <strong>лише унікальне одноразове посилання для верифікації SumSub</strong>. Вони <strong>не можуть</strong>:</p>
+<ul>
+<li>Увійти до вашого акаунту біржі</li>
+<li>Переглядати баланс, історію торгів або позиції</li>
+<li>Виконувати угоди або виведення коштів</li>
+<li>Змінювати налаштування акаунту або паролі</li>
+<li>Отримати доступ до ваших кукі або даних проксі</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="obrobka-danikh">Обробка даних</h3><a class="sl-anchor-link" href="#obrobka-danikh"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Обробка даних”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Дані</th><th>Зберігання</th><th>Доступ</th></tr></thead><tbody><tr><td>Кукі</td><td>Зашифровані в системі бота</td><td>Тільки бот — ніколи не передаються селлерам</td></tr><tr><td>Проксі</td><td>Система бота</td><td>Тільки бот — використовуються для валідації та генерації посилань</td></tr><tr><td>Email акаунту</td><td>Система бота</td><td>Приховано від селлерів — вони бачать лише номер завдання</td></tr><tr><td>Ім’я KYC</td><td>Витягнуте під час валідації</td><td>Показується селлеру лише для завдань верифікації обличчя</td></tr><tr><td>Посилання верифікації</td><td>Одноразовий URL</td><td>Селлер отримує унікальне посилання, що закінчується після використання</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="poradi">Поради</h3><a class="sl-anchor-link" href="#poradi"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Поради”</span></a></div>
+<ul>
+<li><strong>Використовуйте той самий IP/проксі</strong>, з яким був створений акаунт, щоб уникнути підозр</li>
+<li><strong>Кукі закінчуються</strong> — експортуйте свіжі кукі незадовго до завантаження</li>
+<li><strong>Не діліться діплінками</strong> — кожне посилання прив’язане до вашого Telegram акаунту</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="faq">FAQ</h2><a class="sl-anchor-link" href="#faq"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “FAQ”</span></a></div>
+<p><strong>П: Які файли мені потрібні?</strong></p>
+<ul>
+<li>Afina Browser: Один файл-експорт з Afina</li>
+<li>AdsPower TXT: Один файл <code dir="auto">.txt</code> (містить все)</li>
+<li>Ручний: Проксі (текст у чаті) + файли кукі <code dir="auto">.json</code> (по одному на акаунт)</li>
+</ul>
+<p><strong>П: Що таке Smart Session Update?</strong>
+Бот сам стежить за терміном життя кукі (наприклад, Bybit ≈3 дні), оновлює сесії, що скоро закінчаться, та попереджає, якщо потрібне ваше втручання.</p>
+<p><strong>П: Як працюють Priority та Blacklist?</strong>
+У Mini App → вкладка <strong>Priorities</strong> додаєте селлера в обране — перші 15 хвилин він бачить ваше замовлення у пріоритеті. Blacklist повністю блокує обраних global-виконавців від ваших замовлень.</p>
+<p><strong>П: Що означає «Скинути» в завданні?</strong>
+Якщо ваш воркер не справляється з завданням — натискаєте <strong>Скинути</strong>, і таск іде до іншого воркера (або в global-пул, якщо своїх вільних немає).</p>
+<p><strong>П: Як налаштувати дедлайн завдання?</strong>
+Mini App → Settings → <strong>Дедлайн завдання</strong>: обираєте 24h / 36h / 48h / 60h / 72h. Дія при простроченні: <strong>Перепризначити</strong> / <strong>Повтор → Повернення</strong> / <strong>Скасувати</strong>.</p>
+<p><strong>П: На MEXC після KYC прилетів Face Verification — це платно?</strong>
+Якщо запит прийшов <strong>у перші 30 хвилин після KYC</strong> — реверифікація <strong>безкоштовна</strong>. Бот сам її відстежить і довипустить селлера на Face Scan. Якщо запит прийшов пізніше (години/дні) — це окремий платний REKYC.</p>
+<p><strong>П: Де отримати проксі?</strong>
+У будь-якого провайдера проксі. Формат: <code dir="auto">IP:PORT:LOGIN:PASSWORD</code>. Країна проксі повинна відповідати країні замовлення.</p>
+<p><strong>П: Де отримати файли кукі?</strong>
+Експортуйте через розширення браузера <strong>Cookie Editor</strong> (Chrome/Firefox/Edge) або функцію експорту вашого антидетект-браузера.</p>
+<p><strong>П: Чи можу я відправити кукі текстом у чаті?</strong>
+Ні. Завжди зберігайте кукі у файл <code dir="auto">.json</code> та відправляйте як документ через кнопку 📎 скріпки.</p>
+<p><strong>П: Що якщо деякі акаунти не пройдуть валідацію?</strong>
+Бот створює замовлення лише з акаунтами, що пройшли перевірку. Ті, що не пройшли, виключаються з конкретною причиною помилки.</p>
+<p><strong>П: Чи можу я завантажити більше акаунтів пізніше?</strong>
+Так — натисніть <strong>📤 Завантажити акаунти</strong> знову, щоб додати більше акаунтів до замовлення.</p>
+<p><strong>П: Скільки часу займає KYC?</strong>
+Від кількох хвилин до 1 дня, залежно від країни та доступності селлерів.</p>
+<p><strong>П: Що означає “No KYC provider”?</strong>
+Акаунт не налаштований для KYC верифікації, або кукі від іншого акаунту. Зверніться до постачальника акаунтів.</p>
+<p><strong>П: Як перевірити прогрес завдань?</strong></p>
+<ul>
+<li><strong>У боті</strong>: Натисніть <strong>📋 Мої завдання</strong></li>
+<li><strong>У MiniApp</strong>: Відкрийте <code dir="auto">app.pilot.monster</code> → вкладка Завдання</li>
+</ul>
+<p><strong>П: Як отримати доступ до MiniApp?</strong>
+Відкрийте <code dir="auto">app.pilot.monster</code> у вбудованому браузері Telegram. Автентифікація відбувається автоматично через вашу Telegram сесію.</p>
+<p><strong>П: До кого звертатися з питаннями?</strong>
+Зверніться до підтримки через NVS Shop або адміна бота. Додайте скріншоти будь-яких помилок.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="korotka-dovidka">Коротка довідка</h2><a class="sl-anchor-link" href="#korotka-dovidka"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Коротка довідка”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">Активувати посилання → Завантажити акаунти → Обрати метод → Відправити файли → Підтвердити → Готово!</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="Активувати посилання → Завантажити акаунти → Обрати метод → Відправити файли → Підтвердити → Готово!"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="cheklist-zavantazhennya">Чекліст завантаження</h3><a class="sl-anchor-link" href="#cheklist-zavantazhennya"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Чекліст завантаження”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Діплінк активовано (замовлення відображається в боті)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Країна проксі відповідає країні замовлення</li>
+<li class="task-list-item"><input type="checkbox" disabled> Кукі свіжо експортовані (не прострочені)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Файли відправлені як документи через 📎 (не вставлені текстом)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Кількість проксі = кількість акаунтів</li>
+<li class="task-list-item"><input type="checkbox" disabled> Валідація пройдена хоча б для 1 акаунту</li>
+<li class="task-list-item"><input type="checkbox" disabled> Замовлення підтверджено</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="poryadok-zavantazhennya">Порядок завантаження</h3><a class="sl-anchor-link" href="#poryadok-zavantazhennya"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Порядок завантаження”</span></a></div>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;🔗 Відкрити посилання&#x22;] --> B[&#x22;📤 Обрати метод&#x22;]
+    B --> C[&#x22;📎 Відправити файли&#x22;]
+    C --> D[&#x22;🔍 Валідація&#x22;]
+    D --> E[&#x22;✅ Підтвердити замовлення&#x22;]" data-status="loading"></div>  <script>(function(){const className = "mermaid";
+
+    window.__mermaidClassName = className;
+  })();</script>   </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n">   </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr"> <a href="/docs/ua/kyc/nvs-faq/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg> <span class="astro-u2l5gyhi"> Назад <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">NVS Завантаження</span> </span> </a> <a href="/docs/ua/kyc/sellers-guide/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg> <span class="astro-u2l5gyhi"> Далі <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Seller Guide</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>

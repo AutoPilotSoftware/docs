@@ -1,0 +1,941 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>MEXC AutoPilot | AutoPilot</title><link rel="canonical" href="https://autopilotsoftware.github.io/docs/en/exchanges/mexc-autopilot/"/><link rel="alternate" hreflang="ru" href="https://autopilotsoftware.github.io/docs/exchanges/mexc-autopilot/"/><link rel="alternate" hreflang="en" href="https://autopilotsoftware.github.io/docs/en/exchanges/mexc-autopilot/"/><link rel="alternate" hreflang="uk" href="https://autopilotsoftware.github.io/docs/ua/exchanges/mexc-autopilot/"/><link rel="sitemap" href="/docs/sitemap-index.xml"/><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&#34;token&#34;: &#34;d98cb2456dd9448bb66e095a800bb391&#34;}"></script><link rel="shortcut icon" href="/docs/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v5.17.3"/><meta name="generator" content="Starlight v0.37.6"/><meta property="og:title" content="MEXC AutoPilot"/><meta property="og:type" content="article"/><meta property="og:url" content="https://autopilotsoftware.github.io/docs/en/exchanges/mexc-autopilot/"/><meta property="og:locale" content="en"/><meta property="og:description" content="AutoPilot Software — MEXC automation: registration, trading, withdrawal"/><meta property="og:site_name" content="AutoPilot"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="AutoPilot Software — MEXC automation: registration, trading, withdrawal"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/docs/_astro/print.DNXP8c50.css" media="print"><link rel="stylesheet" href="/docs/_astro/index.DJxFRPMf.css">
+<style>@layer starlight.components{:root{--sl-badge-default-border: var(--sl-color-accent);--sl-badge-default-bg: var(--sl-color-accent-low);--sl-badge-default-text: #fff;--sl-badge-note-border: var(--sl-color-blue);--sl-badge-note-bg: var(--sl-color-blue-low);--sl-badge-note-text: #fff;--sl-badge-danger-border: var(--sl-color-red);--sl-badge-danger-bg: var(--sl-color-red-low);--sl-badge-danger-text: #fff;--sl-badge-success-border: var(--sl-color-green);--sl-badge-success-bg: var(--sl-color-green-low);--sl-badge-success-text: #fff;--sl-badge-caution-border: var(--sl-color-orange);--sl-badge-caution-bg: var(--sl-color-orange-low);--sl-badge-caution-text: #fff;--sl-badge-tip-border: var(--sl-color-purple);--sl-badge-tip-bg: var(--sl-color-purple-low);--sl-badge-tip-text: #fff}[data-theme=light]:root{--sl-badge-default-bg: var(--sl-color-accent-high);--sl-badge-note-bg: var(--sl-color-blue-high);--sl-badge-danger-bg: var(--sl-color-red-high);--sl-badge-success-bg: var(--sl-color-green-high);--sl-badge-caution-bg: var(--sl-color-orange-high);--sl-badge-tip-bg: var(--sl-color-purple-high)}.sl-badge:where(.astro-avdet4wd){display:inline-block;border:1px solid var(--sl-color-border-badge);border-radius:.25rem;font-family:var(--sl-font-system-mono);line-height:normal;color:var(--sl-color-text-badge);background-color:var(--sl-color-bg-badge);overflow-wrap:anywhere}.sidebar-content .sl-badge:where(.astro-avdet4wd){line-height:1;font-size:var(--sl-text-xs);padding:.125rem .375rem}.sidebar-content a[aria-current=page]>.sl-badge:where(.astro-avdet4wd){--sl-color-bg-badge: transparent;--sl-color-border-badge: currentColor;color:inherit}.default:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-default-bg);--sl-color-border-badge: var(--sl-badge-default-border);--sl-color-text-badge: var(--sl-badge-default-text)}.note:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-note-bg);--sl-color-border-badge: var(--sl-badge-note-border);--sl-color-text-badge: var(--sl-badge-note-text)}.danger:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-danger-bg);--sl-color-border-badge: var(--sl-badge-danger-border);--sl-color-text-badge: var(--sl-badge-danger-text)}.success:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-success-bg);--sl-color-border-badge: var(--sl-badge-success-border);--sl-color-text-badge: var(--sl-badge-success-text)}.tip:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-tip-bg);--sl-color-border-badge: var(--sl-badge-tip-border);--sl-color-text-badge: var(--sl-badge-tip-text)}.caution:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-caution-bg);--sl-color-border-badge: var(--sl-badge-caution-border);--sl-color-text-badge: var(--sl-badge-caution-text)}.small:where(.astro-avdet4wd){font-size:var(--sl-text-xs);padding:.125rem .25rem}.medium:where(.astro-avdet4wd){font-size:var(--sl-text-sm);padding:.175rem .35rem}.large:where(.astro-avdet4wd){font-size:var(--sl-text-base);padding:.225rem .45rem}.sl-markdown-content :is(h1,h2,h3,h4,h5,h6) .sl-badge:where(.astro-avdet4wd){vertical-align:middle}}
+@layer starlight.components{.card-grid:where(.astro-zntqmydn){display:grid;grid-template-columns:100%;gap:1rem}.card-grid:where(.astro-zntqmydn)>*{margin-top:0!important}@media(min-width:50rem){.card-grid:where(.astro-zntqmydn){grid-template-columns:1fr 1fr;gap:1.5rem}.stagger:where(.astro-zntqmydn){--stagger-height: 5rem;padding-bottom:var(--stagger-height)}.stagger:where(.astro-zntqmydn)>*:nth-child(2n){transform:translateY(var(--stagger-height))}}}
+@layer starlight.components{svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-size, 1em);width:1em;height:1em}}
+@layer starlight.components{.sl-link-card:where(.astro-mf7fz2mj){display:grid;grid-template-columns:1fr auto;gap:.5rem;border:1px solid var(--sl-color-gray-5);border-radius:.5rem;padding:1rem;box-shadow:var(--sl-shadow-sm);position:relative}a:where(.astro-mf7fz2mj){text-decoration:none;line-height:var(--sl-line-height-headings)}a:where(.astro-mf7fz2mj):before{content:"";position:absolute;inset:0}.stack:where(.astro-mf7fz2mj){flex-direction:column;gap:.5rem}.title:where(.astro-mf7fz2mj){color:var(--sl-color-white);font-weight:600;font-size:var(--sl-text-lg)}.description:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3);line-height:1.5}.icon:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3)}.sl-link-card:where(.astro-mf7fz2mj):hover{background:var(--sl-color-gray-7, var(--sl-color-gray-6));border-color:var(--sl-color-gray-2)}.sl-link-card:where(.astro-mf7fz2mj):hover .icon:where(.astro-mf7fz2mj){color:var(--sl-color-white)}}
+@layer starlight.components{.sl-steps{--bullet-size: calc(var(--sl-line-height) * 1rem);--bullet-margin: .375rem;list-style:none;counter-reset:steps-counter var(--sl-steps-start, 0);padding-inline-start:0}.sl-steps>li{counter-increment:steps-counter;position:relative;padding-inline-start:calc(var(--bullet-size) + 1rem);padding-bottom:1px;min-height:calc(var(--bullet-size) + var(--bullet-margin))}.sl-steps>li+li{margin-top:0}.sl-steps>li:before{content:counter(steps-counter);position:absolute;top:0;inset-inline-start:0;width:var(--bullet-size);height:var(--bullet-size);line-height:var(--bullet-size);font-size:var(--sl-text-xs);font-weight:600;text-align:center;color:var(--sl-color-white);background-color:var(--sl-color-gray-6);border-radius:99rem;box-shadow:inset 0 0 0 1px var(--sl-color-gray-5)}.sl-steps>li:after{--guide-width: 1px;content:"";position:absolute;top:calc(var(--bullet-size) + var(--bullet-margin));bottom:var(--bullet-margin);inset-inline-start:calc((var(--bullet-size) - var(--guide-width)) / 2);width:var(--guide-width);background-color:var(--sl-color-hairline-light)}}@layer starlight.content{.sl-steps>li>:first-child{--lh: calc(1em * var(--sl-line-height));--shift-y: calc(.5 * (var(--bullet-size) - var(--lh)));transform:translateY(var(--shift-y));margin-bottom:var(--shift-y)}.sl-steps>li>:first-child:where(h1,h2,h3,h4,h5,h6){--lh: calc(1em * var(--sl-line-height-headings))}@supports (--prop: 1lh){.sl-steps>li>:first-child{--lh: 1lh}}}
+@layer starlight.components{.sl-link-button:where(.astro-xwgiixxa){align-items:center;border:1px solid transparent;border-radius:999rem;display:inline-flex;font-size:var(--sl-text-sm);gap:.5em;line-height:1.1875;outline-offset:.25rem;padding:.4375rem 1.125rem;text-decoration:none}.sl-link-button:where(.astro-xwgiixxa).primary{background:var(--sl-color-text-accent);border-color:var(--sl-color-text-accent);color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).primary:hover{color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).secondary{border-color:inherit;color:var(--sl-color-white)}.sl-link-button:where(.astro-xwgiixxa).minimal{color:var(--sl-color-white);padding-inline:0}.sl-link-button:where(.astro-xwgiixxa) svg{flex-shrink:0}@media(min-width:50rem){.sl-link-button:where(.astro-xwgiixxa){font-size:var(--sl-text-base);padding:.9375rem 1.25rem}}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa){margin-inline-end:1rem}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa):not(:where(p *)){margin-block:1rem}}
+</style><script type="module" src="/docs/_astro/page.B1D-nYk3.js"></script></head> <body class="astro-bguv2lll"> <a href="#_top" class="astro-7q3lir66">Skip to content</a>  <div class="page sl-flex astro-vrdttmbt"> <header class="header astro-vrdttmbt"><div class="header astro-kmkmnagf"> <div class="title-wrapper sl-flex astro-kmkmnagf"> <a href="/docs/en" class="site-title sl-flex astro-m46x6ez3">  <img class="astro-m46x6ez3" alt src="/docs/_astro/auto_pilot_logo.CfyEiyY2.png" width="600" height="600">  <span class="astro-m46x6ez3" translate="no"> AutoPilot </span> </a>  </div> <div class="sl-flex print:hidden astro-kmkmnagf"> <site-search class="astro-kmkmnagf astro-v37mnknz" data-translations="{&#34;placeholder&#34;:&#34;Search&#34;}"> <button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-v37mnknz"> <svg aria-hidden="true" class="astro-v37mnknz astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg> <span class="sl-hidden md:sl-block astro-v37mnknz" aria-hidden="true">Search</span> <kbd class="sl-hidden md:sl-flex astro-v37mnknz" style="display: none;"> <kbd class="astro-v37mnknz">Ctrl</kbd><kbd class="astro-v37mnknz">K</kbd> </kbd> </button> <dialog style="padding:0" aria-label="Search" class="astro-v37mnknz"> <div class="dialog-frame sl-flex astro-v37mnknz">  <button data-close-modal class="sl-flex md:sl-hidden astro-v37mnknz"> Cancel </button> <div class="search-container astro-v37mnknz"> <div id="starlight__search" class="astro-v37mnknz"></div> </div> </div> </dialog> </site-search>  <script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script> <script type="module" src="/docs/_astro/Search.astro_astro_type_script_index_0_lang.7TPqQKfI.js"></script>   </div> <div class="sl-hidden md:sl-flex print:hidden right-group astro-kmkmnagf"> <div class="sl-flex social-icons astro-kmkmnagf">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script> <script type="module">const r="starlight-theme",o=e=>e==="auto"||e==="dark"||e==="light"?e:"auto",c=()=>o(typeof localStorage<"u"&&localStorage.getItem(r));function n(e){typeof localStorage<"u"&&localStorage.setItem(r,e==="light"||e==="dark"?e:"")}const l=()=>matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";function t(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e==="auto"?l():e,n(e)}matchMedia("(prefers-color-scheme: light)").addEventListener("change",()=>{c()==="auto"&&t("auto")});class s extends HTMLElement{constructor(){super(),t(c()),this.querySelector("select")?.addEventListener("change",a=>{a.currentTarget instanceof HTMLSelectElement&&t(o(a.currentTarget.value))})}}customElements.define("starlight-theme-select",s);</script> <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select language</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/exchanges/mexc-autopilot/" class="astro-4yphtoen">Русский</option><option value="/docs/en/exchanges/mexc-autopilot/" selected class="astro-4yphtoen">English</option><option value="/docs/ua/exchanges/mexc-autopilot/" class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select><script type="module">class s extends HTMLElement{constructor(){super();const e=this.querySelector("select");e&&(e.addEventListener("change",t=>{t.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=t.currentTarget.value)}),window.addEventListener("pageshow",t=>{if(!t.persisted)return;const n=e.querySelector("option[selected]")?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}}customElements.define("starlight-lang-select",s);</script> </div> </div> </header> <nav class="sidebar print:hidden astro-vrdttmbt" aria-label="Main"> <starlight-menu-button class="print:hidden astro-jif73yzw"> <button aria-expanded="false" aria-label="Menu" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-jif73yzw"> <svg aria-hidden="true" class="open-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg> <svg aria-hidden="true" class="close-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg> </button> </starlight-menu-button> <script type="module">class s extends HTMLElement{constructor(){super(),this.btn=this.querySelector("button"),this.btn.addEventListener("click",()=>this.toggleExpanded());const t=this.closest("nav");t&&t.addEventListener("keyup",e=>this.closeOnEscape(e))}setExpanded(t){this.setAttribute("aria-expanded",String(t)),document.body.toggleAttribute("data-mobile-menu-expanded",t)}toggleExpanded(){this.setExpanded(this.getAttribute("aria-expanded")!=="true")}closeOnEscape(t){t.code==="Escape"&&(this.setExpanded(!1),this.btn.focus())}}customElements.define("starlight-menu-button",s);</script>   <div id="starlight__sidebar" class="sidebar-pane astro-vrdttmbt"> <div class="sidebar-content sl-flex astro-vrdttmbt"> <sl-sidebar-state-persist data-hash="0tgjp6c" class="astro-kku4brbg"> <script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script>  <ul class="top-level astro-3ii7xxms"> <li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Getting Started</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="0"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/en/getting-started/faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">FAQ</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/getting-started/macos-launch/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Launch on macOS</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Exchanges</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="1"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/en/exchanges/bybit-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bybit AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/exchanges/mexc-autopilot/" aria-current="page" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">MEXC AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/exchanges/bitget-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bitget AutoPilot</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">KYC Platform</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="2"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/en/kyc/autopilot-kyc-subscription/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">KYC Subscription</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/kyc/nvs-faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">NVS Upload</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/kyc/pilot-faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pilot Guide</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/kyc/sellers-guide/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Seller Guide</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/kyc/autopilot-kyc-tos/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Terms of Service</span>  </a> </li> </ul>  </details> </li> </ul>   <script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-wu23bvmt"> <div class="social-icons astro-wu23bvmt">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>  <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select language</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/exchanges/mexc-autopilot/" class="astro-4yphtoen">Русский</option><option value="/docs/en/exchanges/mexc-autopilot/" selected class="astro-4yphtoen">English</option><option value="/docs/ua/exchanges/mexc-autopilot/" class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select> </div>  </div> </div> </div> </nav> <div class="main-frame astro-vrdttmbt">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-67yu43on"> <aside class="right-sidebar-container print:hidden astro-67yu43on"> <div class="right-sidebar astro-67yu43on"> <script type="module" src="/docs/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.hwBsy0Mo.js"></script><script type="module" src="/docs/_astro/TableOfContents.astro_astro_type_script_index_0_lang.FuRcXuRY.js"></script><div class="lg:sl-hidden astro-pb3aqygn"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-doynk5tl"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-doynk5tl"><details id="starlight__mobile-toc" class="astro-doynk5tl"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-doynk5tl"><span class="toggle sl-flex astro-doynk5tl">On this page<svg aria-hidden="true" class="caret astro-doynk5tl astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-doynk5tl"></span></summary><div class="dropdown astro-doynk5tl"><ul class="isMobile astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#forget-about-manual-work-the-solution-is-here" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Forget about manual work: the solution is here</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#how-autopilot-works" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">How AutoPilot Works</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#key-advantages" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Key Advantages</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#mexc-autopilot-features" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">MEXC AutoPilot Features</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#-captcha-setup" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">🧩 Captcha Setup</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#full-list-of-actions-action" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Full List of Actions (ACTION)</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#general-action-workflow" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">General Action Workflow</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#register_mx--account-registration-on-mexc" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">register_mx — Account Registration on MEXC</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#login_mx--account-login" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">login_mx — Account Login</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#check_mx--verification-check" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">check_mx — Verification Check</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#2fa_mx--2fa-setup" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">2fa_mx — 2FA Setup</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#whitelist_mx--add-address-to-whitelist" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">whitelist_mx — Add Address to Whitelist</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#withdraw_mx--withdrawal" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">withdraw_mx — Withdrawal</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#api_mx--get-api-keys" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">api_mx — Get API Keys</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#trading_mx--automated-trading" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">trading_mx — Automated Trading</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#deposit_mx--get-deposit-address" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">deposit_mx — Get Deposit Address</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#futures_mx--smart-futures-market--stop-loss" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">futures_mx — Smart Futures (market + stop-loss)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#link_mx--get-kyc-verification-link" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">link_mx — Get KYC Verification Link</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#actions-summary-table" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Actions Summary Table</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#purchase" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Purchase</span> </a>  </li> </ul> </div></details></nav></mobile-starlight-toc></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-pb3aqygn"><div class="sl-container astro-pb3aqygn"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#forget-about-manual-work-the-solution-is-here" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Forget about manual work: the solution is here</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#how-autopilot-works" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">How AutoPilot Works</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#key-advantages" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Key Advantages</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#mexc-autopilot-features" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">MEXC AutoPilot Features</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#-captcha-setup" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">🧩 Captcha Setup</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#full-list-of-actions-action" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Full List of Actions (ACTION)</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#general-action-workflow" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">General Action Workflow</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#register_mx--account-registration-on-mexc" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">register_mx — Account Registration on MEXC</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#login_mx--account-login" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">login_mx — Account Login</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#check_mx--verification-check" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">check_mx — Verification Check</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#2fa_mx--2fa-setup" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">2fa_mx — 2FA Setup</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#whitelist_mx--add-address-to-whitelist" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">whitelist_mx — Add Address to Whitelist</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#withdraw_mx--withdrawal" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">withdraw_mx — Withdrawal</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#api_mx--get-api-keys" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">api_mx — Get API Keys</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#trading_mx--automated-trading" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">trading_mx — Automated Trading</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#deposit_mx--get-deposit-address" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">deposit_mx — Get Deposit Address</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#futures_mx--smart-futures-market--stop-loss" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">futures_mx — Smart Futures (market + stop-loss)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#link_mx--get-kyc-verification-link" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">link_mx — Get KYC Verification Link</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#actions-summary-table" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Actions Summary Table</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#purchase" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Purchase</span> </a>  </li> </ul> </nav></starlight-toc></div></div> </div> </aside> <div class="main-pane astro-67yu43on">  <main data-pagefind-body class="astro-bguv2lll" lang="en" dir="ltr">   <script type="module" src="/docs/_astro/MarkdownContent.astro_astro_type_script_index_0_lang.Be01RnYk.js"></script> <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <h1 id="_top" class="astro-j6tvhyss">MEXC AutoPilot</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content">  <div class="sl-heading-wrapper level-h1"><h1 id="autopilot-software--maximum-automation-on-mexc">AutoPilot Software — Maximum Automation on MEXC</h1><a class="sl-anchor-link" href="#autopilot-software--maximum-automation-on-mexc"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “AutoPilot Software — Maximum Automation on MEXC”</span></a></div>
+<p><strong>AdsPower &#x26; Dolphin &#x26; Vision &#x26; Afina Support</strong>
+<strong>Windows / MacOS / Linux</strong></p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="forget-about-manual-work-the-solution-is-here">Forget about manual work: the solution is here</h2><a class="sl-anchor-link" href="#forget-about-manual-work-the-solution-is-here"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Forget about manual work: the solution is here”</span></a></div>
+<p>Managing accounts manually requires a lot of time, effort, and is prone to errors. To scale your operations you need to:</p>
+<ul>
+<li>Regularly perform repetitive actions</li>
+<li>Optimize your time</li>
+</ul>
+<p>AutoPilot Software solves these problems by turning routine tasks into an automated process. Integration with AdsPower &#x26; Dolphin ensures digital fingerprint protection and safe multi-account management.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="how-autopilot-works">How AutoPilot Works</h2><a class="sl-anchor-link" href="#how-autopilot-works"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “How AutoPilot Works”</span></a></div>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;📋 Fill in the table&#x22;] --> B[&#x22;⚙️ Set up the config&#x22;]
+    B --> C[&#x22;🚀 Launch AutoPilot&#x22;]
+    C --> D[&#x22;✅ Results in the table&#x22;]
+
+    style A fill:#4CAF50,color:#fff,stroke:none,rx:12
+    style B fill:#2196F3,color:#fff,stroke:none,rx:12
+    style C fill:#FF9800,color:#fff,stroke:none,rx:12
+    style D fill:#9C27B0,color:#fff,stroke:none,rx:12" data-status="loading"></div>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="key-advantages">Key Advantages</h2><a class="sl-anchor-link" href="#key-advantages"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Key Advantages”</span></a></div>
+<p><strong>Time savings:</strong>
+Automation allows you to manage hundreds of accounts simultaneously</p>
+<p><strong>Ease of use:</strong>
+Go about your business while AutoPilot automates actions in the background. You can use your own applications while AutoPilot runs in browser windows behind the scenes</p>
+<p><strong>Integration with AdsPower / Dolphin / Vision / Afina:</strong>
+Safe and anonymous account usage. AutoPilot automatically launches and integrates into the created anti-detect browser session with unique fingerprints. AutoPilot doesn’t care whether profiles are already open or closed — it will start automating the process either way</p>
+<p><strong>Parallel automation:</strong>
+Automate multiple accounts simultaneously</p>
+<p><strong>Convenient account tracking spreadsheet:</strong>
+Keep track of all accounts in a single Excel spreadsheet. You can add new columns, rearrange column order as you wish — just don’t rename the columns from the template</p>
+<p><strong>Automation mode settings — unique speed modes:</strong></p>
+<ul>
+<li><strong>FAST</strong> — maximum speed with minimal delays</li>
+<li><strong>MEDIUM</strong> — moderate speed, human behavior simulation, Smart Cursor, Human Typing</li>
+<li><strong>SLOW</strong> — slow speed, full human behavior simulation</li>
+</ul>
+<p><strong>Multi-functionality:</strong>
+Configure any actions for each account. For example, AutoPilot will get a deposit address for some accounts while withdrawing funds from others</p>
+<p><strong>Automatic action chains:</strong>
+Choose any action — AutoPilot will automatically log in to the account if login is required. It will also enable 2FA protection automatically if it hasn’t been set up yet</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="mexc-autopilot-features">MEXC AutoPilot Features</h2><a class="sl-anchor-link" href="#mexc-autopilot-features"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “MEXC AutoPilot Features”</span></a></div>
+<div class="mermaid" data-content="mindmap
+  root((MEXC AutoPilot))
+    Accounts
+      Registration
+      Login
+      KYC Check
+      2FA Setup
+    Wallets
+      Deposit Address
+      Address Whitelist
+      Withdrawal
+    Trading
+      Market Trading
+      Volume Generation
+      Multi-coins
+      Futures with stop-loss
+    Utilities
+      API Keys
+      Profit Calculation
+      Email Verification" data-status="loading"></div>
+<p>AutoPilot supports a wide range of automated actions for MEXC:</p>
+<ul>
+<li><strong>Registration</strong> of accounts on MEXC: standard method, via referral link</li>
+<li><strong>Login</strong>: sign in to account, check verification and balance</li>
+<li><strong>KYC Check</strong>: verification level check</li>
+<li><strong>2FA Management</strong>: setting up two-factor authentication and entering codes</li>
+<li><strong>Getting deposit address</strong> for each account</li>
+<li><strong>Withdrawal</strong> from account</li>
+<li><strong>Adding addresses to whitelist</strong> with support for various networks</li>
+<li><strong>Getting API keys</strong> for trading with permission configuration</li>
+<li><strong>Automated trading</strong>: trading and volume generation with market orders in specified pairs</li>
+<li><strong>Sequential trading</strong>: support for multiple coins separated by commas</li>
+<li><strong>Smart Futures</strong>: market entry with an automatic stop-loss and position holding</li>
+<li>Automatic captcha solving, verification code retrieval, and much more</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="-captcha-setup">🧩 Captcha Setup</h2><a class="sl-anchor-link" href="#-captcha-setup"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “🧩 Captcha Setup”</span></a></div>
+<p>AutoPilot solves captcha <strong>on its own, inside the exe</strong> — free, with no third-party service and no browser. For most captchas on MEXC you don’t need a paid key at all: the software starts and runs without one.</p>
+<p>A paid provider is only wired in as a backup for rare captcha types. If you do want a key, three services work:</p>
+<ul>
+<li>⭐ <strong>CapSolver</strong> — <a href="https://www.capsolver.com/">capsolver.com</a> — <strong>recommended</strong></li>
+<li><strong>CapMonster</strong> — <a href="https://capmonster.cloud/">capmonster.cloud</a></li>
+<li><strong>2Captcha</strong> — <a href="https://2captcha.com/">2captcha.com</a></li>
+</ul>
+<p>Configure in <code dir="auto">AutoPilot.config</code>:</p>
+<div class="expressive-code"><link rel="stylesheet" href="/docs/_astro/ec.v4551.css"><script type="module" src="/docs/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">captcha_key=CAP-YOUR_KEY_HERE</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="captcha_key=CAP-YOUR_KEY_HERE"><div></div></button></div></figure></div>
+<blockquote>
+<p>🏠 <strong>The profile proxy must be residential</strong> — the built-in solver submits the captcha check from the profile’s IP, and datacenter IPs don’t pass. See <a href="/docs/en/faq/#4--proxy-and-captcha">FAQ → section 4: Proxy and Captcha</a>.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="full-list-of-actions-action">Full List of Actions (ACTION)</h2><a class="sl-anchor-link" href="#full-list-of-actions-action"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Full List of Actions (ACTION)”</span></a></div>
+<blockquote>
+<p>➕ <strong>Several actions in one pass.</strong> The <code dir="auto">ACTION</code> cell can hold a chain joined with <code dir="auto">+</code> — for example <code dir="auto">register+learn+whitelist</code>. The steps run in order on each account, and the profile browser is not relaunched between them. Details — <a href="/docs/en/faq/#action-chains">FAQ → Action chains</a>.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="general-action-workflow">General Action Workflow</h3><a class="sl-anchor-link" href="#general-action-workflow"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “General Action Workflow”</span></a></div>
+<div class="mermaid" data-content="flowchart TD
+    START[&#x22;🎯 Select ACTION in the table&#x22;] --> AUTO{&#x22;AutoPilot running?&#x22;}
+    AUTO -->|Yes| LOGIN{&#x22;Login required?&#x22;}
+    LOGIN -->|Yes| DO_LOGIN[&#x22;🔑 Automatic login&#x22;]
+    LOGIN -->|No| TFA{&#x22;2FA needed?&#x22;}
+    DO_LOGIN --> TFA
+    TFA -->|Not enabled| DO_2FA[&#x22;🔐 Auto-enable 2FA&#x22;]
+    TFA -->|Enabled| ACTION[&#x22;⚡ Execute action&#x22;]
+    DO_2FA --> ACTION
+    ACTION --> RESULT[&#x22;📊 Result saved to table&#x22;]
+
+    style START fill:#FF9800,color:#fff,stroke:none,rx:10
+    style DO_LOGIN fill:#2196F3,color:#fff,stroke:none,rx:10
+    style DO_2FA fill:#9C27B0,color:#fff,stroke:none,rx:10
+    style ACTION fill:#4CAF50,color:#fff,stroke:none,rx:10
+    style RESULT fill:#607D8B,color:#fff,stroke:none,rx:10" data-status="loading"></div>
+<blockquote>
+<p>All actions except registration will automatically log in to the account if needed. The whitelist, withdraw and api actions will automatically enable 2FA if it is not set up.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="register_mx--account-registration-on-mexc"><code dir="auto">register_mx</code> — Account Registration on MEXC</h3><a class="sl-anchor-link" href="#register_mx--account-registration-on-mexc"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “register_mx — Account Registration on MEXC”</span></a></div>
+<p>Account registration with automatic captcha solving and email confirmation</p>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;Open page&#x22;] --> B[&#x22;Enter email and password&#x22;]
+    B --> C[&#x22;Solve captcha&#x22;]
+    C --> D[&#x22;Email confirmation&#x22;]
+    D --> E[&#x22;✅ Success&#x22;]
+
+    style E fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[EMAIL] mail_provider</code></td><td>Email service (yahoo, rambler, icloud, outlook, gmail…)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[PROFILE] mail</code></td><td>Email address</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[EMAIL] mail_password</code></td><td>Email password / IMAP password</td></tr><tr><td>Optional</td><td><code dir="auto">[PROFILE] mexc_password</code></td><td>Account password (AutoPilot generates one if empty)</td></tr><tr><td>Optional</td><td><code dir="auto">[REG] referral_code</code></td><td>Referral code</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[REG] is_registered</code></td><td>Registration status (1 — registered)</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[REGISTER_MX] SUCCESS</code> or error description</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="login_mx--account-login"><code dir="auto">login_mx</code> — Account Login</h3><a class="sl-anchor-link" href="#login_mx--account-login"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “login_mx — Account Login”</span></a></div>
+<p>Sign in to account, check verification and balance</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[REG] is_registered</code></td><td>1 (registered)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[PROFILE] mail</code></td><td>Email address</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[PROFILE] mexc_password</code></td><td>Account password</td></tr><tr><td>Optional</td><td><code dir="auto">[2FA] totp_secret_code</code></td><td>2FA secret code</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[KYC] kyc_status</code></td><td>Verification level</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[BALANCE] account_balance</code></td><td>Account balance in USDT</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[LOGIN_MX] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="check_mx--verification-check"><code dir="auto">check_mx</code> — Verification Check</h3><a class="sl-anchor-link" href="#check_mx--verification-check"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “check_mx — Verification Check”</span></a></div>
+<p>Check KYC level and account balance without performing additional actions</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Updates</strong></td><td><code dir="auto">[KYC] kyc_status</code></td><td>Verification level</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[BALANCE] account_balance</code></td><td>Balance in USDT</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[CHECK_MX] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="2fa_mx--2fa-setup"><code dir="auto">2fa_mx</code> — 2FA Setup</h3><a class="sl-anchor-link" href="#2fa_mx--2fa-setup"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “2fa_mx — 2FA Setup”</span></a></div>
+<p>Automatic Google Authenticator setup on the account</p>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;Security settings&#x22;] --> B[&#x22;Get QR code&#x22;]
+    B --> C[&#x22;Extract secret&#x22;]
+    C --> D[&#x22;Generate TOTP&#x22;]
+    D --> E[&#x22;Confirm with codes&#x22;]
+    E --> F[&#x22;✅ 2FA enabled&#x22;]
+
+    style F fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Updates</strong></td><td><code dir="auto">[2FA] totp_secret_code</code></td><td>2FA secret code (saved automatically)</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[2FA_MX] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="whitelist_mx--add-address-to-whitelist"><code dir="auto">whitelist_mx</code> — Add Address to Whitelist</h3><a class="sl-anchor-link" href="#whitelist_mx--add-address-to-whitelist"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “whitelist_mx — Add Address to Whitelist”</span></a></div>
+<p>Enable whitelist mode and add a withdrawal address</p>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;Enable Whitelist&#x22;] --> B[&#x22;Confirm 2FA&#x22;]
+    B --> C[&#x22;Add address&#x22;]
+    C --> D[&#x22;Select network and memo&#x22;]
+    D --> E[&#x22;✅ Address added&#x22;]
+
+    style E fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[WHITELIST_MEXC] whitelist_address</code></td><td>Wallet address</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[WHITELIST_MEXC] whitelist_chain</code></td><td>Network — code or MEXC name (<code dir="auto">TRC20</code>, <code dir="auto">BEP20</code>, <code dir="auto">Aptos</code>). Code list in the table below 👇</td></tr><tr><td>Optional</td><td><code dir="auto">[WHITELIST_MEXC] whitelist_memo</code></td><td>Memo/Tag (if required by the network)</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[WHITELIST_MEXC] whitelist_status</code></td><td>1 — successfully added</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[WHITELIST_MX] SUCCESS</code></td></tr></tbody></table>
+<blockquote>
+<p>If 2FA is not enabled — AutoPilot will automatically set it up before adding to the whitelist</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="withdraw_mx--withdrawal"><code dir="auto">withdraw_mx</code> — Withdrawal</h3><a class="sl-anchor-link" href="#withdraw_mx--withdrawal"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “withdraw_mx — Withdrawal”</span></a></div>
+<p>Full withdrawal from the account with automatic confirmation</p>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;Select coin&#x22;] --> B[&#x22;Enter address and network&#x22;]
+    B --> C[&#x22;Specify amount&#x22;]
+    C --> D[&#x22;Confirm with codes&#x22;]
+    D --> E[&#x22;✅ Funds sent&#x22;]
+
+    style E fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[WITHDRAW_MEXC] withdraw_coin</code></td><td>Coin to withdraw (e.g.: <code dir="auto">USDT</code>)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[WITHDRAW_MEXC] withdraw_chain</code></td><td>Withdrawal network — code or MEXC name (<code dir="auto">TRC20</code>, <code dir="auto">BSC</code>, <code dir="auto">NEAR</code>). Code list in the table below 👇</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[WITHDRAW_MEXC] withdraw_address</code></td><td>Recipient wallet address</td></tr><tr><td>Optional</td><td><code dir="auto">[WITHDRAW_MEXC] withdraw_memo</code></td><td>Memo/Tag</td></tr><tr><td>Optional</td><td><code dir="auto">[WITHDRAW_MEXC] withdraw_amount</code></td><td>Amount <strong>in the coin</strong> (<code dir="auto">25.5</code> = 25.5 USDT). Empty, <code dir="auto">max</code> or <code dir="auto">all</code> = withdraw the whole available balance</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[WITHDRAW_MEXC] SUCCESS</code></td></tr></tbody></table>
+<blockquote>
+<p>If 2FA is not enabled — AutoPilot will automatically set it up before withdrawal</p>
+</blockquote>
+<p><strong>USDT network codes on MEXC</strong> (read off MEXC on 2026-05-22 — the exchange changes the list, fees and minimums):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Put in <code dir="auto">withdraw_chain</code></th><th>Network on MEXC</th><th>Memo</th><th>Fee</th><th>Min. withdrawal</th></tr></thead><tbody><tr><td><code dir="auto">TRX</code> / <code dir="auto">TRC20</code></td><td>Tron(TRC20)</td><td>—</td><td>1</td><td>2</td></tr><tr><td><code dir="auto">BSC</code> / <code dir="auto">BEP20</code></td><td>BNB Smart Chain(BEP20)</td><td>—</td><td>0.01</td><td>2</td></tr><tr><td><code dir="auto">ETH</code> / <code dir="auto">ERC20</code></td><td>Ethereum(ERC20)</td><td>—</td><td>0.5</td><td>10</td></tr><tr><td><code dir="auto">SOL</code></td><td>Solana(SOL)</td><td>—</td><td>0.23</td><td>10</td></tr><tr><td><code dir="auto">TON</code></td><td>Toncoin(TON)</td><td>✅ required</td><td>0.02</td><td>8</td></tr><tr><td><code dir="auto">APTOS</code> / <code dir="auto">APT</code></td><td>APTOS(APT)</td><td>—</td><td>0.1</td><td>10</td></tr><tr><td><code dir="auto">ARB</code></td><td>Arbitrum One(ARB)</td><td>—</td><td>0.05</td><td>1</td></tr><tr><td><code dir="auto">OP</code></td><td>Optimism(OP)</td><td>—</td><td>0.017</td><td>3</td></tr><tr><td><code dir="auto">MATIC</code></td><td>Polygon(MATIC)</td><td>—</td><td>0.0071</td><td>5</td></tr><tr><td><code dir="auto">AVAX</code></td><td>Avalanche C Chain(AVAX CCHAIN)</td><td>—</td><td>0.001</td><td>4</td></tr><tr><td><code dir="auto">PLASMA</code></td><td>PLASMA</td><td>—</td><td>0</td><td>10</td></tr><tr><td><code dir="auto">CELO</code></td><td>CELO</td><td>—</td><td>0.05</td><td>2</td></tr><tr><td><code dir="auto">KAIA</code> / <code dir="auto">KLAY</code></td><td>Kaia (KAIA)</td><td>—</td><td>1</td><td>2</td></tr><tr><td><code dir="auto">NEAR</code></td><td>NEAR Protocol(NEAR)</td><td>—</td><td>0.2</td><td>2</td></tr><tr><td><code dir="auto">CFX</code></td><td>Conflux eSpace</td><td>—</td><td>0.01</td><td>1</td></tr><tr><td><code dir="auto">DOT</code></td><td>Polkadot AssetHub</td><td>—</td><td>1</td><td>2</td></tr></tbody></table>
+<blockquote>
+<p>💡 The same codes work in <code dir="auto">whitelist_chain</code> and <code dir="auto">deposit_chain</code>. The full network name is accepted too (<code dir="auto">Tron(TRC20)</code>), as are the codes from the Bybit guide (<code dir="auto">CAVAX</code> → Avalanche). If the network is not found, or the code fits several networks at once, AutoPilot <strong>will not send the funds</strong> — it prints the list of available networks to the log instead.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="api_mx--get-api-keys"><code dir="auto">api_mx</code> — Get API Keys</h3><a class="sl-anchor-link" href="#api_mx--get-api-keys"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “api_mx — Get API Keys”</span></a></div>
+<p>Create an API key with full permissions for SPOT and Futures trading</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td>Optional</td><td><code dir="auto">[API] api_whitelist_ip</code></td><td>IP for whitelist (optional)</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[API] api_key</code></td><td>Obtained API key</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[API] api_secret</code></td><td>API secret key</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[API_MX] SUCCESS</code></td></tr></tbody></table>
+<blockquote>
+<p>If 2FA is not enabled — AutoPilot will automatically set it up before creating the key</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="trading_mx--automated-trading"><code dir="auto">trading_mx</code> — Automated Trading</h3><a class="sl-anchor-link" href="#trading_mx--automated-trading"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “trading_mx — Automated Trading”</span></a></div>
+<p>Trading and volume generation with market orders, supporting multiple coins</p>
+<div class="mermaid" data-content="flowchart TD
+    START[&#x22;⚡ Start trading&#x22;] --> COIN[&#x22;Select pair from list&#x22;]
+    COIN --> BUY[&#x22;📈 Market buy&#x22;]
+    BUY --> WAIT1[&#x22;⏳ Random delay&#x22;]
+    WAIT1 --> SELL[&#x22;📉 Market sell&#x22;]
+    SELL --> CHECK{&#x22;All cycles completed?&#x22;}
+    CHECK -->|No| WAIT2[&#x22;⏳ Delay between cycles&#x22;]
+    WAIT2 --> BUY
+    CHECK -->|Yes| NEXT{&#x22;More coins?&#x22;}
+    NEXT -->|Yes| COIN
+    NEXT -->|No| DONE[&#x22;✅ Report: volume and fees&#x22;]
+
+    style START fill:#FF9800,color:#fff,stroke:none,rx:10
+    style BUY fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style SELL fill:#f44336,color:#fff,stroke:none,rx:8
+    style DONE fill:#607D8B,color:#fff,stroke:none,rx:10" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Asset to trade (e.g.: <code dir="auto">BTC</code> or <code dir="auto">BTC,ETH,SOL</code>)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_amount</code></td><td>Order size in USDT (e.g.: <code dir="auto">10</code> or <code dir="auto">10,20,5</code>)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_cycles</code></td><td>Number of buy-sell cycles (e.g.: <code dir="auto">3</code> or <code dir="auto">3,5,2</code>)</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[TRADING_MX] VOLUME: volume, FEES: fees</code></td></tr></tbody></table>
+<blockquote>
+<p><strong>Multi-coins</strong>: specify multiple coins, amounts, and cycles separated by commas — AutoPilot will trade them sequentially.
+Example: <code dir="auto">BTC,ETH</code> + <code dir="auto">10,20</code> + <code dir="auto">3,5</code> = 3 cycles of BTC at 10 USDT, then 5 cycles of ETH at 20 USDT</p>
+</blockquote>
+<blockquote>
+<p><strong>Volume formula</strong>: cycles x order size x 2 (buy + sell)
+Example: 3 cycles at 10 USDT = 3 x 10 x 2 = <strong>60 USDT</strong> volume</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="deposit_mx--get-deposit-address"><code dir="auto">deposit_mx</code> — Get Deposit Address</h3><a class="sl-anchor-link" href="#deposit_mx--get-deposit-address"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “deposit_mx — Get Deposit Address”</span></a></div>
+<p>Get a deposit address to fund the account</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[DEPOSIT] deposit_coin</code></td><td>Coin for deposit (e.g.: <code dir="auto">USDT</code>)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[DEPOSIT] deposit_chain</code></td><td>Network — code or MEXC name (<code dir="auto">TRC20</code>). Code list in the <code dir="auto">withdraw_mx</code> section 👆</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[DEPOSIT] deposit_address</code></td><td>Deposit address (format: <code dir="auto">address:memo</code>)</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="futures_mx--smart-futures-market--stop-loss"><code dir="auto">futures_mx</code> — Smart Futures (market + stop-loss)</h3><a class="sl-anchor-link" href="#futures_mx--smart-futures-market--stop-loss"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “futures_mx — Smart Futures (market + stop-loss)”</span></a></div>
+<p>Open a futures position <strong>at market</strong> with an automatic <strong>stop-loss</strong> in a single call. The position is held until the stop triggers — no take-profit, no opposite-side close.</p>
+<div class="mermaid" data-content="flowchart TD
+    START[&#x22;⚡ Start&#x22;] --> SPEC[&#x22;📋 Contract spec&#x22;]
+    SPEC --> PRICE[&#x22;💹 Current price&#x22;]
+    PRICE --> CALC[&#x22;🧮 Compute volume &#x26; stop price&#x22;]
+    CALC --> LEV[&#x22;⚙️ Set leverage&#x22;]
+    LEV --> OPEN[&#x22;📈 MARKET open + stop-loss&#x22;]
+    OPEN --> HOLD[&#x22;⏳ Position held until stop&#x22;]
+
+    style START fill:#FF9800,color:#fff,stroke:none,rx:10
+    style OPEN fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style HOLD fill:#607D8B,color:#fff,stroke:none,rx:10" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Set in</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_coin</code> (Excel)</td><td>Pair (e.g.: <code dir="auto">SOL_USDT</code> or <code dir="auto">SOL</code>) — the only per-profile input</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">leverage</code> (config)</td><td>Leverage (e.g.: <code dir="auto">15</code>)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">futures_position_size</code> (config)</td><td>Size as % of futures USDT balance (used as margin). E.g.: <code dir="auto">25</code></td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">tp_sl_percentages</code> (config)</td><td><code dir="auto">TP,SL</code> in % — the action uses <strong>SL</strong> (the 2nd value). 💡 For hedging we recommend <code dir="auto">5,5</code> (SL 5%) — it gives the position ~95% of room to run so the hedge survives to the end and isn’t stopped out prematurely</td></tr><tr><td>Optional</td><td><code dir="auto">futures_side</code> (config)</td><td>Direction: <code dir="auto">long</code> (default) / <code dir="auto">short</code></td></tr><tr><td>Optional</td><td><code dir="auto">futures_margin_mode</code> (config)</td><td>Margin mode: <code dir="auto">cross</code> (default) / <code dir="auto">isolated</code></td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[MEXC_FUTURES] order_id</code></td><td>Opened order ID</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td>Records <strong>what trade was opened</strong> — e.g. <code dir="auto">[MEXC_FUTURES] SUCCESS - LONG SOL_USDT 5cont 10x SL@142.30 ~75.00USDT id=...</code> (direction / coin / contracts / leverage / stop / notional), or the failure reason. Visible right in the status column — no more getting confused.</td></tr></tbody></table>
+<blockquote>
+<p><strong>One shared config — no new columns.</strong> Every parameter except the coin comes from the shared config file (the same keys the Bybit futures actions use). Per profile in Excel you set only the coin.</p>
+</blockquote>
+<blockquote>
+<p><strong>Market entry, not limit.</strong> On MEXC futures fees = 0, a market order counts toward trading volume and fills instantly.</p>
+</blockquote>
+<blockquote>
+<p>🛡️ <strong>Perfect for hedging.</strong> A hedge is opened <strong>against a position on another exchange</strong> (your main position lives there — here on MEXC you open the opposite side: <code dir="auto">futures_side=short</code> against a long, <code dir="auto">long</code> against a short), and your price risk is covered. Why it works: instant market entry, 0 fees, the auto stop-loss caps the loss for you, the position is held unattended until the stop, and sizing as % of balance gives an <strong>identical hedge across all profiles at once</strong>. <strong>Why SL 5%:</strong> it gives the hedge ~95% of room to run — the position survives to the end and isn’t stopped out prematurely. <strong>Recommended start:</strong> <code dir="auto">leverage=10</code>, <code dir="auto">futures_position_size=20</code>, <code dir="auto">tp_sl_percentages=5,5</code>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Position size (<code dir="auto">futures_position_size</code>)</strong> is a <strong>% of the available futures USDT balance</strong>, used as <strong>margin</strong>. Position size = <code dir="auto">margin × leverage</code>. Example: 100 USDT balance, <code dir="auto">futures_position_size=25</code>, <code dir="auto">leverage=15</code> → 25 USDT margin, ~375 USDT position.</p>
+</blockquote>
+<blockquote>
+<p><strong>Stop-loss</strong> is taken from <code dir="auto">tp_sl_percentages</code> (2nd value = SL) and is based on <strong>price movement</strong>: for <code dir="auto">long</code> stop = <code dir="auto">entry × (1 − SL/100)</code>, for <code dir="auto">short</code> = <code dir="auto">entry × (1 + SL/100)</code>. Without SL the position opens with no stop.</p>
+</blockquote>
+<blockquote>
+<p><strong>Hold.</strong> There is no opposite-side close — the position is held indefinitely until the stop triggers.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Accounts under MEXC risk control (message “Position opening is unavailable…”, code <code dir="auto">6026</code>) cannot open positions until they pass verification — the action reports this in the status.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="link_mx--get-kyc-verification-link"><code dir="auto">link_mx</code> — Get KYC Verification Link</h3><a class="sl-anchor-link" href="#link_mx--get-kyc-verification-link"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “link_mx — Get KYC Verification Link”</span></a></div>
+<blockquote>
+<p>⚠️ <strong>No separate action needed.</strong> Getting a KYC link for MEXC has moved into our ecosystem — use the bot and extension below.</p>
+</blockquote>
+<ul>
+<li>🤖 <strong>Telegram bot + Miniapp <a href="https://t.me/AutoPilotKYC_bot">@AutoPilotKYC_bot</a></strong> — automatic KYC verifications on the AutoPilot KYC platform. More: <a href="/docs/en/kyc/autopilot-kyc-subscription/">KYC Platform</a>.</li>
+<li>🧩 <strong>Free <a href="https://chromewebstore.google.com/detail/autopilot-link-generator/maogfegbjecdgkfnkemoalpbgodknmaa">AutoPilot Link Generator</a> extension</strong> — generates verification links for Bybit, MEXC, Bitget and custom Sumsub/Onfido tokens right in the browser.</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="actions-summary-table">Actions Summary Table</h2><a class="sl-anchor-link" href="#actions-summary-table"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Actions Summary Table”</span></a></div>
+<div class="mermaid" data-content="flowchart TD
+    subgraph REG [&#x22;🟢 Getting Started&#x22;]
+        R[&#x22;register_mx — Registration&#x22;]
+        L[&#x22;login_mx — Login&#x22;]
+        C[&#x22;check_mx — Check&#x22;]
+    end
+
+    subgraph SEC [&#x22;🔐 Security&#x22;]
+        FA[&#x22;2fa_mx — 2FA Protection&#x22;]
+        API[&#x22;api_mx — API Keys&#x22;]
+    end
+
+    subgraph WALLET [&#x22;💰 Wallets&#x22;]
+        D[&#x22;deposit_mx — Deposit Address&#x22;]
+        W[&#x22;whitelist_mx — Whitelist&#x22;]
+        WD[&#x22;withdraw_mx — Withdrawal&#x22;]
+    end
+
+    subgraph TRADE [&#x22;📊 Trading&#x22;]
+        T[&#x22;trading_mx — Trading&#x22;]
+        FU[&#x22;futures_mx — Smart Futures&#x22;]
+    end
+
+    R --> L
+    L --> FA
+    FA --> W
+    FA --> API
+    W --> WD
+    L --> D
+    L --> T
+    L --> FU
+
+    style R fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style L fill:#2196F3,color:#fff,stroke:none,rx:8
+    style C fill:#03A9F4,color:#fff,stroke:none,rx:8
+    style FA fill:#9C27B0,color:#fff,stroke:none,rx:8
+    style API fill:#673AB7,color:#fff,stroke:none,rx:8
+    style D fill:#FF9800,color:#fff,stroke:none,rx:8
+    style W fill:#FF5722,color:#fff,stroke:none,rx:8
+    style WD fill:#f44336,color:#fff,stroke:none,rx:8
+    style T fill:#009688,color:#fff,stroke:none,rx:8
+    style FU fill:#FF9800,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Action</th><th>Description</th><th align="center">Auto-login</th><th align="center">Auto-2FA</th></tr></thead><tbody><tr><td><code dir="auto">register_mx</code></td><td>Account registration</td><td align="center">—</td><td align="center">—</td></tr><tr><td><code dir="auto">login_mx</code></td><td>Account login</td><td align="center">—</td><td align="center">—</td></tr><tr><td><code dir="auto">check_mx</code></td><td>KYC and balance check</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">2fa_mx</code></td><td>2FA setup</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">deposit_mx</code></td><td>Deposit address</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">whitelist_mx</code></td><td>Add to whitelist</td><td align="center">✅</td><td align="center">✅</td></tr><tr><td><code dir="auto">withdraw_mx</code></td><td>Withdrawal</td><td align="center">✅</td><td align="center">✅</td></tr><tr><td><code dir="auto">api_mx</code></td><td>API key creation</td><td align="center">✅</td><td align="center">✅</td></tr><tr><td><code dir="auto">trading_mx</code></td><td>Market trading</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">futures_mx</code></td><td>Smart Futures (market + stop-loss)</td><td align="center">✅</td><td align="center">—</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="purchase">Purchase</h2><a class="sl-anchor-link" href="#purchase"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Purchase”</span></a></div>
+<p>Right after purchase you receive a ready-to-use build.</p>
+<p>Buy an activation key for MEXC AutoPilot: <a href="https://t.me/buykyc_bot">https://t.me/buykyc_bot</a></p>
+<p>Along with the key you get access to the AutoPilot community chat where you can ask questions, communicate, and get tips.</p>
+<p>The key lifetime starts counting from the first launch.</p>  <script>(function(){const className = "mermaid";
+
+    window.__mermaidClassName = className;
+  })();</script>   </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n">   </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr"> <a href="/docs/en/exchanges/bybit-autopilot/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg> <span class="astro-u2l5gyhi"> Previous <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Bybit AutoPilot</span> </span> </a> <a href="/docs/en/exchanges/bitget-autopilot/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg> <span class="astro-u2l5gyhi"> Next <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Bitget AutoPilot</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>

@@ -1,0 +1,1889 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Bybit AutoPilot | AutoPilot</title><link rel="canonical" href="https://autopilotsoftware.github.io/docs/en/exchanges/bybit-autopilot/"/><link rel="alternate" hreflang="ru" href="https://autopilotsoftware.github.io/docs/exchanges/bybit-autopilot/"/><link rel="alternate" hreflang="en" href="https://autopilotsoftware.github.io/docs/en/exchanges/bybit-autopilot/"/><link rel="alternate" hreflang="uk" href="https://autopilotsoftware.github.io/docs/ua/exchanges/bybit-autopilot/"/><link rel="sitemap" href="/docs/sitemap-index.xml"/><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&#34;token&#34;: &#34;d98cb2456dd9448bb66e095a800bb391&#34;}"></script><link rel="shortcut icon" href="/docs/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v5.17.3"/><meta name="generator" content="Starlight v0.37.6"/><meta property="og:title" content="Bybit AutoPilot"/><meta property="og:type" content="article"/><meta property="og:url" content="https://autopilotsoftware.github.io/docs/en/exchanges/bybit-autopilot/"/><meta property="og:locale" content="en"/><meta property="og:description" content="AutoPilot Software — Bybit automation: registration, trading, withdrawals, TokenSplash, Puzzle Hunt"/><meta property="og:site_name" content="AutoPilot"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="AutoPilot Software — Bybit automation: registration, trading, withdrawals, TokenSplash, Puzzle Hunt"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/docs/_astro/print.DNXP8c50.css" media="print"><link rel="stylesheet" href="/docs/_astro/index.DJxFRPMf.css">
+<style>@layer starlight.components{:root{--sl-badge-default-border: var(--sl-color-accent);--sl-badge-default-bg: var(--sl-color-accent-low);--sl-badge-default-text: #fff;--sl-badge-note-border: var(--sl-color-blue);--sl-badge-note-bg: var(--sl-color-blue-low);--sl-badge-note-text: #fff;--sl-badge-danger-border: var(--sl-color-red);--sl-badge-danger-bg: var(--sl-color-red-low);--sl-badge-danger-text: #fff;--sl-badge-success-border: var(--sl-color-green);--sl-badge-success-bg: var(--sl-color-green-low);--sl-badge-success-text: #fff;--sl-badge-caution-border: var(--sl-color-orange);--sl-badge-caution-bg: var(--sl-color-orange-low);--sl-badge-caution-text: #fff;--sl-badge-tip-border: var(--sl-color-purple);--sl-badge-tip-bg: var(--sl-color-purple-low);--sl-badge-tip-text: #fff}[data-theme=light]:root{--sl-badge-default-bg: var(--sl-color-accent-high);--sl-badge-note-bg: var(--sl-color-blue-high);--sl-badge-danger-bg: var(--sl-color-red-high);--sl-badge-success-bg: var(--sl-color-green-high);--sl-badge-caution-bg: var(--sl-color-orange-high);--sl-badge-tip-bg: var(--sl-color-purple-high)}.sl-badge:where(.astro-avdet4wd){display:inline-block;border:1px solid var(--sl-color-border-badge);border-radius:.25rem;font-family:var(--sl-font-system-mono);line-height:normal;color:var(--sl-color-text-badge);background-color:var(--sl-color-bg-badge);overflow-wrap:anywhere}.sidebar-content .sl-badge:where(.astro-avdet4wd){line-height:1;font-size:var(--sl-text-xs);padding:.125rem .375rem}.sidebar-content a[aria-current=page]>.sl-badge:where(.astro-avdet4wd){--sl-color-bg-badge: transparent;--sl-color-border-badge: currentColor;color:inherit}.default:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-default-bg);--sl-color-border-badge: var(--sl-badge-default-border);--sl-color-text-badge: var(--sl-badge-default-text)}.note:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-note-bg);--sl-color-border-badge: var(--sl-badge-note-border);--sl-color-text-badge: var(--sl-badge-note-text)}.danger:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-danger-bg);--sl-color-border-badge: var(--sl-badge-danger-border);--sl-color-text-badge: var(--sl-badge-danger-text)}.success:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-success-bg);--sl-color-border-badge: var(--sl-badge-success-border);--sl-color-text-badge: var(--sl-badge-success-text)}.tip:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-tip-bg);--sl-color-border-badge: var(--sl-badge-tip-border);--sl-color-text-badge: var(--sl-badge-tip-text)}.caution:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-caution-bg);--sl-color-border-badge: var(--sl-badge-caution-border);--sl-color-text-badge: var(--sl-badge-caution-text)}.small:where(.astro-avdet4wd){font-size:var(--sl-text-xs);padding:.125rem .25rem}.medium:where(.astro-avdet4wd){font-size:var(--sl-text-sm);padding:.175rem .35rem}.large:where(.astro-avdet4wd){font-size:var(--sl-text-base);padding:.225rem .45rem}.sl-markdown-content :is(h1,h2,h3,h4,h5,h6) .sl-badge:where(.astro-avdet4wd){vertical-align:middle}}
+@layer starlight.components{.card-grid:where(.astro-zntqmydn){display:grid;grid-template-columns:100%;gap:1rem}.card-grid:where(.astro-zntqmydn)>*{margin-top:0!important}@media(min-width:50rem){.card-grid:where(.astro-zntqmydn){grid-template-columns:1fr 1fr;gap:1.5rem}.stagger:where(.astro-zntqmydn){--stagger-height: 5rem;padding-bottom:var(--stagger-height)}.stagger:where(.astro-zntqmydn)>*:nth-child(2n){transform:translateY(var(--stagger-height))}}}
+@layer starlight.components{svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-size, 1em);width:1em;height:1em}}
+@layer starlight.components{.sl-link-card:where(.astro-mf7fz2mj){display:grid;grid-template-columns:1fr auto;gap:.5rem;border:1px solid var(--sl-color-gray-5);border-radius:.5rem;padding:1rem;box-shadow:var(--sl-shadow-sm);position:relative}a:where(.astro-mf7fz2mj){text-decoration:none;line-height:var(--sl-line-height-headings)}a:where(.astro-mf7fz2mj):before{content:"";position:absolute;inset:0}.stack:where(.astro-mf7fz2mj){flex-direction:column;gap:.5rem}.title:where(.astro-mf7fz2mj){color:var(--sl-color-white);font-weight:600;font-size:var(--sl-text-lg)}.description:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3);line-height:1.5}.icon:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3)}.sl-link-card:where(.astro-mf7fz2mj):hover{background:var(--sl-color-gray-7, var(--sl-color-gray-6));border-color:var(--sl-color-gray-2)}.sl-link-card:where(.astro-mf7fz2mj):hover .icon:where(.astro-mf7fz2mj){color:var(--sl-color-white)}}
+@layer starlight.components{.sl-steps{--bullet-size: calc(var(--sl-line-height) * 1rem);--bullet-margin: .375rem;list-style:none;counter-reset:steps-counter var(--sl-steps-start, 0);padding-inline-start:0}.sl-steps>li{counter-increment:steps-counter;position:relative;padding-inline-start:calc(var(--bullet-size) + 1rem);padding-bottom:1px;min-height:calc(var(--bullet-size) + var(--bullet-margin))}.sl-steps>li+li{margin-top:0}.sl-steps>li:before{content:counter(steps-counter);position:absolute;top:0;inset-inline-start:0;width:var(--bullet-size);height:var(--bullet-size);line-height:var(--bullet-size);font-size:var(--sl-text-xs);font-weight:600;text-align:center;color:var(--sl-color-white);background-color:var(--sl-color-gray-6);border-radius:99rem;box-shadow:inset 0 0 0 1px var(--sl-color-gray-5)}.sl-steps>li:after{--guide-width: 1px;content:"";position:absolute;top:calc(var(--bullet-size) + var(--bullet-margin));bottom:var(--bullet-margin);inset-inline-start:calc((var(--bullet-size) - var(--guide-width)) / 2);width:var(--guide-width);background-color:var(--sl-color-hairline-light)}}@layer starlight.content{.sl-steps>li>:first-child{--lh: calc(1em * var(--sl-line-height));--shift-y: calc(.5 * (var(--bullet-size) - var(--lh)));transform:translateY(var(--shift-y));margin-bottom:var(--shift-y)}.sl-steps>li>:first-child:where(h1,h2,h3,h4,h5,h6){--lh: calc(1em * var(--sl-line-height-headings))}@supports (--prop: 1lh){.sl-steps>li>:first-child{--lh: 1lh}}}
+@layer starlight.components{.sl-link-button:where(.astro-xwgiixxa){align-items:center;border:1px solid transparent;border-radius:999rem;display:inline-flex;font-size:var(--sl-text-sm);gap:.5em;line-height:1.1875;outline-offset:.25rem;padding:.4375rem 1.125rem;text-decoration:none}.sl-link-button:where(.astro-xwgiixxa).primary{background:var(--sl-color-text-accent);border-color:var(--sl-color-text-accent);color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).primary:hover{color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).secondary{border-color:inherit;color:var(--sl-color-white)}.sl-link-button:where(.astro-xwgiixxa).minimal{color:var(--sl-color-white);padding-inline:0}.sl-link-button:where(.astro-xwgiixxa) svg{flex-shrink:0}@media(min-width:50rem){.sl-link-button:where(.astro-xwgiixxa){font-size:var(--sl-text-base);padding:.9375rem 1.25rem}}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa){margin-inline-end:1rem}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa):not(:where(p *)){margin-block:1rem}}
+</style><script type="module" src="/docs/_astro/page.B1D-nYk3.js"></script></head> <body class="astro-bguv2lll"> <a href="#_top" class="astro-7q3lir66">Skip to content</a>  <div class="page sl-flex astro-vrdttmbt"> <header class="header astro-vrdttmbt"><div class="header astro-kmkmnagf"> <div class="title-wrapper sl-flex astro-kmkmnagf"> <a href="/docs/en" class="site-title sl-flex astro-m46x6ez3">  <img class="astro-m46x6ez3" alt src="/docs/_astro/auto_pilot_logo.CfyEiyY2.png" width="600" height="600">  <span class="astro-m46x6ez3" translate="no"> AutoPilot </span> </a>  </div> <div class="sl-flex print:hidden astro-kmkmnagf"> <site-search class="astro-kmkmnagf astro-v37mnknz" data-translations="{&#34;placeholder&#34;:&#34;Search&#34;}"> <button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-v37mnknz"> <svg aria-hidden="true" class="astro-v37mnknz astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg> <span class="sl-hidden md:sl-block astro-v37mnknz" aria-hidden="true">Search</span> <kbd class="sl-hidden md:sl-flex astro-v37mnknz" style="display: none;"> <kbd class="astro-v37mnknz">Ctrl</kbd><kbd class="astro-v37mnknz">K</kbd> </kbd> </button> <dialog style="padding:0" aria-label="Search" class="astro-v37mnknz"> <div class="dialog-frame sl-flex astro-v37mnknz">  <button data-close-modal class="sl-flex md:sl-hidden astro-v37mnknz"> Cancel </button> <div class="search-container astro-v37mnknz"> <div id="starlight__search" class="astro-v37mnknz"></div> </div> </div> </dialog> </site-search>  <script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script> <script type="module" src="/docs/_astro/Search.astro_astro_type_script_index_0_lang.7TPqQKfI.js"></script>   </div> <div class="sl-hidden md:sl-flex print:hidden right-group astro-kmkmnagf"> <div class="sl-flex social-icons astro-kmkmnagf">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script> <script type="module">const r="starlight-theme",o=e=>e==="auto"||e==="dark"||e==="light"?e:"auto",c=()=>o(typeof localStorage<"u"&&localStorage.getItem(r));function n(e){typeof localStorage<"u"&&localStorage.setItem(r,e==="light"||e==="dark"?e:"")}const l=()=>matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";function t(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e==="auto"?l():e,n(e)}matchMedia("(prefers-color-scheme: light)").addEventListener("change",()=>{c()==="auto"&&t("auto")});class s extends HTMLElement{constructor(){super(),t(c()),this.querySelector("select")?.addEventListener("change",a=>{a.currentTarget instanceof HTMLSelectElement&&t(o(a.currentTarget.value))})}}customElements.define("starlight-theme-select",s);</script> <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select language</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/exchanges/bybit-autopilot/" class="astro-4yphtoen">Русский</option><option value="/docs/en/exchanges/bybit-autopilot/" selected class="astro-4yphtoen">English</option><option value="/docs/ua/exchanges/bybit-autopilot/" class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select><script type="module">class s extends HTMLElement{constructor(){super();const e=this.querySelector("select");e&&(e.addEventListener("change",t=>{t.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=t.currentTarget.value)}),window.addEventListener("pageshow",t=>{if(!t.persisted)return;const n=e.querySelector("option[selected]")?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}}customElements.define("starlight-lang-select",s);</script> </div> </div> </header> <nav class="sidebar print:hidden astro-vrdttmbt" aria-label="Main"> <starlight-menu-button class="print:hidden astro-jif73yzw"> <button aria-expanded="false" aria-label="Menu" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-jif73yzw"> <svg aria-hidden="true" class="open-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg> <svg aria-hidden="true" class="close-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg> </button> </starlight-menu-button> <script type="module">class s extends HTMLElement{constructor(){super(),this.btn=this.querySelector("button"),this.btn.addEventListener("click",()=>this.toggleExpanded());const t=this.closest("nav");t&&t.addEventListener("keyup",e=>this.closeOnEscape(e))}setExpanded(t){this.setAttribute("aria-expanded",String(t)),document.body.toggleAttribute("data-mobile-menu-expanded",t)}toggleExpanded(){this.setExpanded(this.getAttribute("aria-expanded")!=="true")}closeOnEscape(t){t.code==="Escape"&&(this.setExpanded(!1),this.btn.focus())}}customElements.define("starlight-menu-button",s);</script>   <div id="starlight__sidebar" class="sidebar-pane astro-vrdttmbt"> <div class="sidebar-content sl-flex astro-vrdttmbt"> <sl-sidebar-state-persist data-hash="0tgjp6c" class="astro-kku4brbg"> <script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script>  <ul class="top-level astro-3ii7xxms"> <li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Getting Started</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="0"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/en/getting-started/faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">FAQ</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/getting-started/macos-launch/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Launch on macOS</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Exchanges</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="1"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/en/exchanges/bybit-autopilot/" aria-current="page" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bybit AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/exchanges/mexc-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">MEXC AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/exchanges/bitget-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bitget AutoPilot</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">KYC Platform</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="2"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/en/kyc/autopilot-kyc-subscription/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">KYC Subscription</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/kyc/nvs-faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">NVS Upload</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/kyc/pilot-faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pilot Guide</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/kyc/sellers-guide/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Seller Guide</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/kyc/autopilot-kyc-tos/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Terms of Service</span>  </a> </li> </ul>  </details> </li> </ul>   <script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-wu23bvmt"> <div class="social-icons astro-wu23bvmt">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>  <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select language</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/exchanges/bybit-autopilot/" class="astro-4yphtoen">Русский</option><option value="/docs/en/exchanges/bybit-autopilot/" selected class="astro-4yphtoen">English</option><option value="/docs/ua/exchanges/bybit-autopilot/" class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select> </div>  </div> </div> </div> </nav> <div class="main-frame astro-vrdttmbt">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-67yu43on"> <aside class="right-sidebar-container print:hidden astro-67yu43on"> <div class="right-sidebar astro-67yu43on"> <script type="module" src="/docs/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.hwBsy0Mo.js"></script><script type="module" src="/docs/_astro/TableOfContents.astro_astro_type_script_index_0_lang.FuRcXuRY.js"></script><div class="lg:sl-hidden astro-pb3aqygn"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-doynk5tl"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-doynk5tl"><details id="starlight__mobile-toc" class="astro-doynk5tl"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-doynk5tl"><span class="toggle sl-flex astro-doynk5tl">On this page<svg aria-hidden="true" class="caret astro-doynk5tl astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-doynk5tl"></span></summary><div class="dropdown astro-doynk5tl"><ul class="isMobile astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#forget-about-manual-work-the-solution-is-here" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Forget about manual work: the solution is here</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#how-autopilot-works" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">How AutoPilot Works</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#key-advantages" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Key Advantages</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#bybit-autopilot-features" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Bybit AutoPilot Features</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#full-list-of-actions-action" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Full List of Actions (ACTION)</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#general-action-workflow" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">General Action Workflow</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#register--account-registration-on-bybit" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">register — Account Registration on Bybit</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#login--account-login" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">login — Account Login</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#2fa--enable-2fa" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">2fa — Enable 2FA</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#deposit--get-deposit-address" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">deposit — Get Deposit Address</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#whitelist--add-address-to-whitelist" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">whitelist — Add Address to Whitelist</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#withdraw--withdraw-funds" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">withdraw — Withdraw Funds</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#full-withdrawal-algorithm-full_withdrawyes" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Full Withdrawal Algorithm (full_withdraw=YES)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#master-wallet-system--auto-whitelists-0-fees-untraceable-withdrawals" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Master Wallet System — Auto-Whitelists, $0 Fees, Untraceable Withdrawals</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sell--sell-all-assets" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">sell — Sell All Assets</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#api--get-api-keys" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">api — Get API Keys</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#trading--automated-trading" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">trading — Automated Trading</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#ts--tokensplash" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">ts — TokenSplash</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#puzzle_hunt--puzzle-hunt" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">puzzle_hunt — Puzzle Hunt</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#link--get-kyc-verification-link" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">link — Get KYC Verification Link</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#learn--learn-articles--set-avatar" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">learn — Learn Articles &amp; Set Avatar</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#profit--profit-calculation" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">profit — Profit Calculation</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#buy--buy-asset" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">buy — Buy Asset</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#limit_buy--limit-buy-order" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">limit_buy — Limit Buy Order</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#limit--random-limit-trading" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">limit — Random Limit Trading</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#trading_limit--limit-trading-volume" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">trading_limit — Limit Trading Volume</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#limit_sell--limit-sell-on-funding" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">limit_sell — Limit Sell on Funding</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#futures--futures-trading" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">futures — Futures Trading</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#futures_smart--smart-futures-trading" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">futures_smart — Smart Futures Trading</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#stake--earn--usdt-staking-flexible-savings" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">stake / earn — USDT Staking (Flexible Savings)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#unstake--unearn--withdraw-from-staking" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">unstake / unearn — Withdraw from Staking</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#lp--launchpad-event-registration" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">lp — LaunchPad Event Registration</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#ref_code--extract-referral-code" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">ref_code — Extract Referral Code</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#action-summary-table" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Action Summary Table</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#configuration-setup" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Configuration Setup</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#-bybit-global-domains" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">🌐 Bybit Global Domains</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#kyc-statuses" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">KYC Statuses</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#email-setup-imap" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Email Setup (IMAP)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#quick-start-after-purchase" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Quick Start After Purchase</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#purchase" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Purchase</span> </a>  </li> </ul> </div></details></nav></mobile-starlight-toc></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-pb3aqygn"><div class="sl-container astro-pb3aqygn"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#forget-about-manual-work-the-solution-is-here" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Forget about manual work: the solution is here</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#how-autopilot-works" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">How AutoPilot Works</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#key-advantages" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Key Advantages</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#bybit-autopilot-features" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Bybit AutoPilot Features</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#full-list-of-actions-action" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Full List of Actions (ACTION)</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#general-action-workflow" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">General Action Workflow</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#register--account-registration-on-bybit" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">register — Account Registration on Bybit</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#login--account-login" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">login — Account Login</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#2fa--enable-2fa" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">2fa — Enable 2FA</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#deposit--get-deposit-address" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">deposit — Get Deposit Address</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#whitelist--add-address-to-whitelist" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">whitelist — Add Address to Whitelist</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#withdraw--withdraw-funds" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">withdraw — Withdraw Funds</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#full-withdrawal-algorithm-full_withdrawyes" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Full Withdrawal Algorithm (full_withdraw=YES)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#master-wallet-system--auto-whitelists-0-fees-untraceable-withdrawals" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Master Wallet System — Auto-Whitelists, $0 Fees, Untraceable Withdrawals</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sell--sell-all-assets" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">sell — Sell All Assets</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#api--get-api-keys" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">api — Get API Keys</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#trading--automated-trading" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">trading — Automated Trading</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#ts--tokensplash" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">ts — TokenSplash</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#puzzle_hunt--puzzle-hunt" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">puzzle_hunt — Puzzle Hunt</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#link--get-kyc-verification-link" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">link — Get KYC Verification Link</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#learn--learn-articles--set-avatar" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">learn — Learn Articles &amp; Set Avatar</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#profit--profit-calculation" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">profit — Profit Calculation</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#buy--buy-asset" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">buy — Buy Asset</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#limit_buy--limit-buy-order" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">limit_buy — Limit Buy Order</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#limit--random-limit-trading" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">limit — Random Limit Trading</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#trading_limit--limit-trading-volume" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">trading_limit — Limit Trading Volume</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#limit_sell--limit-sell-on-funding" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">limit_sell — Limit Sell on Funding</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#futures--futures-trading" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">futures — Futures Trading</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#futures_smart--smart-futures-trading" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">futures_smart — Smart Futures Trading</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#stake--earn--usdt-staking-flexible-savings" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">stake / earn — USDT Staking (Flexible Savings)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#unstake--unearn--withdraw-from-staking" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">unstake / unearn — Withdraw from Staking</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#lp--launchpad-event-registration" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">lp — LaunchPad Event Registration</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#ref_code--extract-referral-code" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">ref_code — Extract Referral Code</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#action-summary-table" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Action Summary Table</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#configuration-setup" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Configuration Setup</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#-bybit-global-domains" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">🌐 Bybit Global Domains</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#kyc-statuses" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">KYC Statuses</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#email-setup-imap" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Email Setup (IMAP)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#quick-start-after-purchase" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Quick Start After Purchase</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#purchase" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Purchase</span> </a>  </li> </ul> </nav></starlight-toc></div></div> </div> </aside> <div class="main-pane astro-67yu43on">  <main data-pagefind-body class="astro-bguv2lll" lang="en" dir="ltr">   <script type="module" src="/docs/_astro/MarkdownContent.astro_astro_type_script_index_0_lang.Be01RnYk.js"></script> <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <h1 id="_top" class="astro-j6tvhyss">Bybit AutoPilot</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content">  <div class="sl-heading-wrapper level-h1"><h1 id="autopilot-software--maximum-automation-on-bybit">AutoPilot Software — Maximum Automation on Bybit</h1><a class="sl-anchor-link" href="#autopilot-software--maximum-automation-on-bybit"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “AutoPilot Software — Maximum Automation on Bybit”</span></a></div>
+<p><strong>Supports AdsPower &#x26; Dolphin &#x26; Vision &#x26; Afina</strong>
+<strong>Windows / MacOS / Linux</strong></p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="forget-about-manual-work-the-solution-is-here">Forget about manual work: the solution is here</h2><a class="sl-anchor-link" href="#forget-about-manual-work-the-solution-is-here"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Forget about manual work: the solution is here”</span></a></div>
+<p>Bybit is one of the world’s leading cryptocurrency exchanges with earning opportunities through Airdrops, TokenSplash events, and special promotions.</p>
+<p>Managing accounts manually requires a lot of time, effort, and carries the risk of errors. AutoPilot Software turns routine tasks into an automated process. Integration with AdsPower, Dolphin, Vision, and Afina ensures digital fingerprint protection and secure multi-account management.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="how-autopilot-works">How AutoPilot Works</h2><a class="sl-anchor-link" href="#how-autopilot-works"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “How AutoPilot Works”</span></a></div>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;📋 Fill in the table&#x22;] --> B[&#x22;⚙️ Configure settings&#x22;]
+    B --> C[&#x22;🚀 Launch AutoPilot&#x22;]
+    C --> D[&#x22;✅ Results in the table&#x22;]
+
+    style A fill:#4CAF50,color:#fff,stroke:none,rx:12
+    style B fill:#2196F3,color:#fff,stroke:none,rx:12
+    style C fill:#FF9800,color:#fff,stroke:none,rx:12
+    style D fill:#9C27B0,color:#fff,stroke:none,rx:12" data-status="loading"></div>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="key-advantages">Key Advantages</h2><a class="sl-anchor-link" href="#key-advantages"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Key Advantages”</span></a></div>
+<p><strong>Time savings:</strong>
+Automation allows you to manage hundreds of accounts simultaneously</p>
+<p><strong>Ease of use:</strong>
+Go about your day while AutoPilot automates actions in the background</p>
+<p><strong>Integration with AdsPower / Dolphin / Vision / Afina:</strong>
+Safe and anonymous account usage. AutoPilot automatically launches and integrates into the anti-detect browser session with unique fingerprints</p>
+<p><strong>Parallel automation:</strong>
+Automate many accounts at the same time</p>
+<p><strong>Convenient account tracking table:</strong>
+Keep track of all accounts in a single Excel table. You can add new columns, rearrange the order — just don’t rename the columns from the template</p>
+<p><strong>Speed modes:</strong></p>
+<ul>
+<li><strong>FAST</strong> — maximum speed with minimal delays</li>
+<li><strong>MEDIUM</strong> — moderate speed, human behavior simulation, Smart Cursor, Human Typing</li>
+<li><strong>SLOW</strong> — slow speed, full human behavior simulation</li>
+</ul>
+<p><strong>Multi-functionality:</strong>
+Configure any actions for each account. For example, AutoPilot can retrieve deposit addresses for some accounts while withdrawing funds from others</p>
+<p><strong>Automatic action chains:</strong>
+Choose any action — AutoPilot will automatically log in if a login is required. It will also enable 2FA protection automatically if it hasn’t been set up yet</p>
+<p><strong>Auto-generated passwords:</strong>
+During registration, AutoPilot will generate a strong password if none is provided</p>
+<p><strong>Full asset liquidation:</strong>
+Complete withdrawal with automatic conversion of all assets to USDT</p>
+<p><strong>Logging:</strong>
+Full result logging in <code dir="auto">logs/</code> and automatic table backups in <code dir="auto">backup/</code></p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="bybit-autopilot-features">Bybit AutoPilot Features</h2><a class="sl-anchor-link" href="#bybit-autopilot-features"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Bybit AutoPilot Features”</span></a></div>
+<div class="mermaid" data-content="mindmap
+  root((Bybit AutoPilot))
+    Accounts
+      Registration
+      Login
+      KYC Check
+      2FA Setup
+      Learn &#x26; Avatar
+    Wallets
+      Deposit Address
+      Address Whitelist
+      Withdrawal
+      Full Withdrawal
+    Spot Trading
+      Market Trading
+      Limit Trading
+      Buy / Sell
+      Volume Boosting
+    Futures
+      Futures Trading
+      Smart Futures
+    Staking
+      Earn / Stake
+      Unearn / Unstake
+    Events
+      TokenSplash
+      LaunchPad
+      Puzzle Hunt
+    Utilities
+      API Keys
+      Profit Calculation
+      Referral Code
+      KYC Link" data-status="loading"></div>
+<p>AutoPilot supports a wide range of automated actions for Bybit:</p>
+<ul>
+<li><strong>Registration</strong> of accounts on Bybit: standard method, via referral link</li>
+<li><strong>Login</strong>: signing into an account, checking verification and balance</li>
+<li><strong>KYC Check</strong>: verification level check displaying country, name, and document</li>
+<li><strong>2FA Management</strong>: setting up two-factor authentication</li>
+<li><strong>Learn &#x26; Avatar</strong>: completing learning modules and setting profile avatar</li>
+<li><strong>Retrieving deposit addresses</strong> for each account</li>
+<li><strong>Adding addresses to the whitelist</strong> with support for various networks</li>
+<li><strong>Withdrawing funds</strong> from an account, including full withdrawal with conversion of all assets</li>
+<li><strong>Obtaining API keys</strong> for trading</li>
+<li><strong>Automated trading</strong>: market and limit trading, volume boosting on specified pairs</li>
+<li><strong>Buy / Sell</strong>: buying assets and selling all coins to USDT</li>
+<li><strong>Futures trading</strong>: standard and smart futures with post-only orders (32% fee savings)</li>
+<li><strong>Staking</strong>: USDT Flexible Savings (earn / unearn)</li>
+<li><strong>TokenSplash</strong>: automatic participation in events with deposit task completion</li>
+<li><strong>LaunchPad</strong>: automatic registration in active LaunchPad events</li>
+<li><strong>Puzzle Hunt</strong>: automatic completion of puzzle tasks</li>
+<li><strong>Referral codes</strong>: automatic extraction of account referral codes</li>
+<li><strong>KYC link</strong>: getting SUMSUB verification link</li>
+<li><strong>Profit calculation</strong>: automatic WITHDRAW − DEPOSIT − P2P purchase + balance analysis</li>
+<li>Automatic captcha solving, email verification code retrieval, and more</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="full-list-of-actions-action">Full List of Actions (ACTION)</h2><a class="sl-anchor-link" href="#full-list-of-actions-action"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Full List of Actions (ACTION)”</span></a></div>
+<blockquote>
+<p>➕ <strong>Several actions in one pass.</strong> The <code dir="auto">ACTION</code> cell can hold a chain joined with <code dir="auto">+</code> — for example <code dir="auto">register+learn+whitelist</code>. The steps run in order on each account, and the profile browser is not relaunched between them. Details — <a href="/docs/en/faq/#action-chains">FAQ → Action chains</a>.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="general-action-workflow">General Action Workflow</h3><a class="sl-anchor-link" href="#general-action-workflow"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “General Action Workflow”</span></a></div>
+<div class="mermaid" data-content="flowchart TD
+    START[&#x22;🎯 Select ACTION in the table&#x22;] --> AUTO{&#x22;AutoPilot running?&#x22;}
+    AUTO -->|Yes| LOGIN{&#x22;Login needed?&#x22;}
+    LOGIN -->|Yes| DO_LOGIN[&#x22;🔑 Automatic login&#x22;]
+    LOGIN -->|No| TFA{&#x22;2FA needed?&#x22;}
+    DO_LOGIN --> TFA
+    TFA -->|Not enabled| DO_2FA[&#x22;🔐 Auto-enable 2FA&#x22;]
+    TFA -->|Enabled| ACTION[&#x22;⚡ Execute action&#x22;]
+    DO_2FA --> ACTION
+    ACTION --> RESULT[&#x22;📊 Result saved to table&#x22;]
+
+    style START fill:#FF9800,color:#fff,stroke:none,rx:10
+    style DO_LOGIN fill:#2196F3,color:#fff,stroke:none,rx:10
+    style DO_2FA fill:#9C27B0,color:#fff,stroke:none,rx:10
+    style ACTION fill:#4CAF50,color:#fff,stroke:none,rx:10
+    style RESULT fill:#607D8B,color:#fff,stroke:none,rx:10" data-status="loading"></div>
+<blockquote>
+<p>All actions except registration will automatically log in if needed. The whitelist and withdraw actions will automatically enable 2FA if it is not set up.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="register--account-registration-on-bybit"><code dir="auto">register</code> — Account Registration on Bybit</h3><a class="sl-anchor-link" href="#register--account-registration-on-bybit"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “register — Account Registration on Bybit”</span></a></div>
+<p>Account registration with automatic captcha solving and email confirmation</p>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;Open page&#x22;] --> B[&#x22;Enter email and password&#x22;]
+    B --> C[&#x22;Solve captcha&#x22;]
+    C --> D[&#x22;Confirm email&#x22;]
+    D --> E[&#x22;✅ Success&#x22;]
+
+    style E fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[EMAIL] mail_provider</code></td><td>Email service (yahoo, rambler, icloud, outlook, gmail…)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[PROFILE] mail</code></td><td>Email address</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[EMAIL] mail_password</code></td><td>Email password / IMAP password</td></tr><tr><td>Optional</td><td><code dir="auto">[PROFILE] bybit_password</code></td><td>Account password (AutoPilot generates one if empty)</td></tr><tr><td>Optional</td><td><code dir="auto">[REG] referral_code</code></td><td>Referral code</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[REG] is_registered</code></td><td>Registration status (1 — registered)</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[REGISTER] SUCCESS</code> or error description</td></tr></tbody></table>
+<blockquote>
+<p>To start registration, you only need to fill in 4 columns: profile_id, mail_provider, mail, mail_password</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="login--account-login"><code dir="auto">login</code> — Account Login</h3><a class="sl-anchor-link" href="#login--account-login"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “login — Account Login”</span></a></div>
+<p>Sign into an account, check verification and balance</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[REG] is_registered</code></td><td>1 (registered)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[PROFILE] mail</code></td><td>Email address</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[PROFILE] bybit_password</code></td><td>Account password</td></tr><tr><td>Optional</td><td><code dir="auto">[2FA] totp_secret_code</code></td><td>2FA secret code</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[KYC] kyc_status</code></td><td>Verification level</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[BALANCE] account_balance</code></td><td>Account balance in USDT</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[LOGIN] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="2fa--enable-2fa"><code dir="auto">2fa</code> — Enable 2FA</h3><a class="sl-anchor-link" href="#2fa--enable-2fa"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “2fa — Enable 2FA”</span></a></div>
+<p>Automatic setup of Google Authenticator on the account</p>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;Security settings&#x22;] --> B[&#x22;Retrieve QR code&#x22;]
+    B --> C[&#x22;Extract secret&#x22;]
+    C --> D[&#x22;Generate TOTP&#x22;]
+    D --> E[&#x22;Confirm with codes&#x22;]
+    E --> F[&#x22;✅ 2FA enabled&#x22;]
+
+    style F fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Updates</strong></td><td><code dir="auto">[2FA] totp_secret_code</code></td><td>2FA secret code (saved automatically)</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[2FA] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="deposit--get-deposit-address"><code dir="auto">deposit</code> — Get Deposit Address</h3><a class="sl-anchor-link" href="#deposit--get-deposit-address"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “deposit — Get Deposit Address”</span></a></div>
+<p>Retrieve the deposit address for funding the account</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[DEPOSIT] deposit_coin</code></td><td>Coin for deposit (e.g.: <code dir="auto">USDT</code>)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[DEPOSIT] deposit_chain</code></td><td>Network — <strong>Bybit’s canonical code</strong> (e.g.: <code dir="auto">TRX</code> for TRC20, <code dir="auto">BSC</code> for BEP20, <code dir="auto">ETH</code> for ERC20). Full list of codes below 👇</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[DEPOSIT] deposit_address</code></td><td>Deposit address</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[DEPOSIT] SUCCESS</code></td></tr></tbody></table>
+<blockquote>
+<p>⚠️ <strong>Enter the chain code — not “TRC20” / “Aptos” / “ERC20”, and no spaces.</strong> The value is sent to Bybit as-is. A wrong code <strong>or a stray space</strong> (<code dir="auto">BSC </code> instead of <code dir="auto">BSC</code>) → Bybit returns <code dir="auto">ret_code 10016 svc error</code> and no address is issued.</p>
+</blockquote>
+<p><strong>USDT chain codes</strong> (Bybit’s list may change):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Enter in <code dir="auto">deposit_chain</code></th><th>Network on Bybit</th><th>Memo</th></tr></thead><tbody><tr><td><code dir="auto">TRX</code></td><td>TRON (TRC20)</td><td>—</td></tr><tr><td><code dir="auto">BSC</code></td><td>BSC (BEP20)</td><td>—</td></tr><tr><td><code dir="auto">ETH</code></td><td>Ethereum (ERC20)</td><td>—</td></tr><tr><td><code dir="auto">SOL</code></td><td>Solana</td><td>—</td></tr><tr><td><code dir="auto">TON</code></td><td>TON</td><td>✅ required</td></tr><tr><td><code dir="auto">APTOS</code></td><td>Aptos</td><td>—</td></tr><tr><td><code dir="auto">ARBI</code></td><td>Arbitrum One</td><td>—</td></tr><tr><td><code dir="auto">OP</code></td><td>OP Mainnet</td><td>—</td></tr><tr><td><code dir="auto">MATIC</code></td><td>Polygon PoS</td><td>—</td></tr><tr><td><code dir="auto">CAVAX</code></td><td>Avalanche C-Chain</td><td>—</td></tr><tr><td><code dir="auto">MANTLE</code></td><td>Mantle</td><td>—</td></tr><tr><td><code dir="auto">PLASMA</code></td><td>Plasma</td><td>—</td></tr><tr><td><code dir="auto">HYPEREVM</code></td><td>HyperEVM</td><td>—</td></tr><tr><td><code dir="auto">BERA</code></td><td>Berachain</td><td>—</td></tr><tr><td><code dir="auto">CORN</code></td><td>Corn</td><td>—</td></tr><tr><td><code dir="auto">MONAD</code></td><td>Monad</td><td>—</td></tr><tr><td><code dir="auto">KLAY</code></td><td>Kaia</td><td>—</td></tr><tr><td><code dir="auto">CELO</code></td><td>Celo</td><td>—</td></tr><tr><td><code dir="auto">KAVAEVM</code></td><td>Kava EVM</td><td>—</td></tr></tbody></table>
+<blockquote>
+<p>💡 The same codes work for <code dir="auto">whitelist_chain</code> and <code dir="auto">withdraw_chain</code>. If you get it wrong, AutoPilot prints the current chain list straight to the log.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="whitelist--add-address-to-whitelist"><code dir="auto">whitelist</code> — Add Address to Whitelist</h3><a class="sl-anchor-link" href="#whitelist--add-address-to-whitelist"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “whitelist — Add Address to Whitelist”</span></a></div>
+<p>Enable whitelist mode and add a withdrawal address</p>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;Enable Whitelist&#x22;] --> B[&#x22;Confirm 2FA&#x22;]
+    B --> C[&#x22;Add address&#x22;]
+    C --> D[&#x22;Select network and memo&#x22;]
+    D --> E[&#x22;✅ Address added&#x22;]
+
+    style E fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[WHITELIST] whitelist_address</code></td><td>Wallet address</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[WHITELIST] whitelist_chain</code></td><td>Network — <strong>Bybit’s canonical code</strong> (<code dir="auto">TRX</code>, <code dir="auto">BSC</code>, <code dir="auto">ETH</code>, <code dir="auto">APTOS</code>…). See the code table above in the <code dir="auto">deposit</code> section</td></tr><tr><td>Optional</td><td><code dir="auto">[WHITELIST] whitelist_memo</code></td><td>Memo/Tag (if required by the network)</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[WHITELIST] whitelist_status</code></td><td>1 — successfully added</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[WHITELIST] SUCCESS</code></td></tr></tbody></table>
+<blockquote>
+<p>If 2FA is not enabled — AutoPilot will automatically set it up before adding to the whitelist</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="withdraw--withdraw-funds"><code dir="auto">withdraw</code> — Withdraw Funds</h3><a class="sl-anchor-link" href="#withdraw--withdraw-funds"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “withdraw — Withdraw Funds”</span></a></div>
+<p>Fast, stable withdrawal — switched to a request-based algorithm with no interaction with page elements, with automatic confirmation (email + 2FA).</p>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;Select coin&#x22;] --> B[&#x22;Enter address and network&#x22;]
+    B --> C[&#x22;Specify amount&#x22;]
+    C --> D[&#x22;Confirm with codes&#x22;]
+    D --> E[&#x22;✅ Funds sent&#x22;]
+
+    style E fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[WITHDRAW] withdraw_coin</code></td><td>Coin to withdraw (e.g.: <code dir="auto">USDT</code>)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[WITHDRAW] withdraw_chain</code></td><td>Withdrawal network — Bybit’s canonical chain code (e.g.: <code dir="auto">TRX</code> for TRC20, <code dir="auto">APTOS</code>, <code dir="auto">BSC</code> for BEP20, <code dir="auto">ETH</code> for ERC20). On mismatch, AutoPilot logs the full list of supported chains for the selected coin</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[WITHDRAW] withdraw_address</code></td><td>Recipient wallet address</td></tr><tr><td>Optional</td><td><code dir="auto">[WITHDRAW] withdraw_memo</code></td><td>Memo/Tag (required for TON, XRP, and other memo-bearing chains)</td></tr><tr><td>Optional</td><td><code dir="auto">[WITHDRAW] withdraw_amount</code></td><td>Withdrawal amount: a fixed USDT number (<code dir="auto">50</code> = 50 USDT), a percent of balance (<code dir="auto">50%</code> = half), or <code dir="auto">max</code> / <code dir="auto">all</code> / empty = full balance</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[WITHDRAW] SUCCESS</code></td></tr></tbody></table>
+<blockquote>
+<p>If 2FA is not enabled — AutoPilot will automatically set it up before withdrawal.</p>
+<p>💡 <strong>Use Bybit’s name for the chain</strong>: TRC20 → <code dir="auto">TRX</code>, BEP20 → <code dir="auto">BSC</code>, ERC20 → <code dir="auto">ETH</code>, Polygon → <code dir="auto">MATIC</code>. Wrong name — action halts and the log prints the list of working chains.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h4"><h4 id="tip-which-chain-to-pick-for-usdt">Tip: which chain to pick for USDT</h4><a class="sl-anchor-link" href="#tip-which-chain-to-pick-for-usdt"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Tip: which chain to pick for USDT”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Chain</th><th>Fee</th><th>Min withdraw</th></tr></thead><tbody><tr><td><code dir="auto">APTOS</code></td><td>0 USDT</td><td>0</td></tr><tr><td><code dir="auto">TRX</code></td><td>1 USDT</td><td>2.6</td></tr><tr><td><code dir="auto">BSC</code></td><td>0.2 USDT</td><td>10</td></tr><tr><td><code dir="auto">MATIC</code></td><td>0.1 USDT</td><td>1</td></tr><tr><td><code dir="auto">ARBI</code></td><td>0.1 USDT</td><td>1</td></tr><tr><td><code dir="auto">OP</code></td><td>1 USDT</td><td>1</td></tr><tr><td><code dir="auto">SOL</code></td><td>0.5 USDT</td><td>10</td></tr><tr><td><code dir="auto">ETH</code></td><td>0.8 USDT</td><td>6</td></tr><tr><td><code dir="auto">TON</code></td><td>0.15 USDT</td><td>1</td></tr></tbody></table>
+<blockquote>
+<p>Not a complete list — Bybit has ~20 USDT networks. The full current list appears in the log if you type a chain that doesn’t exist. Bybit may change fees and minimums — double-check in the exchange UI before mass withdrawals.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="full-withdrawal-algorithm-full_withdrawyes">Full Withdrawal Algorithm (<code dir="auto">full_withdraw=YES</code>)</h3><a class="sl-anchor-link" href="#full-withdrawal-algorithm-full_withdrawyes"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Full Withdrawal Algorithm (full_withdraw=YES)”</span></a></div>
+<p>If <code dir="auto">full_withdraw=YES</code> is enabled in the config, AutoPilot will perform a complete sale of all assets before withdrawal:</p>
+<div class="mermaid" data-content="flowchart TD
+    A[&#x22;Transfer from FUNDING to TRADING&#x22;] --> B[&#x22;Sell all assets for USDT&#x22;]
+    B --> C[&#x22;Convert remaining dust to MNT&#x22;]
+    C --> D[&#x22;Buy more MNT if needed&#x22;]
+    D --> E[&#x22;Sell MNT for USDT&#x22;]
+    E --> F[&#x22;Return USDT to FUNDING&#x22;]
+    F --> G[&#x22;✅ Withdraw&#x22;]
+
+    style A fill:#2196F3,color:#fff,stroke:none,rx:8
+    style B fill:#FF9800,color:#fff,stroke:none,rx:8
+    style G fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="master-wallet-system--auto-whitelists-0-fees-untraceable-withdrawals">Master Wallet System — Auto-Whitelists, $0 Fees, Untraceable Withdrawals</h3><a class="sl-anchor-link" href="#master-wallet-system--auto-whitelists-0-fees-untraceable-withdrawals"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Master Wallet System — Auto-Whitelists, $0 Fees, Untraceable Withdrawals”</span></a></div>
+<p>Withdraw from hundreds of accounts without touching a single address manually. AutoPilot creates a <strong>unique wallet for every account</strong>, whitelists it automatically, withdraws with <strong>zero fees</strong>, and collects everything to your master wallet. Every account withdraws to a <strong>different address</strong> — no way to link them together.</p>
+<div class="mermaid" data-content="flowchart TD
+    A[&#x22;🔐 setup_aptos_hd&#x22;] --> B[&#x22;🏷️ whitelist_aptos_hd&#x22;]
+    B --> C[&#x22;💳 withdraw&#x22;]
+    C --> D[&#x22;📥 Distribute&#x22;]
+
+    style A fill:#9C27B0,color:#fff,stroke:none,rx:8
+    style B fill:#FF5722,color:#fff,stroke:none,rx:8
+    style C fill:#FF9800,color:#fff,stroke:none,rx:8
+    style D fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<div class="sl-heading-wrapper level-h4"><h4 id="setup_aptos_hd--create-master-wallet"><code dir="auto">setup_aptos_hd</code> — Create Master Wallet</h4><a class="sl-anchor-link" href="#setup_aptos_hd--create-master-wallet"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “setup_aptos_hd — Create Master Wallet”</span></a></div>
+<p>Run once. Creates your master wallet and shows a secret phrase (12 words). Save it — it controls all your addresses.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td>Config: <code dir="auto">activation_key</code></td><td>Used as encryption password</td></tr><tr><td><strong>Output</strong></td><td>File: <code dir="auto">aptos_master_seed.enc</code></td><td>Encrypted secret phrase</td></tr><tr><td><strong>Output</strong></td><td>File: <code dir="auto">aptos_hd_wallet_data.csv</code></td><td>All addresses and private keys</td></tr></tbody></table>
+<blockquote>
+<p>⚠️ <strong>Save your secret phrase!</strong> Shown once. Lost phrase = lost access to all addresses and funds.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h4"><h4 id="whitelist_aptos_hd--automatic-whitelisting"><code dir="auto">whitelist_aptos_hd</code> — Automatic Whitelisting</h4><a class="sl-anchor-link" href="#whitelist_aptos_hd--automatic-whitelisting"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “whitelist_aptos_hd — Automatic Whitelisting”</span></a></div>
+<p>Run on all your profiles. For each account, AutoPilot:</p>
+<ol>
+<li>Creates a unique Aptos address (different for every account)</li>
+<li>Opens Bybit, adds it to the withdrawal whitelist</li>
+<li>Confirms email/2FA — fully automatic</li>
+<li>Saves everything to the table</li>
+</ol>
+<p>No manual work. You don’t need to create wallets, copy addresses, or fill in the table — AutoPilot does it all.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td>Auto-created</td><td><code dir="auto">[WHITELIST] whitelist_address</code></td><td>Unique Aptos address</td></tr><tr><td>Auto-set</td><td><code dir="auto">[WHITELIST] whitelist_network</code></td><td><code dir="auto">APTOS</code></td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[WHITELIST_HD] SUCCESS</code></td></tr></tbody></table>
+<blockquote>
+<p>🔁 <strong>Safe to re-run:</strong> already has an address? AutoPilot will reuse it — no duplicates.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h4"><h4 id="collecting-funds-distribute-tab">Collecting Funds: Distribute Tab</h4><a class="sl-anchor-link" href="#collecting-funds-distribute-tab"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Collecting Funds: Distribute Tab”</span></a></div>
+<p>After withdrawal, your USDT is spread across individual addresses. Open the <strong>Distribute</strong> tab in the desktop app:</p>
+<ul>
+<li>Select profiles → Preview → One click → All funds collected to your master wallet</li>
+<li>Gas: ~0.002 APT per profile (fractions of a cent)</li>
+<li>Works both ways: collect from accounts or distribute to them</li>
+</ul>
+<p><strong>Why Aptos?</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Network</th><th>Bybit Fee</th><th>Speed</th></tr></thead><tbody><tr><td><strong>Aptos</strong></td><td><strong>$0</strong></td><td>~1 sec</td></tr><tr><td>Arbitrum</td><td>$0.1</td><td>~1 sec</td></tr><tr><td>TRC20</td><td>$1</td><td>~3 min</td></tr><tr><td>ERC20</td><td>$1-5</td><td>~5 min</td></tr></tbody></table>
+<blockquote>
+<p>💰 <strong>The more accounts you have — the more you save. Every withdrawal on TRC20/ERC20 costs $1-5. On Aptos = $0.</strong></p>
+</blockquote>
+<blockquote>
+<p>🕵️ <strong>Privacy:</strong> each account → unique address → no shared addresses → accounts can’t be linked to each other.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="sell--sell-all-assets"><code dir="auto">sell</code> — Sell All Assets</h3><a class="sl-anchor-link" href="#sell--sell-all-assets"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “sell — Sell All Assets”</span></a></div>
+<p>Convert all coins on the account to USDT with market orders</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Updates</strong></td><td><code dir="auto">[BALANCE] account_balance</code></td><td>Balance after selling</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[SELL] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="api--get-api-keys"><code dir="auto">api</code> — Get API Keys</h3><a class="sl-anchor-link" href="#api--get-api-keys"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “api — Get API Keys”</span></a></div>
+<p>Create an API key with permissions for SPOT and Futures trading</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td>Optional</td><td><code dir="auto">[API] api_whitelist_ip</code></td><td>IP for whitelist (optional)</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[API] api_key</code></td><td>Obtained API key</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[API] api_secret</code></td><td>API secret key</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[API] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="trading--automated-trading"><code dir="auto">trading</code> — Automated Trading</h3><a class="sl-anchor-link" href="#trading--automated-trading"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “trading — Automated Trading”</span></a></div>
+<p>Trading and volume boosting with market orders, supporting multiple coins</p>
+<div class="mermaid" data-content="flowchart TD
+    START[&#x22;⚡ Start trading&#x22;] --> COIN[&#x22;Select pair from list&#x22;]
+    COIN --> BUY[&#x22;📈 Market buy&#x22;]
+    BUY --> WAIT1[&#x22;⏳ Random delay&#x22;]
+    WAIT1 --> SELL[&#x22;📉 Market sell&#x22;]
+    SELL --> CHECK{&#x22;All cycles complete?&#x22;}
+    CHECK -->|No| WAIT2[&#x22;⏳ Delay between cycles&#x22;]
+    WAIT2 --> BUY
+    CHECK -->|Yes| NEXT{&#x22;More coins?&#x22;}
+    NEXT -->|Yes| COIN
+    NEXT -->|No| DONE[&#x22;✅ Report: volume and fees&#x22;]
+
+    style START fill:#FF9800,color:#fff,stroke:none,rx:10
+    style BUY fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style SELL fill:#f44336,color:#fff,stroke:none,rx:8
+    style DONE fill:#607D8B,color:#fff,stroke:none,rx:10" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Asset to trade (e.g.: <code dir="auto">BTC</code> or <code dir="auto">BTC,ETH,SOL</code>)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_amount</code></td><td>Order size in USDT (e.g.: <code dir="auto">10</code> or <code dir="auto">10,20,5</code>)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_cycles</code></td><td>Number of buy-sell cycles (e.g.: <code dir="auto">3</code> or <code dir="auto">3,5,2</code>)</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[TRADING] VOLUME: volume, FEES: fees</code></td></tr></tbody></table>
+<blockquote>
+<p><strong>Multi-coins</strong>: specify multiple coins, sizes, and cycles separated by commas — AutoPilot will trade them sequentially.
+Example: <code dir="auto">BTC,ETH</code> + <code dir="auto">10,20</code> + <code dir="auto">3,5</code> = 3 cycles of BTC at 10 USDT, then 5 cycles of ETH at 20 USDT</p>
+</blockquote>
+<blockquote>
+<p><strong>Volume formula</strong>: cycles x order size x 2 (buy + sell)
+Example: 3 cycles at 10 USDT = 3 x 10 x 2 = <strong>60 USDT</strong> volume</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="ts--tokensplash"><code dir="auto">ts</code> — TokenSplash</h3><a class="sl-anchor-link" href="#ts--tokensplash"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “ts — TokenSplash”</span></a></div>
+<p>Automatic participation in TokenSplash events on Bybit. The action runs in two steps: <strong>registering in the event</strong> and (optionally) <strong>completing the trading task</strong>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[TS] code</code></td><td>Event code (from the <code dir="auto">…/token-splash/detail?code=</code> link)</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td>Registration/task status (see below)</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h4"><h4 id="how-it-works">How it works</h4><a class="sl-anchor-link" href="#how-it-works"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “How it works”</span></a></div>
+<ol>
+<li><strong>Registration (join).</strong> The pilot logs in if needed, checks KYC, and clicks “Participate” via the exchange API. <strong>No balance is required</strong> — even an account with 0 USDT gets registered in the event.</li>
+<li><strong>Trading task</strong> (controlled by the <code dir="auto">ts_order</code> config). If the account has USDT, the pilot buys the event token and immediately sells it (1 buy + 1 sell market order) — this fulfills the event’s “deposit task”. Each order size is a random number between the two <code dir="auto">ts_order</code> values.</li>
+</ol>
+<div class="sl-heading-wrapper level-h4"><h4 id="balance-dependency">Balance dependency</h4><a class="sl-anchor-link" href="#balance-dependency"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Balance dependency”</span></a></div>
+<ul>
+<li><strong>No / 0 USDT</strong> → the pilot only registers in the event. If it can’t register, it writes the reason to the table.</li>
+<li><strong>Has balance</strong> (enough for the order size; ~60 USDT comfortably) → after registering it also trades buy/sell to fulfill the task.</li>
+</ul>
+<blockquote>
+<p>To make accounts <strong>register only</strong> (no trading), set <code dir="auto">ts_order=0,0</code>.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h4"><h4 id="ts_order-config-in-autopilotconfig"><code dir="auto">ts_order</code> config (in <code dir="auto">AutoPilot.config</code>)</h4><a class="sl-anchor-link" href="#ts_order-config-in-autopilotconfig"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “ts_order config (in AutoPilot.config)”</span></a></div>
+<div class="expressive-code"><link rel="stylesheet" href="/docs/_astro/ec.v4551.css"><script type="module" src="/docs/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="ini"><code><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Task order size in USDT — random between MIN and MAX</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ts_order</span><span style="--0:#D6DEEB;--1:#403F53">=50,55</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="# Task order size in USDT — random between MIN and MAXts_order=50,55"><div></div></button></div></figure></div>
+<ul>
+<li><code dir="auto">ts_order=50,55</code> → each order is a random <strong>50–55 USDT</strong> (buy ~50–55, then sell — the trading task is done).</li>
+<li><code dir="auto">ts_order=0,0</code> → <strong>skip</strong> the trading task, register only.</li>
+<li>The <code dir="auto">(random 55-100)</code> comment in the default config is just an example; the real size comes from your <code dir="auto">MIN,MAX</code>.</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="result-status-values"><code dir="auto">[RESULT] status</code> values</h4><a class="sl-anchor-link" href="#result-status-values"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “[RESULT] status values”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Status</th><th>Meaning</th></tr></thead><tbody><tr><td><code dir="auto">[TS] {token} - SUCCESS REGISTERED</code></td><td>Registered in the event</td></tr><tr><td><code dir="auto">[TS] {token} - ALREADY JOINED</code></td><td>Was already registered earlier</td></tr><tr><td><code dir="auto">[TS] FAIL - NO KYC</code></td><td>Account not verified</td></tr><tr><td><code dir="auto">[TS] FAIL - NO CODE - fill column "[TS] code"</code></td><td><code dir="auto">[TS] code</code> is empty</td></tr><tr><td><code dir="auto">[TS] FAIL - Cannot get TokenSplash details</code></td><td>Exchange returned no event data (wrong/expired code)</td></tr><tr><td><code dir="auto">[TS] FAIL {token} - {reason}</code></td><td>Registration failed</td></tr></tbody></table>
+<blockquote>
+<p>If registration fails, the exchange returns a refusal reason — the <strong>mark</strong>. AutoPilot records it in <code dir="auto">[RESULT] status</code> as <code dir="auto">{reason}</code>.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="puzzle_hunt--puzzle-hunt"><code dir="auto">puzzle_hunt</code> — Puzzle Hunt</h3><a class="sl-anchor-link" href="#puzzle_hunt--puzzle-hunt"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “puzzle_hunt — Puzzle Hunt”</span></a></div>
+<p>Automatic completion of Puzzle Hunt tasks on Bybit: registration, social tasks, trading, daily check-ins</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[PUZZLE] event_code</code></td><td>Puzzle code (comma-separated for multiple)</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">DONE</code>, <code dir="auto">5/10</code> (progress), <code dir="auto">ENDED</code>, or <code dir="auto">FAIL</code></td></tr></tbody></table>
+<blockquote>
+<p>Specify multiple puzzles at once: <code dir="auto">code1,code2,code3</code>. Make the column <strong>text</strong> type to avoid Excel truncating long codes.</p>
+</blockquote>
+<blockquote>
+<p>See <a href="/docs/faq/#62--puzzle-hunt-puzzle_hunt">FAQ → Puzzle Hunt</a> for detailed flow, statuses, and tips.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="link--get-kyc-verification-link"><code dir="auto">link</code> — Get KYC Verification Link</h3><a class="sl-anchor-link" href="#link--get-kyc-verification-link"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “link — Get KYC Verification Link”</span></a></div>
+<blockquote>
+<p>⚠️ <strong>Deprecated action.</strong> You no longer need to pull the link manually via <code dir="auto">link</code> — use the bot and extension below for verifications.</p>
+</blockquote>
+<p><strong>Recommended way:</strong></p>
+<ul>
+<li>🤖 <strong>Telegram bot + Miniapp <a href="https://t.me/AutoPilotKYC_bot">@AutoPilotKYC_bot</a></strong> — automatic KYC verifications on the AutoPilot KYC platform. More: <a href="/docs/en/kyc/autopilot-kyc-subscription/">KYC Platform</a>.</li>
+<li>🧩 <strong>Free <a href="https://chromewebstore.google.com/detail/autopilot-link-generator/maogfegbjecdgkfnkemoalpbgodknmaa">AutoPilot Link Generator</a> extension</strong> — generates verification links for Bybit, MEXC, Bitget and custom Sumsub/Onfido tokens right in the browser.</li>
+</ul>
+<p>Legacy mode of the action itself (extracts the SUMSUB link for the account):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[LINK] SUCCESS</code> with the verification URL</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="learn--learn-articles--set-avatar"><code dir="auto">learn</code> — Learn Articles &#x26; Set Avatar</h3><a class="sl-anchor-link" href="#learn--learn-articles--set-avatar"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “learn — Learn Articles &#x26; Set Avatar”</span></a></div>
+<p>Automatic account “warm-up” through the <strong>Bybit Learn</strong> section: the action sets a random profile avatar and works through learning articles, performing the full engagement set on each one (like, view, comment, add to favorites, share). This makes the account look more “alive” and counts toward progress in the Bybit Learn campaign — tasks for commenting on and sharing articles earn points and rewards.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Requires</strong></td><td>account login</td><td>If the profile isn’t logged in, the action <strong>signs in by itself</strong> (login + 2FA if needed); <code dir="auto">[LEARN] FAIL - CAN'T LOGIN</code> only if auto-login fails</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[LEARN] SUCCESS</code> / <code dir="auto">[LEARN] PARTIAL</code> / <code dir="auto">[LEARN] FAIL</code> (see below)</td></tr></tbody></table>
+<p><strong>What the action does:</strong></p>
+<ul>
+<li><strong>Avatar</strong> — picks a random avatar from the Bybit gallery and sets it on the profile. If an avatar was already set previously (remembered on the server), the step is skipped — re-running won’t change the avatar.</li>
+<li><strong>5 random articles</strong> — 5 articles are randomly chosen per run from the <code dir="auto">bybit_learn_links.txt</code> file (91 links). The link domain is automatically swapped to the profile’s domain (<code dir="auto">learn.bybit.com</code> → <code dir="auto">learn.bybitglobal.com</code>, etc.).</li>
+<li><strong>On each article</strong> the following happen in sequence: <strong>like</strong> → <strong>view</strong> → <strong>comment</strong> (a random phrase out of 15) → <strong>add to favorites</strong> (star) → <strong>share</strong>. The comment and share additionally count as Learn campaign tasks to earn rewards.</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="how-it-works-1">How It Works</h4><a class="sl-anchor-link" href="#how-it-works-1"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “How It Works”</span></a></div>
+<div class="mermaid" data-content="flowchart TD
+    A[&#x22;🔍 Account check&#x22;] --> B{&#x22;Already logged in?&#x22;}
+    B -- &#x22;Yes&#x22; --> C[&#x22;Read bybit_learn_links.txt<br/>(91 links)&#x22;]
+    B -- &#x22;No&#x22; --> L[&#x22;Automatic sign-in<br/>(login + 2FA if needed)&#x22;]
+    L --> M{&#x22;Sign-in succeeded?&#x22;}
+    M -- &#x22;No&#x22; --> X[&#x22;❌ [LEARN] FAIL - CAN&#x27;T LOGIN&#x22;]
+    M -- &#x22;Yes&#x22; --> C
+    C --> D{&#x22;Avatar already set?&#x22;}
+    D -- &#x22;Yes&#x22; --> F[&#x22;Pick 5 random articles<br/>+ swap domain to profile&#x22;]
+    D -- &#x22;No&#x22; --> E[&#x22;Set random avatar&#x22;]
+    E --> F
+    F --> G[&#x22;Join the Learn campaign&#x22;]
+    G --> H[&#x22;For each of the 5 articles&#x22;]
+    H --> I[&#x22;Like → View → Comment<br/>→ Favorites → Share&#x22;]
+    I --> J{&#x22;Articles remaining?&#x22;}
+    J -- &#x22;Yes&#x22; --> H
+    J -- &#x22;No&#x22; --> K[&#x22;Write final status&#x22;]
+    K --> S[&#x22;✅ [LEARN] SUCCESS / PARTIAL&#x22;]
+
+    style A fill:#2196F3,color:#fff,stroke:none,rx:8
+    style C fill:#2196F3,color:#fff,stroke:none,rx:8
+    style L fill:#3F51B5,color:#fff,stroke:none,rx:8
+    style E fill:#9C27B0,color:#fff,stroke:none,rx:8
+    style I fill:#FF9800,color:#fff,stroke:none,rx:8
+    style S fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style X fill:#F44336,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<p><strong>Statuses in <code dir="auto">[RESULT] status</code>:</strong></p>
+<ul>
+<li><code dir="auto">[LEARN] SUCCESS - Avatar set, 5/5 articles</code> — avatar set and all 5 articles completed.</li>
+<li><code dir="auto">[LEARN] PARTIAL - Avatar: YES/NO, N/5 articles</code> — not everything completed: the avatar wasn’t set, or one of the articles failed with an error (the completed-articles counter drops to <code dir="auto">N &#x3C; 5</code>).</li>
+<li><code dir="auto">[LEARN] FAIL - ...</code> — login failed (<code dir="auto">CAN'T LOGIN</code>), no links (<code dir="auto">NO LINKS IN FILE</code>), or a file read error (<code dir="auto">LINKS FILE ERROR</code>).</li>
+</ul>
+<blockquote>
+<p>If engagement actions aren’t available on a given article, the like/comment/favorite/share on it are skipped (only the view counts), but the article still counts as processed — this does not affect a <code dir="auto">SUCCESS</code> status.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h4"><h4 id="file-bybit_learn_linkstxt">File <code dir="auto">bybit_learn_links.txt</code></h4><a class="sl-anchor-link" href="#file-bybit_learn_linkstxt"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “File bybit_learn_links.txt”</span></a></div>
+<p>Keep the <code dir="auto">bybit_learn_links.txt</code> file in the pilot’s folder — <strong>next to <code dir="auto">AutoPilot.exe</code></strong>. The action reads it on every run and takes <strong>5 random</strong> links. The file is editable: add or remove <code dir="auto">learn.bybit.com</code> article links; empty lines and lines without <code dir="auto">http</code> are ignored.</p>
+<blockquote>
+<p>The domain in the links is swapped automatically to match the profile’s <code dir="auto">[BYBIT] domain</code>, so you can keep links in the file in <code dir="auto">learn.bybit.com</code> format — they will redirect themselves to the correct regional domain.</p>
+</blockquote>
+<p>📥 <a href="/docs/bybit_learn_links.txt" download>Download the ready-made <code>bybit_learn_links.txt</code></a> — the full list of 91 articles. Put it next to <code dir="auto">AutoPilot.exe</code> and tweak it to your liking if needed.</p>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="profit--profit-calculation"><code dir="auto">profit</code> — Profit Calculation</h3><a class="sl-anchor-link" href="#profit--profit-calculation"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “profit — Profit Calculation”</span></a></div>
+<p>Calculate profit per account: total withdrawals − total deposits − cost of USDT bought via P2P + current balance. P2P purchases are counted as a cost so profit reflects the real result, not USDT bought with fiat.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[PROFIT] profit_value</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="buy--buy-asset"><code dir="auto">buy</code> — Buy Asset</h3><a class="sl-anchor-link" href="#buy--buy-asset"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “buy — Buy Asset”</span></a></div>
+<p>Buy a specific asset with USDT</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Asset to buy (e.g.: <code dir="auto">BTC</code>)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_amount</code></td><td>Amount in USDT</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[BUY] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="limit_buy--limit-buy-order"><code dir="auto">limit_buy</code> — Limit Buy Order</h3><a class="sl-anchor-link" href="#limit_buy--limit-buy-order"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “limit_buy — Limit Buy Order”</span></a></div>
+<p>Place a limit buy order for an asset</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Asset to buy (e.g.: <code dir="auto">ETH</code>)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_amount</code></td><td>Amount in USDT</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[LIMIT_BUY] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="limit--random-limit-trading"><code dir="auto">limit</code> — Random Limit Trading</h3><a class="sl-anchor-link" href="#limit--random-limit-trading"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “limit — Random Limit Trading”</span></a></div>
+<p>Automated limit trading with randomized orders for natural volume generation</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Asset to trade (e.g.: <code dir="auto">BTC</code>)</td></tr><tr><td>Optional</td><td><code dir="auto">[TRADING] trading_amount</code></td><td>Order size in USDT</td></tr><tr><td>Optional</td><td><code dir="auto">[TRADING] trading_cycles</code></td><td>Number of cycles</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td>Volume and fees report</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="trading_limit--limit-trading-volume"><code dir="auto">trading_limit</code> — Limit Trading Volume</h3><a class="sl-anchor-link" href="#trading_limit--limit-trading-volume"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “trading_limit — Limit Trading Volume”</span></a></div>
+<p>Volume boosting with limit orders instead of market orders</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Asset to trade (e.g.: <code dir="auto">BTC</code> or <code dir="auto">BTC,ETH</code>)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_amount</code></td><td>Order size in USDT (e.g.: <code dir="auto">10</code> or <code dir="auto">10,20</code>)</td></tr><tr><td>Optional</td><td><code dir="auto">[TRADING] trading_cycles</code></td><td>Number of cycles (e.g.: <code dir="auto">3</code> or <code dir="auto">3,5</code>)</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[TRADING] VOLUME: volume, FEES: fees</code></td></tr></tbody></table>
+<blockquote>
+<p>Same multi-coin syntax as <code dir="auto">trading</code>, but uses limit orders for better execution prices.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="limit_sell--limit-sell-on-funding"><code dir="auto">limit_sell</code> — Limit Sell on Funding</h3><a class="sl-anchor-link" href="#limit_sell--limit-sell-on-funding"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “limit_sell — Limit Sell on Funding”</span></a></div>
+<p>Sell assets on the Funding account for USDT using limit orders</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Asset to sell (e.g.: <code dir="auto">ETH</code>)</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[LIMIT_SELL] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="futures--futures-trading"><code dir="auto">futures</code> — Futures Trading</h3><a class="sl-anchor-link" href="#futures--futures-trading"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “futures — Futures Trading”</span></a></div>
+<p>Leveraged futures trading with market orders</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Futures coin (e.g.: <code dir="auto">BTC</code>)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_amount</code></td><td>Position size with leverage in USDT</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_cycles</code></td><td>Number of trading cycles</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td>Volume and fees report</td></tr></tbody></table>
+<blockquote>
+<p>Configure leverage with <code dir="auto">leverage</code> parameter in config (default: <code dir="auto">10</code>).</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="futures_smart--smart-futures-trading"><code dir="auto">futures_smart</code> — Smart Futures Trading</h3><a class="sl-anchor-link" href="#futures_smart--smart-futures-trading"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “futures_smart — Smart Futures Trading”</span></a></div>
+<p>Automated futures trading with market analysis, post-only limit orders, and position management. <strong>32% cheaper</strong> than market orders.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Futures coin (e.g.: <code dir="auto">BTC</code>)</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_amount</code></td><td>Position size with leverage in USDT</td></tr><tr><td><strong>Required</strong></td><td><code dir="auto">[TRADING] trading_cycles</code></td><td>Number of trading cycles</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td>Volume and fees report</td></tr></tbody></table>
+<blockquote>
+<p><code dir="auto">trading_amount</code> is the position size <strong>including leverage</strong>. Real balance per trade = <code dir="auto">trading_amount / leverage</code>.</p>
+</blockquote>
+<blockquote>
+<p>See <a href="/docs/faq/#61--smart-futures-trading-futures_smart">FAQ → Smart Futures</a> for algorithms, formulas, and config parameters.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="stake--earn--usdt-staking-flexible-savings"><code dir="auto">stake</code> / <code dir="auto">earn</code> — USDT Staking (Flexible Savings)</h3><a class="sl-anchor-link" href="#stake--earn--usdt-staking-flexible-savings"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “stake / earn — USDT Staking (Flexible Savings)”</span></a></div>
+<p>Send USDT to the Bybit Flexible Savings pool. <code dir="auto">stake</code> and <code dir="auto">earn</code> are aliases — same action.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td>Optional</td><td><code dir="auto">[WITHDRAW] withdraw_amount</code></td><td>Fixed USDT amount (default: all available)</td></tr><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[STAKE] SUCCESS - stake 150.25</code></td></tr></tbody></table>
+<blockquote>
+<p>Automatically transfers USDT from Trading → Funding before staking.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="unstake--unearn--withdraw-from-staking"><code dir="auto">unstake</code> / <code dir="auto">unearn</code> — Withdraw from Staking</h3><a class="sl-anchor-link" href="#unstake--unearn--withdraw-from-staking"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “unstake / unearn — Withdraw from Staking”</span></a></div>
+<p>Withdraw USDT from the Flexible Savings pool back to Funding. <code dir="auto">unstake</code> and <code dir="auto">unearn</code> are aliases.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[STAKE] SUCCESS - unstake 150.25</code></td></tr></tbody></table>
+<blockquote>
+<p>See <a href="/docs/faq/#63--bybit-earn--usdt-staking-earn--unearn">FAQ → Bybit Earn</a> for detailed flow.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="lp--launchpad-event-registration"><code dir="auto">lp</code> — LaunchPad Event Registration</h3><a class="sl-anchor-link" href="#lp--launchpad-event-registration"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “lp — LaunchPad Event Registration”</span></a></div>
+<p>Automatic registration in the current active LaunchPad event on Bybit. Fully automatic — no columns needed.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[LP] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="ref_code--extract-referral-code"><code dir="auto">ref_code</code> — Extract Referral Code</h3><a class="sl-anchor-link" href="#ref_code--extract-referral-code"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “ref_code — Extract Referral Code”</span></a></div>
+<p>Automatically extract the account’s referral code</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Column</th><th>Description</th></tr></thead><tbody><tr><td><strong>Updates</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[REF_CODE] code_value</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="action-summary-table">Action Summary Table</h2><a class="sl-anchor-link" href="#action-summary-table"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Action Summary Table”</span></a></div>
+<div class="mermaid" data-content="flowchart TD
+    subgraph REG [&#x22;🟢 Getting Started&#x22;]
+        R[&#x22;register — Registration&#x22;]
+        L[&#x22;login — Login&#x22;]
+    end
+
+    subgraph SEC [&#x22;🔐 Security&#x22;]
+        FA[&#x22;2fa — 2FA Protection&#x22;]
+        API[&#x22;api — API Keys&#x22;]
+    end
+
+    subgraph WALLET [&#x22;💰 Wallets&#x22;]
+        D[&#x22;deposit — Deposit Address&#x22;]
+        W[&#x22;whitelist — Whitelist&#x22;]
+        HD[&#x22;whitelist_aptos_hd — Master Wallet&#x22;]
+        WD[&#x22;withdraw — Withdrawal&#x22;]
+        S[&#x22;sell — Sell Assets&#x22;]
+    end
+
+    subgraph TRADE [&#x22;📊 Trading&#x22;]
+        T[&#x22;trading — Market Trading&#x22;]
+        TL[&#x22;trading_limit — Limit Trading&#x22;]
+        B[&#x22;buy — Buy Asset&#x22;]
+        FU[&#x22;futures_smart — Smart Futures&#x22;]
+    end
+
+    subgraph EVENTS [&#x22;🎯 Events &#x26; Rewards&#x22;]
+        TS[&#x22;ts — TokenSplash&#x22;]
+        LP[&#x22;lp — LaunchPad&#x22;]
+        PZ[&#x22;puzzle_hunt — Puzzle Hunt&#x22;]
+    end
+
+    subgraph STAKE [&#x22;🏦 Staking&#x22;]
+        ST[&#x22;stake — Earn&#x22;]
+        UST[&#x22;unstake — Unearn&#x22;]
+    end
+
+    R --> L
+    L --> FA
+    FA --> W
+    FA --> HD
+    FA --> API
+    W --> WD
+    HD --> WD
+    S --> WD
+    L --> D
+    L --> T
+    L --> TL
+    L --> B
+    L --> FU
+    L --> TS
+    L --> LP
+    L --> PZ
+    L --> ST
+    ST --> UST
+
+    style R fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style L fill:#2196F3,color:#fff,stroke:none,rx:8
+    style FA fill:#9C27B0,color:#fff,stroke:none,rx:8
+    style API fill:#673AB7,color:#fff,stroke:none,rx:8
+    style D fill:#FF9800,color:#fff,stroke:none,rx:8
+    style W fill:#FF5722,color:#fff,stroke:none,rx:8
+    style HD fill:#E040FB,color:#fff,stroke:none,rx:8
+    style WD fill:#f44336,color:#fff,stroke:none,rx:8
+    style S fill:#E91E63,color:#fff,stroke:none,rx:8
+    style T fill:#009688,color:#fff,stroke:none,rx:8
+    style TL fill:#00897B,color:#fff,stroke:none,rx:8
+    style B fill:#43A047,color:#fff,stroke:none,rx:8
+    style FU fill:#E65100,color:#fff,stroke:none,rx:8
+    style TS fill:#00BCD4,color:#fff,stroke:none,rx:8
+    style LP fill:#0097A7,color:#fff,stroke:none,rx:8
+    style PZ fill:#795548,color:#fff,stroke:none,rx:8
+    style CL fill:#AB47BC,color:#fff,stroke:none,rx:8
+    style ST fill:#66BB6A,color:#fff,stroke:none,rx:8
+    style UST fill:#81C784,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Action</th><th>Description</th><th align="center">Auto-login</th><th align="center">Auto-2FA</th></tr></thead><tbody><tr><td><code dir="auto">register</code></td><td>Account registration</td><td align="center">—</td><td align="center">—</td></tr><tr><td><code dir="auto">login</code></td><td>Sign into account</td><td align="center">—</td><td align="center">—</td></tr><tr><td><code dir="auto">2fa</code></td><td>Enable 2FA</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">link</code></td><td>Get KYC verification link</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">learn</code></td><td>Learn articles &#x26; set avatar</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">deposit</code></td><td>Deposit address</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">whitelist</code></td><td>Add to whitelist</td><td align="center">✅</td><td align="center">✅</td></tr><tr><td><code dir="auto">withdraw</code></td><td>Withdraw funds</td><td align="center">✅</td><td align="center">✅</td></tr><tr><td><code dir="auto">sell</code></td><td>Sell all assets</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">api</code></td><td>Create API keys</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">trading</code></td><td>Market trading</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">trading_limit</code></td><td>Limit trading</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">buy</code></td><td>Buy asset</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">limit_buy</code></td><td>Limit buy order</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">limit</code></td><td>Random limit trading</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">limit_sell</code></td><td>Limit sell on Funding</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">futures</code></td><td>Futures trading</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">futures_smart</code></td><td>Smart futures (32% cheaper)</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">stake</code> / <code dir="auto">earn</code></td><td>USDT staking</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">unstake</code> / <code dir="auto">unearn</code></td><td>Withdraw from staking</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">ts</code></td><td>TokenSplash events</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">lp</code></td><td>LaunchPad events</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">puzzle_hunt</code></td><td>Puzzle Hunt</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">profit</code></td><td>Profit calculation</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">ref_code</code></td><td>Extract referral code</td><td align="center">✅</td><td align="center">—</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="configuration-setup">Configuration Setup</h2><a class="sl-anchor-link" href="#configuration-setup"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Configuration Setup”</span></a></div>
+<p>The <code dir="auto">AutoPilot.config</code> file contains the main settings:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code dir="auto">activation_key</code></td><td>Activation key</td><td><code dir="auto">XXXX-XXXX-XXXX</code></td></tr><tr><td><code dir="auto">speed_mode</code></td><td>Speed mode</td><td><code dir="auto">FAST</code>, <code dir="auto">MEDIUM</code>, <code dir="auto">SLOW</code></td></tr><tr><td><code dir="auto">captcha_key</code></td><td>Paid provider API key — <strong>optional</strong>, backup only</td><td><code dir="auto">abc123...</code></td></tr><tr><td><code dir="auto">captcha_provider</code></td><td>Captcha provider (⭐ <code dir="auto">capsolver</code>, <code dir="auto">capmonster</code>, <code dir="auto">2captcha</code>) — optional, detected from the key format</td><td><code dir="auto">capsolver</code></td></tr><tr><td><code dir="auto">parallel_limit</code></td><td>Parallel account limit</td><td><code dir="auto">3</code></td></tr><tr><td><code dir="auto">shuffle_order</code></td><td>Shuffle account order</td><td><code dir="auto">YES</code> / <code dir="auto">NO</code></td></tr><tr><td><code dir="auto">window_size</code></td><td>Browser window size</td><td><code dir="auto">1280x720</code></td></tr><tr><td><code dir="auto">close_tabs</code></td><td>Close tabs after completion</td><td><code dir="auto">YES</code> / <code dir="auto">NO</code></td></tr><tr><td><code dir="auto">close_after</code></td><td>Close profile after completion</td><td><code dir="auto">YES</code> / <code dir="auto">NO</code></td></tr><tr><td><code dir="auto">email_delay_check</code></td><td>Email check delay (sec)</td><td><code dir="auto">5</code></td></tr><tr><td><code dir="auto">language</code></td><td>Interface language</td><td><code dir="auto">EN</code>, <code dir="auto">RU</code></td></tr><tr><td><code dir="auto">full_withdraw</code></td><td>Full asset sale before withdrawal</td><td><code dir="auto">YES</code> / <code dir="auto">NO</code></td></tr><tr><td><code dir="auto">show_credentials</code></td><td>Show KYC data</td><td><code dir="auto">YES</code> / <code dir="auto">NO</code></td></tr><tr><td><code dir="auto">bot_mode</code></td><td>Telegram bot integration</td><td><code dir="auto">YES</code> / <code dir="auto">NO</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="-bybit-global-domains">🌐 Bybit Global Domains</h2><a class="sl-anchor-link" href="#-bybit-global-domains"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “🌐 Bybit Global Domains”</span></a></div>
+<p>Bybit operates multiple regional domains for different jurisdictions. AutoPilot supports domain selection via the <strong><code dir="auto">[BYBIT] domain</code></strong> column in <code dir="auto">AutoPilot_table.xlsx</code>.</p>
+<p><strong>Available values:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="center">Column value</th><th align="center">Resolved domain</th><th>When to use</th></tr></thead><tbody><tr><td align="center">(empty)</td><td align="center"><code dir="auto">bybit.com</code></td><td>Default</td></tr><tr><td align="center"><code dir="auto">bybitglobal</code></td><td align="center"><code dir="auto">bybitglobal.com</code></td><td>If you experience registration, 2FA, or captcha issues</td></tr></tbody></table>
+<p><strong>How to enable:</strong></p>
+<ol>
+<li>Add the <strong><code dir="auto">[BYBIT] domain</code></strong> column to <code dir="auto">AutoPilot_table.xlsx</code></li>
+<li>Set <code dir="auto">bybitglobal</code> for the profiles that need it (or leave empty for <code dir="auto">bybit.com</code>)</li>
+<li>Run any action — AutoPilot will automatically use the selected domain</li>
+</ol>
+<blockquote>
+<p>💡 <strong>When to switch to <code dir="auto">bybitglobal</code>:</strong></p>
+<ul>
+<li><strong>Registration</strong> fails on <code dir="auto">bybit.com</code> but works on <code dir="auto">bybitglobal.com</code></li>
+<li><strong>2FA email codes</strong> don’t arrive when setting up Google Authenticator (common in some regions)</li>
+<li><strong>Captcha</strong> solving is unstable on <code dir="auto">bybit.com</code></li>
+<li>In some regions, <code dir="auto">bybitglobal.com</code> is generally more reliable</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>Note:</strong> <code dir="auto">bybit.com</code> and <code dir="auto">bybitglobal.com</code> are separate regional versions with independent accounts. A profile registered on one domain must continue using the same <code dir="auto">[BYBIT] domain</code> — don’t switch domains for existing accounts.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="kyc-statuses">KYC Statuses</h2><a class="sl-anchor-link" href="#kyc-statuses"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “KYC Statuses”</span></a></div>
+<p>During login, AutoPilot checks the verification status:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Status</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">UNSUBMITTED</code></td><td>Verification not submitted</td></tr><tr><td><code dir="auto">REJECT</code></td><td>Rejected (reason is specified)</td></tr><tr><td><code dir="auto">1 [COUNTRY]</code></td><td>Verified (e.g.: <code dir="auto">1 RU</code>)</td></tr></tbody></table>
+<p>If <code dir="auto">show_credentials=YES</code>, the following are also recorded: first name, last name, document type, document number.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="email-setup-imap">Email Setup (IMAP)</h2><a class="sl-anchor-link" href="#email-setup-imap"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Email Setup (IMAP)”</span></a></div>
+<p>AutoPilot uses the IMAP protocol to retrieve verification codes from email.</p>
+<p><strong>Supported providers:</strong> Yahoo, Rambler, iCloud, Outlook, Gmail, Mail.ru, First Mail, and others</p>
+<blockquote>
+<p>For Gmail, Outlook, Yahoo, and iCloud, you need to create an <strong>App Password</strong> — a regular password won’t work for IMAP. Alternatively, set up email forwarding to a mailbox with direct IMAP access.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="quick-start-after-purchase">Quick Start After Purchase</h2><a class="sl-anchor-link" href="#quick-start-after-purchase"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Quick Start After Purchase”</span></a></div>
+<ol>
+<li><strong>Download</strong> <code dir="auto">AutoPilot.zip</code> from the pinned message in the <a href="https://t.me/buykyc_bot">@buykyc_bot</a> chat</li>
+<li><strong>Extract</strong> the archive into a new folder</li>
+<li><strong>Configure</strong> <code dir="auto">AutoPilot.config</code>:
+<ul>
+<li>Set the <code dir="auto">activation_key</code> (received upon purchase)</li>
+<li><code dir="auto">captcha_key</code> is <strong>optional</strong> — AutoPilot solves captcha itself, for free. A key is only a backup for rare types: ⭐ <a href="https://www.capsolver.com/">CapSolver</a> (recommended), <a href="https://capmonster.cloud/">CapMonster</a>, <a href="https://2captcha.com/">2Captcha</a>. See <a href="/docs/en/faq/#4--proxy-and-captcha">FAQ → section 4</a> for details</li>
+</ul>
+</li>
+<li><strong>Fill in</strong> <code dir="auto">AutoPilot_table.xlsx</code> with account data</li>
+<li><strong>Launch</strong> the application</li>
+</ol>
+<blockquote>
+<p>Management is also available via the <a href="https://t.me/AutoPilotManager_bot">@AutoPilotManager_bot</a> bot (requires <code dir="auto">bot_mode=YES</code> in the config)</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="purchase">Purchase</h2><a class="sl-anchor-link" href="#purchase"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Purchase”</span></a></div>
+<p>Immediately after purchase, you receive a ready-to-use build.</p>
+<p>Buy an activation key for Bybit AutoPilot: <a href="https://t.me/buykyc_bot">https://t.me/buykyc_bot</a></p>
+<p>Along with the key, you get access to the AutoPilot community chat where you can ask questions, discuss, and get tips.</p>
+<p>The key lifetime starts counting from the first launch.</p>
+<hr>
+<p><strong>Manager:</strong> <a href="https://t.me/OxViktor">@OxViktor</a></p>  <script>(function(){const className = "mermaid";
+
+    window.__mermaidClassName = className;
+  })();</script>   </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n">   </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr"> <a href="/docs/en/getting-started/macos-launch/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg> <span class="astro-u2l5gyhi"> Previous <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Launch on macOS</span> </span> </a> <a href="/docs/en/exchanges/mexc-autopilot/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg> <span class="astro-u2l5gyhi"> Next <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">MEXC AutoPilot</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>

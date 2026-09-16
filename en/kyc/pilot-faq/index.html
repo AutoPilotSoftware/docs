@@ -1,0 +1,958 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>NVS Pilot Guide | AutoPilot</title><link rel="canonical" href="https://autopilotsoftware.github.io/docs/en/kyc/pilot-faq/"/><link rel="alternate" hreflang="ru" href="https://autopilotsoftware.github.io/docs/kyc/pilot-faq/"/><link rel="alternate" hreflang="en" href="https://autopilotsoftware.github.io/docs/en/kyc/pilot-faq/"/><link rel="alternate" hreflang="uk" href="https://autopilotsoftware.github.io/docs/ua/kyc/pilot-faq/"/><link rel="sitemap" href="/docs/sitemap-index.xml"/><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&#34;token&#34;: &#34;d98cb2456dd9448bb66e095a800bb391&#34;}"></script><link rel="shortcut icon" href="/docs/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v5.17.3"/><meta name="generator" content="Starlight v0.37.6"/><meta property="og:title" content="NVS Pilot Guide"/><meta property="og:type" content="article"/><meta property="og:url" content="https://autopilotsoftware.github.io/docs/en/kyc/pilot-faq/"/><meta property="og:locale" content="en"/><meta property="og:description" content="Comprehensive guide for NVS pilots — upload methods, validation, order lifecycle, MiniApp dashboard"/><meta property="og:site_name" content="AutoPilot"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Comprehensive guide for NVS pilots — upload methods, validation, order lifecycle, MiniApp dashboard"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/docs/_astro/print.DNXP8c50.css" media="print"><link rel="stylesheet" href="/docs/_astro/index.DJxFRPMf.css">
+<style>@layer starlight.components{:root{--sl-badge-default-border: var(--sl-color-accent);--sl-badge-default-bg: var(--sl-color-accent-low);--sl-badge-default-text: #fff;--sl-badge-note-border: var(--sl-color-blue);--sl-badge-note-bg: var(--sl-color-blue-low);--sl-badge-note-text: #fff;--sl-badge-danger-border: var(--sl-color-red);--sl-badge-danger-bg: var(--sl-color-red-low);--sl-badge-danger-text: #fff;--sl-badge-success-border: var(--sl-color-green);--sl-badge-success-bg: var(--sl-color-green-low);--sl-badge-success-text: #fff;--sl-badge-caution-border: var(--sl-color-orange);--sl-badge-caution-bg: var(--sl-color-orange-low);--sl-badge-caution-text: #fff;--sl-badge-tip-border: var(--sl-color-purple);--sl-badge-tip-bg: var(--sl-color-purple-low);--sl-badge-tip-text: #fff}[data-theme=light]:root{--sl-badge-default-bg: var(--sl-color-accent-high);--sl-badge-note-bg: var(--sl-color-blue-high);--sl-badge-danger-bg: var(--sl-color-red-high);--sl-badge-success-bg: var(--sl-color-green-high);--sl-badge-caution-bg: var(--sl-color-orange-high);--sl-badge-tip-bg: var(--sl-color-purple-high)}.sl-badge:where(.astro-avdet4wd){display:inline-block;border:1px solid var(--sl-color-border-badge);border-radius:.25rem;font-family:var(--sl-font-system-mono);line-height:normal;color:var(--sl-color-text-badge);background-color:var(--sl-color-bg-badge);overflow-wrap:anywhere}.sidebar-content .sl-badge:where(.astro-avdet4wd){line-height:1;font-size:var(--sl-text-xs);padding:.125rem .375rem}.sidebar-content a[aria-current=page]>.sl-badge:where(.astro-avdet4wd){--sl-color-bg-badge: transparent;--sl-color-border-badge: currentColor;color:inherit}.default:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-default-bg);--sl-color-border-badge: var(--sl-badge-default-border);--sl-color-text-badge: var(--sl-badge-default-text)}.note:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-note-bg);--sl-color-border-badge: var(--sl-badge-note-border);--sl-color-text-badge: var(--sl-badge-note-text)}.danger:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-danger-bg);--sl-color-border-badge: var(--sl-badge-danger-border);--sl-color-text-badge: var(--sl-badge-danger-text)}.success:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-success-bg);--sl-color-border-badge: var(--sl-badge-success-border);--sl-color-text-badge: var(--sl-badge-success-text)}.tip:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-tip-bg);--sl-color-border-badge: var(--sl-badge-tip-border);--sl-color-text-badge: var(--sl-badge-tip-text)}.caution:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-caution-bg);--sl-color-border-badge: var(--sl-badge-caution-border);--sl-color-text-badge: var(--sl-badge-caution-text)}.small:where(.astro-avdet4wd){font-size:var(--sl-text-xs);padding:.125rem .25rem}.medium:where(.astro-avdet4wd){font-size:var(--sl-text-sm);padding:.175rem .35rem}.large:where(.astro-avdet4wd){font-size:var(--sl-text-base);padding:.225rem .45rem}.sl-markdown-content :is(h1,h2,h3,h4,h5,h6) .sl-badge:where(.astro-avdet4wd){vertical-align:middle}}
+@layer starlight.components{.card-grid:where(.astro-zntqmydn){display:grid;grid-template-columns:100%;gap:1rem}.card-grid:where(.astro-zntqmydn)>*{margin-top:0!important}@media(min-width:50rem){.card-grid:where(.astro-zntqmydn){grid-template-columns:1fr 1fr;gap:1.5rem}.stagger:where(.astro-zntqmydn){--stagger-height: 5rem;padding-bottom:var(--stagger-height)}.stagger:where(.astro-zntqmydn)>*:nth-child(2n){transform:translateY(var(--stagger-height))}}}
+@layer starlight.components{svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-size, 1em);width:1em;height:1em}}
+@layer starlight.components{.sl-link-card:where(.astro-mf7fz2mj){display:grid;grid-template-columns:1fr auto;gap:.5rem;border:1px solid var(--sl-color-gray-5);border-radius:.5rem;padding:1rem;box-shadow:var(--sl-shadow-sm);position:relative}a:where(.astro-mf7fz2mj){text-decoration:none;line-height:var(--sl-line-height-headings)}a:where(.astro-mf7fz2mj):before{content:"";position:absolute;inset:0}.stack:where(.astro-mf7fz2mj){flex-direction:column;gap:.5rem}.title:where(.astro-mf7fz2mj){color:var(--sl-color-white);font-weight:600;font-size:var(--sl-text-lg)}.description:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3);line-height:1.5}.icon:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3)}.sl-link-card:where(.astro-mf7fz2mj):hover{background:var(--sl-color-gray-7, var(--sl-color-gray-6));border-color:var(--sl-color-gray-2)}.sl-link-card:where(.astro-mf7fz2mj):hover .icon:where(.astro-mf7fz2mj){color:var(--sl-color-white)}}
+@layer starlight.components{.sl-steps{--bullet-size: calc(var(--sl-line-height) * 1rem);--bullet-margin: .375rem;list-style:none;counter-reset:steps-counter var(--sl-steps-start, 0);padding-inline-start:0}.sl-steps>li{counter-increment:steps-counter;position:relative;padding-inline-start:calc(var(--bullet-size) + 1rem);padding-bottom:1px;min-height:calc(var(--bullet-size) + var(--bullet-margin))}.sl-steps>li+li{margin-top:0}.sl-steps>li:before{content:counter(steps-counter);position:absolute;top:0;inset-inline-start:0;width:var(--bullet-size);height:var(--bullet-size);line-height:var(--bullet-size);font-size:var(--sl-text-xs);font-weight:600;text-align:center;color:var(--sl-color-white);background-color:var(--sl-color-gray-6);border-radius:99rem;box-shadow:inset 0 0 0 1px var(--sl-color-gray-5)}.sl-steps>li:after{--guide-width: 1px;content:"";position:absolute;top:calc(var(--bullet-size) + var(--bullet-margin));bottom:var(--bullet-margin);inset-inline-start:calc((var(--bullet-size) - var(--guide-width)) / 2);width:var(--guide-width);background-color:var(--sl-color-hairline-light)}}@layer starlight.content{.sl-steps>li>:first-child{--lh: calc(1em * var(--sl-line-height));--shift-y: calc(.5 * (var(--bullet-size) - var(--lh)));transform:translateY(var(--shift-y));margin-bottom:var(--shift-y)}.sl-steps>li>:first-child:where(h1,h2,h3,h4,h5,h6){--lh: calc(1em * var(--sl-line-height-headings))}@supports (--prop: 1lh){.sl-steps>li>:first-child{--lh: 1lh}}}
+@layer starlight.components{.sl-link-button:where(.astro-xwgiixxa){align-items:center;border:1px solid transparent;border-radius:999rem;display:inline-flex;font-size:var(--sl-text-sm);gap:.5em;line-height:1.1875;outline-offset:.25rem;padding:.4375rem 1.125rem;text-decoration:none}.sl-link-button:where(.astro-xwgiixxa).primary{background:var(--sl-color-text-accent);border-color:var(--sl-color-text-accent);color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).primary:hover{color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).secondary{border-color:inherit;color:var(--sl-color-white)}.sl-link-button:where(.astro-xwgiixxa).minimal{color:var(--sl-color-white);padding-inline:0}.sl-link-button:where(.astro-xwgiixxa) svg{flex-shrink:0}@media(min-width:50rem){.sl-link-button:where(.astro-xwgiixxa){font-size:var(--sl-text-base);padding:.9375rem 1.25rem}}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa){margin-inline-end:1rem}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa):not(:where(p *)){margin-block:1rem}}
+</style><script type="module" src="/docs/_astro/page.B1D-nYk3.js"></script></head> <body class="astro-bguv2lll"> <a href="#_top" class="astro-7q3lir66">Skip to content</a>  <div class="page sl-flex astro-vrdttmbt"> <header class="header astro-vrdttmbt"><div class="header astro-kmkmnagf"> <div class="title-wrapper sl-flex astro-kmkmnagf"> <a href="/docs/en" class="site-title sl-flex astro-m46x6ez3">  <img class="astro-m46x6ez3" alt src="/docs/_astro/auto_pilot_logo.CfyEiyY2.png" width="600" height="600">  <span class="astro-m46x6ez3" translate="no"> AutoPilot </span> </a>  </div> <div class="sl-flex print:hidden astro-kmkmnagf"> <site-search class="astro-kmkmnagf astro-v37mnknz" data-translations="{&#34;placeholder&#34;:&#34;Search&#34;}"> <button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-v37mnknz"> <svg aria-hidden="true" class="astro-v37mnknz astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg> <span class="sl-hidden md:sl-block astro-v37mnknz" aria-hidden="true">Search</span> <kbd class="sl-hidden md:sl-flex astro-v37mnknz" style="display: none;"> <kbd class="astro-v37mnknz">Ctrl</kbd><kbd class="astro-v37mnknz">K</kbd> </kbd> </button> <dialog style="padding:0" aria-label="Search" class="astro-v37mnknz"> <div class="dialog-frame sl-flex astro-v37mnknz">  <button data-close-modal class="sl-flex md:sl-hidden astro-v37mnknz"> Cancel </button> <div class="search-container astro-v37mnknz"> <div id="starlight__search" class="astro-v37mnknz"></div> </div> </div> </dialog> </site-search>  <script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script> <script type="module" src="/docs/_astro/Search.astro_astro_type_script_index_0_lang.7TPqQKfI.js"></script>   </div> <div class="sl-hidden md:sl-flex print:hidden right-group astro-kmkmnagf"> <div class="sl-flex social-icons astro-kmkmnagf">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script> <script type="module">const r="starlight-theme",o=e=>e==="auto"||e==="dark"||e==="light"?e:"auto",c=()=>o(typeof localStorage<"u"&&localStorage.getItem(r));function n(e){typeof localStorage<"u"&&localStorage.setItem(r,e==="light"||e==="dark"?e:"")}const l=()=>matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";function t(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e==="auto"?l():e,n(e)}matchMedia("(prefers-color-scheme: light)").addEventListener("change",()=>{c()==="auto"&&t("auto")});class s extends HTMLElement{constructor(){super(),t(c()),this.querySelector("select")?.addEventListener("change",a=>{a.currentTarget instanceof HTMLSelectElement&&t(o(a.currentTarget.value))})}}customElements.define("starlight-theme-select",s);</script> <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select language</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/kyc/pilot-faq/" class="astro-4yphtoen">Русский</option><option value="/docs/en/kyc/pilot-faq/" selected class="astro-4yphtoen">English</option><option value="/docs/ua/kyc/pilot-faq/" class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select><script type="module">class s extends HTMLElement{constructor(){super();const e=this.querySelector("select");e&&(e.addEventListener("change",t=>{t.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=t.currentTarget.value)}),window.addEventListener("pageshow",t=>{if(!t.persisted)return;const n=e.querySelector("option[selected]")?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}}customElements.define("starlight-lang-select",s);</script> </div> </div> </header> <nav class="sidebar print:hidden astro-vrdttmbt" aria-label="Main"> <starlight-menu-button class="print:hidden astro-jif73yzw"> <button aria-expanded="false" aria-label="Menu" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-jif73yzw"> <svg aria-hidden="true" class="open-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg> <svg aria-hidden="true" class="close-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg> </button> </starlight-menu-button> <script type="module">class s extends HTMLElement{constructor(){super(),this.btn=this.querySelector("button"),this.btn.addEventListener("click",()=>this.toggleExpanded());const t=this.closest("nav");t&&t.addEventListener("keyup",e=>this.closeOnEscape(e))}setExpanded(t){this.setAttribute("aria-expanded",String(t)),document.body.toggleAttribute("data-mobile-menu-expanded",t)}toggleExpanded(){this.setExpanded(this.getAttribute("aria-expanded")!=="true")}closeOnEscape(t){t.code==="Escape"&&(this.setExpanded(!1),this.btn.focus())}}customElements.define("starlight-menu-button",s);</script>   <div id="starlight__sidebar" class="sidebar-pane astro-vrdttmbt"> <div class="sidebar-content sl-flex astro-vrdttmbt"> <sl-sidebar-state-persist data-hash="0tgjp6c" class="astro-kku4brbg"> <script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script>  <ul class="top-level astro-3ii7xxms"> <li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Getting Started</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="0"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/en/getting-started/faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">FAQ</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/getting-started/macos-launch/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Launch on macOS</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Exchanges</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="1"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/en/exchanges/bybit-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bybit AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/exchanges/mexc-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">MEXC AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/exchanges/bitget-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bitget AutoPilot</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">KYC Platform</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="2"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/en/kyc/autopilot-kyc-subscription/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">KYC Subscription</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/kyc/nvs-faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">NVS Upload</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/kyc/pilot-faq/" aria-current="page" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pilot Guide</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/kyc/sellers-guide/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Seller Guide</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/kyc/autopilot-kyc-tos/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Terms of Service</span>  </a> </li> </ul>  </details> </li> </ul>   <script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-wu23bvmt"> <div class="social-icons astro-wu23bvmt">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>  <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select language</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/kyc/pilot-faq/" class="astro-4yphtoen">Русский</option><option value="/docs/en/kyc/pilot-faq/" selected class="astro-4yphtoen">English</option><option value="/docs/ua/kyc/pilot-faq/" class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select> </div>  </div> </div> </div> </nav> <div class="main-frame astro-vrdttmbt">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-67yu43on"> <aside class="right-sidebar-container print:hidden astro-67yu43on"> <div class="right-sidebar astro-67yu43on"> <script type="module" src="/docs/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.hwBsy0Mo.js"></script><script type="module" src="/docs/_astro/TableOfContents.astro_astro_type_script_index_0_lang.FuRcXuRY.js"></script><div class="lg:sl-hidden astro-pb3aqygn"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-doynk5tl"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-doynk5tl"><details id="starlight__mobile-toc" class="astro-doynk5tl"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-doynk5tl"><span class="toggle sl-flex astro-doynk5tl">On this page<svg aria-hidden="true" class="caret astro-doynk5tl astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-doynk5tl"></span></summary><div class="dropdown astro-doynk5tl"><ul class="isMobile astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#table-of-contents" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Table of Contents</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#what-is-nvs" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">What is NVS?</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#getting-started" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Getting Started</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#step-1-get-your-deeplink" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Step 1: Get Your Deeplink</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#step-2-activate-in-telegram" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Step 2: Activate in Telegram</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#step-3-upload-accounts" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Step 3: Upload Accounts</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#how-it-works" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">How It Works</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#nvs-complete-flow" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">NVS Complete Flow</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#upload-methods" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Upload Methods</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#method-1-afina-browser" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Method 1: Afina Browser</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#method-2-adspower-txt-recommended-for-adspower" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Method 2: AdsPower TXT (Recommended for AdsPower)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#method-3-manual-proxy--cookies" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Method 3: Manual (Proxy + Cookies)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#method-comparison" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Method Comparison</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#account-validation-pipeline" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Account Validation Pipeline</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#order-lifecycle" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Order Lifecycle</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#nvs-menu-reference" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">NVS Menu Reference</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#task-status-icons" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Task Status Icons</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#miniapp-dashboard" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">MiniApp Dashboard</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#miniapp-tabs" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">MiniApp Tabs</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#orders-tab" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Orders Tab</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#tasks-tab" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Tasks Tab</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#analytics-tab" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Analytics Tab</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#tasks-tab--refunds" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Tasks Tab — Refunds</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sellers-tab-pilot-view" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Sellers Tab (Pilot View)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#priorities-tab" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Priorities Tab</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#settings-tab" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Settings Tab</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#globe-tab" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Globe Tab</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#chat-tab" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Chat Tab</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#smart-session-update" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Smart Session Update</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#smart-refunds" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Smart Refunds</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#smart-rekyc-for-mexc--free-face-verification-in-the-first-30-minutes" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Smart REKYC for MEXC — free Face Verification in the first 30 minutes</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#anti-sybil-and-risk-system" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Anti-Sybil and Risk System</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#kyc-providers" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">KYC Providers</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#task-status-tracking" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Task Status Tracking</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#task-state-machine" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Task State Machine</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#checking-status" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Checking Status</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#error-troubleshooting" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Error Troubleshooting</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#error-quick-reference" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Error Quick Reference</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rekyc-flow" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">ReKYC Flow</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#security--privacy" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Security &amp; Privacy</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#what-sellers-can-access" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">What Sellers Can Access</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#data-handling" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Data Handling</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#tips" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Tips</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#faq" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">FAQ</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#quick-reference" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Quick Reference</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#upload-checklist" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Upload Checklist</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#upload-flow" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Upload Flow</span> </a>  </li> </ul>  </li> </ul> </div></details></nav></mobile-starlight-toc></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-pb3aqygn"><div class="sl-container astro-pb3aqygn"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#table-of-contents" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Table of Contents</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#what-is-nvs" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">What is NVS?</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#getting-started" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Getting Started</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#step-1-get-your-deeplink" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Step 1: Get Your Deeplink</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#step-2-activate-in-telegram" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Step 2: Activate in Telegram</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#step-3-upload-accounts" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Step 3: Upload Accounts</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#how-it-works" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">How It Works</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#nvs-complete-flow" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">NVS Complete Flow</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#upload-methods" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Upload Methods</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#method-1-afina-browser" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Method 1: Afina Browser</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#method-2-adspower-txt-recommended-for-adspower" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Method 2: AdsPower TXT (Recommended for AdsPower)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#method-3-manual-proxy--cookies" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Method 3: Manual (Proxy + Cookies)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#method-comparison" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Method Comparison</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#account-validation-pipeline" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Account Validation Pipeline</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#order-lifecycle" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Order Lifecycle</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#nvs-menu-reference" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">NVS Menu Reference</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#task-status-icons" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Task Status Icons</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#miniapp-dashboard" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">MiniApp Dashboard</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#miniapp-tabs" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">MiniApp Tabs</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#orders-tab" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Orders Tab</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#tasks-tab" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Tasks Tab</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#analytics-tab" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Analytics Tab</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#tasks-tab--refunds" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Tasks Tab — Refunds</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sellers-tab-pilot-view" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Sellers Tab (Pilot View)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#priorities-tab" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Priorities Tab</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#settings-tab" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Settings Tab</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#globe-tab" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Globe Tab</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#chat-tab" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Chat Tab</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#smart-session-update" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Smart Session Update</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#smart-refunds" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Smart Refunds</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#smart-rekyc-for-mexc--free-face-verification-in-the-first-30-minutes" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Smart REKYC for MEXC — free Face Verification in the first 30 minutes</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#anti-sybil-and-risk-system" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Anti-Sybil and Risk System</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#kyc-providers" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">KYC Providers</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#task-status-tracking" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Task Status Tracking</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#task-state-machine" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Task State Machine</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#checking-status" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Checking Status</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#error-troubleshooting" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Error Troubleshooting</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#error-quick-reference" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Error Quick Reference</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rekyc-flow" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">ReKYC Flow</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#security--privacy" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Security &amp; Privacy</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#what-sellers-can-access" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">What Sellers Can Access</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#data-handling" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Data Handling</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#tips" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Tips</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#faq" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">FAQ</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#quick-reference" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Quick Reference</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#upload-checklist" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Upload Checklist</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#upload-flow" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Upload Flow</span> </a>  </li> </ul>  </li> </ul> </nav></starlight-toc></div></div> </div> </aside> <div class="main-pane astro-67yu43on">  <main data-pagefind-body class="astro-bguv2lll" lang="en" dir="ltr">   <script type="module" src="/docs/_astro/MarkdownContent.astro_astro_type_script_index_0_lang.Be01RnYk.js"></script> <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <h1 id="_top" class="astro-j6tvhyss">NVS Pilot Guide</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content">  <div class="sl-heading-wrapper level-h1"><h1 id="nvs-pilot-guide--autopilot-kyc-bot">NVS Pilot Guide — AutoPilot KYC Bot</h1><a class="sl-anchor-link" href="#nvs-pilot-guide--autopilot-kyc-bot"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “NVS Pilot Guide — AutoPilot KYC Bot”</span></a></div>
+<p>Comprehensive guide for NVS (New Verification System) users of the <code dir="auto">@AutoPilotKYC_bot</code> and the Admin MiniApp dashboard.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="table-of-contents">Table of Contents</h2><a class="sl-anchor-link" href="#table-of-contents"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Table of Contents”</span></a></div>
+<ol>
+<li><a href="#what-is-nvs">What is NVS?</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#nvs-complete-flow">NVS Complete Flow</a></li>
+<li><a href="#upload-methods">Upload Methods</a></li>
+<li><a href="#account-validation-pipeline">Account Validation Pipeline</a></li>
+<li><a href="#order-lifecycle">Order Lifecycle</a></li>
+<li><a href="#nvs-menu-reference">NVS Menu Reference</a></li>
+<li><a href="#admin-miniapp-dashboard">Admin MiniApp Dashboard</a></li>
+<li><a href="#task-status-tracking">Task Status Tracking</a></li>
+<li><a href="#error-troubleshooting">Error Troubleshooting</a></li>
+<li><a href="#security--privacy">Security &#x26; Privacy</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ol>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="what-is-nvs">What is NVS?</h2><a class="sl-anchor-link" href="#what-is-nvs"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “What is NVS?”</span></a></div>
+<p>NVS (New Verification System) is a streamlined KYC order flow for pilots who purchase verification slots through the <strong>NVS Shop</strong>. Instead of managing orders directly in the bot, NVS users receive a one-time deeplink that activates a pre-configured order with country, exchange, and quantity already set.</p>
+<p><strong>Key differences from regular pilot orders:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>Regular Pilot</th><th>NVS Pilot</th></tr></thead><tbody><tr><td>Order creation</td><td>In-bot menu</td><td>Via NVS Shop deeplink</td></tr><tr><td>Pricing</td><td>Standard platform pricing</td><td>NVS Shop pricing</td></tr><tr><td>License required</td><td>Yes</td><td>No (deeplink-based)</td></tr><tr><td>Menu options</td><td>Full pilot dashboard</td><td>5-button focused menu</td></tr><tr><td>MiniApp access</td><td>Full tabs</td><td>Orders, Tasks, History, Analytics</td></tr><tr><td>Account upload</td><td>Same methods</td><td>Same methods</td></tr><tr><td>Seller assignment</td><td>FCFS global pool</td><td>FCFS global pool</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="getting-started">Getting Started</h2><a class="sl-anchor-link" href="#getting-started"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Getting Started”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="step-1-get-your-deeplink">Step 1: Get Your Deeplink</h3><a class="sl-anchor-link" href="#step-1-get-your-deeplink"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Step 1: Get Your Deeplink”</span></a></div>
+<p>Purchase a verification order from the NVS Shop. You’ll receive a link:</p>
+<div class="expressive-code"><link rel="stylesheet" href="/docs/_astro/ec.v4551.css"><script type="module" src="/docs/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">https://t.me/AutoPilotKYC_bot?start=nvs_abc123def456</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="https://t.me/AutoPilotKYC_bot?start=nvs_abc123def456"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="step-2-activate-in-telegram">Step 2: Activate in Telegram</h3><a class="sl-anchor-link" href="#step-2-activate-in-telegram"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Step 2: Activate in Telegram”</span></a></div>
+<p>Click the link — it opens the bot. New users select a language (English / Russian / Ukrainian). The bot displays your order details:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">✅ Order Activated</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">🌍 Country: BR (Brazil)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">💱 Exchange: Bybit</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">📦 Accounts: 4</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="✅ Order Activated🌍 Country: BR (Brazil)💱 Exchange: Bybit📦 Accounts: 4"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="step-3-upload-accounts">Step 3: Upload Accounts</h3><a class="sl-anchor-link" href="#step-3-upload-accounts"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Step 3: Upload Accounts”</span></a></div>
+<p>Choose a method (AdsPower TXT or Manual), upload your data, confirm — sellers begin working.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="how-it-works">How It Works</h3><a class="sl-anchor-link" href="#how-it-works"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “How It Works”</span></a></div>
+<div class="mermaid" data-content="flowchart TD
+    subgraph Shop[&#x22;🛒 NVS Shop&#x22;]
+        NS[&#x22;Purchase verification order&#x22;] --> DL[&#x22;Receive deeplink&#x22;]
+    end
+
+    subgraph Bot[&#x22;🤖 AutoPilot KYC Bot&#x22;]
+        DL --> ACT[&#x22;Activate order in Telegram&#x22;]
+        ACT --> UPLOAD[&#x22;Upload accounts&#x22;]
+        UPLOAD --> VAL[&#x22;Automatic validation&#x22;]
+        VAL --> ORD[&#x22;Order confirmed&#x22;]
+    end
+
+    subgraph Work[&#x22;👥 Verification&#x22;]
+        ORD --> SEL[&#x22;Sellers complete KYC&#x22;]
+        SEL --> DONE[&#x22;✅ Accounts verified&#x22;]
+    end
+
+    DONE --> TRACK[&#x22;📊 Track progress in bot or MiniApp&#x22;]" data-status="loading"></div>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="nvs-complete-flow">NVS Complete Flow</h2><a class="sl-anchor-link" href="#nvs-complete-flow"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “NVS Complete Flow”</span></a></div>
+<div class="mermaid" data-content="flowchart TD
+    A[&#x22;🔗 NVS Shop generates deeplink&#x22;] --> B[&#x22;📱 Pilot clicks link&#x22;]
+    B --> C{&#x22;New user?&#x22;}
+    C -->|Yes| D[&#x22;🌐 Language selection&#x22;]
+    C -->|No| E[&#x22;✅ Order activated&#x22;]
+    D --> E
+
+    E --> F[&#x22;📋 NVS Main Menu&#x22;]
+    F --> G[&#x22;📤 Upload Accounts&#x22;]
+    G --> L{&#x22;Method?&#x22;}
+
+    L -->|Afina| M0[&#x22;📄 Send Afina file&#x22;]
+    L -->|AdsPower| M[&#x22;📄 Send .txt export&#x22;]
+    L -->|Manual| N[&#x22;✏️ Paste proxies&#x22;]
+    N --> O[&#x22;📎 Send .json cookies&#x22;]
+
+    M0 --> P[&#x22;🔍 Validation&#x22;]
+    M --> P
+    O --> P
+
+    P --> Q[&#x22;📊 Results: ✅ Passed N | ❌ Failed M&#x22;]
+    Q --> R{&#x22;Confirm?&#x22;}
+    R -->|Yes| S[&#x22;📦 Order created — sellers notified&#x22;]
+    R -->|No| F
+    S --> T[&#x22;⏳ Sellers work tasks&#x22;]
+    T --> U[&#x22;✅ VERIFIED&#x22;]" data-status="loading"></div>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="upload-methods">Upload Methods</h2><a class="sl-anchor-link" href="#upload-methods"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Upload Methods”</span></a></div>
+<p><strong>3 ways</strong> to add accounts to the bot.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="method-1-afina-browser">Method 1: Afina Browser</h3><a class="sl-anchor-link" href="#method-1-afina-browser"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Method 1: Afina Browser”</span></a></div>
+<p>Best when your profiles already live in <strong>Afina</strong> — export is fully automated.</p>
+<p><strong>Steps:</strong></p>
+<ol>
+<li>Open Afina → select profiles → <strong>Export</strong></li>
+<li>You get a file with cookies + proxy + User-Agent</li>
+<li>In the bot: <strong>Upload Accounts</strong> → <strong>Afina Browser</strong> → send the file as document 📎</li>
+</ol>
+<blockquote>
+<p>The bot recognizes the Afina format automatically and pulls in all required fields with zero manual setup.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="method-2-adspower-txt-recommended-for-adspower">Method 2: AdsPower TXT (Recommended for AdsPower)</h3><a class="sl-anchor-link" href="#method-2-adspower-txt-recommended-for-adspower"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Method 2: AdsPower TXT (Recommended for AdsPower)”</span></a></div>
+<p>Best if you use AdsPower anti-detect browser.</p>
+<p><strong>Export steps:</strong></p>
+<ol>
+<li>Open AdsPower → select profiles</li>
+<li>Export → choose <strong>TXT</strong> format</li>
+<li>Enable <strong>User Agent</strong> in export settings</li>
+<li>Save the <code dir="auto">.txt</code> file</li>
+</ol>
+<p><strong>Send to bot:</strong></p>
+<ul>
+<li>Bot menu → <strong>Upload Accounts</strong> → <strong>AdsPower TXT</strong></li>
+<li>Send the <code dir="auto">.txt</code> file as a <strong>document</strong> (via 📎)</li>
+</ul>
+<p><strong>File format (account blocks separated by <code dir="auto">******************</code>):</strong></p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">acc_id=348</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">id=k1a2ge6p</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">group=Share-1224</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">name=4623 RWANDA</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">cookie=[{"name":"token","value":"abc123","domain":".bybit.com"}]</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">proxytype=http</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">proxy=123.45.67.89:8080:user:pass</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">countrycode=rw</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64)...</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">******************</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">acc_id=349</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">...</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="acc_id=348id=k1a2ge6pgroup=Share-1224name=4623 RWANDAcookie=[{&#x22;name&#x22;:&#x22;token&#x22;,&#x22;value&#x22;:&#x22;abc123&#x22;,&#x22;domain&#x22;:&#x22;.bybit.com&#x22;}]proxytype=httpproxy=123.45.67.89:8080:user:passcountrycode=rwua=Mozilla/5.0 (Windows NT 10.0; Win64; x64)...******************acc_id=349..."><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="method-3-manual-proxy--cookies">Method 3: Manual (Proxy + Cookies)</h3><a class="sl-anchor-link" href="#method-3-manual-proxy--cookies"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Method 3: Manual (Proxy + Cookies)”</span></a></div>
+<p>Use when you have separate proxy lists and cookie files.</p>
+<p><strong>Step 1 — Send proxies as text</strong> (one per line, count must match accounts):</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">185.123.45.1:8080:user1:pass1</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">185.123.45.2:8080:user2:pass2</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">185.123.45.3:8080:user3:pass3</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="185.123.45.1:8080:user1:pass1185.123.45.2:8080:user2:pass2185.123.45.3:8080:user3:pass3"><div></div></button></div></figure></div>
+<p><strong>Supported proxy formats:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Format</th><th>Example</th></tr></thead><tbody><tr><td><code dir="auto">IP:PORT:LOGIN:PASS</code></td><td><code dir="auto">185.1.2.3:8080:user:pass</code></td></tr><tr><td><code dir="auto">LOGIN:PASS@IP:PORT</code></td><td><code dir="auto">user:pass@185.1.2.3:8080</code></td></tr><tr><td><code dir="auto">http://LOGIN:PASS@IP:PORT</code></td><td><code dir="auto">http://user:pass@185.1.2.3:8080</code></td></tr><tr><td><code dir="auto">socks5://LOGIN:PASS@IP:PORT</code></td><td><code dir="auto">socks5://user:pass@185.1.2.3:8080</code></td></tr></tbody></table>
+<p><strong>Step 2 — Send cookie files</strong> via 📎 paperclip (one <code dir="auto">.json</code> per account):</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">[</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">token</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"value"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">abc123</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"domain"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">.bybit.com</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">},</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">session</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"value"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">xyz789</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"domain"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">.bybit.com</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="[  {&#x22;name&#x22;: &#x22;token&#x22;, &#x22;value&#x22;: &#x22;abc123&#x22;, &#x22;domain&#x22;: &#x22;.bybit.com&#x22;},  {&#x22;name&#x22;: &#x22;session&#x22;, &#x22;value&#x22;: &#x22;xyz789&#x22;, &#x22;domain&#x22;: &#x22;.bybit.com&#x22;}]"><div></div></button></div></figure></div>
+<p><strong>Alternative:</strong> Single file with nested array for all accounts:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">[</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">[{</span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">token</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#7FDBCA;--1:#096E72">"value"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">abc1</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#7FDBCA;--1:#096E72">"domain"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">.bybit.com</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">}],</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">[{</span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">token</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#7FDBCA;--1:#096E72">"value"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">abc2</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#7FDBCA;--1:#096E72">"domain"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">.bybit.com</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">}]</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="[  [{&#x22;name&#x22;:&#x22;token&#x22;,&#x22;value&#x22;:&#x22;abc1&#x22;,&#x22;domain&#x22;:&#x22;.bybit.com&#x22;}],  [{&#x22;name&#x22;:&#x22;token&#x22;,&#x22;value&#x22;:&#x22;abc2&#x22;,&#x22;domain&#x22;:&#x22;.bybit.com&#x22;}]]"><div></div></button></div></figure></div>
+<blockquote>
+<p><strong>Important:</strong> Always send cookies as document files via 📎 — never paste cookie content as text.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="method-comparison">Method Comparison</h3><a class="sl-anchor-link" href="#method-comparison"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Method Comparison”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>Afina Browser</th><th>AdsPower TXT</th><th>Manual</th></tr></thead><tbody><tr><td>Difficulty</td><td>Easy</td><td>Easy</td><td>Medium</td></tr><tr><td>Files needed</td><td>1 Afina file</td><td>1 <code dir="auto">.txt</code></td><td>Proxies (text) + N <code dir="auto">.json</code> files</td></tr><tr><td>Proxy included</td><td>Yes</td><td>Yes</td><td>Separate step</td></tr><tr><td>User agent</td><td>Yes</td><td>Yes (if enabled)</td><td>Not included</td></tr><tr><td>Best for</td><td>Afina users</td><td>AdsPower users</td><td>Separate proxy/cookie sources</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="account-validation-pipeline">Account Validation Pipeline</h2><a class="sl-anchor-link" href="#account-validation-pipeline"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Account Validation Pipeline”</span></a></div>
+<p>Every uploaded account goes through a 3-stage validation before order creation.</p>
+<div class="mermaid" data-content="flowchart TD
+    A[&#x22;📎 Account uploaded&#x22;] --> B[&#x22;Step 1: Proxy check&#x22;]
+
+    B -->|&#x22;✅ Connected&#x22;| C[&#x22;Step 2: Exchange access&#x22;]
+    B -->|&#x22;❌ Failed&#x22;| X1[&#x22;❌ Proxy not working&#x22;]
+
+    C -->|&#x22;✅ Accessible&#x22;| D[&#x22;Step 3: Account status&#x22;]
+    C -->|&#x22;❌ Blocked&#x22;| X2[&#x22;❌ Proxy blocked by exchange&#x22;]
+
+    D -->|&#x22;Session active&#x22;| E{&#x22;KYC status?&#x22;}
+    D -->|&#x22;Session invalid&#x22;| X3[&#x22;❌ Cookies expired&#x22;]
+
+    E -->|&#x22;Not started&#x22;| F[&#x22;✅ Ready for order&#x22;]
+    E -->|&#x22;In progress&#x22;| G[&#x22;⚠️ Already submitted&#x22;]
+    E -->|&#x22;Completed&#x22;| H[&#x22;⚠️ KYC already done&#x22;]
+    E -->|&#x22;No provider&#x22;| X4[&#x22;❌ Account not configured&#x22;]" data-status="loading"></div>
+<p><strong>After validation, the bot shows:</strong></p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">📋 Verification Complete</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">✅ Passed: 3</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">❌ Failed: 1</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">🌍 Country: BR</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">💱 Exchange: BYBIT</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">❓ Create order for 3 account(s)?</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">[✅ Confirm]  [❌ Cancel]</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="📋 Verification Complete✅ Passed: 3❌ Failed: 1🌍 Country: BR💱 Exchange: BYBIT❓ Create order for 3 account(s)?[✅ Confirm]  [❌ Cancel]"><div></div></button></div></figure></div>
+<p>Only passed accounts are included in the order. Failed accounts are excluded with specific error reasons.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="order-lifecycle">Order Lifecycle</h2><a class="sl-anchor-link" href="#order-lifecycle"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Order Lifecycle”</span></a></div>
+<div class="mermaid" data-content="stateDiagram-v2
+    [*] --> PENDING: NVS Shop creates order
+    PENDING --> ACTIVATED: Pilot clicks deeplink
+    ACTIVATED --> UPLOADING: Upload starts
+    UPLOADING --> PROCESSING: Confirmed
+    PROCESSING --> COMPLETED: All tasks terminal
+    ACTIVATED --> EXPIRED: 48h no upload" data-status="loading"></div>
+<p><strong>Status definitions:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Status</th><th>Meaning</th></tr></thead><tbody><tr><td>PENDING</td><td>Token generated, waiting for pilot activation</td></tr><tr><td>ACTIVATED</td><td>Pilot opened deeplink, ready to upload</td></tr><tr><td>UPLOADING</td><td>Upload in progress</td></tr><tr><td>PROCESSING</td><td>Sellers working on tasks (auto-verification in progress)</td></tr><tr><td>COMPLETED</td><td>All tasks reached terminal status</td></tr><tr><td>EXPIRED</td><td>48h passed without upload</td></tr></tbody></table>
+<p><strong>Timeline:</strong> From upload to completion takes <strong>several minutes to 1 day</strong>, depending on country and seller availability.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="nvs-menu-reference">NVS Menu Reference</h2><a class="sl-anchor-link" href="#nvs-menu-reference"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “NVS Menu Reference”</span></a></div>
+<p>After activation, the bot presents 5 action buttons:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Button</th><th>Function</th><th>When to Use</th></tr></thead><tbody><tr><td>📤 <strong>Upload Accounts</strong></td><td>Start AdsPower or Manual upload flow</td><td>First action after activation</td></tr><tr><td>🔄 <strong>Order reKYC</strong></td><td>Face re-verification requested by the exchange</td><td>When exchange requests re-verification</td></tr><tr><td>📋 <strong>My Tasks</strong></td><td>View all tasks and their statuses</td><td>Track progress after order creation</td></tr><tr><td>💳 <strong>Deposit</strong></td><td>BSC USDT deposit address</td><td>Fund account for paid uploads</td></tr><tr><td>🚀 <strong>Get Full Access</strong></td><td>Upgrade to full pilot license</td><td>Access all bot features</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="task-status-icons">Task Status Icons</h3><a class="sl-anchor-link" href="#task-status-icons"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Task Status Icons”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Status</th><th>Icon</th><th>Meaning</th></tr></thead><tbody><tr><td>Available</td><td>⏳</td><td>Waiting for seller to claim</td></tr><tr><td>Taken</td><td>📋</td><td>Seller assigned, not started</td></tr><tr><td>In Progress</td><td>🔄</td><td>Seller working on KYC</td></tr><tr><td>Completed</td><td>✅</td><td>KYC submitted, awaiting verification</td></tr><tr><td>Verified</td><td>✅</td><td>KYC confirmed by exchange</td></tr><tr><td>Rejected</td><td>❌</td><td>KYC rejected by exchange</td></tr><tr><td>Country Mismatch</td><td>❌</td><td>KYC country doesn’t match order</td></tr><tr><td>Deadline Cancelled</td><td>⏰</td><td>Seller didn’t complete in time</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="miniapp-dashboard">MiniApp Dashboard</h2><a class="sl-anchor-link" href="#miniapp-dashboard"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “MiniApp Dashboard”</span></a></div>
+<p>MiniApp at <code dir="auto">app.pilot.monster</code> — a visual dashboard right inside Telegram.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="miniapp-tabs">MiniApp Tabs</h3><a class="sl-anchor-link" href="#miniapp-tabs"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “MiniApp Tabs”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tab</th><th>Pilot</th><th>NVS User</th></tr></thead><tbody><tr><td>📦 Orders</td><td>Your orders</td><td>Your NVS orders</td></tr><tr><td>📋 Tasks</td><td>Tasks from your orders</td><td>Your tasks</td></tr><tr><td>📜 History</td><td>Your history</td><td>Your history</td></tr><tr><td>📊 Analytics</td><td>Your analytics</td><td>Your analytics</td></tr><tr><td>👥 Sellers</td><td>Workers + anonymized global</td><td>—</td></tr><tr><td>🌍 Globe</td><td>Country map</td><td>—</td></tr><tr><td>➕ New Order</td><td>Create order</td><td>NVS order flow</td></tr><tr><td>💬 Chat</td><td>Chat with seller (anonymous)</td><td>—</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="orders-tab">Orders Tab</h3><a class="sl-anchor-link" href="#orders-tab"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Orders Tab”</span></a></div>
+<ul>
+<li><strong>Search</strong> by order number, country</li>
+<li><strong>Filter</strong> by status (active / completed)</li>
+<li><strong>Order cards</strong> show: country flag, product, quantity, completion progress</li>
+<li><strong>Tap order</strong> → detail view: task funnel (Available → Taken → In Progress → Verified), seller assignments, health warnings</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="tasks-tab">Tasks Tab</h3><a class="sl-anchor-link" href="#tasks-tab"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Tasks Tab”</span></a></div>
+<ul>
+<li><strong>Filters</strong>: product type, status, seller</li>
+<li><strong>Task cards</strong>: task number, seller, country, status, date</li>
+<li><strong>Sort</strong>: by created date, status, or seller</li>
+<li><strong>Detail view</strong>: account validation stages, seller history, face verification data</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="analytics-tab">Analytics Tab</h3><a class="sl-anchor-link" href="#analytics-tab"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Analytics Tab”</span></a></div>
+<ul>
+<li><strong>Overview cards</strong>: Balance, Net Spent (for the selected period), Verified (with %), Initial KYC, REKYC real % (in-progress vs completed splits), Financials (Total Spent, Refunded, Avg Cost)</li>
+<li><strong>Period filters</strong>: 7D, 30D, All</li>
+<li><strong>Order type filters</strong>: All, Global (FCFS), Workers (assigned)</li>
+<li><strong>Charts</strong>:
+<ul>
+<li>Verified Tasks — daily verification trend</li>
+<li>Balance trend (sparkline)</li>
+<li>REKYC donut — real success rate of re-verifications</li>
+<li>Product breakdown</li>
+<li>Country distribution</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>REKYC analytics has been rebuilt: sortable by workers and global orders, breakdowns by date, time and activity, deep research on every seller.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="tasks-tab--refunds">Tasks Tab — Refunds</h3><a class="sl-anchor-link" href="#tasks-tab--refunds"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Tasks Tab — Refunds”</span></a></div>
+<p>The new <strong>Refunds</strong> mode automatically surfaces tasks that need a refund:</p>
+<ul>
+<li><strong>Available refunds</strong> — amount returning to your balance</li>
+<li><strong>Face tasks stale 24h+</strong> — Face Verification overdue by 24h+</li>
+<li>Sortable by exchange and reason (<code dir="auto">not eligible</code>, lapsed reward, expired REKYC)</li>
+<li>One <strong>Return $X.XX</strong> button refunds every selected task in a single click</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="sellers-tab-pilot-view">Sellers Tab (Pilot View)</h3><a class="sl-anchor-link" href="#sellers-tab-pilot-view"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Sellers Tab (Pilot View)”</span></a></div>
+<ul>
+<li><strong>Workers section</strong>: Your registered sellers with full <code dir="auto">@username</code>, task counts, success rates, average rating, online indicator</li>
+<li><strong>Global section</strong>: Anonymous sellers from FCFS orders shown as <code dir="auto">Seller #UID</code> — no identity disclosed</li>
+<li><strong>Tier badges</strong>: Gold / Silver / Bronze based on performance</li>
+<li><strong>Worker sharing</strong> — copy a link and invite a worker in one tap</li>
+<li><strong>Private pricing</strong> — per-country rates split into KYC / Face</li>
+<li><strong>Reset task</strong> (“Reset” button) — if a worker isn’t delivering, hand the task to another worker straight from the Mini App</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="priorities-tab">Priorities Tab</h3><a class="sl-anchor-link" href="#priorities-tab"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Priorities Tab”</span></a></div>
+<p>Manage the priority pool for global orders:</p>
+<ul>
+<li>⭐ <strong>Preferred Sellers</strong> — sellers who get an exclusive <strong>15-minute window</strong> on your orders</li>
+<li>🚫 <strong>Blacklist</strong> — global sellers who will never see your orders</li>
+<li>Each card: country, flag, ID (<code dir="auto">Seller #XXXXXX</code>), priority timer, remove button</li>
+</ul>
+<blockquote>
+<p>Add a seller to favorites → for the first 15 minutes only they see the order → then it drops into the general global pool.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="settings-tab">Settings Tab</h3><a class="sl-anchor-link" href="#settings-tab"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Settings Tab”</span></a></div>
+<p>Pilot settings — collected on a single screen:</p>
+<ul>
+<li><strong>Language</strong>: English / Русский / Українська</li>
+<li><strong>Port rotation</strong> — only for providers where the port is the session key. Not sure — leave off.</li>
+<li><strong>Session rotation</strong> — rotates the session token in the proxy login. Auto-requested from NodeMaven / Proxyshard / Datapanrpulse / Bright Data.</li>
+<li><strong>Task deadline</strong> — 24h / 36h / 48h / 60h / 72h</li>
+<li><strong>On-deadline action</strong>:
+<ul>
+<li><strong>Reassign</strong> — hand to another seller</li>
+<li><strong>Retry → Refund</strong> — retry once, then refund</li>
+<li><strong>Cancel</strong> — close the task with a refund</li>
+</ul>
+</li>
+<li><strong>Seller data disclosure</strong> — which fields a seller sees in task notifications</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="globe-tab">Globe Tab</h3><a class="sl-anchor-link" href="#globe-tab"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Globe Tab”</span></a></div>
+<p>Interactive D3 globe visualization:</p>
+<ul>
+<li>Touch/drag rotation</li>
+<li>Country highlighting by task/order volume</li>
+<li>Continent grouping</li>
+<li>Country rankings with real-time sparklines</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="chat-tab">Chat Tab</h3><a class="sl-anchor-link" href="#chat-tab"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Chat Tab”</span></a></div>
+<p>Task-linked messaging between pilots and sellers:</p>
+<ul>
+<li><strong>Mutual anonymity</strong>: Pilot sees <code dir="auto">Seller #UID</code>, seller sees <code dir="auto">Customer #ID</code></li>
+<li><strong>AI moderation</strong>: Contact information automatically censored</li>
+<li><strong>Task context</strong>: Messages tagged with task details (ID, AdsPower, country, product)</li>
+<li>Unread badge counter (polls every 5 seconds)</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="smart-session-update">Smart Session Update</h2><a class="sl-anchor-link" href="#smart-session-update"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Smart Session Update”</span></a></div>
+<p>The bot tracks cookie lifetime so sessions don’t expire before the order even starts.</p>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;📤 Account uploaded&#x22;] --> B[&#x22;🔍 Bot finds account in KYC/REKYC&#x22;]
+    B --> C{&#x22;Session alive?&#x22;}
+    C -->|Yes| D[&#x22;✅ Ready for order&#x22;]
+    C -->|Expiring soon| E[&#x22;🔄 Auto-refresh&#x22;]
+    C -->|Expired| F[&#x22;⚠️ Notification to refresh&#x22;]
+    E --> D" data-status="loading"></div>
+<p><strong>What the bot does:</strong></p>
+<ul>
+<li>Finds the account in the KYC / REKYC flow</li>
+<li>Checks session validity</li>
+<li>Auto-refreshes sessions that are about to expire</li>
+<li>Notifies you when manual intervention is required</li>
+</ul>
+<blockquote>
+<p>Example: Bybit sessions live for about <strong>3 days</strong> — the system tracks this and refreshes them without you lifting a finger.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="smart-refunds">Smart Refunds</h2><a class="sl-anchor-link" href="#smart-refunds"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Smart Refunds”</span></a></div>
+<p>The bot surfaces tasks that need a refund and groups them by reason.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Trigger</th><th>What it shows</th><th>Action</th></tr></thead><tbody><tr><td>REKYC about to expire</td><td>List of tasks with a timer</td><td>Refund / retry</td></tr><tr><td>Lapsed rewards</td><td>Tasks with no reward window left</td><td>Refund</td></tr><tr><td><code dir="auto">not eligible</code></td><td>Accounts flagged by exchange</td><td>Refund</td></tr><tr><td>Face stale 24h+</td><td>Overdue Face Verification</td><td>Refund</td></tr></tbody></table>
+<blockquote>
+<p>Amounts are summed — hit <strong>Return $X.XX</strong> and the balance updates instantly.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="smart-rekyc-for-mexc--free-face-verification-in-the-first-30-minutes">Smart REKYC for MEXC — free Face Verification in the first 30 minutes</h2><a class="sl-anchor-link" href="#smart-rekyc-for-mexc--free-face-verification-in-the-first-30-minutes"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Smart REKYC for MEXC — free Face Verification in the first 30 minutes”</span></a></div>
+<p>After KYC on MEXC the exchange often requests an extra face check — especially for trading. If that request arrives <strong>within the first 30 minutes</strong>, re-verification is <strong>free</strong>.</p>
+<p><strong>How it works:</strong></p>
+<ol>
+<li>Seller finishes the base KYC</li>
+<li>The bot <strong>does not pay out immediately</strong> — it polls the account every minute for 30 minutes looking for a Face Verification request</li>
+<li>If MEXC requests a Face Check:
+<ul>
+<li>The bot notifies the seller</li>
+<li>The seller goes through the Face Scan</li>
+<li>Only then does the seller get paid</li>
+</ul>
+</li>
+<li>If Face Verification fails — the seller gets nothing, not even the base KYC payment</li>
+</ol>
+<blockquote>
+<p>If Face Verification lands <strong>later</strong> (hours or days) — it’s a separate paid REKYC.</p>
+</blockquote>
+<p><strong>MEXC currently has two Face Verification types:</strong></p>
+<ul>
+<li>Trading</li>
+<li>Withdrawal</li>
+</ul>
+<blockquote>
+<p>📹 <a href="https://youtu.be/6zhf3ytgfkE">Video demo</a> — MEXC mechanics mirror Bybit.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="anti-sybil-and-risk-system">Anti-Sybil and Risk System</h2><a class="sl-anchor-link" href="#anti-sybil-and-risk-system"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Anti-Sybil and Risk System”</span></a></div>
+<p>The platform protects pilot orders from multi-accounting and abuse on the seller side.</p>
+<p><strong>At registration every seller must:</strong></p>
+<ul>
+<li>📱 Confirm their phone number via Telegram</li>
+<li>📍 Share their geolocation</li>
+<li>✅ Pass a GEO ↔ phone country check</li>
+</ul>
+<p>If the data doesn’t match — access is rejected.</p>
+<p><strong>Additional checks:</strong></p>
+<ul>
+<li>💰 Tracking of wallets sellers withdraw to</li>
+<li>🔗 Linkage detection between sellers via shared wallets</li>
+<li>👥 Multi-account signals</li>
+<li>📍 Seller geolocation proximity check (radius <strong>down to 50 m</strong>)</li>
+</ul>
+<blockquote>
+<p>If the system spots abuse — accounts go to review and get banned. Your order is unaffected: the task is automatically reassigned to another seller.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="kyc-providers">KYC Providers</h2><a class="sl-anchor-link" href="#kyc-providers"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “KYC Providers”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Provider</th><th>KYC</th><th>REKYC</th><th>Exchanges</th></tr></thead><tbody><tr><td><strong>SumSub</strong></td><td>✅</td><td>✅</td><td>Bybit, MEXC</td></tr><tr><td><strong>Jumio</strong></td><td>✅</td><td>✅</td><td>Supported since the latest update</td></tr></tbody></table>
+<blockquote>
+<p>Provider selection happens automatically based on what the exchange requests on a given account.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="task-status-tracking">Task Status Tracking</h2><a class="sl-anchor-link" href="#task-status-tracking"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Task Status Tracking”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="task-state-machine">Task State Machine</h3><a class="sl-anchor-link" href="#task-state-machine"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Task State Machine”</span></a></div>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;⏳ Waiting&#x22;] --> B[&#x22;📋 Assigned&#x22;]
+    B --> C[&#x22;🔄 In Progress&#x22;]
+    C --> D[&#x22;✅ Verified&#x22;]
+    C --> E[&#x22;❌ Rejected&#x22;]" data-status="loading"></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="checking-status">Checking Status</h3><a class="sl-anchor-link" href="#checking-status"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Checking Status”</span></a></div>
+<p><strong>In bot:</strong> Press <strong>📋 My Tasks</strong> to see all task statuses.</p>
+<p><strong>In MiniApp:</strong> Open the <strong>Tasks</strong> tab for a visual dashboard with filters and sorting.</p>
+<p><strong>Auto-updates:</strong> Task statuses update automatically. The NVS Shop displays current progress in real time.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="error-troubleshooting">Error Troubleshooting</h2><a class="sl-anchor-link" href="#error-troubleshooting"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Error Troubleshooting”</span></a></div>
+<p>Use the table below to quickly resolve issues.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="error-quick-reference">Error Quick Reference</h3><a class="sl-anchor-link" href="#error-quick-reference"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Error Quick Reference”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Error</th><th>Cause</th><th>Fix</th></tr></thead><tbody><tr><td>File is not valid JSON</td><td>Wrong file type or pasted as text</td><td>Save to <code dir="auto">.json</code> file, send via 📎</td></tr><tr><td>Could not recognize proxy</td><td>Wrong format or extra text</td><td>One proxy per line: <code dir="auto">IP:PORT:LOGIN:PASS</code></td></tr><tr><td>All proxies failed</td><td>Expired, wrong credentials, server down</td><td>Request fresh proxies from provider</td></tr><tr><td>No KYC provider</td><td>Account not configured for verification</td><td>Contact account provider</td></tr><tr><td>Session expired</td><td>Old cookies, logged out</td><td>Re-export cookies while logged in</td></tr><tr><td>Proxy blocked</td><td>Exchange blocks the IP</td><td>Use proxy from different region</td></tr><tr><td>Country mismatch</td><td>Proxy country ≠ order country</td><td>Use proxy matching your order country</td></tr><tr><td>Incorrect proxy quantity</td><td>Line count ≠ account count</td><td>Send exactly N proxies for N accounts</td></tr><tr><td>Too many cookie files</td><td>More cookies than proxies</td><td>One <code dir="auto">.json</code> per working proxy</td></tr><tr><td>Invalid/expired link</td><td>Token expired (48h) or already used</td><td>Get new deeplink from NVS Shop</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="rekyc-flow">ReKYC Flow</h3><a class="sl-anchor-link" href="#rekyc-flow"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “ReKYC Flow”</span></a></div>
+<p>Sometimes an exchange requests face re-verification for an already verified account. In this case, use <strong>🔄 Order reKYC</strong>:</p>
+<ol>
+<li>Select the order where the exchange requested re-verification</li>
+<li>The bot creates a new reKYC task with current data</li>
+<li>The same seller who completed the initial KYC performs the face re-verification</li>
+<li>Results are updated automatically</li>
+</ol>
+<blockquote>
+<p>ReKYC is assigned to the same seller who completed the initial verification — this is required since the exchange expects the same face.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="security--privacy">Security &#x26; Privacy</h2><a class="sl-anchor-link" href="#security--privacy"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Security &#x26; Privacy”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="what-sellers-can-access">What Sellers Can Access</h3><a class="sl-anchor-link" href="#what-sellers-can-access"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “What Sellers Can Access”</span></a></div>
+<p>Sellers receive <strong>only a unique one-time SumSub verification link</strong>. They <strong>cannot</strong>:</p>
+<ul>
+<li>Log in to your exchange account</li>
+<li>View balance, trade history, or positions</li>
+<li>Execute trades or withdrawals</li>
+<li>Change account settings or passwords</li>
+<li>Access your cookies or proxy credentials</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="data-handling">Data Handling</h3><a class="sl-anchor-link" href="#data-handling"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Data Handling”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Data</th><th>Storage</th><th>Access</th></tr></thead><tbody><tr><td>Cookies</td><td>Encrypted in bot system</td><td>Bot only — never shared with sellers</td></tr><tr><td>Proxies</td><td>Bot system</td><td>Bot only — used for validation and link generation</td></tr><tr><td>Account email</td><td>Bot system</td><td>Hidden from sellers — they see task # only</td></tr><tr><td>KYC name</td><td>Extracted during validation</td><td>Shown to seller for face verification tasks only</td></tr><tr><td>Verification link</td><td>One-time URL</td><td>Seller gets unique link, expires after use</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="tips">Tips</h3><a class="sl-anchor-link" href="#tips"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Tips”</span></a></div>
+<ul>
+<li><strong>Use the same IP/proxy</strong> that the account was created with to avoid suspicion</li>
+<li><strong>Cookies expire</strong> — export fresh cookies shortly before uploading</li>
+<li><strong>Don’t share deeplinks</strong> — each link is tied to your Telegram account</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="faq">FAQ</h2><a class="sl-anchor-link" href="#faq"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “FAQ”</span></a></div>
+<p><strong>Q: Which files do I need?</strong></p>
+<ul>
+<li>Afina Browser: One Afina export file</li>
+<li>AdsPower TXT: One <code dir="auto">.txt</code> file (contains everything)</li>
+<li>Manual: Proxies (text in chat) + <code dir="auto">.json</code> cookie files (one per account)</li>
+</ul>
+<p><strong>Q: Where do I get proxies?</strong>
+From any proxy provider. Format: <code dir="auto">IP:PORT:LOGIN:PASSWORD</code>. The proxy country should match your order country.</p>
+<p><strong>Q: Where do I get cookie files?</strong>
+Export via the <strong>Cookie Editor</strong> browser extension (Chrome/Firefox/Edge) or your anti-detect browser’s export feature.</p>
+<p><strong>Q: Can I send cookies as text in chat?</strong>
+No. Always save cookies to a <code dir="auto">.json</code> file and send as a document via the 📎 paperclip button.</p>
+<p><strong>Q: What if some accounts fail validation?</strong>
+The bot creates an order with only the passed accounts. Failed ones are excluded with specific error reasons.</p>
+<p><strong>Q: Can I upload more accounts later?</strong>
+Yes — press <strong>📤 Upload Accounts</strong> again to add more accounts to your order.</p>
+<p><strong>Q: How long does KYC take?</strong>
+From several minutes to 1 day, depending on country and seller availability.</p>
+<p><strong>Q: What does “No KYC provider” mean?</strong>
+The account isn’t configured for KYC verification, or the cookies are from a different account. Contact your account provider.</p>
+<p><strong>Q: How do I check task progress?</strong></p>
+<ul>
+<li><strong>In bot</strong>: Press <strong>📋 My Tasks</strong></li>
+<li><strong>In MiniApp</strong>: Open <code dir="auto">app.pilot.monster</code> → Tasks tab</li>
+</ul>
+<p><strong>Q: How do I access the MiniApp?</strong>
+Open <code dir="auto">app.pilot.monster</code> in Telegram’s built-in browser. It authenticates automatically via your Telegram session.</p>
+<p><strong>Q: What is Smart Session Update?</strong>
+The bot tracks cookie lifetime itself (e.g. Bybit ≈3 days), auto-refreshes expiring sessions and warns you if manual intervention is needed.</p>
+<p><strong>Q: How do Priority and Blacklist work?</strong>
+In the Mini App → <strong>Priorities</strong> tab add a seller to favorites — for the first 15 minutes only they see your order. Blacklist fully blocks selected global sellers from your orders.</p>
+<p><strong>Q: What does “Reset” on a task do?</strong>
+If your worker isn’t delivering — hit <strong>Reset</strong> and the task moves to another worker (or to the global pool if you have no free workers left).</p>
+<p><strong>Q: How do I configure task deadlines?</strong>
+Mini App → Settings → <strong>Task deadline</strong>: pick 24h / 36h / 48h / 60h / 72h. On-deadline action: <strong>Reassign</strong> / <strong>Retry → Refund</strong> / <strong>Cancel</strong>.</p>
+<p><strong>Q: I finished KYC on MEXC and got a Face Verification — is it paid?</strong>
+If the request arrives <strong>within 30 minutes after KYC</strong> — re-verification is <strong>free</strong>. The bot tracks it itself and sends the seller to a Face Scan. Later requests (hours/days) are a separate paid REKYC.</p>
+<p><strong>Q: Who do I contact for issues?</strong>
+Contact support via the NVS Shop or bot admin. Include screenshots of any errors.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="quick-reference">Quick Reference</h2><a class="sl-anchor-link" href="#quick-reference"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Quick Reference”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">Activate link → Upload accounts → Choose method → Send files → Confirm → Done!</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="Activate link → Upload accounts → Choose method → Send files → Confirm → Done!"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="upload-checklist">Upload Checklist</h3><a class="sl-anchor-link" href="#upload-checklist"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Upload Checklist”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Deeplink activated (order shows in bot)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Proxy country matches order country</li>
+<li class="task-list-item"><input type="checkbox" disabled> Cookies freshly exported (not expired)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Files sent as documents via 📎 (not pasted as text)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Proxy count = account count</li>
+<li class="task-list-item"><input type="checkbox" disabled> Validation passed for at least 1 account</li>
+<li class="task-list-item"><input type="checkbox" disabled> Order confirmed</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="upload-flow">Upload Flow</h3><a class="sl-anchor-link" href="#upload-flow"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Upload Flow”</span></a></div>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;🔗 Open link&#x22;] --> B[&#x22;📤 Choose method&#x22;]
+    B --> C[&#x22;📎 Send files&#x22;]
+    C --> D[&#x22;🔍 Validation&#x22;]
+    D --> E[&#x22;✅ Confirm order&#x22;]" data-status="loading"></div>  <script>(function(){const className = "mermaid";
+
+    window.__mermaidClassName = className;
+  })();</script>   </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n">   </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr"> <a href="/docs/en/kyc/nvs-faq/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg> <span class="astro-u2l5gyhi"> Previous <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">NVS Upload</span> </span> </a> <a href="/docs/en/kyc/sellers-guide/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg> <span class="astro-u2l5gyhi"> Next <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Seller Guide</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>
