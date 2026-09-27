@@ -1,0 +1,1889 @@
+<!DOCTYPE html><html lang="uk" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Bybit AutoPilot | AutoPilot</title><link rel="canonical" href="https://autopilotsoftware.github.io/docs/ua/exchanges/bybit-autopilot/"/><link rel="alternate" hreflang="ru" href="https://autopilotsoftware.github.io/docs/exchanges/bybit-autopilot/"/><link rel="alternate" hreflang="en" href="https://autopilotsoftware.github.io/docs/en/exchanges/bybit-autopilot/"/><link rel="alternate" hreflang="uk" href="https://autopilotsoftware.github.io/docs/ua/exchanges/bybit-autopilot/"/><link rel="sitemap" href="/docs/sitemap-index.xml"/><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&#34;token&#34;: &#34;d98cb2456dd9448bb66e095a800bb391&#34;}"></script><link rel="shortcut icon" href="/docs/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v5.17.3"/><meta name="generator" content="Starlight v0.37.6"/><meta property="og:title" content="Bybit AutoPilot"/><meta property="og:type" content="article"/><meta property="og:url" content="https://autopilotsoftware.github.io/docs/ua/exchanges/bybit-autopilot/"/><meta property="og:locale" content="uk"/><meta property="og:description" content="AutoPilot Software — автоматизація Bybit: реєстрація, торгівля, виведення коштів, TokenSplash, Puzzle Hunt"/><meta property="og:site_name" content="AutoPilot"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="AutoPilot Software — автоматизація Bybit: реєстрація, торгівля, виведення коштів, TokenSplash, Puzzle Hunt"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/docs/_astro/print.DNXP8c50.css" media="print"><link rel="stylesheet" href="/docs/_astro/index.DJxFRPMf.css">
+<style>@layer starlight.components{:root{--sl-badge-default-border: var(--sl-color-accent);--sl-badge-default-bg: var(--sl-color-accent-low);--sl-badge-default-text: #fff;--sl-badge-note-border: var(--sl-color-blue);--sl-badge-note-bg: var(--sl-color-blue-low);--sl-badge-note-text: #fff;--sl-badge-danger-border: var(--sl-color-red);--sl-badge-danger-bg: var(--sl-color-red-low);--sl-badge-danger-text: #fff;--sl-badge-success-border: var(--sl-color-green);--sl-badge-success-bg: var(--sl-color-green-low);--sl-badge-success-text: #fff;--sl-badge-caution-border: var(--sl-color-orange);--sl-badge-caution-bg: var(--sl-color-orange-low);--sl-badge-caution-text: #fff;--sl-badge-tip-border: var(--sl-color-purple);--sl-badge-tip-bg: var(--sl-color-purple-low);--sl-badge-tip-text: #fff}[data-theme=light]:root{--sl-badge-default-bg: var(--sl-color-accent-high);--sl-badge-note-bg: var(--sl-color-blue-high);--sl-badge-danger-bg: var(--sl-color-red-high);--sl-badge-success-bg: var(--sl-color-green-high);--sl-badge-caution-bg: var(--sl-color-orange-high);--sl-badge-tip-bg: var(--sl-color-purple-high)}.sl-badge:where(.astro-avdet4wd){display:inline-block;border:1px solid var(--sl-color-border-badge);border-radius:.25rem;font-family:var(--sl-font-system-mono);line-height:normal;color:var(--sl-color-text-badge);background-color:var(--sl-color-bg-badge);overflow-wrap:anywhere}.sidebar-content .sl-badge:where(.astro-avdet4wd){line-height:1;font-size:var(--sl-text-xs);padding:.125rem .375rem}.sidebar-content a[aria-current=page]>.sl-badge:where(.astro-avdet4wd){--sl-color-bg-badge: transparent;--sl-color-border-badge: currentColor;color:inherit}.default:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-default-bg);--sl-color-border-badge: var(--sl-badge-default-border);--sl-color-text-badge: var(--sl-badge-default-text)}.note:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-note-bg);--sl-color-border-badge: var(--sl-badge-note-border);--sl-color-text-badge: var(--sl-badge-note-text)}.danger:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-danger-bg);--sl-color-border-badge: var(--sl-badge-danger-border);--sl-color-text-badge: var(--sl-badge-danger-text)}.success:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-success-bg);--sl-color-border-badge: var(--sl-badge-success-border);--sl-color-text-badge: var(--sl-badge-success-text)}.tip:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-tip-bg);--sl-color-border-badge: var(--sl-badge-tip-border);--sl-color-text-badge: var(--sl-badge-tip-text)}.caution:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-caution-bg);--sl-color-border-badge: var(--sl-badge-caution-border);--sl-color-text-badge: var(--sl-badge-caution-text)}.small:where(.astro-avdet4wd){font-size:var(--sl-text-xs);padding:.125rem .25rem}.medium:where(.astro-avdet4wd){font-size:var(--sl-text-sm);padding:.175rem .35rem}.large:where(.astro-avdet4wd){font-size:var(--sl-text-base);padding:.225rem .45rem}.sl-markdown-content :is(h1,h2,h3,h4,h5,h6) .sl-badge:where(.astro-avdet4wd){vertical-align:middle}}
+@layer starlight.components{.card-grid:where(.astro-zntqmydn){display:grid;grid-template-columns:100%;gap:1rem}.card-grid:where(.astro-zntqmydn)>*{margin-top:0!important}@media(min-width:50rem){.card-grid:where(.astro-zntqmydn){grid-template-columns:1fr 1fr;gap:1.5rem}.stagger:where(.astro-zntqmydn){--stagger-height: 5rem;padding-bottom:var(--stagger-height)}.stagger:where(.astro-zntqmydn)>*:nth-child(2n){transform:translateY(var(--stagger-height))}}}
+@layer starlight.components{svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-size, 1em);width:1em;height:1em}}
+@layer starlight.components{.sl-link-card:where(.astro-mf7fz2mj){display:grid;grid-template-columns:1fr auto;gap:.5rem;border:1px solid var(--sl-color-gray-5);border-radius:.5rem;padding:1rem;box-shadow:var(--sl-shadow-sm);position:relative}a:where(.astro-mf7fz2mj){text-decoration:none;line-height:var(--sl-line-height-headings)}a:where(.astro-mf7fz2mj):before{content:"";position:absolute;inset:0}.stack:where(.astro-mf7fz2mj){flex-direction:column;gap:.5rem}.title:where(.astro-mf7fz2mj){color:var(--sl-color-white);font-weight:600;font-size:var(--sl-text-lg)}.description:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3);line-height:1.5}.icon:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3)}.sl-link-card:where(.astro-mf7fz2mj):hover{background:var(--sl-color-gray-7, var(--sl-color-gray-6));border-color:var(--sl-color-gray-2)}.sl-link-card:where(.astro-mf7fz2mj):hover .icon:where(.astro-mf7fz2mj){color:var(--sl-color-white)}}
+@layer starlight.components{.sl-steps{--bullet-size: calc(var(--sl-line-height) * 1rem);--bullet-margin: .375rem;list-style:none;counter-reset:steps-counter var(--sl-steps-start, 0);padding-inline-start:0}.sl-steps>li{counter-increment:steps-counter;position:relative;padding-inline-start:calc(var(--bullet-size) + 1rem);padding-bottom:1px;min-height:calc(var(--bullet-size) + var(--bullet-margin))}.sl-steps>li+li{margin-top:0}.sl-steps>li:before{content:counter(steps-counter);position:absolute;top:0;inset-inline-start:0;width:var(--bullet-size);height:var(--bullet-size);line-height:var(--bullet-size);font-size:var(--sl-text-xs);font-weight:600;text-align:center;color:var(--sl-color-white);background-color:var(--sl-color-gray-6);border-radius:99rem;box-shadow:inset 0 0 0 1px var(--sl-color-gray-5)}.sl-steps>li:after{--guide-width: 1px;content:"";position:absolute;top:calc(var(--bullet-size) + var(--bullet-margin));bottom:var(--bullet-margin);inset-inline-start:calc((var(--bullet-size) - var(--guide-width)) / 2);width:var(--guide-width);background-color:var(--sl-color-hairline-light)}}@layer starlight.content{.sl-steps>li>:first-child{--lh: calc(1em * var(--sl-line-height));--shift-y: calc(.5 * (var(--bullet-size) - var(--lh)));transform:translateY(var(--shift-y));margin-bottom:var(--shift-y)}.sl-steps>li>:first-child:where(h1,h2,h3,h4,h5,h6){--lh: calc(1em * var(--sl-line-height-headings))}@supports (--prop: 1lh){.sl-steps>li>:first-child{--lh: 1lh}}}
+@layer starlight.components{.sl-link-button:where(.astro-xwgiixxa){align-items:center;border:1px solid transparent;border-radius:999rem;display:inline-flex;font-size:var(--sl-text-sm);gap:.5em;line-height:1.1875;outline-offset:.25rem;padding:.4375rem 1.125rem;text-decoration:none}.sl-link-button:where(.astro-xwgiixxa).primary{background:var(--sl-color-text-accent);border-color:var(--sl-color-text-accent);color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).primary:hover{color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).secondary{border-color:inherit;color:var(--sl-color-white)}.sl-link-button:where(.astro-xwgiixxa).minimal{color:var(--sl-color-white);padding-inline:0}.sl-link-button:where(.astro-xwgiixxa) svg{flex-shrink:0}@media(min-width:50rem){.sl-link-button:where(.astro-xwgiixxa){font-size:var(--sl-text-base);padding:.9375rem 1.25rem}}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa){margin-inline-end:1rem}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa):not(:where(p *)){margin-block:1rem}}
+</style><script type="module" src="/docs/_astro/page.B1D-nYk3.js"></script></head> <body class="astro-bguv2lll"> <a href="#_top" class="astro-7q3lir66">Перейти до вмісту</a>  <div class="page sl-flex astro-vrdttmbt"> <header class="header astro-vrdttmbt"><div class="header astro-kmkmnagf"> <div class="title-wrapper sl-flex astro-kmkmnagf"> <a href="/docs/ua" class="site-title sl-flex astro-m46x6ez3">  <img class="astro-m46x6ez3" alt src="/docs/_astro/auto_pilot_logo.CfyEiyY2.png" width="600" height="600">  <span class="astro-m46x6ez3" translate="no"> AutoPilot </span> </a>  </div> <div class="sl-flex print:hidden astro-kmkmnagf"> <site-search class="astro-kmkmnagf astro-v37mnknz" data-translations="{&#34;placeholder&#34;:&#34;Пошук&#34;}"> <button data-open-modal disabled aria-label="Пошук" aria-keyshortcuts="Control+K" class="astro-v37mnknz"> <svg aria-hidden="true" class="astro-v37mnknz astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg> <span class="sl-hidden md:sl-block astro-v37mnknz" aria-hidden="true">Пошук</span> <kbd class="sl-hidden md:sl-flex astro-v37mnknz" style="display: none;"> <kbd class="astro-v37mnknz">Ctrl</kbd><kbd class="astro-v37mnknz">K</kbd> </kbd> </button> <dialog style="padding:0" aria-label="Пошук" class="astro-v37mnknz"> <div class="dialog-frame sl-flex astro-v37mnknz">  <button data-close-modal class="sl-flex md:sl-hidden astro-v37mnknz"> Скасувати </button> <div class="search-container astro-v37mnknz"> <div id="starlight__search" class="astro-v37mnknz"></div> </div> </div> </dialog> </site-search>  <script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script> <script type="module" src="/docs/_astro/Search.astro_astro_type_script_index_0_lang.7TPqQKfI.js"></script>   </div> <div class="sl-hidden md:sl-flex print:hidden right-group astro-kmkmnagf"> <div class="sl-flex social-icons astro-kmkmnagf">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Обрати тему</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Темна</option><option value="light" class="astro-4yphtoen">Світла</option><option value="auto" selected class="astro-4yphtoen">Авто</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script> <script type="module">const r="starlight-theme",o=e=>e==="auto"||e==="dark"||e==="light"?e:"auto",c=()=>o(typeof localStorage<"u"&&localStorage.getItem(r));function n(e){typeof localStorage<"u"&&localStorage.setItem(r,e==="light"||e==="dark"?e:"")}const l=()=>matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";function t(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e==="auto"?l():e,n(e)}matchMedia("(prefers-color-scheme: light)").addEventListener("change",()=>{c()==="auto"&&t("auto")});class s extends HTMLElement{constructor(){super(),t(c()),this.querySelector("select")?.addEventListener("change",a=>{a.currentTarget instanceof HTMLSelectElement&&t(o(a.currentTarget.value))})}}customElements.define("starlight-theme-select",s);</script> <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Обрати мову</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/exchanges/bybit-autopilot/" class="astro-4yphtoen">Русский</option><option value="/docs/en/exchanges/bybit-autopilot/" class="astro-4yphtoen">English</option><option value="/docs/ua/exchanges/bybit-autopilot/" selected class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select><script type="module">class s extends HTMLElement{constructor(){super();const e=this.querySelector("select");e&&(e.addEventListener("change",t=>{t.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=t.currentTarget.value)}),window.addEventListener("pageshow",t=>{if(!t.persisted)return;const n=e.querySelector("option[selected]")?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}}customElements.define("starlight-lang-select",s);</script> </div> </div> </header> <nav class="sidebar print:hidden astro-vrdttmbt" aria-label="Головне"> <starlight-menu-button class="print:hidden astro-jif73yzw"> <button aria-expanded="false" aria-label="Меню" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-jif73yzw"> <svg aria-hidden="true" class="open-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg> <svg aria-hidden="true" class="close-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg> </button> </starlight-menu-button> <script type="module">class s extends HTMLElement{constructor(){super(),this.btn=this.querySelector("button"),this.btn.addEventListener("click",()=>this.toggleExpanded());const t=this.closest("nav");t&&t.addEventListener("keyup",e=>this.closeOnEscape(e))}setExpanded(t){this.setAttribute("aria-expanded",String(t)),document.body.toggleAttribute("data-mobile-menu-expanded",t)}toggleExpanded(){this.setExpanded(this.getAttribute("aria-expanded")!=="true")}closeOnEscape(t){t.code==="Escape"&&(this.setExpanded(!1),this.btn.focus())}}customElements.define("starlight-menu-button",s);</script>   <div id="starlight__sidebar" class="sidebar-pane astro-vrdttmbt"> <div class="sidebar-content sl-flex astro-vrdttmbt"> <sl-sidebar-state-persist data-hash="03zb76w" class="astro-kku4brbg"> <script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script>  <ul class="top-level astro-3ii7xxms"> <li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Початок роботи</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="0"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/ua/getting-started/faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">FAQ</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/ua/getting-started/macos-launch/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Запуск на macOS</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Біржі</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="1"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/ua/exchanges/bybit-autopilot/" aria-current="page" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bybit AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/ua/exchanges/mexc-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">MEXC AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/ua/exchanges/bitget-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bitget AutoPilot</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">KYC Платформа</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="2"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/ua/kyc/autopilot-kyc-subscription/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Підписка KYC</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/ua/kyc/nvs-faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">NVS Завантаження</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/ua/kyc/pilot-faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Гайд Пілота</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/ua/kyc/sellers-guide/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Seller Guide</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/ua/kyc/autopilot-kyc-tos/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Умови використання</span>  </a> </li> </ul>  </details> </li> </ul>   <script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-wu23bvmt"> <div class="social-icons astro-wu23bvmt">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Обрати тему</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Темна</option><option value="light" class="astro-4yphtoen">Світла</option><option value="auto" selected class="astro-4yphtoen">Авто</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>  <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Обрати мову</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/exchanges/bybit-autopilot/" class="astro-4yphtoen">Русский</option><option value="/docs/en/exchanges/bybit-autopilot/" class="astro-4yphtoen">English</option><option value="/docs/ua/exchanges/bybit-autopilot/" selected class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select> </div>  </div> </div> </div> </nav> <div class="main-frame astro-vrdttmbt">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-67yu43on"> <aside class="right-sidebar-container print:hidden astro-67yu43on"> <div class="right-sidebar astro-67yu43on"> <script type="module" src="/docs/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.hwBsy0Mo.js"></script><script type="module" src="/docs/_astro/TableOfContents.astro_astro_type_script_index_0_lang.FuRcXuRY.js"></script><div class="lg:sl-hidden astro-pb3aqygn"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-doynk5tl"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-doynk5tl"><details id="starlight__mobile-toc" class="astro-doynk5tl"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-doynk5tl"><span class="toggle sl-flex astro-doynk5tl">На цій сторінці<svg aria-hidden="true" class="caret astro-doynk5tl astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-doynk5tl"></span></summary><div class="dropdown astro-doynk5tl"><ul class="isMobile astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Огляд</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#zabudte-pro-ruchnu-robotu-rishennya-znaydeno" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Забудьте про ручну роботу: рішення знайдено</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#yak-pratsyuye-autopilot" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Як працює AutoPilot</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#osnovni-perevagi" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Основні переваги</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#funktsional-bybit-autopilot" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Функціонал Bybit AutoPilot</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#povniy-perelik-diy-action" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Повний перелік дій (ACTION)</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#zagalna-skhema-roboti-diy" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Загальна схема роботи дій</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#register-reyestratsiya-akaunta-na-bybit" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">register — Реєстрація акаунта на Bybit</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#login-login-v-akaunt" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">login — Логін в акаунт</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#2fa-pidklyuchennya-2fa" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">2fa — Підключення 2FA</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#deposit-otrimannya-adresi-depozitu" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">deposit — Отримання адреси депозиту</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#whitelist-dodavannya-adresi-v-whitelist" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">whitelist — Додавання адреси в Whitelist</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#withdraw-vivedennya-koshtiv" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">withdraw — Виведення коштів</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#algoritm-povnogo-vivedennya-full-withdrawyes" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Алгоритм повного виведення (full_withdraw=YES)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#master-gamanets-avto-whitelist-0-komisiy-nevidstezhuvaniy-vivid" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Мастер-гаманець — Авто-whitelist, $0 комісій, невідстежуваний вивід</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sell-prodazh-usikh-aktiviv" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">sell — Продаж усіх активів</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#api-otrimannya-api-klyuchiv" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">api — Отримання API ключів</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#trading-avtomatichniy-treyding" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">trading — Автоматичний трейдинг</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#ts--tokensplash" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">ts — TokenSplash</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#puzzle-hunt-pazl-khant" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">puzzle_hunt — Пазл-хант</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#link-otrimati-posilannya-kyc-verifikatsiyi" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">link — Отримати посилання KYC верифікації</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#learn-prokhodzhennya-navchannya-ta-vstanovlennya-avatara" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">learn — Проходження навчання та встановлення аватара</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#profit-rozrakhunok-pributku" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">profit — Розрахунок прибутку</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#buy-kupivlya-aktivu" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">buy — Купівля активу</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#limit-buy-kupivlya-limitnim-orderom" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">limit_buy — Купівля лімітним ордером</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#limit-vipadkova-limitna-torgivlya" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">limit — Випадкова лімітна торгівля</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#trading-limit-torgoviy-obyem-limitnimi-orderami" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">trading_limit — Торговий об’єм лімітними ордерами</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#limit-sell-prodazh-limitnim-orderom-na-funding" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">limit_sell — Продаж лімітним ордером на Funding</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#futures-fyuchersna-torgivlya" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">futures — Ф’ючерсна торгівля</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#futures-smart-rozumna-fyuchersna-torgivlya" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">futures_smart — Розумна ф’ючерсна торгівля</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#stake-earn-steyking-usdt-flexible-savings" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">stake / earn — Стейкінг USDT (Flexible Savings)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#unstake-unearn-vivedennya-zi-steykingu" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">unstake / unearn — Виведення зі стейкінгу</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#lp-reyestratsiya-v-launchpad-iventi" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">lp — Реєстрація в LaunchPad івенті</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#ref-code-vityagti-referalniy-kod" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">ref_code — Витягти реферальний код</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#zvedena-tablitsya-diy" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Зведена таблиця дій</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#nalashtuvannya-konfiguratsiyi" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Налаштування конфігурації</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#bybit-global-domeni" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">🌐 Bybit Global домени</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#kyc-statusi" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">KYC статуси</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#nalashtuvannya-poshti-imap" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Налаштування пошти (IMAP)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#shvidkiy-start-pislya-pokupki" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Швидкий старт після покупки</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#pokupka" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Покупка</span> </a>  </li> </ul> </div></details></nav></mobile-starlight-toc></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-pb3aqygn"><div class="sl-container astro-pb3aqygn"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">На цій сторінці</h2><ul class="astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Огляд</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#zabudte-pro-ruchnu-robotu-rishennya-znaydeno" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Забудьте про ручну роботу: рішення знайдено</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#yak-pratsyuye-autopilot" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Як працює AutoPilot</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#osnovni-perevagi" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Основні переваги</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#funktsional-bybit-autopilot" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Функціонал Bybit AutoPilot</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#povniy-perelik-diy-action" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Повний перелік дій (ACTION)</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#zagalna-skhema-roboti-diy" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Загальна схема роботи дій</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#register-reyestratsiya-akaunta-na-bybit" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">register — Реєстрація акаунта на Bybit</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#login-login-v-akaunt" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">login — Логін в акаунт</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#2fa-pidklyuchennya-2fa" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">2fa — Підключення 2FA</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#deposit-otrimannya-adresi-depozitu" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">deposit — Отримання адреси депозиту</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#whitelist-dodavannya-adresi-v-whitelist" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">whitelist — Додавання адреси в Whitelist</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#withdraw-vivedennya-koshtiv" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">withdraw — Виведення коштів</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#algoritm-povnogo-vivedennya-full-withdrawyes" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Алгоритм повного виведення (full_withdraw=YES)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#master-gamanets-avto-whitelist-0-komisiy-nevidstezhuvaniy-vivid" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Мастер-гаманець — Авто-whitelist, $0 комісій, невідстежуваний вивід</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sell-prodazh-usikh-aktiviv" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">sell — Продаж усіх активів</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#api-otrimannya-api-klyuchiv" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">api — Отримання API ключів</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#trading-avtomatichniy-treyding" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">trading — Автоматичний трейдинг</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#ts--tokensplash" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">ts — TokenSplash</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#puzzle-hunt-pazl-khant" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">puzzle_hunt — Пазл-хант</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#link-otrimati-posilannya-kyc-verifikatsiyi" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">link — Отримати посилання KYC верифікації</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#learn-prokhodzhennya-navchannya-ta-vstanovlennya-avatara" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">learn — Проходження навчання та встановлення аватара</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#profit-rozrakhunok-pributku" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">profit — Розрахунок прибутку</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#buy-kupivlya-aktivu" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">buy — Купівля активу</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#limit-buy-kupivlya-limitnim-orderom" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">limit_buy — Купівля лімітним ордером</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#limit-vipadkova-limitna-torgivlya" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">limit — Випадкова лімітна торгівля</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#trading-limit-torgoviy-obyem-limitnimi-orderami" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">trading_limit — Торговий об’єм лімітними ордерами</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#limit-sell-prodazh-limitnim-orderom-na-funding" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">limit_sell — Продаж лімітним ордером на Funding</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#futures-fyuchersna-torgivlya" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">futures — Ф’ючерсна торгівля</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#futures-smart-rozumna-fyuchersna-torgivlya" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">futures_smart — Розумна ф’ючерсна торгівля</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#stake-earn-steyking-usdt-flexible-savings" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">stake / earn — Стейкінг USDT (Flexible Savings)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#unstake-unearn-vivedennya-zi-steykingu" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">unstake / unearn — Виведення зі стейкінгу</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#lp-reyestratsiya-v-launchpad-iventi" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">lp — Реєстрація в LaunchPad івенті</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#ref-code-vityagti-referalniy-kod" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">ref_code — Витягти реферальний код</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#zvedena-tablitsya-diy" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Зведена таблиця дій</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#nalashtuvannya-konfiguratsiyi" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Налаштування конфігурації</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#bybit-global-domeni" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">🌐 Bybit Global домени</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#kyc-statusi" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">KYC статуси</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#nalashtuvannya-poshti-imap" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Налаштування пошти (IMAP)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#shvidkiy-start-pislya-pokupki" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Швидкий старт після покупки</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#pokupka" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Покупка</span> </a>  </li> </ul> </nav></starlight-toc></div></div> </div> </aside> <div class="main-pane astro-67yu43on">  <main data-pagefind-body class="astro-bguv2lll" lang="uk" dir="ltr">   <script type="module" src="/docs/_astro/MarkdownContent.astro_astro_type_script_index_0_lang.Be01RnYk.js"></script> <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <h1 id="_top" class="astro-j6tvhyss">Bybit AutoPilot</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content">  <div class="sl-heading-wrapper level-h1"><h1 id="autopilot-software-maksimalna-avtomatizatsiya-na-bybit">AutoPilot Software — Максимальна Автоматизація на Bybit</h1><a class="sl-anchor-link" href="#autopilot-software-maksimalna-avtomatizatsiya-na-bybit"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “AutoPilot Software — Максимальна Автоматизація на Bybit”</span></a></div>
+<p><strong>Підтримка AdsPower &#x26; Dolphin &#x26; Vision &#x26; Afina</strong>
+<strong>Windows / MacOS / Linux</strong></p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="zabudte-pro-ruchnu-robotu-rishennya-znaydeno">Забудьте про ручну роботу: рішення знайдено</h2><a class="sl-anchor-link" href="#zabudte-pro-ruchnu-robotu-rishennya-znaydeno"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Забудьте про ручну роботу: рішення знайдено”</span></a></div>
+<p>Bybit — одна з провідних криптовалютних бірж світу з можливостями для заробітку через Airdrop, TokenSplash події та спеціальні івенти.</p>
+<p>Ручне управління акаунтами потребує багато часу, зусиль і пов’язане з ризиком помилок. AutoPilot Software перетворює рутину в автоматичний процес. Інтеграція з AdsPower, Dolphin, Vision та Afina забезпечує захист цифрових відбитків та безпечну роботу з багатьма акаунтами.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="yak-pratsyuye-autopilot">Як працює AutoPilot</h2><a class="sl-anchor-link" href="#yak-pratsyuye-autopilot"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Як працює AutoPilot”</span></a></div>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;📋 Заповніть таблицю&#x22;] --> B[&#x22;⚙️ Налаштуйте конфіг&#x22;]
+    B --> C[&#x22;🚀 Запустіть AutoPilot&#x22;]
+    C --> D[&#x22;✅ Результат у таблиці&#x22;]
+
+    style A fill:#4CAF50,color:#fff,stroke:none,rx:12
+    style B fill:#2196F3,color:#fff,stroke:none,rx:12
+    style C fill:#FF9800,color:#fff,stroke:none,rx:12
+    style D fill:#9C27B0,color:#fff,stroke:none,rx:12" data-status="loading"></div>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="osnovni-perevagi">Основні переваги</h2><a class="sl-anchor-link" href="#osnovni-perevagi"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Основні переваги”</span></a></div>
+<p><strong>Економія часу:</strong>
+Автоматизація дозволяє одночасно керувати сотнями акаунтів</p>
+<p><strong>Зручність у використанні:</strong>
+Займайтеся своїми справами поки AutoPilot автоматизує дії у фоновому режимі</p>
+<p><strong>Інтеграція з AdsPower / Dolphin / Vision / Afina:</strong>
+Безпечне та анонімне використання акаунтів. AutoPilot автоматично запускає та інтегрується у створену антидетект сесію браузера з унікальними відбитками</p>
+<p><strong>Паралельна автоматизація:</strong>
+Автоматизуйте безліч акаунтів одночасно</p>
+<p><strong>Зручна таблиця обліку акаунтів:</strong>
+Ведіть облік усіх акаунтів в одній Excel таблиці. Можна додавати нові стовпці, змінювати порядок для себе — головне не змінювати назву стовпців із шаблону</p>
+<p><strong>Режими швидкості:</strong></p>
+<ul>
+<li><strong>FAST</strong> — максимально швидка робота з мінімальними затримками</li>
+<li><strong>MEDIUM</strong> — середня швидкість, імітація людської поведінки, Smart Cursor, Human Typing</li>
+<li><strong>SLOW</strong> — повільна швидкість, повна імітація людської поведінки</li>
+</ul>
+<p><strong>Мультифункціональність:</strong>
+Налаштуйте будь-які дії для кожного акаунта. Наприклад, AutoPilot буде отримувати адресу депозиту для одних акаунтів, а на інших — виводити кошти</p>
+<p><strong>Автоматичні ланцюжки дій:</strong>
+Обирайте будь-яку дію — AutoPilot автоматично увійде в акаунт, якщо потрібен вхід. Також сам увімкне 2FA захист, якщо вона ще не підключена</p>
+<p><strong>Автогенерація паролів:</strong>
+При реєстрації AutoPilot згенерує надійний пароль, якщо він не вказаний</p>
+<p><strong>Повний продаж активів:</strong>
+Повне виведення з автоматичною конвертацією всіх активів у USDT</p>
+<p><strong>Логування:</strong>
+Повне логування результатів у <code dir="auto">logs/</code> та автоматичні бекапи таблиці у <code dir="auto">backup/</code></p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="funktsional-bybit-autopilot">Функціонал Bybit AutoPilot</h2><a class="sl-anchor-link" href="#funktsional-bybit-autopilot"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Функціонал Bybit AutoPilot”</span></a></div>
+<div class="mermaid" data-content="mindmap
+  root((Bybit AutoPilot))
+    Акаунти
+      Реєстрація
+      Логін
+      Перевірка KYC
+      Підключення 2FA
+      Навчання та аватар
+    Гаманці
+      Адреса депозиту
+      Whitelist адрес
+      Виведення коштів
+      Повне виведення
+    Спот торгівля
+      Маркет торгівля
+      Лімітна торгівля
+      Купівля / Продаж
+      Набивання об&#x27;єму
+    Ф&#x27;ючерси
+      Ф&#x27;ючерсна торгівля
+      Розумні ф&#x27;ючерси
+    Стейкінг
+      Earn / Stake
+      Unearn / Unstake
+    Івенти
+      TokenSplash
+      LaunchPad
+      Puzzle Hunt
+    Утиліти
+      API ключі
+      Підрахунок прибутку
+      Реферальний код
+      KYC посилання" data-status="loading"></div>
+<p>AutoPilot підтримує безліч автоматизованих дій для Bybit:</p>
+<ul>
+<li><strong>Реєстрація</strong> акаунтів на Bybit: звичайним методом, за реферальним посиланням</li>
+<li><strong>Логін</strong>: вхід в акаунт, перевірка верифікації та балансу</li>
+<li><strong>Перевірка KYC</strong>: перевірка рівня верифікації з відображенням країни, імені, документа</li>
+<li><strong>Керування 2FA</strong>: підключення двофакторної автентифікації</li>
+<li><strong>Навчання та аватар</strong>: проходження навчальних модулів та встановлення аватара профілю</li>
+<li><strong>Отримання адреси депозиту</strong> для кожного акаунта</li>
+<li><strong>Додавання адрес у whitelist</strong> з підтримкою різних мереж</li>
+<li><strong>Виведення коштів</strong> з акаунта, включаючи повне виведення з конвертацією всіх активів</li>
+<li><strong>Отримання API-ключів</strong> для торгівлі</li>
+<li><strong>Автоматичний трейдинг</strong>: маркет та лімітна торгівля, набивання об’єму у вказаних парах</li>
+<li><strong>Купівля / Продаж</strong>: купівля активів та продаж усіх монет за USDT</li>
+<li><strong>Ф’ючерсна торгівля</strong>: стандартна та розумна з post-only ордерами (економія 32% комісії)</li>
+<li><strong>Стейкінг</strong>: USDT Flexible Savings (earn / unearn)</li>
+<li><strong>TokenSplash</strong>: автоматична участь у івентах з виконанням завдань на депозит</li>
+<li><strong>LaunchPad</strong>: автоматична реєстрація в активних LaunchPad івентах</li>
+<li><strong>Puzzle Hunt</strong>: автоматичне проходження puzzle-завдань</li>
+<li><strong>Реферальні коди</strong>: автоматичне витягування реферальних кодів акаунтів</li>
+<li><strong>KYC посилання</strong>: отримання SUMSUB посилання для верифікації</li>
+<li><strong>Підрахунок прибутку</strong>: автоматичний аналіз ВИВЕДЕННЯ - ДЕПОЗИТ</li>
+<li>Автоматичне розв’язання капчі, отримання кодів верифікації та багато іншого</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="povniy-perelik-diy-action">Повний перелік дій (ACTION)</h2><a class="sl-anchor-link" href="#povniy-perelik-diy-action"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Повний перелік дій (ACTION)”</span></a></div>
+<blockquote>
+<p>➕ <strong>Кілька дій за один прохід.</strong> У комірку <code dir="auto">ACTION</code> можна записати ланцюжок через <code dir="auto">+</code> — наприклад <code dir="auto">register+learn+whitelist</code>. Кроки виконуються по черзі на кожному акаунті, браузер профілю між ними не перезапускається. Докладніше — <a href="/docs/ua/faq/#action-chains">FAQ → Ланцюжки дій</a>.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="zagalna-skhema-roboti-diy">Загальна схема роботи дій</h3><a class="sl-anchor-link" href="#zagalna-skhema-roboti-diy"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Загальна схема роботи дій”</span></a></div>
+<div class="mermaid" data-content="flowchart TD
+    START[&#x22;🎯 Обираєте ACTION у таблиці&#x22;] --> AUTO{&#x22;AutoPilot запущено?&#x22;}
+    AUTO -->|Так| LOGIN{&#x22;Потрібен вхід?&#x22;}
+    LOGIN -->|Так| DO_LOGIN[&#x22;🔑 Автоматичний логін&#x22;]
+    LOGIN -->|Ні| TFA{&#x22;Потрібен 2FA?&#x22;}
+    DO_LOGIN --> TFA
+    TFA -->|Не підключено| DO_2FA[&#x22;🔐 Автопідключення 2FA&#x22;]
+    TFA -->|Підключено| ACTION[&#x22;⚡ Виконання дії&#x22;]
+    DO_2FA --> ACTION
+    ACTION --> RESULT[&#x22;📊 Результат записано в таблицю&#x22;]
+
+    style START fill:#FF9800,color:#fff,stroke:none,rx:10
+    style DO_LOGIN fill:#2196F3,color:#fff,stroke:none,rx:10
+    style DO_2FA fill:#9C27B0,color:#fff,stroke:none,rx:10
+    style ACTION fill:#4CAF50,color:#fff,stroke:none,rx:10
+    style RESULT fill:#607D8B,color:#fff,stroke:none,rx:10" data-status="loading"></div>
+<blockquote>
+<p>Усі дії, крім реєстрації, автоматично увійдуть в акаунт, якщо потрібно. Дії whitelist та withdraw автоматично підключать 2FA, якщо не встановлено.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="register-reyestratsiya-akaunta-na-bybit"><code dir="auto">register</code> — Реєстрація акаунта на Bybit</h3><a class="sl-anchor-link" href="#register-reyestratsiya-akaunta-na-bybit"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “register — Реєстрація акаунта на Bybit”</span></a></div>
+<p>Реєстрація акаунта з автоматичним розв’язанням капчі та підтвердженням email</p>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;Відкриття сторінки&#x22;] --> B[&#x22;Введення email та пароля&#x22;]
+    B --> C[&#x22;Розв&#x27;язання капчі&#x22;]
+    C --> D[&#x22;Підтвердження Email&#x22;]
+    D --> E[&#x22;✅ Успіх&#x22;]
+
+    style E fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потребує</strong></td><td><code dir="auto">[EMAIL] mail_provider</code></td><td>Поштовий сервіс (yahoo, rambler, icloud, outlook, gmail…)</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[PROFILE] mail</code></td><td>Адреса поштової скриньки</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[EMAIL] mail_password</code></td><td>Пароль пошти / IMAP пароль</td></tr><tr><td>Опціонально</td><td><code dir="auto">[PROFILE] bybit_password</code></td><td>Пароль від акаунта (AutoPilot генерує, якщо порожній)</td></tr><tr><td>Опціонально</td><td><code dir="auto">[REG] referral_code</code></td><td>Реферальний код</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[REG] is_registered</code></td><td>Статус реєстрації (1 — зареєстрований)</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[REGISTER] SUCCESS</code> або опис помилки</td></tr></tbody></table>
+<blockquote>
+<p>Для старту реєстрації достатньо заповнити 4 стовпці: profile_id, mail_provider, mail, mail_password</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="login-login-v-akaunt"><code dir="auto">login</code> — Логін в акаунт</h3><a class="sl-anchor-link" href="#login-login-v-akaunt"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “login — Логін в акаунт”</span></a></div>
+<p>Вхід в акаунт, перевірка верифікації та балансу</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потребує</strong></td><td><code dir="auto">[REG] is_registered</code></td><td>1 (зареєстрований)</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[PROFILE] mail</code></td><td>Адреса пошти</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[PROFILE] bybit_password</code></td><td>Пароль від акаунта</td></tr><tr><td>Опціонально</td><td><code dir="auto">[2FA] totp_secret_code</code></td><td>Секретний код 2FA</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[KYC] kyc_status</code></td><td>Рівень верифікації</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[BALANCE] account_balance</code></td><td>Баланс акаунта в USDT</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[LOGIN] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="2fa-pidklyuchennya-2fa"><code dir="auto">2fa</code> — Підключення 2FA</h3><a class="sl-anchor-link" href="#2fa-pidklyuchennya-2fa"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “2fa — Підключення 2FA”</span></a></div>
+<p>Автоматичне встановлення Google Authenticator на акаунті</p>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;Налаштування безпеки&#x22;] --> B[&#x22;Отримання QR коду&#x22;]
+    B --> C[&#x22;Витягування секрету&#x22;]
+    C --> D[&#x22;Генерація TOTP&#x22;]
+    D --> E[&#x22;Підтвердження кодами&#x22;]
+    E --> F[&#x22;✅ 2FA підключено&#x22;]
+
+    style F fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[2FA] totp_secret_code</code></td><td>Секретний код 2FA (зберігається автоматично)</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[2FA] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="deposit-otrimannya-adresi-depozitu"><code dir="auto">deposit</code> — Отримання адреси депозиту</h3><a class="sl-anchor-link" href="#deposit-otrimannya-adresi-depozitu"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “deposit — Отримання адреси депозиту”</span></a></div>
+<p>Отримати адресу депозиту для поповнення акаунта</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потребує</strong></td><td><code dir="auto">[DEPOSIT] deposit_coin</code></td><td>Монета для депозиту (наприклад: <code dir="auto">USDT</code>)</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[DEPOSIT] deposit_chain</code></td><td>Мережа — <strong>канонічний код Bybit</strong> (наприклад: <code dir="auto">TRX</code> для TRC20, <code dir="auto">BSC</code> для BEP20, <code dir="auto">ETH</code> для ERC20). Повний список кодів — нижче 👇</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[DEPOSIT] deposit_address</code></td><td>Адреса депозиту</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[DEPOSIT] SUCCESS</code></td></tr></tbody></table>
+<blockquote>
+<p>⚠️ <strong>Пишіть код мережі — не «TRC20» / «Aptos» / «ERC20», i без пробілів.</strong> Значення йде в Bybit як є. Невірний код <strong>або зайвий пробіл</strong> (<code dir="auto">BSC </code> замість <code dir="auto">BSC</code>) → Bybit поверне <code dir="auto">ret_code 10016 svc error</code>, i адреса не прийде.</p>
+</blockquote>
+<p><strong>Коди мереж USDT</strong> (список Bybit може змінюватися):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Введіть у <code dir="auto">deposit_chain</code></th><th>Мережа на Bybit</th><th>Memo</th></tr></thead><tbody><tr><td><code dir="auto">TRX</code></td><td>TRON (TRC20)</td><td>—</td></tr><tr><td><code dir="auto">BSC</code></td><td>BSC (BEP20)</td><td>—</td></tr><tr><td><code dir="auto">ETH</code></td><td>Ethereum (ERC20)</td><td>—</td></tr><tr><td><code dir="auto">SOL</code></td><td>Solana</td><td>—</td></tr><tr><td><code dir="auto">TON</code></td><td>TON</td><td>✅ потрібен</td></tr><tr><td><code dir="auto">APTOS</code></td><td>Aptos</td><td>—</td></tr><tr><td><code dir="auto">ARBI</code></td><td>Arbitrum One</td><td>—</td></tr><tr><td><code dir="auto">OP</code></td><td>OP Mainnet</td><td>—</td></tr><tr><td><code dir="auto">MATIC</code></td><td>Polygon PoS</td><td>—</td></tr><tr><td><code dir="auto">CAVAX</code></td><td>Avalanche C-Chain</td><td>—</td></tr><tr><td><code dir="auto">MANTLE</code></td><td>Mantle</td><td>—</td></tr><tr><td><code dir="auto">PLASMA</code></td><td>Plasma</td><td>—</td></tr><tr><td><code dir="auto">HYPEREVM</code></td><td>HyperEVM</td><td>—</td></tr><tr><td><code dir="auto">BERA</code></td><td>Berachain</td><td>—</td></tr><tr><td><code dir="auto">CORN</code></td><td>Corn</td><td>—</td></tr><tr><td><code dir="auto">MONAD</code></td><td>Monad</td><td>—</td></tr><tr><td><code dir="auto">KLAY</code></td><td>Kaia</td><td>—</td></tr><tr><td><code dir="auto">CELO</code></td><td>Celo</td><td>—</td></tr><tr><td><code dir="auto">KAVAEVM</code></td><td>Kava EVM</td><td>—</td></tr></tbody></table>
+<blockquote>
+<p>💡 Ті самі коди працюють у <code dir="auto">whitelist_chain</code> та <code dir="auto">withdraw_chain</code>. Якщо помилитесь — AutoPilot виведе актуальний список мереж прямо в лог.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="whitelist-dodavannya-adresi-v-whitelist"><code dir="auto">whitelist</code> — Додавання адреси в Whitelist</h3><a class="sl-anchor-link" href="#whitelist-dodavannya-adresi-v-whitelist"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “whitelist — Додавання адреси в Whitelist”</span></a></div>
+<p>Увімкнення whitelist режиму та додавання адреси для виведення</p>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;Увімкнення Whitelist&#x22;] --> B[&#x22;Підтвердження 2FA&#x22;]
+    B --> C[&#x22;Додавання адреси&#x22;]
+    C --> D[&#x22;Вибір мережі та memo&#x22;]
+    D --> E[&#x22;✅ Адресу додано&#x22;]
+
+    style E fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потребує</strong></td><td><code dir="auto">[WHITELIST] whitelist_address</code></td><td>Адреса гаманця</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[WHITELIST] whitelist_chain</code></td><td>Мережа — <strong>канонічний код Bybit</strong> (<code dir="auto">TRX</code>, <code dir="auto">BSC</code>, <code dir="auto">ETH</code>, <code dir="auto">APTOS</code>…). Коди — у таблиці вище, у розділі <code dir="auto">deposit</code></td></tr><tr><td>Опціонально</td><td><code dir="auto">[WHITELIST] whitelist_memo</code></td><td>Memo/Tag (якщо потрібно мережею)</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[WHITELIST] whitelist_status</code></td><td>1 — успішно додано</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[WHITELIST] SUCCESS</code></td></tr></tbody></table>
+<blockquote>
+<p>Якщо 2FA не підключено — AutoPilot автоматично підключить його перед додаванням у whitelist</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="withdraw-vivedennya-koshtiv"><code dir="auto">withdraw</code> — Виведення коштів</h3><a class="sl-anchor-link" href="#withdraw-vivedennya-koshtiv"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “withdraw — Виведення коштів”</span></a></div>
+<p>Швидке та стабільне виведення коштів — переведено на запити, без взаємодії з елементами інтерфейсу, з автоматичним підтвердженням (email + 2FA).</p>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;Вибір монети&#x22;] --> B[&#x22;Введення адреси та мережі&#x22;]
+    B --> C[&#x22;Вказання суми&#x22;]
+    C --> D[&#x22;Підтвердження кодами&#x22;]
+    D --> E[&#x22;✅ Кошти відправлено&#x22;]
+
+    style E fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потребує</strong></td><td><code dir="auto">[WITHDRAW] withdraw_coin</code></td><td>Монета для виведення (наприклад: <code dir="auto">USDT</code>)</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[WITHDRAW] withdraw_chain</code></td><td>Мережа виведення — канонічна назва Bybit (наприклад: <code dir="auto">TRX</code> для TRC20, <code dir="auto">APTOS</code>, <code dir="auto">BSC</code> для BEP20, <code dir="auto">ETH</code> для ERC20). При помилці AutoPilot виведе в лог повний список підтримуваних мереж для обраної монети</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[WITHDRAW] withdraw_address</code></td><td>Адреса гаманця отримувача</td></tr><tr><td>Опціонально</td><td><code dir="auto">[WITHDRAW] withdraw_memo</code></td><td>Memo/Tag (потрібно для TON, XRP та інших мереж з memo)</td></tr><tr><td>Опціонально</td><td><code dir="auto">[WITHDRAW] withdraw_amount</code></td><td>Сума виведення: фіксоване число USDT (<code dir="auto">50</code> = 50 USDT), відсоток від балансу (<code dir="auto">50%</code> = половина) або <code dir="auto">max</code> / <code dir="auto">all</code> / порожньо = весь баланс</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[WITHDRAW] SUCCESS</code></td></tr></tbody></table>
+<blockquote>
+<p>Якщо 2FA не підключено — AutoPilot автоматично підключить його перед виведенням.</p>
+<p>💡 <strong>Мережа пишеться ім’ям Bybit</strong>: TRC20 → <code dir="auto">TRX</code>, BEP20 → <code dir="auto">BSC</code>, ERC20 → <code dir="auto">ETH</code>, Polygon → <code dir="auto">MATIC</code>. Помилитесь — дія зупиниться, у логу з’явиться список робочих мереж.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h4"><h4 id="pidkazka-yaku-merezhu-obrati-dlya-usdt">Підказка: яку мережу обрати для USDT</h4><a class="sl-anchor-link" href="#pidkazka-yaku-merezhu-obrati-dlya-usdt"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Підказка: яку мережу обрати для USDT”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Мережа</th><th>Комісія</th><th>Мін. вивід</th></tr></thead><tbody><tr><td><code dir="auto">APTOS</code></td><td>0 USDT</td><td>0</td></tr><tr><td><code dir="auto">TRX</code></td><td>1 USDT</td><td>2.6</td></tr><tr><td><code dir="auto">BSC</code></td><td>0.2 USDT</td><td>10</td></tr><tr><td><code dir="auto">MATIC</code></td><td>0.1 USDT</td><td>1</td></tr><tr><td><code dir="auto">ARBI</code></td><td>0.1 USDT</td><td>1</td></tr><tr><td><code dir="auto">OP</code></td><td>1 USDT</td><td>1</td></tr><tr><td><code dir="auto">SOL</code></td><td>0.5 USDT</td><td>10</td></tr><tr><td><code dir="auto">ETH</code></td><td>0.8 USDT</td><td>6</td></tr><tr><td><code dir="auto">TON</code></td><td>0.15 USDT</td><td>1</td></tr></tbody></table>
+<blockquote>
+<p>Це не повний список — у Bybit ~20 мереж для USDT. Повний актуальний список з’явиться в логі, якщо вписати неіснуючу мережу. Комісії та мінімуми Bybit може змінювати — перевіряйте в інтерфейсі біржі перед масовим виведенням.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="algoritm-povnogo-vivedennya-full-withdrawyes">Алгоритм повного виведення (<code dir="auto">full_withdraw=YES</code>)</h3><a class="sl-anchor-link" href="#algoritm-povnogo-vivedennya-full-withdrawyes"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Алгоритм повного виведення (full_withdraw=YES)”</span></a></div>
+<p>Якщо в конфігу увімкнено <code dir="auto">full_withdraw=YES</code>, AutoPilot виконає повний продаж усіх активів перед виведенням:</p>
+<div class="mermaid" data-content="flowchart TD
+    A[&#x22;Трансфер з FUNDING у TRADING&#x22;] --> B[&#x22;Продаж усіх активів за USDT&#x22;]
+    B --> C[&#x22;Конвертація залишків у MNT&#x22;]
+    C --> D[&#x22;Докупка MNT за потреби&#x22;]
+    D --> E[&#x22;Продаж MNT за USDT&#x22;]
+    E --> F[&#x22;Повернення USDT у FUNDING&#x22;]
+    F --> G[&#x22;✅ Виведення&#x22;]
+
+    style A fill:#2196F3,color:#fff,stroke:none,rx:8
+    style B fill:#FF9800,color:#fff,stroke:none,rx:8
+    style G fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="master-gamanets-avto-whitelist-0-komisiy-nevidstezhuvaniy-vivid">Мастер-гаманець — Авто-whitelist, $0 комісій, невідстежуваний вивід</h3><a class="sl-anchor-link" href="#master-gamanets-avto-whitelist-0-komisiy-nevidstezhuvaniy-vivid"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Мастер-гаманець — Авто-whitelist, $0 комісій, невідстежуваний вивід”</span></a></div>
+<p>Виводьте з сотень акаунтів <strong>не вводячи жодної адреси вручну</strong>. AutoPilot створює унікальний гаманець для кожного акаунта, сам додає його в whitelist, виводить з <strong>нульовою комісією</strong> i збирає все на ваш мастер-гаманець. Кожен акаунт виводить на <strong>свою адресу</strong> — зв’язати їх між собою неможливо.</p>
+<div class="mermaid" data-content="flowchart TD
+    A[&#x22;🔐 setup_aptos_hd&#x22;] --> B[&#x22;🏷️ whitelist_aptos_hd&#x22;]
+    B --> C[&#x22;💳 withdraw&#x22;]
+    C --> D[&#x22;📥 Distribute&#x22;]
+
+    style A fill:#9C27B0,color:#fff,stroke:none,rx:8
+    style B fill:#FF5722,color:#fff,stroke:none,rx:8
+    style C fill:#FF9800,color:#fff,stroke:none,rx:8
+    style D fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<div class="sl-heading-wrapper level-h4"><h4 id="setup-aptos-hd-stvorennya-master-gamantsya"><code dir="auto">setup_aptos_hd</code> — Створення мастер-гаманця</h4><a class="sl-anchor-link" href="#setup-aptos-hd-stvorennya-master-gamantsya"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “setup_aptos_hd — Створення мастер-гаманця”</span></a></div>
+<p>Запускається один раз. Створює ваш мастер-гаманець та показує секретну фразу (12 слів). Збережіть її — вона контролює всі ваші адреси.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потрібно</strong></td><td>Конфіг: <code dir="auto">activation_key</code></td><td>Пароль шифрування</td></tr><tr><td><strong>Результат</strong></td><td>Файл: <code dir="auto">aptos_master_seed.enc</code></td><td>Зашифрована секретна фраза</td></tr><tr><td><strong>Результат</strong></td><td>Файл: <code dir="auto">aptos_hd_wallet_data.csv</code></td><td>Усі адреси та приватні ключі</td></tr></tbody></table>
+<blockquote>
+<p>⚠️ <strong>Збережіть секретну фразу!</strong> Показується один раз. Втратили фразу = втратили доступ до всіх адрес та коштів.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h4"><h4 id="whitelist-aptos-hd-avtomatichniy-whitelist"><code dir="auto">whitelist_aptos_hd</code> — Автоматичний whitelist</h4><a class="sl-anchor-link" href="#whitelist-aptos-hd-avtomatichniy-whitelist"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “whitelist_aptos_hd — Автоматичний whitelist”</span></a></div>
+<p>Запускається на всіх профілях. Для кожного акаунта AutoPilot:</p>
+<ol>
+<li>Створює унікальну Aptos-адресу (різну для кожного акаунта)</li>
+<li>Заходить на Bybit, додає її в whitelist</li>
+<li>Підтверджує email/2FA — повністю автоматично</li>
+<li>Зберігає все в таблицю</li>
+</ol>
+<p>Ніякої ручної роботи. Не потрібно створювати гаманці, копіювати адреси чи заповнювати таблицю.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td>Автостворення</td><td><code dir="auto">[WHITELIST] whitelist_address</code></td><td>Унікальна Aptos-адреса</td></tr><tr><td>Автовстановлення</td><td><code dir="auto">[WHITELIST] whitelist_network</code></td><td><code dir="auto">APTOS</code></td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[WHITELIST_HD] SUCCESS</code></td></tr></tbody></table>
+<blockquote>
+<p>🔁 <strong>Можна перезапускати:</strong> вже є адреса? AutoPilot використає її — дублікатів не буде.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h4"><h4 id="zbir-koshtiv-vkladka-distribute">Збір коштів: вкладка Distribute</h4><a class="sl-anchor-link" href="#zbir-koshtiv-vkladka-distribute"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Збір коштів: вкладка Distribute”</span></a></div>
+<p>Після виведення USDT лежать на індивідуальних адресах. Відкрийте вкладку <strong>Distribute</strong> в десктоп-додатку:</p>
+<ul>
+<li>Обрати профілі → Переглянути → Один клік → Все зібрано на мастер-гаманець</li>
+<li>Газ: ~0.002 APT на профіль (долі цента)</li>
+<li>Працює в обидва боки: збір з акаунтів або роздача на них</li>
+</ul>
+<p><strong>Чому Aptos?</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Мережа</th><th>Комісія Bybit</th><th>Швидкість</th></tr></thead><tbody><tr><td><strong>Aptos</strong></td><td><strong>$0</strong></td><td>~1 сек</td></tr><tr><td>Arbitrum</td><td>$0.1</td><td>~1 сек</td></tr><tr><td>TRC20</td><td>$1</td><td>~3 хв</td></tr><tr><td>ERC20</td><td>$1-5</td><td>~5 хв</td></tr></tbody></table>
+<blockquote>
+<p>💰 <strong>Чим більше акаунтів — тим більше економите. Кожне виведення через TRC20/ERC20 коштує $1-5. Через Aptos = $0.</strong></p>
+</blockquote>
+<blockquote>
+<p>🕵️ <strong>Приватність:</strong> кожен акаунт → своя адреса → спільних адрес немає → зв’язати акаунти між собою неможливо.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="sell-prodazh-usikh-aktiviv"><code dir="auto">sell</code> — Продаж усіх активів</h3><a class="sl-anchor-link" href="#sell-prodazh-usikh-aktiviv"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “sell — Продаж усіх активів”</span></a></div>
+<p>Конвертація всіх монет на акаунті в USDT маркет-ордерами</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[BALANCE] account_balance</code></td><td>Баланс після продажу</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[SELL] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="api-otrimannya-api-klyuchiv"><code dir="auto">api</code> — Отримання API ключів</h3><a class="sl-anchor-link" href="#api-otrimannya-api-klyuchiv"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “api — Отримання API ключів”</span></a></div>
+<p>Створення API ключа з правами для SPOT та Futures торгівлі</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td>Опціонально</td><td><code dir="auto">[API] api_whitelist_ip</code></td><td>IP для whitelist (опціонально)</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[API] api_key</code></td><td>Отриманий API ключ</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[API] api_secret</code></td><td>Секретний ключ API</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[API] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="trading-avtomatichniy-treyding"><code dir="auto">trading</code> — Автоматичний трейдинг</h3><a class="sl-anchor-link" href="#trading-avtomatichniy-treyding"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “trading — Автоматичний трейдинг”</span></a></div>
+<p>Торгівля та набивання об’єму маркет ордерами з підтримкою кількох монет</p>
+<div class="mermaid" data-content="flowchart TD
+    START[&#x22;⚡ Запуск торгівлі&#x22;] --> COIN[&#x22;Вибір пари зі списку&#x22;]
+    COIN --> BUY[&#x22;📈 Купівля за маркетом&#x22;]
+    BUY --> WAIT1[&#x22;⏳ Випадкова затримка&#x22;]
+    WAIT1 --> SELL[&#x22;📉 Продаж за маркетом&#x22;]
+    SELL --> CHECK{&#x22;Усі цикли пройдено?&#x22;}
+    CHECK -->|Ні| WAIT2[&#x22;⏳ Затримка між циклами&#x22;]
+    WAIT2 --> BUY
+    CHECK -->|Так| NEXT{&#x22;Є ще монети?&#x22;}
+    NEXT -->|Так| COIN
+    NEXT -->|Ні| DONE[&#x22;✅ Звіт: об&#x27;єм та комісії&#x22;]
+
+    style START fill:#FF9800,color:#fff,stroke:none,rx:10
+    style BUY fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style SELL fill:#f44336,color:#fff,stroke:none,rx:8
+    style DONE fill:#607D8B,color:#fff,stroke:none,rx:10" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Актив для торгівлі (наприклад: <code dir="auto">BTC</code> або <code dir="auto">BTC,ETH,SOL</code>)</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_amount</code></td><td>Розмір ордера в USDT (наприклад: <code dir="auto">10</code> або <code dir="auto">10,20,5</code>)</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_cycles</code></td><td>К-сть циклів купівлі-продажу (наприклад: <code dir="auto">3</code> або <code dir="auto">3,5,2</code>)</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[TRADING] VOLUME: об'єм, FEES: комісії</code></td></tr></tbody></table>
+<blockquote>
+<p><strong>Мульти-монети</strong>: вкажіть через кому кілька монет, розмірів та циклів — AutoPilot буде торгувати ними послідовно.
+Приклад: <code dir="auto">BTC,ETH</code> + <code dir="auto">10,20</code> + <code dir="auto">3,5</code> = 3 цикли BTC по 10 USDT, потім 5 циклів ETH по 20 USDT</p>
+</blockquote>
+<blockquote>
+<p><strong>Формула об’єму</strong>: цикли x розмір ордера x 2 (купівля + продаж)
+Приклад: 3 цикли по 10 USDT = 3 x 10 x 2 = <strong>60 USDT</strong> об’єму</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="ts--tokensplash"><code dir="auto">ts</code> — TokenSplash</h3><a class="sl-anchor-link" href="#ts--tokensplash"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “ts — TokenSplash”</span></a></div>
+<p>Автоматична участь у TokenSplash івентах на Bybit. Дія виконується у два кроки: <strong>реєстрація в івенті</strong> та (опційно) <strong>виконання завдання на торгівлю</strong>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TS] code</code></td><td>Код івента (з посилання <code dir="auto">…/token-splash/detail?code=</code>)</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td>Статус реєстрації/завдання (див. нижче)</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h4"><h4 id="yak-tse-pratsyuye">Як це працює</h4><a class="sl-anchor-link" href="#yak-tse-pratsyuye"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Як це працює”</span></a></div>
+<ol>
+<li><strong>Реєстрація (участь).</strong> Пілот за потреби сам логіниться, перевіряє KYC i натискає «Участвовать» через API біржі. <strong>Баланс для цього не потрібен</strong> — навіть акаунт з 0 USDT буде зареєстрований в івенті.</li>
+<li><strong>Завдання на торгівлю</strong> (керується конфігом <code dir="auto">ts_order</code>). Якщо на акаунті є USDT, пілот купує токен івента та одразу продає його (1 купівля + 1 продаж маркет-ордерами) — це закриває «завдання на депозит» івента. Розмір кожного ордера — випадкове число між двома значеннями <code dir="auto">ts_order</code>.</li>
+</ol>
+<div class="sl-heading-wrapper level-h4"><h4 id="zalezhnist-vid-balansu">Залежність від балансу</h4><a class="sl-anchor-link" href="#zalezhnist-vid-balansu"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Залежність від балансу”</span></a></div>
+<ul>
+<li><strong>Немає / 0 USDT</strong> → пілот лише реєструється в івенті. Якщо зареєструватися не вдалося — пише причину в таблицю.</li>
+<li><strong>Є баланс</strong> (вистачає на розмір ордера; ~60 USDT із запасом) → після реєстрації ще й торгує купити/продати, щоб закрити завдання.</li>
+</ul>
+<blockquote>
+<p>Щоб акаунти <strong>лише реєструвалися</strong> (без торгівлі), поставте <code dir="auto">ts_order=0,0</code>.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h4"><h4 id="nalashtuvannya-ts-order-u-autopilotconfig">Налаштування <code dir="auto">ts_order</code> (у <code dir="auto">AutoPilot.config</code>)</h4><a class="sl-anchor-link" href="#nalashtuvannya-ts-order-u-autopilotconfig"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Налаштування ts_order (у AutoPilot.config)”</span></a></div>
+<div class="expressive-code"><link rel="stylesheet" href="/docs/_astro/ec.v4551.css"><script type="module" src="/docs/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="ini"><code><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Розмір ордера завдання в USDT — випадково між MIN та MAX</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">ts_order</span><span style="--0:#D6DEEB;--1:#403F53">=50,55</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="# Розмір ордера завдання в USDT — випадково між MIN та MAXts_order=50,55"><div></div></button></div></figure></div>
+<ul>
+<li><code dir="auto">ts_order=50,55</code> → кожен ордер випадковий <strong>50–55 USDT</strong> (купити на ~50–55 i продати — завдання на торгівлю виконано).</li>
+<li><code dir="auto">ts_order=0,0</code> → завдання на торгівлю <strong>пропустити</strong>, лише зареєструватися.</li>
+<li>Коментар <code dir="auto">(random 55-100)</code> у дефолтному конфігу — просто приклад; реальний розмір береться з ваших <code dir="auto">MIN,MAX</code>.</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="statusi-v-result-status">Статуси в <code dir="auto">[RESULT] status</code></h4><a class="sl-anchor-link" href="#statusi-v-result-status"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Статуси в [RESULT] status”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Статус</th><th>Значення</th></tr></thead><tbody><tr><td><code dir="auto">[TS] {токен} - SUCCESS REGISTERED</code></td><td>Зареєстрований в івенті</td></tr><tr><td><code dir="auto">[TS] {токен} - ALREADY JOINED</code></td><td>Уже був зареєстрований раніше</td></tr><tr><td><code dir="auto">[TS] FAIL - NO KYC</code></td><td>Акаунт без верифікації</td></tr><tr><td><code dir="auto">[TS] FAIL - NO CODE - fill column "[TS] code"</code></td><td>Не заповнено <code dir="auto">[TS] code</code></td></tr><tr><td><code dir="auto">[TS] FAIL - Cannot get TokenSplash details</code></td><td>Біржа не повернула дані івента (невірний/прострочений код)</td></tr><tr><td><code dir="auto">[TS] FAIL {токен} - {причина}</code></td><td>Не вдалося зареєструватися</td></tr></tbody></table>
+<blockquote>
+<p>Якщо реєстрація не пройшла, біржа повертає причину відмови — <strong>мітку</strong>. AutoPilot записує її в <code dir="auto">[RESULT] status</code> у поле <code dir="auto">{причина}</code>.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="puzzle-hunt-pazl-khant"><code dir="auto">puzzle_hunt</code> — Пазл-хант</h3><a class="sl-anchor-link" href="#puzzle-hunt-pazl-khant"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “puzzle_hunt — Пазл-хант”</span></a></div>
+<p>Автоматичне проходження Puzzle Hunt завдань на Bybit: реєстрація, соціальні завдання, торгівля, щоденні чекіни</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потребує</strong></td><td><code dir="auto">[PUZZLE] event_code</code></td><td>Код пазлу (через кому для кількох)</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">DONE</code>, <code dir="auto">5/10</code> (прогрес), <code dir="auto">ENDED</code> або <code dir="auto">FAIL</code></td></tr></tbody></table>
+<blockquote>
+<p>Вкажіть кілька пазлів одразу: <code dir="auto">code1,code2,code3</code>. Зробіть стовпець типом <strong>text</strong>, щоб Excel не обрізав довгі коди.</p>
+</blockquote>
+<blockquote>
+<p>Дивіться <a href="/docs/faq/#62--puzzle-hunt-puzzle_hunt">FAQ → Puzzle Hunt</a> для детального опису, статусів та порад.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="link-otrimati-posilannya-kyc-verifikatsiyi"><code dir="auto">link</code> — Отримати посилання KYC верифікації</h3><a class="sl-anchor-link" href="#link-otrimati-posilannya-kyc-verifikatsiyi"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “link — Отримати посилання KYC верифікації”</span></a></div>
+<blockquote>
+<p>⚠️ <strong>Дія застаріла.</strong> Вручну отримувати посилання через <code dir="auto">link</code> більше не потрібно — для верифікацій використовуйте бота та розширення нижче.</p>
+</blockquote>
+<p><strong>Рекомендований спосіб:</strong></p>
+<ul>
+<li>🤖 <strong>Telegram-бот + Miniapp <a href="https://t.me/AutoPilotKYC_bot">@AutoPilotKYC_bot</a></strong> — автоматичні KYC-верифікації на платформі AutoPilot KYC. Детальніше: <a href="/docs/ua/kyc/autopilot-kyc-subscription/">KYC Платформа</a>.</li>
+<li>🧩 <strong>Безкоштовне розширення <a href="https://chromewebstore.google.com/detail/autopilot-link-generator/maogfegbjecdgkfnkemoalpbgodknmaa">AutoPilot Link Generator</a></strong> — генерує посилання верифікації для Bybit, MEXC, Bitget та довільних Sumsub/Onfido токенів прямо в браузері.</li>
+</ul>
+<p>Legacy-режим самої дії (витягує SUMSUB посилання для акаунта):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[LINK] SUCCESS</code> з URL верифікації</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="learn-prokhodzhennya-navchannya-ta-vstanovlennya-avatara"><code dir="auto">learn</code> — Проходження навчання та встановлення аватара</h3><a class="sl-anchor-link" href="#learn-prokhodzhennya-navchannya-ta-vstanovlennya-avatara"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “learn — Проходження навчання та встановлення аватара”</span></a></div>
+<p>Автоматичний «прогрів» акаунта через розділ <strong>Bybit Learn</strong>: дія ставить випадковий аватар профілю та проходить навчальні статті, виконуючи на кожній повний набір дій залученості (лайк, перегляд, коментар, додавання в обране, репост). Це робить акаунт «живішим» i зараховує прогрес у кампанії Bybit Learn — завдання за коментарі та репости статей приносять бали й нагороди.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потребує</strong></td><td>вхід в акаунт</td><td>Якщо профіль не залогінений — дія <strong>сама виконає вхід</strong> (логін + 2FA за потреби); <code dir="auto">[LEARN] FAIL - CAN'T LOGIN</code> лише якщо автологін не вдався</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[LEARN] SUCCESS</code> / <code dir="auto">[LEARN] PARTIAL</code> / <code dir="auto">[LEARN] FAIL</code> (див. нижче)</td></tr></tbody></table>
+<p><strong>Що робить дія:</strong></p>
+<ul>
+<li><strong>Аватар</strong> — бере випадковий аватар з галереї Bybit i ставить його профілю. Якщо аватар уже було встановлено раніше (запам’ятовується на сервері), крок пропускається — повторний запуск не змінює аватар.</li>
+<li><strong>5 випадкових статей</strong> — з файлу <code dir="auto">bybit_learn_links.txt</code> (91 посилання) випадково обираються 5 статей за запуск. Домен посилань автоматично підмінюється на домен профілю (<code dir="auto">learn.bybit.com</code> → <code dir="auto">learn.bybitglobal.com</code> тощо).</li>
+<li><strong>На кожній статті</strong> послідовно виконуються: <strong>лайк</strong> → <strong>перегляд</strong> → <strong>коментар</strong> (випадкова фраза з 15) → <strong>в обране</strong> (зірка) → <strong>репост</strong>. Коментар і репост додатково зараховуються як завдання кампанії Learn для нарахування нагород.</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="algoritm-roboti">Алгоритм роботи</h4><a class="sl-anchor-link" href="#algoritm-roboti"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Алгоритм роботи”</span></a></div>
+<div class="mermaid" data-content="flowchart TD
+    A[&#x22;🔍 Перевірка акаунта&#x22;] --> B{&#x22;Вже залогінений?&#x22;}
+    B -- &#x22;Так&#x22; --> C[&#x22;Читання bybit_learn_links.txt<br/>(91 посилання)&#x22;]
+    B -- &#x22;Ні&#x22; --> L[&#x22;Автоматичний вхід<br/>(логін + 2FA за потреби)&#x22;]
+    L --> M{&#x22;Вхід вдався?&#x22;}
+    M -- &#x22;Ні&#x22; --> X[&#x22;❌ [LEARN] FAIL - CAN&#x27;T LOGIN&#x22;]
+    M -- &#x22;Так&#x22; --> C
+    C --> D{&#x22;Аватар уже встановлено?&#x22;}
+    D -- &#x22;Так&#x22; --> F[&#x22;Вибір 5 випадкових статей<br/>+ підміна домену під профіль&#x22;]
+    D -- &#x22;Ні&#x22; --> E[&#x22;Встановлення випадкового аватара&#x22;]
+    E --> F
+    F --> G[&#x22;Підключення до кампанії Learn&#x22;]
+    G --> H[&#x22;Для кожної з 5 статей&#x22;]
+    H --> I[&#x22;Лайк → Перегляд → Коментар<br/>→ Обране → Репост&#x22;]
+    I --> J{&#x22;Залишились статті?&#x22;}
+    J -- &#x22;Так&#x22; --> H
+    J -- &#x22;Ні&#x22; --> K[&#x22;Запис підсумкового статусу&#x22;]
+    K --> S[&#x22;✅ [LEARN] SUCCESS / PARTIAL&#x22;]
+
+    style A fill:#2196F3,color:#fff,stroke:none,rx:8
+    style C fill:#2196F3,color:#fff,stroke:none,rx:8
+    style L fill:#3F51B5,color:#fff,stroke:none,rx:8
+    style E fill:#9C27B0,color:#fff,stroke:none,rx:8
+    style I fill:#FF9800,color:#fff,stroke:none,rx:8
+    style S fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style X fill:#F44336,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<p><strong>Статуси в <code dir="auto">[RESULT] status</code>:</strong></p>
+<ul>
+<li><code dir="auto">[LEARN] SUCCESS - Avatar set, 5/5 articles</code> — аватар встановлено і пройдено всі 5 статей.</li>
+<li><code dir="auto">[LEARN] PARTIAL - Avatar: YES/NO, N/5 articles</code> — виконано не все: аватар не встановився, або одна зі статей завершилася помилкою (лічильник пройдених статей падає до <code dir="auto">N &#x3C; 5</code>).</li>
+<li><code dir="auto">[LEARN] FAIL - ...</code> — не вдалося увійти (<code dir="auto">CAN'T LOGIN</code>), немає посилань (<code dir="auto">NO LINKS IN FILE</code>) або помилка читання файлу (<code dir="auto">LINKS FILE ERROR</code>).</li>
+</ul>
+<blockquote>
+<p>Якщо на конкретній статті дії залученості недоступні, лайк/коментар/обране/репост на ній пропускаються (зараховується лише перегляд), але стаття все одно вважається пройденою — на статус <code dir="auto">SUCCESS</code> це не впливає.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h4"><h4 id="fayl-bybit-learn-linkstxt">Файл <code dir="auto">bybit_learn_links.txt</code></h4><a class="sl-anchor-link" href="#fayl-bybit-learn-linkstxt"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Файл bybit_learn_links.txt”</span></a></div>
+<p>Тримайте файл <code dir="auto">bybit_learn_links.txt</code> у папці з пілотом — <strong>поруч із <code dir="auto">AutoPilot.exe</code></strong>. Дія читає його при кожному запуску і бере <strong>5 випадкових</strong> посилань. Файл можна редагувати: додавайте або прибирайте посилання <code dir="auto">learn.bybit.com</code>; порожні рядки та рядки без <code dir="auto">http</code> ігноруються.</p>
+<blockquote>
+<p>Домен у посиланнях підмінюється автоматично під <code dir="auto">[BYBIT] domain</code> профілю, тому у файлі можна тримати посилання у форматі <code dir="auto">learn.bybit.com</code> — вони самі перенаправляться на потрібний регіональний домен.</p>
+</blockquote>
+<p>📥 <a href="/docs/bybit_learn_links.txt" download>Завантажити готовий <code>bybit_learn_links.txt</code></a> — повний список зі 91 статті. Покладіть файл поруч із <code dir="auto">AutoPilot.exe</code> та за бажанням відредагуйте під себе.</p>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="profit-rozrakhunok-pributku"><code dir="auto">profit</code> — Розрахунок прибутку</h3><a class="sl-anchor-link" href="#profit-rozrakhunok-pributku"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “profit — Розрахунок прибутку”</span></a></div>
+<p>Розрахунок прибутку по акаунту: загальні виведення − загальні депозити − вартість USDT, купленого через P2P + поточний баланс. Враховує P2P-закупівлю як витрати, щоб прибуток відображав реальний результат, а не USDT, куплений за фіат.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[PROFIT] значення_прибутку</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="buy-kupivlya-aktivu"><code dir="auto">buy</code> — Купівля активу</h3><a class="sl-anchor-link" href="#buy-kupivlya-aktivu"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “buy — Купівля активу”</span></a></div>
+<p>Купівля конкретного активу за USDT</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Актив для купівлі (наприклад: <code dir="auto">BTC</code>)</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_amount</code></td><td>Сума в USDT</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[BUY] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="limit-buy-kupivlya-limitnim-orderom"><code dir="auto">limit_buy</code> — Купівля лімітним ордером</h3><a class="sl-anchor-link" href="#limit-buy-kupivlya-limitnim-orderom"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “limit_buy — Купівля лімітним ордером”</span></a></div>
+<p>Розміщення лімітного ордера на купівлю активу</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Актив для купівлі (наприклад: <code dir="auto">ETH</code>)</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_amount</code></td><td>Сума в USDT</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[LIMIT_BUY] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="limit-vipadkova-limitna-torgivlya"><code dir="auto">limit</code> — Випадкова лімітна торгівля</h3><a class="sl-anchor-link" href="#limit-vipadkova-limitna-torgivlya"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “limit — Випадкова лімітна торгівля”</span></a></div>
+<p>Автоматична лімітна торгівля з рандомізованими ордерами для природного набивання об’єму</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Актив для торгівлі (наприклад: <code dir="auto">BTC</code>)</td></tr><tr><td>Опціонально</td><td><code dir="auto">[TRADING] trading_amount</code></td><td>Розмір ордера в USDT</td></tr><tr><td>Опціонально</td><td><code dir="auto">[TRADING] trading_cycles</code></td><td>Кількість циклів</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td>Звіт про об’єм та комісії</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="trading-limit-torgoviy-obyem-limitnimi-orderami"><code dir="auto">trading_limit</code> — Торговий об’єм лімітними ордерами</h3><a class="sl-anchor-link" href="#trading-limit-torgoviy-obyem-limitnimi-orderami"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “trading_limit — Торговий об’єм лімітними ордерами”</span></a></div>
+<p>Набивання об’єму лімітними ордерами замість маркет ордерів</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Актив для торгівлі (наприклад: <code dir="auto">BTC</code> або <code dir="auto">BTC,ETH</code>)</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_amount</code></td><td>Розмір ордера в USDT (наприклад: <code dir="auto">10</code> або <code dir="auto">10,20</code>)</td></tr><tr><td>Опціонально</td><td><code dir="auto">[TRADING] trading_cycles</code></td><td>Кількість циклів (наприклад: <code dir="auto">3</code> або <code dir="auto">3,5</code>)</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[TRADING] VOLUME: об'єм, FEES: комісії</code></td></tr></tbody></table>
+<blockquote>
+<p>Такий самий мульти-монетний синтаксис як у <code dir="auto">trading</code>, але використовує лімітні ордери для кращих цін виконання.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="limit-sell-prodazh-limitnim-orderom-na-funding"><code dir="auto">limit_sell</code> — Продаж лімітним ордером на Funding</h3><a class="sl-anchor-link" href="#limit-sell-prodazh-limitnim-orderom-na-funding"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “limit_sell — Продаж лімітним ордером на Funding”</span></a></div>
+<p>Продаж активів на Funding акаунті за USDT лімітними ордерами</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Актив для продажу (наприклад: <code dir="auto">ETH</code>)</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[LIMIT_SELL] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="futures-fyuchersna-torgivlya"><code dir="auto">futures</code> — Ф’ючерсна торгівля</h3><a class="sl-anchor-link" href="#futures-fyuchersna-torgivlya"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “futures — Ф’ючерсна торгівля”</span></a></div>
+<p>Торгівля ф’ючерсами з плечем маркет ордерами</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Монета для ф’ючерсів (наприклад: <code dir="auto">BTC</code>)</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_amount</code></td><td>Розмір позиції з плечем в USDT</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_cycles</code></td><td>Кількість торгових циклів</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td>Звіт про об’єм та комісії</td></tr></tbody></table>
+<blockquote>
+<p>Налаштуйте плече параметром <code dir="auto">leverage</code> у конфігу (за замовчуванням: <code dir="auto">10</code>).</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="futures-smart-rozumna-fyuchersna-torgivlya"><code dir="auto">futures_smart</code> — Розумна ф’ючерсна торгівля</h3><a class="sl-anchor-link" href="#futures-smart-rozumna-fyuchersna-torgivlya"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “futures_smart — Розумна ф’ючерсна торгівля”</span></a></div>
+<p>Автоматична ф’ючерсна торгівля з аналізом ринку, post-only лімітними ордерами та управлінням позиціями. <strong>На 32% дешевше</strong> ніж маркет ордери.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_coin</code></td><td>Монета для ф’ючерсів (наприклад: <code dir="auto">BTC</code>)</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_amount</code></td><td>Розмір позиції з плечем в USDT</td></tr><tr><td><strong>Потребує</strong></td><td><code dir="auto">[TRADING] trading_cycles</code></td><td>Кількість торгових циклів</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td>Звіт про об’єм та комісії</td></tr></tbody></table>
+<blockquote>
+<p><code dir="auto">trading_amount</code> — це розмір позиції <strong>з урахуванням плеча</strong>. Реальний баланс на угоду = <code dir="auto">trading_amount / leverage</code>.</p>
+</blockquote>
+<blockquote>
+<p>Дивіться <a href="/docs/faq/#61--smart-futures-trading-futures_smart">FAQ → Smart Futures</a> для алгоритмів, формул та параметрів конфігу.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="stake-earn-steyking-usdt-flexible-savings"><code dir="auto">stake</code> / <code dir="auto">earn</code> — Стейкінг USDT (Flexible Savings)</h3><a class="sl-anchor-link" href="#stake-earn-steyking-usdt-flexible-savings"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “stake / earn — Стейкінг USDT (Flexible Savings)”</span></a></div>
+<p>Відправка USDT до пулу Bybit Flexible Savings. <code dir="auto">stake</code> та <code dir="auto">earn</code> — аліаси, однакова дія.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td>Опціонально</td><td><code dir="auto">[WITHDRAW] withdraw_amount</code></td><td>Фіксована сума USDT (за замовчуванням: весь доступний)</td></tr><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[STAKE] SUCCESS - stake 150.25</code></td></tr></tbody></table>
+<blockquote>
+<p>Автоматично переказує USDT з Trading → Funding перед стейкінгом.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="unstake-unearn-vivedennya-zi-steykingu"><code dir="auto">unstake</code> / <code dir="auto">unearn</code> — Виведення зі стейкінгу</h3><a class="sl-anchor-link" href="#unstake-unearn-vivedennya-zi-steykingu"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “unstake / unearn — Виведення зі стейкінгу”</span></a></div>
+<p>Виведення USDT з пулу Flexible Savings назад на Funding. <code dir="auto">unstake</code> та <code dir="auto">unearn</code> — аліаси.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[STAKE] SUCCESS - unstake 150.25</code></td></tr></tbody></table>
+<blockquote>
+<p>Дивіться <a href="/docs/faq/#63--bybit-earn--usdt-staking-earn--unearn">FAQ → Bybit Earn</a> для детального опису.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="lp-reyestratsiya-v-launchpad-iventi"><code dir="auto">lp</code> — Реєстрація в LaunchPad івенті</h3><a class="sl-anchor-link" href="#lp-reyestratsiya-v-launchpad-iventi"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “lp — Реєстрація в LaunchPad івенті”</span></a></div>
+<p>Автоматична реєстрація в поточному активному LaunchPad івенті на Bybit. Повністю автоматично — стовпці не потрібні.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[LP] SUCCESS</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="ref-code-vityagti-referalniy-kod"><code dir="auto">ref_code</code> — Витягти реферальний код</h3><a class="sl-anchor-link" href="#ref-code-vityagti-referalniy-kod"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “ref_code — Витягти реферальний код”</span></a></div>
+<p>Автоматичне витягування реферального коду акаунта</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Стовпець</th><th>Опис</th></tr></thead><tbody><tr><td><strong>Оновлює</strong></td><td><code dir="auto">[RESULT] status</code></td><td><code dir="auto">[REF_CODE] значення_коду</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="zvedena-tablitsya-diy">Зведена таблиця дій</h2><a class="sl-anchor-link" href="#zvedena-tablitsya-diy"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Зведена таблиця дій”</span></a></div>
+<div class="mermaid" data-content="flowchart TD
+    subgraph REG [&#x22;🟢 Початок роботи&#x22;]
+        R[&#x22;register — Реєстрація&#x22;]
+        L[&#x22;login — Логін&#x22;]
+    end
+
+    subgraph SEC [&#x22;🔐 Безпека&#x22;]
+        FA[&#x22;2fa — 2FA захист&#x22;]
+        API[&#x22;api — API ключі&#x22;]
+    end
+
+    subgraph WALLET [&#x22;💰 Гаманці&#x22;]
+        D[&#x22;deposit — Адреса депозиту&#x22;]
+        W[&#x22;whitelist — Whitelist&#x22;]
+        HD[&#x22;whitelist_aptos_hd — Мастер-гаманець&#x22;]
+        WD[&#x22;withdraw — Виведення&#x22;]
+        S[&#x22;sell — Продаж активів&#x22;]
+    end
+
+    subgraph TRADE [&#x22;📊 Трейдинг&#x22;]
+        T[&#x22;trading — Маркет торгівля&#x22;]
+        TL[&#x22;trading_limit — Лімітна торгівля&#x22;]
+        B[&#x22;buy — Купівля активу&#x22;]
+        FU[&#x22;futures_smart — Розумні ф&#x27;ючерси&#x22;]
+    end
+
+    subgraph EVENTS [&#x22;🎯 Івенти та нагороди&#x22;]
+        TS[&#x22;ts — TokenSplash&#x22;]
+        LP[&#x22;lp — LaunchPad&#x22;]
+        PZ[&#x22;puzzle_hunt — Puzzle Hunt&#x22;]
+    end
+
+    subgraph STAKE [&#x22;🏦 Стейкінг&#x22;]
+        ST[&#x22;stake — Earn&#x22;]
+        UST[&#x22;unstake — Unearn&#x22;]
+    end
+
+    R --> L
+    L --> FA
+    FA --> W
+    FA --> HD
+    FA --> API
+    W --> WD
+    HD --> WD
+    S --> WD
+    L --> D
+    L --> T
+    L --> TL
+    L --> B
+    L --> FU
+    L --> TS
+    L --> LP
+    L --> PZ
+    L --> ST
+    ST --> UST
+
+    style R fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style L fill:#2196F3,color:#fff,stroke:none,rx:8
+    style FA fill:#9C27B0,color:#fff,stroke:none,rx:8
+    style API fill:#673AB7,color:#fff,stroke:none,rx:8
+    style D fill:#FF9800,color:#fff,stroke:none,rx:8
+    style W fill:#FF5722,color:#fff,stroke:none,rx:8
+    style HD fill:#E040FB,color:#fff,stroke:none,rx:8
+    style WD fill:#f44336,color:#fff,stroke:none,rx:8
+    style S fill:#E91E63,color:#fff,stroke:none,rx:8
+    style T fill:#009688,color:#fff,stroke:none,rx:8
+    style TL fill:#00897B,color:#fff,stroke:none,rx:8
+    style B fill:#43A047,color:#fff,stroke:none,rx:8
+    style FU fill:#E65100,color:#fff,stroke:none,rx:8
+    style TS fill:#00BCD4,color:#fff,stroke:none,rx:8
+    style LP fill:#0097A7,color:#fff,stroke:none,rx:8
+    style PZ fill:#795548,color:#fff,stroke:none,rx:8
+    style CL fill:#AB47BC,color:#fff,stroke:none,rx:8
+    style ST fill:#66BB6A,color:#fff,stroke:none,rx:8
+    style UST fill:#81C784,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Дія</th><th>Опис</th><th align="center">Авто-логін</th><th align="center">Авто-2FA</th></tr></thead><tbody><tr><td><code dir="auto">register</code></td><td>Реєстрація акаунта</td><td align="center">—</td><td align="center">—</td></tr><tr><td><code dir="auto">login</code></td><td>Вхід в акаунт</td><td align="center">—</td><td align="center">—</td></tr><tr><td><code dir="auto">2fa</code></td><td>Підключення 2FA</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">link</code></td><td>Отримати посилання KYC верифікації</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">learn</code></td><td>Навчання та встановлення аватара</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">deposit</code></td><td>Адреса для депозиту</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">whitelist</code></td><td>Додавання в whitelist</td><td align="center">✅</td><td align="center">✅</td></tr><tr><td><code dir="auto">withdraw</code></td><td>Виведення коштів</td><td align="center">✅</td><td align="center">✅</td></tr><tr><td><code dir="auto">sell</code></td><td>Продаж усіх активів</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">api</code></td><td>Створення API ключів</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">trading</code></td><td>Маркет торгівля</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">trading_limit</code></td><td>Лімітна торгівля</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">buy</code></td><td>Купівля активу</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">limit_buy</code></td><td>Купівля лімітним ордером</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">limit</code></td><td>Випадкова лімітна торгівля</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">limit_sell</code></td><td>Продаж лімітним ордером на Funding</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">futures</code></td><td>Ф’ючерсна торгівля</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">futures_smart</code></td><td>Розумні ф’ючерси (на 32% дешевше)</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">stake</code> / <code dir="auto">earn</code></td><td>Стейкінг USDT</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">unstake</code> / <code dir="auto">unearn</code></td><td>Виведення зі стейкінгу</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">ts</code></td><td>TokenSplash івенти</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">lp</code></td><td>LaunchPad івенти</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">puzzle_hunt</code></td><td>Puzzle Hunt</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">profit</code></td><td>Розрахунок прибутку</td><td align="center">✅</td><td align="center">—</td></tr><tr><td><code dir="auto">ref_code</code></td><td>Витягування реферального коду</td><td align="center">✅</td><td align="center">—</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="nalashtuvannya-konfiguratsiyi">Налаштування конфігурації</h2><a class="sl-anchor-link" href="#nalashtuvannya-konfiguratsiyi"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Налаштування конфігурації”</span></a></div>
+<p>Файл <code dir="auto">AutoPilot.config</code> містить основні параметри:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Опис</th><th>Приклад</th></tr></thead><tbody><tr><td><code dir="auto">activation_key</code></td><td>Ключ активації</td><td><code dir="auto">XXXX-XXXX-XXXX</code></td></tr><tr><td><code dir="auto">speed_mode</code></td><td>Режим швидкості</td><td><code dir="auto">FAST</code>, <code dir="auto">MEDIUM</code>, <code dir="auto">SLOW</code></td></tr><tr><td><code dir="auto">captcha_key</code></td><td>API ключ платного провайдера — <strong>опційно</strong>, лише як підстраховка</td><td><code dir="auto">abc123...</code></td></tr><tr><td><code dir="auto">captcha_provider</code></td><td>Провайдер капчі (⭐ <code dir="auto">capsolver</code>, <code dir="auto">capmonster</code>, <code dir="auto">2captcha</code>) — можна не вказувати, визначається за форматом ключа</td><td><code dir="auto">capsolver</code></td></tr><tr><td><code dir="auto">parallel_limit</code></td><td>Ліміт паралельних акаунтів</td><td><code dir="auto">3</code></td></tr><tr><td><code dir="auto">shuffle_order</code></td><td>Перемішати порядок акаунтів</td><td><code dir="auto">YES</code> / <code dir="auto">NO</code></td></tr><tr><td><code dir="auto">window_size</code></td><td>Розмір вікна браузера</td><td><code dir="auto">1280x720</code></td></tr><tr><td><code dir="auto">close_tabs</code></td><td>Закривати вкладки після роботи</td><td><code dir="auto">YES</code> / <code dir="auto">NO</code></td></tr><tr><td><code dir="auto">close_after</code></td><td>Закривати профіль після роботи</td><td><code dir="auto">YES</code> / <code dir="auto">NO</code></td></tr><tr><td><code dir="auto">email_delay_check</code></td><td>Затримка перевірки пошти (сек)</td><td><code dir="auto">5</code></td></tr><tr><td><code dir="auto">language</code></td><td>Мова інтерфейсу</td><td><code dir="auto">EN</code>, <code dir="auto">RU</code></td></tr><tr><td><code dir="auto">full_withdraw</code></td><td>Повний продаж перед виведенням</td><td><code dir="auto">YES</code> / <code dir="auto">NO</code></td></tr><tr><td><code dir="auto">show_credentials</code></td><td>Показувати KYC дані</td><td><code dir="auto">YES</code> / <code dir="auto">NO</code></td></tr><tr><td><code dir="auto">bot_mode</code></td><td>Інтеграція з Telegram ботом</td><td><code dir="auto">YES</code> / <code dir="auto">NO</code></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="bybit-global-domeni">🌐 Bybit Global домени</h2><a class="sl-anchor-link" href="#bybit-global-domeni"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “🌐 Bybit Global домени”</span></a></div>
+<p>Bybit використовує декілька регіональних доменів для різних юрисдикцій. AutoPilot підтримує вибір домену через стовпець <strong><code dir="auto">[BYBIT] domain</code></strong> у <code dir="auto">AutoPilot_table.xlsx</code>.</p>
+<p><strong>Доступні значення:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="center">Значення стовпця</th><th align="center">Підсумковий домен</th><th>Коли використовувати</th></tr></thead><tbody><tr><td align="center">(порожньо)</td><td align="center"><code dir="auto">bybit.com</code></td><td>За замовчуванням</td></tr><tr><td align="center"><code dir="auto">bybitglobal</code></td><td align="center"><code dir="auto">bybitglobal.com</code></td><td>Якщо є проблеми з реєстрацією, 2FA або капчею</td></tr></tbody></table>
+<p><strong>Як підключити:</strong></p>
+<ol>
+<li>Додайте стовпець <strong><code dir="auto">[BYBIT] domain</code></strong> у <code dir="auto">AutoPilot_table.xlsx</code></li>
+<li>Вкажіть <code dir="auto">bybitglobal</code> для потрібних профілів (або залиште порожнім для <code dir="auto">bybit.com</code>)</li>
+<li>Запустіть будь-яку дію — AutoPilot автоматично перейде на обраний домен</li>
+</ol>
+<blockquote>
+<p>💡 <strong>Коли перемикатися на <code dir="auto">bybitglobal</code>:</strong></p>
+<ul>
+<li><strong>Реєстрація</strong> на <code dir="auto">bybit.com</code> не проходить, а на <code dir="auto">bybitglobal.com</code> працює</li>
+<li>При підключенні <strong>2FA</strong> код на пошту не приходить (актуально для Google Authenticator у деяких регіонах)</li>
+<li><strong>Капча</strong> вирішується нестабільно на <code dir="auto">bybit.com</code></li>
+<li>У деяких регіонах <code dir="auto">bybitglobal.com</code> працює стабільніше загалом</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>До уваги:</strong> <code dir="auto">bybit.com</code> та <code dir="auto">bybitglobal.com</code> — це окремі регіональні версії з незалежними акаунтами. Профіль, зареєстрований на одному домені, повинен продовжувати працювати з тим самим <code dir="auto">[BYBIT] domain</code> — не переключайте домени для вже створених акаунтів.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="kyc-statusi">KYC статуси</h2><a class="sl-anchor-link" href="#kyc-statusi"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “KYC статуси”</span></a></div>
+<p>При логіні AutoPilot перевіряє статус верифікації:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Статус</th><th>Опис</th></tr></thead><tbody><tr><td><code dir="auto">UNSUBMITTED</code></td><td>Верифікацію не подано</td></tr><tr><td><code dir="auto">REJECT</code></td><td>Відхилено (причина вказується)</td></tr><tr><td><code dir="auto">1 [КРАЇНА]</code></td><td>Верифіковано (наприклад: <code dir="auto">1 RU</code>)</td></tr></tbody></table>
+<p>Якщо <code dir="auto">show_credentials=YES</code>, також записуються: ім’я, прізвище, тип документа, номер документа.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="nalashtuvannya-poshti-imap">Налаштування пошти (IMAP)</h2><a class="sl-anchor-link" href="#nalashtuvannya-poshti-imap"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Налаштування пошти (IMAP)”</span></a></div>
+<p>AutoPilot використовує протокол IMAP для отримання кодів верифікації з пошти.</p>
+<p><strong>Підтримувані провайдери:</strong> Yahoo, Rambler, iCloud, Outlook, Gmail, Mail.ru, First Mail та інші</p>
+<blockquote>
+<p>Для Gmail, Outlook, Yahoo, iCloud потрібне створення <strong>пароля застосунку</strong> (App Password) — звичайний пароль не підійде для IMAP. Або налаштуйте переадресацію листів на пошту з прямим IMAP доступом.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="shvidkiy-start-pislya-pokupki">Швидкий старт після покупки</h2><a class="sl-anchor-link" href="#shvidkiy-start-pislya-pokupki"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Швидкий старт після покупки”</span></a></div>
+<ol>
+<li><strong>Завантажте</strong> <code dir="auto">AutoPilot.zip</code> із закріпленого повідомлення у чаті <a href="https://t.me/buykyc_bot">@buykyc_bot</a></li>
+<li><strong>Розпакуйте</strong> архів у нову папку</li>
+<li><strong>Налаштуйте</strong> <code dir="auto">AutoPilot.config</code>:
+<ul>
+<li>Вкажіть <code dir="auto">activation_key</code> (отримано при покупці)</li>
+<li><code dir="auto">captcha_key</code> вказувати <strong>не обов’язково</strong> — капчу AutoPilot вирішує сам, безкоштовно. Ключ потрібен лише як підстраховка на рідкісні типи: ⭐ <a href="https://www.capsolver.com/">CapSolver</a> (рекомендовано), <a href="https://capmonster.cloud/">CapMonster</a>, <a href="https://2captcha.com/">2Captcha</a>. Детальніше — <a href="/docs/ua/faq/#4--%D0%BF%D1%80%D0%BE%D0%BA%D1%81%D1%96-%D1%82%D0%B0-%D0%BA%D0%B0%D0%BF%D1%87%D0%B0">FAQ → секція 4</a></li>
+</ul>
+</li>
+<li><strong>Заповніть</strong> <code dir="auto">AutoPilot_table.xlsx</code> даними акаунтів</li>
+<li><strong>Запустіть</strong> застосунок</li>
+</ol>
+<blockquote>
+<p>Керування також доступне через бот <a href="https://t.me/AutoPilotManager_bot">@AutoPilotManager_bot</a> (потрібен <code dir="auto">bot_mode=YES</code> у конфігу)</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="pokupka">Покупка</h2><a class="sl-anchor-link" href="#pokupka"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “Покупка”</span></a></div>
+<p>Одразу після покупки ви отримуєте готову збірку для роботи.</p>
+<p>Придбати ключ активації для Bybit AutoPilot: <a href="https://t.me/buykyc_bot">https://t.me/buykyc_bot</a></p>
+<p>Разом із ключем ви отримуєте доступ до тематичного чату AutoPilot, де можна ставити запитання, спілкуватися та отримувати поради.</p>
+<p>Час життя ключа відраховується від першого запуску.</p>
+<hr>
+<p><strong>Менеджер:</strong> <a href="https://t.me/OxViktor">@OxViktor</a></p>  <script>(function(){const className = "mermaid";
+
+    window.__mermaidClassName = className;
+  })();</script>   </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n">   </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr"> <a href="/docs/ua/getting-started/macos-launch/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg> <span class="astro-u2l5gyhi"> Назад <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Запуск на macOS</span> </span> </a> <a href="/docs/ua/exchanges/mexc-autopilot/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg> <span class="astro-u2l5gyhi"> Далі <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">MEXC AutoPilot</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>

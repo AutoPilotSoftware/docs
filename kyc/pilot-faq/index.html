@@ -1,0 +1,958 @@
+<!DOCTYPE html><html lang="ru" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Гайд NVS Пилота | AutoPilot</title><link rel="canonical" href="https://autopilotsoftware.github.io/docs/kyc/pilot-faq/"/><link rel="alternate" hreflang="ru" href="https://autopilotsoftware.github.io/docs/kyc/pilot-faq/"/><link rel="alternate" hreflang="en" href="https://autopilotsoftware.github.io/docs/en/kyc/pilot-faq/"/><link rel="alternate" hreflang="uk" href="https://autopilotsoftware.github.io/docs/ua/kyc/pilot-faq/"/><link rel="sitemap" href="/docs/sitemap-index.xml"/><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&#34;token&#34;: &#34;d98cb2456dd9448bb66e095a800bb391&#34;}"></script><link rel="shortcut icon" href="/docs/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v5.17.3"/><meta name="generator" content="Starlight v0.37.6"/><meta property="og:title" content="Гайд NVS Пилота"/><meta property="og:type" content="article"/><meta property="og:url" content="https://autopilotsoftware.github.io/docs/kyc/pilot-faq/"/><meta property="og:locale" content="ru"/><meta property="og:description" content="Полный гайд для NVS пилотов — методы загрузки, валидация, жизненный цикл заказов, MiniApp дашборд"/><meta property="og:site_name" content="AutoPilot"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Полный гайд для NVS пилотов — методы загрузки, валидация, жизненный цикл заказов, MiniApp дашборд"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/docs/_astro/print.DNXP8c50.css" media="print"><link rel="stylesheet" href="/docs/_astro/index.DJxFRPMf.css">
+<style>@layer starlight.components{:root{--sl-badge-default-border: var(--sl-color-accent);--sl-badge-default-bg: var(--sl-color-accent-low);--sl-badge-default-text: #fff;--sl-badge-note-border: var(--sl-color-blue);--sl-badge-note-bg: var(--sl-color-blue-low);--sl-badge-note-text: #fff;--sl-badge-danger-border: var(--sl-color-red);--sl-badge-danger-bg: var(--sl-color-red-low);--sl-badge-danger-text: #fff;--sl-badge-success-border: var(--sl-color-green);--sl-badge-success-bg: var(--sl-color-green-low);--sl-badge-success-text: #fff;--sl-badge-caution-border: var(--sl-color-orange);--sl-badge-caution-bg: var(--sl-color-orange-low);--sl-badge-caution-text: #fff;--sl-badge-tip-border: var(--sl-color-purple);--sl-badge-tip-bg: var(--sl-color-purple-low);--sl-badge-tip-text: #fff}[data-theme=light]:root{--sl-badge-default-bg: var(--sl-color-accent-high);--sl-badge-note-bg: var(--sl-color-blue-high);--sl-badge-danger-bg: var(--sl-color-red-high);--sl-badge-success-bg: var(--sl-color-green-high);--sl-badge-caution-bg: var(--sl-color-orange-high);--sl-badge-tip-bg: var(--sl-color-purple-high)}.sl-badge:where(.astro-avdet4wd){display:inline-block;border:1px solid var(--sl-color-border-badge);border-radius:.25rem;font-family:var(--sl-font-system-mono);line-height:normal;color:var(--sl-color-text-badge);background-color:var(--sl-color-bg-badge);overflow-wrap:anywhere}.sidebar-content .sl-badge:where(.astro-avdet4wd){line-height:1;font-size:var(--sl-text-xs);padding:.125rem .375rem}.sidebar-content a[aria-current=page]>.sl-badge:where(.astro-avdet4wd){--sl-color-bg-badge: transparent;--sl-color-border-badge: currentColor;color:inherit}.default:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-default-bg);--sl-color-border-badge: var(--sl-badge-default-border);--sl-color-text-badge: var(--sl-badge-default-text)}.note:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-note-bg);--sl-color-border-badge: var(--sl-badge-note-border);--sl-color-text-badge: var(--sl-badge-note-text)}.danger:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-danger-bg);--sl-color-border-badge: var(--sl-badge-danger-border);--sl-color-text-badge: var(--sl-badge-danger-text)}.success:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-success-bg);--sl-color-border-badge: var(--sl-badge-success-border);--sl-color-text-badge: var(--sl-badge-success-text)}.tip:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-tip-bg);--sl-color-border-badge: var(--sl-badge-tip-border);--sl-color-text-badge: var(--sl-badge-tip-text)}.caution:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-caution-bg);--sl-color-border-badge: var(--sl-badge-caution-border);--sl-color-text-badge: var(--sl-badge-caution-text)}.small:where(.astro-avdet4wd){font-size:var(--sl-text-xs);padding:.125rem .25rem}.medium:where(.astro-avdet4wd){font-size:var(--sl-text-sm);padding:.175rem .35rem}.large:where(.astro-avdet4wd){font-size:var(--sl-text-base);padding:.225rem .45rem}.sl-markdown-content :is(h1,h2,h3,h4,h5,h6) .sl-badge:where(.astro-avdet4wd){vertical-align:middle}}
+@layer starlight.components{.card-grid:where(.astro-zntqmydn){display:grid;grid-template-columns:100%;gap:1rem}.card-grid:where(.astro-zntqmydn)>*{margin-top:0!important}@media(min-width:50rem){.card-grid:where(.astro-zntqmydn){grid-template-columns:1fr 1fr;gap:1.5rem}.stagger:where(.astro-zntqmydn){--stagger-height: 5rem;padding-bottom:var(--stagger-height)}.stagger:where(.astro-zntqmydn)>*:nth-child(2n){transform:translateY(var(--stagger-height))}}}
+@layer starlight.components{svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-size, 1em);width:1em;height:1em}}
+@layer starlight.components{.sl-link-card:where(.astro-mf7fz2mj){display:grid;grid-template-columns:1fr auto;gap:.5rem;border:1px solid var(--sl-color-gray-5);border-radius:.5rem;padding:1rem;box-shadow:var(--sl-shadow-sm);position:relative}a:where(.astro-mf7fz2mj){text-decoration:none;line-height:var(--sl-line-height-headings)}a:where(.astro-mf7fz2mj):before{content:"";position:absolute;inset:0}.stack:where(.astro-mf7fz2mj){flex-direction:column;gap:.5rem}.title:where(.astro-mf7fz2mj){color:var(--sl-color-white);font-weight:600;font-size:var(--sl-text-lg)}.description:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3);line-height:1.5}.icon:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3)}.sl-link-card:where(.astro-mf7fz2mj):hover{background:var(--sl-color-gray-7, var(--sl-color-gray-6));border-color:var(--sl-color-gray-2)}.sl-link-card:where(.astro-mf7fz2mj):hover .icon:where(.astro-mf7fz2mj){color:var(--sl-color-white)}}
+@layer starlight.components{.sl-steps{--bullet-size: calc(var(--sl-line-height) * 1rem);--bullet-margin: .375rem;list-style:none;counter-reset:steps-counter var(--sl-steps-start, 0);padding-inline-start:0}.sl-steps>li{counter-increment:steps-counter;position:relative;padding-inline-start:calc(var(--bullet-size) + 1rem);padding-bottom:1px;min-height:calc(var(--bullet-size) + var(--bullet-margin))}.sl-steps>li+li{margin-top:0}.sl-steps>li:before{content:counter(steps-counter);position:absolute;top:0;inset-inline-start:0;width:var(--bullet-size);height:var(--bullet-size);line-height:var(--bullet-size);font-size:var(--sl-text-xs);font-weight:600;text-align:center;color:var(--sl-color-white);background-color:var(--sl-color-gray-6);border-radius:99rem;box-shadow:inset 0 0 0 1px var(--sl-color-gray-5)}.sl-steps>li:after{--guide-width: 1px;content:"";position:absolute;top:calc(var(--bullet-size) + var(--bullet-margin));bottom:var(--bullet-margin);inset-inline-start:calc((var(--bullet-size) - var(--guide-width)) / 2);width:var(--guide-width);background-color:var(--sl-color-hairline-light)}}@layer starlight.content{.sl-steps>li>:first-child{--lh: calc(1em * var(--sl-line-height));--shift-y: calc(.5 * (var(--bullet-size) - var(--lh)));transform:translateY(var(--shift-y));margin-bottom:var(--shift-y)}.sl-steps>li>:first-child:where(h1,h2,h3,h4,h5,h6){--lh: calc(1em * var(--sl-line-height-headings))}@supports (--prop: 1lh){.sl-steps>li>:first-child{--lh: 1lh}}}
+@layer starlight.components{.sl-link-button:where(.astro-xwgiixxa){align-items:center;border:1px solid transparent;border-radius:999rem;display:inline-flex;font-size:var(--sl-text-sm);gap:.5em;line-height:1.1875;outline-offset:.25rem;padding:.4375rem 1.125rem;text-decoration:none}.sl-link-button:where(.astro-xwgiixxa).primary{background:var(--sl-color-text-accent);border-color:var(--sl-color-text-accent);color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).primary:hover{color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).secondary{border-color:inherit;color:var(--sl-color-white)}.sl-link-button:where(.astro-xwgiixxa).minimal{color:var(--sl-color-white);padding-inline:0}.sl-link-button:where(.astro-xwgiixxa) svg{flex-shrink:0}@media(min-width:50rem){.sl-link-button:where(.astro-xwgiixxa){font-size:var(--sl-text-base);padding:.9375rem 1.25rem}}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa){margin-inline-end:1rem}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa):not(:where(p *)){margin-block:1rem}}
+</style><script type="module" src="/docs/_astro/page.B1D-nYk3.js"></script></head> <body class="astro-bguv2lll"> <a href="#_top" class="astro-7q3lir66">Перейти к содержимому</a>  <div class="page sl-flex astro-vrdttmbt"> <header class="header astro-vrdttmbt"><div class="header astro-kmkmnagf"> <div class="title-wrapper sl-flex astro-kmkmnagf"> <a href="/docs/" class="site-title sl-flex astro-m46x6ez3">  <img class="astro-m46x6ez3" alt src="/docs/_astro/auto_pilot_logo.CfyEiyY2.png" width="600" height="600">  <span class="astro-m46x6ez3" translate="no"> AutoPilot </span> </a>  </div> <div class="sl-flex print:hidden astro-kmkmnagf"> <site-search class="astro-kmkmnagf astro-v37mnknz" data-translations="{&#34;placeholder&#34;:&#34;Поиск&#34;}"> <button data-open-modal disabled aria-label="Поиск" aria-keyshortcuts="Control+K" class="astro-v37mnknz"> <svg aria-hidden="true" class="astro-v37mnknz astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg> <span class="sl-hidden md:sl-block astro-v37mnknz" aria-hidden="true">Поиск</span> <kbd class="sl-hidden md:sl-flex astro-v37mnknz" style="display: none;"> <kbd class="astro-v37mnknz">Ctrl</kbd><kbd class="astro-v37mnknz">K</kbd> </kbd> </button> <dialog style="padding:0" aria-label="Поиск" class="astro-v37mnknz"> <div class="dialog-frame sl-flex astro-v37mnknz">  <button data-close-modal class="sl-flex md:sl-hidden astro-v37mnknz"> Отменить </button> <div class="search-container astro-v37mnknz"> <div id="starlight__search" class="astro-v37mnknz"></div> </div> </div> </dialog> </site-search>  <script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script> <script type="module" src="/docs/_astro/Search.astro_astro_type_script_index_0_lang.7TPqQKfI.js"></script>   </div> <div class="sl-hidden md:sl-flex print:hidden right-group astro-kmkmnagf"> <div class="sl-flex social-icons astro-kmkmnagf">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Выберите тему</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Тёмная</option><option value="light" class="astro-4yphtoen">Светлая</option><option value="auto" selected class="astro-4yphtoen">Авто</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script> <script type="module">const r="starlight-theme",o=e=>e==="auto"||e==="dark"||e==="light"?e:"auto",c=()=>o(typeof localStorage<"u"&&localStorage.getItem(r));function n(e){typeof localStorage<"u"&&localStorage.setItem(r,e==="light"||e==="dark"?e:"")}const l=()=>matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";function t(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e==="auto"?l():e,n(e)}matchMedia("(prefers-color-scheme: light)").addEventListener("change",()=>{c()==="auto"&&t("auto")});class s extends HTMLElement{constructor(){super(),t(c()),this.querySelector("select")?.addEventListener("change",a=>{a.currentTarget instanceof HTMLSelectElement&&t(o(a.currentTarget.value))})}}customElements.define("starlight-theme-select",s);</script> <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Выберите язык</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/kyc/pilot-faq/" class="astro-4yphtoen">Русский</option><option value="/docs/en/kyc/pilot-faq/" class="astro-4yphtoen">English</option><option value="/docs/ua/kyc/pilot-faq/" class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select><script type="module">class s extends HTMLElement{constructor(){super();const e=this.querySelector("select");e&&(e.addEventListener("change",t=>{t.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=t.currentTarget.value)}),window.addEventListener("pageshow",t=>{if(!t.persisted)return;const n=e.querySelector("option[selected]")?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}}customElements.define("starlight-lang-select",s);</script> </div> </div> </header> <nav class="sidebar print:hidden astro-vrdttmbt" aria-label="Основное"> <starlight-menu-button class="print:hidden astro-jif73yzw"> <button aria-expanded="false" aria-label="Меню" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-jif73yzw"> <svg aria-hidden="true" class="open-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg> <svg aria-hidden="true" class="close-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg> </button> </starlight-menu-button> <script type="module">class s extends HTMLElement{constructor(){super(),this.btn=this.querySelector("button"),this.btn.addEventListener("click",()=>this.toggleExpanded());const t=this.closest("nav");t&&t.addEventListener("keyup",e=>this.closeOnEscape(e))}setExpanded(t){this.setAttribute("aria-expanded",String(t)),document.body.toggleAttribute("data-mobile-menu-expanded",t)}toggleExpanded(){this.setExpanded(this.getAttribute("aria-expanded")!=="true")}closeOnEscape(t){t.code==="Escape"&&(this.setExpanded(!1),this.btn.focus())}}customElements.define("starlight-menu-button",s);</script>   <div id="starlight__sidebar" class="sidebar-pane astro-vrdttmbt"> <div class="sidebar-content sl-flex astro-vrdttmbt"> <sl-sidebar-state-persist data-hash="1yfspf9" class="astro-kku4brbg"> <script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script>  <ul class="top-level astro-3ii7xxms"> <li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Начало работы</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="0"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/getting-started/faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">FAQ</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/getting-started/macos-launch/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Запуск на macOS</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Биржи</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="1"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/exchanges/bybit-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bybit AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/exchanges/mexc-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">MEXC AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/exchanges/bitget-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bitget AutoPilot</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">KYC Платформа</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="2"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/kyc/autopilot-kyc-subscription/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Подписка KYC</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/kyc/nvs-faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">NVS Загрузка</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/kyc/pilot-faq/" aria-current="page" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Гайд Пилота</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/kyc/sellers-guide/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Seller Guide</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/kyc/autopilot-kyc-tos/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Условия использования</span>  </a> </li> </ul>  </details> </li> </ul>   <script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-wu23bvmt"> <div class="social-icons astro-wu23bvmt">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Выберите тему</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Тёмная</option><option value="light" class="astro-4yphtoen">Светлая</option><option value="auto" selected class="astro-4yphtoen">Авто</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>  <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Выберите язык</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/kyc/pilot-faq/" class="astro-4yphtoen">Русский</option><option value="/docs/en/kyc/pilot-faq/" class="astro-4yphtoen">English</option><option value="/docs/ua/kyc/pilot-faq/" class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select> </div>  </div> </div> </div> </nav> <div class="main-frame astro-vrdttmbt">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-67yu43on"> <aside class="right-sidebar-container print:hidden astro-67yu43on"> <div class="right-sidebar astro-67yu43on"> <script type="module" src="/docs/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.hwBsy0Mo.js"></script><script type="module" src="/docs/_astro/TableOfContents.astro_astro_type_script_index_0_lang.FuRcXuRY.js"></script><div class="lg:sl-hidden astro-pb3aqygn"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-doynk5tl"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-doynk5tl"><details id="starlight__mobile-toc" class="astro-doynk5tl"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-doynk5tl"><span class="toggle sl-flex astro-doynk5tl">На этой странице<svg aria-hidden="true" class="caret astro-doynk5tl astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-doynk5tl"></span></summary><div class="dropdown astro-doynk5tl"><ul class="isMobile astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Обзор</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#soderzhanie" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Содержание</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#chto-takoe-nvs" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Что такое NVS?</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#nachalo-raboty" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Начало работы</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#shag-1-poluchite-deeplink" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Шаг 1: Получите deeplink</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#shag-2-aktiviruyte-v-telegram" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Шаг 2: Активируйте в Telegram</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#shag-3-zagruzite-akkaunty" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Шаг 3: Загрузите аккаунты</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#kak-eto-rabotaet" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Как это работает</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#polnaya-skhema-nvs" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Полная схема NVS</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#metody-zagruzki" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Методы загрузки</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#metod-1-afina-browser" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Метод 1: Afina Browser</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#metod-2-adspower-txt-rekomenduetsya-dlya-adspower" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Метод 2: AdsPower TXT (Рекомендуется для AdsPower)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#metod-3-ruchnoy-proksi-kuki" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Метод 3: Ручной (Прокси + Куки)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sravnenie-metodov" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Сравнение методов</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#konveyer-validatsii-akkauntov" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Конвейер валидации аккаунтов</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#zhiznenniy-tsikl-zakaza" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Жизненный цикл заказа</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#spravochnik-menyu-nvs" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Справочник меню NVS</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#ikonki-statusov-zadach" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Иконки статусов задач</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#dashbord-miniapp" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Дашборд MiniApp</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladki-miniapp" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладки MiniApp</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-orders" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Orders</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-tasks" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Tasks</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-analytics" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Analytics</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-tasks-vozvraty-refunds" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Tasks — Возвраты (Refunds)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-sellers-vid-pilota" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Sellers (вид пилота)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-priorities" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Priorities</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-settings" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Settings</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-globe" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Globe</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-chat" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Chat</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#smart-session-update" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Smart Session Update</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#umnye-vozvraty-smart-refunds" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Умные возвраты (Smart Refunds)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#smart-rekyc-dlya-mexc-face-verification-besplatno-v-pervye-30-minut" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Smart REKYC для MEXC — Face Verification бесплатно в первые 30 минут</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#anti-sibil-i-risk-system" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Анти-сибил и risk-system</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#provaydery-kyc" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Провайдеры KYC</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#otslezhivanie-statusov-zadach" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Отслеживание статусов задач</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#mashina-sostoyaniy-zadachi" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Машина состояний задачи</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#proverka-statusa" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Проверка статуса</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#ustranenie-oshibok" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Устранение ошибок</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#kratkaya-spravka-po-oshibkam" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Краткая справка по ошибкам</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#protsess-rekyc" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Процесс ReKYC</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#bezopasnost-i-privatnost" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Безопасность и приватность</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#chto-dostupno-selleram" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Что доступно селлерам</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#obrabotka-dannykh" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Обработка данных</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sovety" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Советы</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#faq" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">FAQ</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#kratkaya-spravka" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Краткая справка</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#cheklist-zagruzki" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Чеклист загрузки</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#poryadok-zagruzki" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Порядок загрузки</span> </a>  </li> </ul>  </li> </ul> </div></details></nav></mobile-starlight-toc></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-pb3aqygn"><div class="sl-container astro-pb3aqygn"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">На этой странице</h2><ul class="astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Обзор</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#soderzhanie" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Содержание</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#chto-takoe-nvs" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Что такое NVS?</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#nachalo-raboty" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Начало работы</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#shag-1-poluchite-deeplink" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Шаг 1: Получите deeplink</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#shag-2-aktiviruyte-v-telegram" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Шаг 2: Активируйте в Telegram</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#shag-3-zagruzite-akkaunty" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Шаг 3: Загрузите аккаунты</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#kak-eto-rabotaet" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Как это работает</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#polnaya-skhema-nvs" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Полная схема NVS</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#metody-zagruzki" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Методы загрузки</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#metod-1-afina-browser" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Метод 1: Afina Browser</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#metod-2-adspower-txt-rekomenduetsya-dlya-adspower" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Метод 2: AdsPower TXT (Рекомендуется для AdsPower)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#metod-3-ruchnoy-proksi-kuki" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Метод 3: Ручной (Прокси + Куки)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sravnenie-metodov" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Сравнение методов</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#konveyer-validatsii-akkauntov" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Конвейер валидации аккаунтов</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#zhiznenniy-tsikl-zakaza" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Жизненный цикл заказа</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#spravochnik-menyu-nvs" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Справочник меню NVS</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#ikonki-statusov-zadach" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Иконки статусов задач</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#dashbord-miniapp" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Дашборд MiniApp</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladki-miniapp" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладки MiniApp</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-orders" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Orders</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-tasks" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Tasks</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-analytics" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Analytics</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-tasks-vozvraty-refunds" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Tasks — Возвраты (Refunds)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-sellers-vid-pilota" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Sellers (вид пилота)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-priorities" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Priorities</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-settings" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Settings</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-globe" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Globe</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vkladka-chat" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Вкладка Chat</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#smart-session-update" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Smart Session Update</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#umnye-vozvraty-smart-refunds" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Умные возвраты (Smart Refunds)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#smart-rekyc-dlya-mexc-face-verification-besplatno-v-pervye-30-minut" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Smart REKYC для MEXC — Face Verification бесплатно в первые 30 минут</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#anti-sibil-i-risk-system" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Анти-сибил и risk-system</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#provaydery-kyc" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Провайдеры KYC</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#otslezhivanie-statusov-zadach" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Отслеживание статусов задач</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#mashina-sostoyaniy-zadachi" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Машина состояний задачи</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#proverka-statusa" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Проверка статуса</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#ustranenie-oshibok" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Устранение ошибок</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#kratkaya-spravka-po-oshibkam" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Краткая справка по ошибкам</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#protsess-rekyc" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Процесс ReKYC</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#bezopasnost-i-privatnost" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Безопасность и приватность</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#chto-dostupno-selleram" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Что доступно селлерам</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#obrabotka-dannykh" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Обработка данных</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#sovety" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Советы</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#faq" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">FAQ</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#kratkaya-spravka" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Краткая справка</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#cheklist-zagruzki" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Чеклист загрузки</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#poryadok-zagruzki" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Порядок загрузки</span> </a>  </li> </ul>  </li> </ul> </nav></starlight-toc></div></div> </div> </aside> <div class="main-pane astro-67yu43on">  <main data-pagefind-body class="astro-bguv2lll" lang="ru" dir="ltr">   <script type="module" src="/docs/_astro/MarkdownContent.astro_astro_type_script_index_0_lang.Be01RnYk.js"></script> <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <h1 id="_top" class="astro-j6tvhyss">Гайд NVS Пилота</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content">  <div class="sl-heading-wrapper level-h1"><h1 id="gayd-nvs-pilota-autopilot-kyc-bot">Гайд NVS Пилота — AutoPilot KYC Bot</h1><a class="sl-anchor-link" href="#gayd-nvs-pilota-autopilot-kyc-bot"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Гайд NVS Пилота — AutoPilot KYC Bot»</span></a></div>
+<p>Полный гайд для пользователей NVS (New Verification System) бота <code dir="auto">@AutoPilotKYC_bot</code> и дашборда Admin MiniApp.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="soderzhanie">Содержание</h2><a class="sl-anchor-link" href="#soderzhanie"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Содержание»</span></a></div>
+<ol>
+<li><a href="#%D1%87%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-nvs">Что такое NVS?</a></li>
+<li><a href="#%D0%BD%D0%B0%D1%87%D0%B0%D0%BB%D0%BE-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B">Начало работы</a></li>
+<li><a href="#%D0%BF%D0%BE%D0%BB%D0%BD%D0%B0%D1%8F-%D1%81%D1%85%D0%B5%D0%BC%D0%B0-nvs">Полная схема NVS</a></li>
+<li><a href="#%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8">Методы загрузки</a></li>
+<li><a href="#%D0%BA%D0%BE%D0%BD%D0%B2%D0%B5%D0%B9%D0%B5%D1%80-%D0%B2%D0%B0%D0%BB%D0%B8%D0%B4%D0%B0%D1%86%D0%B8%D0%B8-%D0%B0%D0%BA%D0%BA%D0%B0%D1%83%D0%BD%D1%82%D0%BE%D0%B2">Конвейер валидации аккаунтов</a></li>
+<li><a href="#%D0%B6%D0%B8%D0%B7%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D1%86%D0%B8%D0%BA%D0%BB-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0">Жизненный цикл заказа</a></li>
+<li><a href="#%D1%81%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D1%87%D0%BD%D0%B8%D0%BA-%D0%BC%D0%B5%D0%BD%D1%8E-nvs">Справочник меню NVS</a></li>
+<li><a href="#%D0%B4%D0%B0%D1%88%D0%B1%D0%BE%D1%80%D0%B4-miniapp">Дашборд MiniApp</a></li>
+<li><a href="#%D0%BE%D1%82%D1%81%D0%BB%D0%B5%D0%B6%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%D0%BE%D0%B2-%D0%B7%D0%B0%D0%B4%D0%B0%D1%87">Отслеживание статусов задач</a></li>
+<li><a href="#%D1%83%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BE%D1%88%D0%B8%D0%B1%D0%BE%D0%BA">Устранение ошибок</a></li>
+<li><a href="#%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C-%D0%B8-%D0%BF%D1%80%D0%B8%D0%B2%D0%B0%D1%82%D0%BD%D0%BE%D1%81%D1%82%D1%8C">Безопасность и приватность</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ol>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="chto-takoe-nvs">Что такое NVS?</h2><a class="sl-anchor-link" href="#chto-takoe-nvs"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Что такое NVS?»</span></a></div>
+<p>NVS (New Verification System) — это упрощённый процесс заказа KYC для пилотов, которые покупают слоты верификации через <strong>NVS Shop</strong>. Вместо управления заказами напрямую в боте, пользователи NVS получают одноразовый deeplink, который активирует преднастроенный заказ с уже указанной страной, биржей и количеством.</p>
+<p><strong>Ключевые отличия от обычных заказов пилота:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Функция</th><th>Обычный пилот</th><th>NVS пилот</th></tr></thead><tbody><tr><td>Создание заказа</td><td>В меню бота</td><td>Через deeplink NVS Shop</td></tr><tr><td>Ценообразование</td><td>Стандартная цена платформы</td><td>Цена NVS Shop</td></tr><tr><td>Нужна лицензия</td><td>Да</td><td>Нет (на основе deeplink)</td></tr><tr><td>Опции меню</td><td>Полная панель пилота</td><td>Компактное меню из 5 кнопок</td></tr><tr><td>Доступ к MiniApp</td><td>Все вкладки</td><td>Заказы, Задачи, История, Аналитика</td></tr><tr><td>Загрузка аккаунтов</td><td>Одинаковые методы</td><td>Одинаковые методы</td></tr><tr><td>Назначение селлера</td><td>FCFS глобальный пул</td><td>FCFS глобальный пул</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="nachalo-raboty">Начало работы</h2><a class="sl-anchor-link" href="#nachalo-raboty"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Начало работы»</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="shag-1-poluchite-deeplink">Шаг 1: Получите deeplink</h3><a class="sl-anchor-link" href="#shag-1-poluchite-deeplink"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Шаг 1: Получите deeplink»</span></a></div>
+<p>Купите заказ на верификацию в NVS Shop. Вы получите ссылку:</p>
+<div class="expressive-code"><link rel="stylesheet" href="/docs/_astro/ec.v4551.css"><script type="module" src="/docs/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">https://t.me/AutoPilotKYC_bot?start=nvs_abc123def456</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="https://t.me/AutoPilotKYC_bot?start=nvs_abc123def456"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="shag-2-aktiviruyte-v-telegram">Шаг 2: Активируйте в Telegram</h3><a class="sl-anchor-link" href="#shag-2-aktiviruyte-v-telegram"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Шаг 2: Активируйте в Telegram»</span></a></div>
+<p>Нажмите на ссылку — откроется бот. Новые пользователи выбирают язык (English / Русский / Українська). Бот покажет детали заказа:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">✅ Order Activated</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">🌍 Country: BR (Brazil)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">💱 Exchange: Bybit</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">📦 Accounts: 4</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="✅ Order Activated🌍 Country: BR (Brazil)💱 Exchange: Bybit📦 Accounts: 4"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="shag-3-zagruzite-akkaunty">Шаг 3: Загрузите аккаунты</h3><a class="sl-anchor-link" href="#shag-3-zagruzite-akkaunty"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Шаг 3: Загрузите аккаунты»</span></a></div>
+<p>Выберите метод (AdsPower TXT или Ручной), загрузите данные, подтвердите — селлеры начнут работу.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="kak-eto-rabotaet">Как это работает</h3><a class="sl-anchor-link" href="#kak-eto-rabotaet"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Как это работает»</span></a></div>
+<div class="mermaid" data-content="flowchart TD
+    subgraph Shop[&#x22;🛒 NVS Shop&#x22;]
+        NS[&#x22;Покупка заказа верификации&#x22;] --> DL[&#x22;Получение deeplink-ссылки&#x22;]
+    end
+
+    subgraph Bot[&#x22;🤖 AutoPilot KYC Бот&#x22;]
+        DL --> ACT[&#x22;Активация заказа в Telegram&#x22;]
+        ACT --> UPLOAD[&#x22;Загрузка аккаунтов&#x22;]
+        UPLOAD --> VAL[&#x22;Автоматическая проверка&#x22;]
+        VAL --> ORD[&#x22;Заказ подтверждён&#x22;]
+    end
+
+    subgraph Work[&#x22;👥 Верификация&#x22;]
+        ORD --> SEL[&#x22;Селлеры выполняют KYC&#x22;]
+        SEL --> DONE[&#x22;✅ Аккаунты верифицированы&#x22;]
+    end
+
+    DONE --> TRACK[&#x22;📊 Отслеживайте прогресс в боте или MiniApp&#x22;]" data-status="loading"></div>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="polnaya-skhema-nvs">Полная схема NVS</h2><a class="sl-anchor-link" href="#polnaya-skhema-nvs"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Полная схема NVS»</span></a></div>
+<div class="mermaid" data-content="flowchart TD
+    A[&#x22;🔗 Покупка в NVS Shop&#x22;] --> B[&#x22;📱 Переход по ссылке&#x22;]
+    B --> C{&#x22;Новый пользователь?&#x22;}
+    C -->|Да| D[&#x22;🌐 Выбор языка&#x22;]
+    C -->|Нет| E[&#x22;✅ Заказ активирован&#x22;]
+    D --> E
+
+    E --> F[&#x22;📋 Главное меню NVS&#x22;]
+    F --> G[&#x22;📤 Загрузить аккаунты&#x22;]
+    G --> L{&#x22;Метод?&#x22;}
+
+    L -->|Afina| M0[&#x22;📄 Отправить файл Afina&#x22;]
+    L -->|AdsPower| M[&#x22;📄 Отправить .txt файл&#x22;]
+    L -->|Ручной| N[&#x22;✏️ Вставить прокси&#x22;]
+    N --> O[&#x22;📎 Отправить .json куки&#x22;]
+
+    M0 --> P[&#x22;🔍 Валидация&#x22;]
+    M --> P
+    O --> P
+
+    P --> Q[&#x22;📊 Результат: ✅ Прошли N | ❌ Не прошли M&#x22;]
+    Q --> R{&#x22;Подтвердить?&#x22;}
+    R -->|Да| S[&#x22;📦 Заказ создан — селлеры уведомлены&#x22;]
+    R -->|Нет| F
+    S --> T[&#x22;⏳ Селлеры работают над задачами&#x22;]
+    T --> U[&#x22;✅ ВЕРИФИЦИРОВАНО&#x22;]" data-status="loading"></div>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="metody-zagruzki">Методы загрузки</h2><a class="sl-anchor-link" href="#metody-zagruzki"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Методы загрузки»</span></a></div>
+<p>Поддерживается <strong>3 способа</strong> добавить аккаунты в бот.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="metod-1-afina-browser">Метод 1: Afina Browser</h3><a class="sl-anchor-link" href="#metod-1-afina-browser"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Метод 1: Afina Browser»</span></a></div>
+<p>Лучший вариант, если ваши профили уже в <strong>Afina</strong> — экспорт максимально автоматизирован.</p>
+<p><strong>Шаги:</strong></p>
+<ol>
+<li>Откройте Afina → выберите профили → <strong>Export</strong></li>
+<li>Получите файл с куки + прокси + User-Agent</li>
+<li>В боте: <strong>Загрузить аккаунты</strong> → <strong>Afina Browser</strong> → отправьте файл как документ 📎</li>
+</ol>
+<blockquote>
+<p>Бот распознаёт формат Afina автоматически и подтягивает все нужные поля без ручной настройки.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="metod-2-adspower-txt-rekomenduetsya-dlya-adspower">Метод 2: AdsPower TXT (Рекомендуется для AdsPower)</h3><a class="sl-anchor-link" href="#metod-2-adspower-txt-rekomenduetsya-dlya-adspower"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Метод 2: AdsPower TXT (Рекомендуется для AdsPower)»</span></a></div>
+<p>Лучший вариант, если вы используете антидетект-браузер AdsPower.</p>
+<p><strong>Шаги экспорта:</strong></p>
+<ol>
+<li>Откройте AdsPower → выберите профили</li>
+<li>Экспорт → выберите формат <strong>TXT</strong></li>
+<li>Включите <strong>User Agent</strong> в настройках экспорта</li>
+<li>Сохраните файл <code dir="auto">.txt</code></li>
+</ol>
+<p><strong>Отправка боту:</strong></p>
+<ul>
+<li>Меню бота → <strong>Upload Accounts</strong> → <strong>AdsPower TXT</strong></li>
+<li>Отправьте файл <code dir="auto">.txt</code> как <strong>документ</strong> (через 📎)</li>
+</ul>
+<p><strong>Формат файла (блоки аккаунтов разделены <code dir="auto">******************</code>):</strong></p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">acc_id=348</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">id=k1a2ge6p</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">group=Share-1224</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">name=4623 RWANDA</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">cookie=[{"name":"token","value":"abc123","domain":".bybit.com"}]</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">proxytype=http</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">proxy=123.45.67.89:8080:user:pass</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">countrycode=rw</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">ua=Mozilla/5.0 (Windows NT 10.0; Win64; x64)...</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">******************</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">acc_id=349</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">...</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="acc_id=348id=k1a2ge6pgroup=Share-1224name=4623 RWANDAcookie=[{&#x22;name&#x22;:&#x22;token&#x22;,&#x22;value&#x22;:&#x22;abc123&#x22;,&#x22;domain&#x22;:&#x22;.bybit.com&#x22;}]proxytype=httpproxy=123.45.67.89:8080:user:passcountrycode=rwua=Mozilla/5.0 (Windows NT 10.0; Win64; x64)...******************acc_id=349..."><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="metod-3-ruchnoy-proksi-kuki">Метод 3: Ручной (Прокси + Куки)</h3><a class="sl-anchor-link" href="#metod-3-ruchnoy-proksi-kuki"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Метод 3: Ручной (Прокси + Куки)»</span></a></div>
+<p>Используйте, когда у вас отдельные списки прокси и файлы куки.</p>
+<p><strong>Шаг 1 — Отправьте прокси текстом</strong> (по одному на строку, количество должно совпадать с аккаунтами):</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">185.123.45.1:8080:user1:pass1</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">185.123.45.2:8080:user2:pass2</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">185.123.45.3:8080:user3:pass3</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="185.123.45.1:8080:user1:pass1185.123.45.2:8080:user2:pass2185.123.45.3:8080:user3:pass3"><div></div></button></div></figure></div>
+<p><strong>Поддерживаемые форматы прокси:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Формат</th><th>Пример</th></tr></thead><tbody><tr><td><code dir="auto">IP:PORT:LOGIN:PASS</code></td><td><code dir="auto">185.1.2.3:8080:user:pass</code></td></tr><tr><td><code dir="auto">LOGIN:PASS@IP:PORT</code></td><td><code dir="auto">user:pass@185.1.2.3:8080</code></td></tr><tr><td><code dir="auto">http://LOGIN:PASS@IP:PORT</code></td><td><code dir="auto">http://user:pass@185.1.2.3:8080</code></td></tr><tr><td><code dir="auto">socks5://LOGIN:PASS@IP:PORT</code></td><td><code dir="auto">socks5://user:pass@185.1.2.3:8080</code></td></tr></tbody></table>
+<p><strong>Шаг 2 — Отправьте файлы куки</strong> через 📎 скрепку (один <code dir="auto">.json</code> на аккаунт):</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">[</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">token</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"value"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">abc123</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"domain"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">.bybit.com</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">},</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">session</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"value"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">xyz789</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"domain"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">.bybit.com</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="[  {&#x22;name&#x22;: &#x22;token&#x22;, &#x22;value&#x22;: &#x22;abc123&#x22;, &#x22;domain&#x22;: &#x22;.bybit.com&#x22;},  {&#x22;name&#x22;: &#x22;session&#x22;, &#x22;value&#x22;: &#x22;xyz789&#x22;, &#x22;domain&#x22;: &#x22;.bybit.com&#x22;}]"><div></div></button></div></figure></div>
+<p><strong>Альтернатива:</strong> Один файл с вложенным массивом для всех аккаунтов:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">[</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">[{</span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">token</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#7FDBCA;--1:#096E72">"value"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">abc1</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#7FDBCA;--1:#096E72">"domain"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">.bybit.com</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">}],</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">[{</span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">token</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#7FDBCA;--1:#096E72">"value"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">abc2</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span><span style="--0:#7FDBCA;--1:#096E72">"domain"</span><span style="--0:#D6DEEB;--1:#403F53">:</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">.bybit.com</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">}]</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="[  [{&#x22;name&#x22;:&#x22;token&#x22;,&#x22;value&#x22;:&#x22;abc1&#x22;,&#x22;domain&#x22;:&#x22;.bybit.com&#x22;}],  [{&#x22;name&#x22;:&#x22;token&#x22;,&#x22;value&#x22;:&#x22;abc2&#x22;,&#x22;domain&#x22;:&#x22;.bybit.com&#x22;}]]"><div></div></button></div></figure></div>
+<blockquote>
+<p><strong>Важно:</strong> Всегда отправляйте куки как файлы-документы через 📎 — никогда не вставляйте содержимое куки как текст.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="sravnenie-metodov">Сравнение методов</h3><a class="sl-anchor-link" href="#sravnenie-metodov"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Сравнение методов»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Функция</th><th>Afina Browser</th><th>AdsPower TXT</th><th>Ручной</th></tr></thead><tbody><tr><td>Сложность</td><td>Легко</td><td>Легко</td><td>Средне</td></tr><tr><td>Нужные файлы</td><td>1 файл из Afina</td><td>1 <code dir="auto">.txt</code></td><td>Прокси (текстом) + N <code dir="auto">.json</code> файлов</td></tr><tr><td>Прокси включены</td><td>Да</td><td>Да</td><td>Отдельный шаг</td></tr><tr><td>User agent</td><td>Да</td><td>Да (если включено)</td><td>Не включён</td></tr><tr><td>Лучше для</td><td>Пользователей Afina</td><td>Пользователей AdsPower</td><td>Отдельные источники прокси/куки</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="konveyer-validatsii-akkauntov">Конвейер валидации аккаунтов</h2><a class="sl-anchor-link" href="#konveyer-validatsii-akkauntov"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Конвейер валидации аккаунтов»</span></a></div>
+<p>Каждый загруженный аккаунт проходит 3-этапную валидацию перед созданием заказа.</p>
+<div class="mermaid" data-content="flowchart TD
+    A[&#x22;📎 Аккаунт загружен&#x22;] --> B[&#x22;Шаг 1: Проверка прокси&#x22;]
+
+    B -->|&#x22;✅ Подключено&#x22;| C[&#x22;Шаг 2: Доступ к бирже&#x22;]
+    B -->|&#x22;❌ Ошибка&#x22;| X1[&#x22;❌ Прокси не работает&#x22;]
+
+    C -->|&#x22;✅ Доступна&#x22;| D[&#x22;Шаг 3: Статус аккаунта&#x22;]
+    C -->|&#x22;❌ Заблокировано&#x22;| X2[&#x22;❌ Прокси заблокирован биржей&#x22;]
+
+    D -->|&#x22;Сессия активна&#x22;| E{&#x22;Статус KYC?&#x22;}
+    D -->|&#x22;Сессия недействительна&#x22;| X3[&#x22;❌ Куки истекли&#x22;]
+
+    E -->|&#x22;Не начат&#x22;| F[&#x22;✅ Готов к заказу&#x22;]
+    E -->|&#x22;В процессе&#x22;| G[&#x22;⚠️ Уже отправлен&#x22;]
+    E -->|&#x22;Завершён&#x22;| H[&#x22;⚠️ KYC уже пройден&#x22;]
+    E -->|&#x22;Нет провайдера&#x22;| X4[&#x22;❌ Аккаунт не настроен&#x22;]" data-status="loading"></div>
+<p><strong>После валидации бот показывает:</strong></p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">📋 Verification Complete</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">✅ Passed: 3</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">❌ Failed: 1</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">🌍 Country: BR</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">💱 Exchange: BYBIT</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">❓ Create order for 3 account(s)?</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">[✅ Confirm]  [❌ Cancel]</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="📋 Verification Complete✅ Passed: 3❌ Failed: 1🌍 Country: BR💱 Exchange: BYBIT❓ Create order for 3 account(s)?[✅ Confirm]  [❌ Cancel]"><div></div></button></div></figure></div>
+<p>Только прошедшие валидацию аккаунты включаются в заказ. Непрошедшие исключаются с указанием конкретной причины ошибки.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="zhiznenniy-tsikl-zakaza">Жизненный цикл заказа</h2><a class="sl-anchor-link" href="#zhiznenniy-tsikl-zakaza"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Жизненный цикл заказа»</span></a></div>
+<div class="mermaid" data-content="stateDiagram-v2
+    [*] --> PENDING: Заказ создан в NVS Shop
+    PENDING --> ACTIVATED: Пилот открыл ссылку
+    ACTIVATED --> UPLOADING: Загрузка начата
+    UPLOADING --> PROCESSING: Подтверждено
+    PROCESSING --> COMPLETED: Все задачи завершены
+    ACTIVATED --> EXPIRED: 48ч без загрузки" data-status="loading"></div>
+<p><strong>Определения статусов:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Статус</th><th>Значение</th></tr></thead><tbody><tr><td>PENDING</td><td>Токен сгенерирован, ожидание активации пилотом</td></tr><tr><td>ACTIVATED</td><td>Пилот открыл deeplink, готов к загрузке</td></tr><tr><td>UPLOADING</td><td>Загрузка в процессе</td></tr><tr><td>PROCESSING</td><td>Селлеры работают над задачами (автоматическая проверка верификации)</td></tr><tr><td>COMPLETED</td><td>Все задачи достигли финального статуса</td></tr><tr><td>EXPIRED</td><td>48 часов прошло без загрузки</td></tr></tbody></table>
+<p><strong>Сроки:</strong> От загрузки до завершения — <strong>от нескольких минут до 1 дня</strong>, в зависимости от страны и доступности селлеров.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="spravochnik-menyu-nvs">Справочник меню NVS</h2><a class="sl-anchor-link" href="#spravochnik-menyu-nvs"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Справочник меню NVS»</span></a></div>
+<p>После активации бот предлагает 5 кнопок действий:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Кнопка</th><th>Функция</th><th>Когда использовать</th></tr></thead><tbody><tr><td>📤 <strong>Upload Accounts</strong></td><td>Начать загрузку через AdsPower или Ручной метод</td><td>Первое действие после активации</td></tr><tr><td>🔄 <strong>Order reKYC</strong></td><td>Повторная верификация лица по запросу биржи</td><td>Когда биржа запрашивает повторную проверку</td></tr><tr><td>📋 <strong>My Tasks</strong></td><td>Просмотр всех задач и их статусов</td><td>Отслеживание прогресса после создания заказа</td></tr><tr><td>💳 <strong>Deposit</strong></td><td>Адрес для пополнения BSC USDT</td><td>Пополнение счёта для платных загрузок</td></tr><tr><td>🚀 <strong>Get Full Access</strong></td><td>Обновление до полной лицензии пилота</td><td>Доступ ко всем функциям бота</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="ikonki-statusov-zadach">Иконки статусов задач</h3><a class="sl-anchor-link" href="#ikonki-statusov-zadach"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Иконки статусов задач»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Статус</th><th>Иконка</th><th>Значение</th></tr></thead><tbody><tr><td>Available</td><td>⏳</td><td>Ожидает, пока селлер заберёт</td></tr><tr><td>Taken</td><td>📋</td><td>Селлер назначен, не начал</td></tr><tr><td>In Progress</td><td>🔄</td><td>Селлер работает над KYC</td></tr><tr><td>Completed</td><td>✅</td><td>KYC отправлен, ожидает верификации</td></tr><tr><td>Verified</td><td>✅</td><td>KYC подтверждён биржей</td></tr><tr><td>Rejected</td><td>❌</td><td>KYC отклонён биржей</td></tr><tr><td>Country Mismatch</td><td>❌</td><td>Страна KYC не совпадает с заказом</td></tr><tr><td>Deadline Cancelled</td><td>⏰</td><td>Селлер не успел завершить вовремя</td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="dashbord-miniapp">Дашборд MiniApp</h2><a class="sl-anchor-link" href="#dashbord-miniapp"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Дашборд MiniApp»</span></a></div>
+<p>MiniApp на <code dir="auto">app.pilot.monster</code> — визуальный дашборд прямо в Telegram.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladki-miniapp">Вкладки MiniApp</h3><a class="sl-anchor-link" href="#vkladki-miniapp"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Вкладки MiniApp»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Вкладка</th><th>Пилот</th><th>NVS пользователь</th></tr></thead><tbody><tr><td>📦 Orders</td><td>Свои заказы</td><td>Свои NVS заказы</td></tr><tr><td>📋 Tasks</td><td>Задачи из своих заказов</td><td>Свои задачи</td></tr><tr><td>📜 History</td><td>Своя история</td><td>Своя история</td></tr><tr><td>📊 Analytics</td><td>Своя аналитика</td><td>Своя аналитика</td></tr><tr><td>👥 Sellers</td><td>Воркеры + анонимные глобальные</td><td>—</td></tr><tr><td>🌍 Globe</td><td>Карта стран</td><td>—</td></tr><tr><td>➕ New Order</td><td>Создание заказа</td><td>Поток NVS заказов</td></tr><tr><td>💬 Chat</td><td>Чат с селлером (анонимный)</td><td>—</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-orders">Вкладка Orders</h3><a class="sl-anchor-link" href="#vkladka-orders"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Вкладка Orders»</span></a></div>
+<ul>
+<li><strong>Поиск</strong> по номеру заказа, стране</li>
+<li><strong>Фильтр</strong> по статусу (активные / завершённые)</li>
+<li><strong>Карточки заказов</strong> показывают: флаг страны, продукт, количество, прогресс выполнения</li>
+<li><strong>Нажмите на заказ</strong> → детальный вид: воронка задач (Available → Taken → In Progress → Verified), назначения селлеров, предупреждения</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-tasks">Вкладка Tasks</h3><a class="sl-anchor-link" href="#vkladka-tasks"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Вкладка Tasks»</span></a></div>
+<ul>
+<li><strong>Фильтры</strong>: тип продукта, статус, селлер</li>
+<li><strong>Карточки задач</strong>: номер задачи, селлер, страна, статус, дата</li>
+<li><strong>Сортировка</strong>: по дате создания, статусу или селлеру</li>
+<li><strong>Детальный вид</strong>: этапы валидации аккаунта, история селлера, данные верификации лица</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-analytics">Вкладка Analytics</h3><a class="sl-anchor-link" href="#vkladka-analytics"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Вкладка Analytics»</span></a></div>
+<ul>
+<li><strong>Обзорные карточки</strong>: Balance, Net Spent (потрачено за период), Verified (с %), Initial KYC, REKYC реальный % (с долями «в процессе» и «по завершённым»), Financials (Total Spent, Refunded, Avg Cost)</li>
+<li><strong>Фильтры по периоду</strong>: 7D, 30D, All</li>
+<li><strong>Фильтры по типу заказа</strong>: All, Global (FCFS), Workers (назначенные)</li>
+<li><strong>Графики</strong>:
+<ul>
+<li>Verified Tasks — ежедневный тренд верификаций</li>
+<li>Тренд баланса (спарклайн)</li>
+<li>REKYC донат — реальный процент успешных реверификаций</li>
+<li>Разбивка по продуктам</li>
+<li>Распределение по странам</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Аналитика REKYC переработана: сортировка по воркерам и global-заказам, разрезы по датам, времени и активности, глубокий ресерч по каждому селлеру.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-tasks-vozvraty-refunds">Вкладка Tasks — Возвраты (Refunds)</h3><a class="sl-anchor-link" href="#vkladka-tasks-vozvraty-refunds"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Вкладка Tasks — Возвраты (Refunds)»</span></a></div>
+<p>Новый режим <strong>«Возвраты»</strong> автоматически собирает задачи, по которым нужно вернуть деньги:</p>
+<ul>
+<li><strong>Доступные возвраты</strong> — сумма к возврату на новый баланс</li>
+<li><strong>Face tasks stale 24h+</strong> — задачи, где Face Verification просрочен сутки и более</li>
+<li>Сортировка по биржам и причинам (<code dir="auto">not eligible</code>, истёкшая награда, просроченный REKYC)</li>
+<li>Кнопка <strong>Вернуть $X.XX</strong> возвращает выбранные таски одним кликом</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-sellers-vid-pilota">Вкладка Sellers (вид пилота)</h3><a class="sl-anchor-link" href="#vkladka-sellers-vid-pilota"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Вкладка Sellers (вид пилота)»</span></a></div>
+<ul>
+<li><strong>Раздел воркеров</strong>: Ваши зарегистрированные селлеры с полным <code dir="auto">@username</code>, количеством задач, процентом успеха, средним рейтингом, онлайн-индикатором</li>
+<li><strong>Глобальный раздел</strong>: Анонимные селлеры из FCFS заказов отображаются как <code dir="auto">Seller #UID</code> — личность не раскрывается</li>
+<li><strong>Бейджи уровней</strong>: Gold / Silver / Bronze на основе показателей</li>
+<li><strong>Шаринг воркеров</strong> — копируете ссылку и приглашаете исполнителя одним нажатием</li>
+<li><strong>Приватные цены</strong> — индивидуальные ставки на страну в разрезе KYC / Face</li>
+<li><strong>Сброс таска</strong> (кнопка «Сбросить») — если воркер не справился, передаёте таск другому исполнителю прямо из Mini App</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-priorities">Вкладка Priorities</h3><a class="sl-anchor-link" href="#vkladka-priorities"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Вкладка Priorities»</span></a></div>
+<p>Управление приоритетным пулом для global-заказов:</p>
+<ul>
+<li>⭐ <strong>Preferred Sellers</strong> — список селлеров, которым ваши заказы доступны первыми <strong>15 минут</strong></li>
+<li>🚫 <strong>Blacklist</strong> — глобальные исполнители, которым ваш заказ показываться не будет</li>
+<li>Карточка каждого селлера: страна, флаг, ID (<code dir="auto">Seller #XXXXXX</code>), таймер приоритета, кнопка удаления</li>
+</ul>
+<blockquote>
+<p>Сначала добавляете селлера в избранное → первые 15 минут заказ виден только ему → потом уходит в общий global-пул.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-settings">Вкладка Settings</h3><a class="sl-anchor-link" href="#vkladka-settings"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Вкладка Settings»</span></a></div>
+<p>Настройки пилота — собраны в одном экране:</p>
+<ul>
+<li><strong>Язык интерфейса</strong>: English / Русский / Українська</li>
+<li><strong>Ротация портов</strong> — только для провайдеров, где порт = ключ сессии. Не уверены — оставьте выключенным</li>
+<li><strong>Ротация сессий</strong> — меняет токен сессии в логине прокси. Автоперезапрашивает у NodeMaven / Proxyshard / Datapanrpulse / Bright Data</li>
+<li><strong>Дедлайн задания</strong> — 24h / 36h / 48h / 60h / 72h</li>
+<li><strong>Действие по дедлайну</strong>:
+<ul>
+<li><strong>Переназначить</strong> — отдать другому селлеру</li>
+<li><strong>Повтор → Возврат</strong> — повторно выдать, потом вернуть деньги</li>
+<li><strong>Отменить</strong> — закрыть задачу с возвратом</li>
+</ul>
+</li>
+<li><strong>Раскрытие данных продавцу</strong> — какие поля видны селлеру в уведомлениях о задании</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-globe">Вкладка Globe</h3><a class="sl-anchor-link" href="#vkladka-globe"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Вкладка Globe»</span></a></div>
+<p>Интерактивная визуализация глобуса на D3:</p>
+<ul>
+<li>Вращение касанием/перетаскиванием</li>
+<li>Подсветка стран по объёму задач/заказов</li>
+<li>Группировка по континентам</li>
+<li>Рейтинг стран со спарклайнами в реальном времени</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="vkladka-chat">Вкладка Chat</h3><a class="sl-anchor-link" href="#vkladka-chat"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Вкладка Chat»</span></a></div>
+<p>Обмен сообщениями между пилотами и селлерами, привязанный к задачам:</p>
+<ul>
+<li><strong>Взаимная анонимность</strong>: Пилот видит <code dir="auto">Seller #UID</code>, селлер видит <code dir="auto">Customer #ID</code></li>
+<li><strong>AI модерация</strong>: Контактная информация автоматически цензурируется</li>
+<li><strong>Контекст задачи</strong>: Сообщения привязаны к деталям задачи (ID, AdsPower, страна, продукт)</li>
+<li>Счётчик непрочитанных (обновляется каждые 5 секунд)</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="smart-session-update">Smart Session Update</h2><a class="sl-anchor-link" href="#smart-session-update"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Smart Session Update»</span></a></div>
+<p>Бот сам следит за сроком жизни сессий и не даёт куки протухнуть до старта заказа.</p>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;📤 Аккаунт загружен&#x22;] --> B[&#x22;🔍 Бот находит аккаунт в KYC/REKYC&#x22;]
+    B --> C{&#x22;Сессия живая?&#x22;}
+    C -->|Да| D[&#x22;✅ Готов к заказу&#x22;]
+    C -->|Скоро истечёт| E[&#x22;🔄 Авто-обновление&#x22;]
+    C -->|Истекла| F[&#x22;⚠️ Уведомление о необходимости обновить&#x22;]
+    E --> D" data-status="loading"></div>
+<p><strong>Что делает бот:</strong></p>
+<ul>
+<li>Находит аккаунт на REKYC / KYC потоке</li>
+<li>Проверяет актуальность сессии</li>
+<li>Автоматически обновляет сессии, которые скоро истекают</li>
+<li>Уведомляет, если требуется ваше вмешательство</li>
+</ul>
+<blockquote>
+<p>Например, у Bybit сессии живут примерно <strong>3 дня</strong> — система отслеживает это и обновляет без вашего участия.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="umnye-vozvraty-smart-refunds">Умные возвраты (Smart Refunds)</h2><a class="sl-anchor-link" href="#umnye-vozvraty-smart-refunds"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Умные возвраты (Smart Refunds)»</span></a></div>
+<p>Бот автоматически показывает задачи, по которым нужен возврат, и группирует их по причинам.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Триггер</th><th>Что показывает</th><th>Действие</th></tr></thead><tbody><tr><td>REKYC скоро просрочится</td><td>Список тасков с таймером</td><td>Возврат / повтор</td></tr><tr><td>Истёкшие награды</td><td>Задачи без вознаграждения</td><td>Возврат</td></tr><tr><td><code dir="auto">not eligible</code></td><td>Аккаунты, помеченные биржей</td><td>Возврат</td></tr><tr><td>Face stale 24h+</td><td>Просроченный Face Verification</td><td>Возврат</td></tr></tbody></table>
+<blockquote>
+<p>Все суммы суммируются — нажимаете <strong>Вернуть $X.XX</strong> и деньги падают на баланс.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="smart-rekyc-dlya-mexc-face-verification-besplatno-v-pervye-30-minut">Smart REKYC для MEXC — Face Verification бесплатно в первые 30 минут</h2><a class="sl-anchor-link" href="#smart-rekyc-dlya-mexc-face-verification-besplatno-v-pervye-30-minut"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Smart REKYC для MEXC — Face Verification бесплатно в первые 30 минут»</span></a></div>
+<p>После прохождения KYC на MEXC биржа часто запрашивает дополнительную проверку лица — особенно для торговли. Если запрос приходит <strong>в первые 30 минут</strong>, повторная верификация выполняется <strong>бесплатно</strong>.</p>
+<p><strong>Как это работает:</strong></p>
+<ol>
+<li>Селлер завершил базовый KYC</li>
+<li>Бот <strong>не выдаёт оплату сразу</strong> — 30 минут опрашивает аккаунт каждую минуту на предмет Face Verification</li>
+<li>Если MEXC запросил Face Check:
+<ul>
+<li>Бот уведомляет селлера</li>
+<li>Селлер проходит Face Scan</li>
+<li>Только после этого селлер получает оплату</li>
+</ul>
+</li>
+<li>Если Face Verification не прошёл — селлер не получает даже базовую оплату за KYC</li>
+</ol>
+<blockquote>
+<p>Если Face Check прилетает <strong>позже</strong> (через часы или дни) — это уже отдельный платный REKYC.</p>
+</blockquote>
+<p><strong>На MEXC два типа Face Verification:</strong></p>
+<ul>
+<li>На торговлю</li>
+<li>На вывод средств</li>
+</ul>
+<blockquote>
+<p>📹 <a href="https://youtu.be/6zhf3ytgfkE">Видео-демо</a> — механика на MEXC аналогична Bybit.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="anti-sibil-i-risk-system">Анти-сибил и risk-system</h2><a class="sl-anchor-link" href="#anti-sibil-i-risk-system"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Анти-сибил и risk-system»</span></a></div>
+<p>Платформа защищает заказы пилота от мультиаккаунтинга и абуза со стороны селлеров.</p>
+<p><strong>При регистрации селлер обязан:</strong></p>
+<ul>
+<li>📱 Подтвердить номер телефона через Telegram</li>
+<li>📍 Отправить геолокацию</li>
+<li>✅ Пройти сверку: GEO ↔ страна номера</li>
+</ul>
+<p>Если данные не совпадают — доступ отклоняется.</p>
+<p><strong>Дополнительные проверки:</strong></p>
+<ul>
+<li>💰 Трекинг кошельков, на которые селлеры выводят средства</li>
+<li>🔗 Выявление связей между селлерами через общие кошельки</li>
+<li>👥 Анализ признаков мультиаккаунтинга</li>
+<li>📍 Сверка геолокаций селлеров (радиус <strong>до 50 м</strong>)</li>
+</ul>
+<blockquote>
+<p>Если система видит признаки абуза — аккаунты уходят на анализ и блокируются. Ваш заказ при этом не пострадает: задача автоматически уйдёт другому исполнителю.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="provaydery-kyc">Провайдеры KYC</h2><a class="sl-anchor-link" href="#provaydery-kyc"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Провайдеры KYC»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Провайдер</th><th>KYC</th><th>REKYC</th><th>Биржи</th></tr></thead><tbody><tr><td><strong>SumSub</strong></td><td>✅</td><td>✅</td><td>Bybit, MEXC</td></tr><tr><td><strong>Jumio</strong></td><td>✅</td><td>✅</td><td>Поддерживается с последнего обновления</td></tr></tbody></table>
+<blockquote>
+<p>Выбор провайдера происходит автоматически в зависимости от того, какой запрашивает биржа на конкретном аккаунте.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="otslezhivanie-statusov-zadach">Отслеживание статусов задач</h2><a class="sl-anchor-link" href="#otslezhivanie-statusov-zadach"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Отслеживание статусов задач»</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="mashina-sostoyaniy-zadachi">Машина состояний задачи</h3><a class="sl-anchor-link" href="#mashina-sostoyaniy-zadachi"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Машина состояний задачи»</span></a></div>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;⏳ Ожидание&#x22;] --> B[&#x22;📋 Назначен&#x22;]
+    B --> C[&#x22;🔄 В работе&#x22;]
+    C --> D[&#x22;✅ Верифицирован&#x22;]
+    C --> E[&#x22;❌ Отклонён&#x22;]" data-status="loading"></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="proverka-statusa">Проверка статуса</h3><a class="sl-anchor-link" href="#proverka-statusa"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Проверка статуса»</span></a></div>
+<p><strong>В боте:</strong> Нажмите <strong>📋 My Tasks</strong>, чтобы увидеть все статусы задач.</p>
+<p><strong>В MiniApp:</strong> Откройте вкладку <strong>Tasks</strong> для визуального дашборда с фильтрами и сортировкой.</p>
+<p><strong>Автообновления:</strong> Статусы задач обновляются автоматически. NVS Shop отображает актуальный прогресс в реальном времени.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="ustranenie-oshibok">Устранение ошибок</h2><a class="sl-anchor-link" href="#ustranenie-oshibok"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Устранение ошибок»</span></a></div>
+<p>Используйте таблицу ниже для быстрого решения проблем.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="kratkaya-spravka-po-oshibkam">Краткая справка по ошибкам</h3><a class="sl-anchor-link" href="#kratkaya-spravka-po-oshibkam"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Краткая справка по ошибкам»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Ошибка</th><th>Причина</th><th>Решение</th></tr></thead><tbody><tr><td>File is not valid JSON</td><td>Неправильный тип файла или вставлен как текст</td><td>Сохраните в файл <code dir="auto">.json</code>, отправьте через 📎</td></tr><tr><td>Could not recognize proxy</td><td>Неправильный формат или лишний текст</td><td>Один прокси на строку: <code dir="auto">IP:PORT:LOGIN:PASS</code></td></tr><tr><td>All proxies failed</td><td>Истекли, неверные учётные данные, сервер недоступен</td><td>Запросите свежие прокси у провайдера</td></tr><tr><td>No KYC provider</td><td>Аккаунт не настроен для верификации</td><td>Свяжитесь с провайдером аккаунтов</td></tr><tr><td>Session expired</td><td>Старые куки, выполнен выход</td><td>Переэкспортируйте куки, будучи залогиненным</td></tr><tr><td>Proxy blocked</td><td>Биржа блокирует IP</td><td>Используйте прокси из другого региона</td></tr><tr><td>Country mismatch</td><td>Страна прокси ≠ страна заказа</td><td>Используйте прокси, совпадающий со страной заказа</td></tr><tr><td>Incorrect proxy quantity</td><td>Количество строк ≠ количеству аккаунтов</td><td>Отправьте ровно N прокси для N аккаунтов</td></tr><tr><td>Too many cookie files</td><td>Куки-файлов больше, чем прокси</td><td>Один <code dir="auto">.json</code> на каждый рабочий прокси</td></tr><tr><td>Invalid/expired link</td><td>Токен истёк (48ч) или уже использован</td><td>Получите новый deeplink в NVS Shop</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="protsess-rekyc">Процесс ReKYC</h3><a class="sl-anchor-link" href="#protsess-rekyc"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Процесс ReKYC»</span></a></div>
+<p>Иногда биржа запрашивает повторную верификацию лица для уже верифицированного аккаунта. В этом случае используйте <strong>🔄 Order reKYC</strong>:</p>
+<ol>
+<li>Выберите заказ, для которого биржа запросила повторную проверку</li>
+<li>Бот создаёт новую задачу reKYC с актуальными данными</li>
+<li>Тот же селлер, который выполнил начальную KYC, проходит повторную верификацию лица</li>
+<li>Результат обновляется автоматически</li>
+</ol>
+<blockquote>
+<p>ReKYC назначается тому же селлеру, который выполнил начальную верификацию — это обязательно, так как биржа ожидает то же лицо.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="bezopasnost-i-privatnost">Безопасность и приватность</h2><a class="sl-anchor-link" href="#bezopasnost-i-privatnost"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Безопасность и приватность»</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="chto-dostupno-selleram">Что доступно селлерам</h3><a class="sl-anchor-link" href="#chto-dostupno-selleram"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Что доступно селлерам»</span></a></div>
+<p>Селлеры получают <strong>только уникальную одноразовую ссылку верификации SumSub</strong>. Они <strong>не могут</strong>:</p>
+<ul>
+<li>Войти в ваш аккаунт на бирже</li>
+<li>Просмотреть баланс, историю сделок или позиции</li>
+<li>Совершать сделки или выводы средств</li>
+<li>Менять настройки аккаунта или пароли</li>
+<li>Получить доступ к вашим куки или учётным данным прокси</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="obrabotka-dannykh">Обработка данных</h3><a class="sl-anchor-link" href="#obrabotka-dannykh"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Обработка данных»</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Данные</th><th>Хранение</th><th>Доступ</th></tr></thead><tbody><tr><td>Куки</td><td>Зашифрованы в системе бота</td><td>Только бот — никогда не передаются селлерам</td></tr><tr><td>Прокси</td><td>Система бота</td><td>Только бот — используются для валидации и генерации ссылок</td></tr><tr><td>Email аккаунта</td><td>Система бота</td><td>Скрыт от селлеров — они видят только номер задачи</td></tr><tr><td>Имя KYC</td><td>Извлекается при валидации</td><td>Показывается селлеру только для задач верификации лица</td></tr><tr><td>Ссылка верификации</td><td>Одноразовый URL</td><td>Селлер получает уникальную ссылку, истекает после использования</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="sovety">Советы</h3><a class="sl-anchor-link" href="#sovety"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Советы»</span></a></div>
+<ul>
+<li><strong>Используйте тот же IP/прокси</strong>, с которого был создан аккаунт, чтобы избежать подозрений</li>
+<li><strong>Куки истекают</strong> — экспортируйте свежие куки незадолго до загрузки</li>
+<li><strong>Не делитесь deeplink</strong> — каждая ссылка привязана к вашему Telegram-аккаунту</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="faq">FAQ</h2><a class="sl-anchor-link" href="#faq"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «FAQ»</span></a></div>
+<p><strong>В: Какие файлы мне нужны?</strong></p>
+<ul>
+<li>Afina Browser: Один файл-экспорт из Afina</li>
+<li>AdsPower TXT: Один файл <code dir="auto">.txt</code> (содержит всё)</li>
+<li>Ручной: Прокси (текстом в чат) + файлы куки <code dir="auto">.json</code> (один на аккаунт)</li>
+</ul>
+<p><strong>В: Что такое Smart Session Update?</strong>
+Бот сам следит за сроком жизни куки (например, Bybit ≈3 дня), обновляет истекающие сессии и предупреждает, если требуется ваше вмешательство.</p>
+<p><strong>В: Как работают Priority и Blacklist?</strong>
+В Mini App → вкладка <strong>Priorities</strong> добавляете селлера в избранное — первые 15 минут он видит ваш заказ в приоритете. Blacklist полностью блокирует выбранных global-исполнителей от ваших заказов.</p>
+<p><strong>В: Что значит «Сбросить» в задаче?</strong>
+Если ваш воркер не справляется с задачей — нажимаете <strong>Сбросить</strong>, и таск уходит другому воркеру (или в global-пул, если своих свободных нет).</p>
+<p><strong>В: Как настроить дедлайн задания?</strong>
+Mini App → Settings → <strong>Дедлайн задания</strong>: выбираете 24h / 36h / 48h / 60h / 72h. Действие при просрочке: <strong>Переназначить</strong> / <strong>Повтор → Возврат</strong> / <strong>Отменить</strong>.</p>
+<p><strong>В: На MEXC после KYC прилетел Face Verification — это платно?</strong>
+Если запрос пришёл <strong>в первые 30 минут после KYC</strong> — реверификация <strong>бесплатная</strong>. Бот сам её отследит и довыпустит селлера на Face Scan. Если запрос пришёл позже (часы/дни) — это отдельный платный REKYC.</p>
+<p><strong>В: Где взять прокси?</strong>
+У любого прокси-провайдера. Формат: <code dir="auto">IP:PORT:LOGIN:PASSWORD</code>. Страна прокси должна совпадать со страной заказа.</p>
+<p><strong>В: Где взять файлы куки?</strong>
+Экспортируйте через расширение браузера <strong>Cookie Editor</strong> (Chrome/Firefox/Edge) или через функцию экспорта вашего антидетект-браузера.</p>
+<p><strong>В: Можно ли отправить куки текстом в чат?</strong>
+Нет. Всегда сохраняйте куки в файл <code dir="auto">.json</code> и отправляйте как документ через кнопку 📎 скрепку.</p>
+<p><strong>В: Что если часть аккаунтов не прошла валидацию?</strong>
+Бот создаёт заказ только с прошедшими аккаунтами. Непрошедшие исключаются с указанием причины.</p>
+<p><strong>В: Можно ли загрузить ещё аккаунты позже?</strong>
+Да — нажмите <strong>📤 Upload Accounts</strong> снова, чтобы добавить больше аккаунтов к вашему заказу.</p>
+<p><strong>В: Сколько времени занимает KYC?</strong>
+От нескольких минут до 1 дня, в зависимости от страны и доступности селлеров.</p>
+<p><strong>В: Что значит “No KYC provider”?</strong>
+Аккаунт не настроен для KYC верификации, или куки от другого аккаунта. Свяжитесь с провайдером аккаунтов.</p>
+<p><strong>В: Как проверить прогресс задач?</strong></p>
+<ul>
+<li><strong>В боте</strong>: Нажмите <strong>📋 My Tasks</strong></li>
+<li><strong>В MiniApp</strong>: Откройте <code dir="auto">app.pilot.monster</code> → вкладка Tasks</li>
+</ul>
+<p><strong>В: Как получить доступ к MiniApp?</strong>
+Откройте <code dir="auto">app.pilot.monster</code> во встроенном браузере Telegram. Аутентификация происходит автоматически через вашу сессию Telegram.</p>
+<p><strong>В: К кому обратиться при проблемах?</strong>
+Свяжитесь с поддержкой через NVS Shop или администратора бота. Приложите скриншоты ошибок.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="kratkaya-spravka">Краткая справка</h2><a class="sl-anchor-link" href="#kratkaya-spravka"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Краткая справка»</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">Activate link → Upload accounts → Choose method → Send files → Confirm → Done!</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="Activate link → Upload accounts → Choose method → Send files → Confirm → Done!"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="cheklist-zagruzki">Чеклист загрузки</h3><a class="sl-anchor-link" href="#cheklist-zagruzki"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Чеклист загрузки»</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Deeplink активирован (заказ отображается в боте)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Страна прокси совпадает со страной заказа</li>
+<li class="task-list-item"><input type="checkbox" disabled> Куки свежие (не истекли)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Файлы отправлены как документы через 📎 (не вставлены текстом)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Количество прокси = количество аккаунтов</li>
+<li class="task-list-item"><input type="checkbox" disabled> Валидация пройдена хотя бы для 1 аккаунта</li>
+<li class="task-list-item"><input type="checkbox" disabled> Заказ подтверждён</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="poryadok-zagruzki">Порядок загрузки</h3><a class="sl-anchor-link" href="#poryadok-zagruzki"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Заголовок раздела «Порядок загрузки»</span></a></div>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;🔗 Открыть ссылку&#x22;] --> B[&#x22;📤 Выбрать метод&#x22;]
+    B --> C[&#x22;📎 Отправить файлы&#x22;]
+    C --> D[&#x22;🔍 Валидация&#x22;]
+    D --> E[&#x22;✅ Подтвердить заказ&#x22;]" data-status="loading"></div>  <script>(function(){const className = "mermaid";
+
+    window.__mermaidClassName = className;
+  })();</script>   </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n">   </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr"> <a href="/docs/kyc/nvs-faq/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg> <span class="astro-u2l5gyhi"> Предыдущая <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">NVS Загрузка</span> </span> </a> <a href="/docs/kyc/sellers-guide/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg> <span class="astro-u2l5gyhi"> Следующая <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Seller Guide</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>

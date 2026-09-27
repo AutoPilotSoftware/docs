@@ -1,0 +1,1601 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>FAQ — AutoPilot | AutoPilot</title><link rel="canonical" href="https://autopilotsoftware.github.io/docs/en/getting-started/faq/"/><link rel="alternate" hreflang="ru" href="https://autopilotsoftware.github.io/docs/getting-started/faq/"/><link rel="alternate" hreflang="en" href="https://autopilotsoftware.github.io/docs/en/getting-started/faq/"/><link rel="alternate" hreflang="uk" href="https://autopilotsoftware.github.io/docs/ua/getting-started/faq/"/><link rel="sitemap" href="/docs/sitemap-index.xml"/><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&#34;token&#34;: &#34;d98cb2456dd9448bb66e095a800bb391&#34;}"></script><link rel="shortcut icon" href="/docs/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v5.17.3"/><meta name="generator" content="Starlight v0.37.6"/><meta property="og:title" content="FAQ — AutoPilot"/><meta property="og:type" content="article"/><meta property="og:url" content="https://autopilotsoftware.github.io/docs/en/getting-started/faq/"/><meta property="og:locale" content="en"/><meta property="og:description" content="Frequently asked questions about AutoPilot Software"/><meta property="og:site_name" content="AutoPilot"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Frequently asked questions about AutoPilot Software"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/docs/_astro/print.DNXP8c50.css" media="print"><link rel="stylesheet" href="/docs/_astro/index.DJxFRPMf.css">
+<style>@layer starlight.components{:root{--sl-badge-default-border: var(--sl-color-accent);--sl-badge-default-bg: var(--sl-color-accent-low);--sl-badge-default-text: #fff;--sl-badge-note-border: var(--sl-color-blue);--sl-badge-note-bg: var(--sl-color-blue-low);--sl-badge-note-text: #fff;--sl-badge-danger-border: var(--sl-color-red);--sl-badge-danger-bg: var(--sl-color-red-low);--sl-badge-danger-text: #fff;--sl-badge-success-border: var(--sl-color-green);--sl-badge-success-bg: var(--sl-color-green-low);--sl-badge-success-text: #fff;--sl-badge-caution-border: var(--sl-color-orange);--sl-badge-caution-bg: var(--sl-color-orange-low);--sl-badge-caution-text: #fff;--sl-badge-tip-border: var(--sl-color-purple);--sl-badge-tip-bg: var(--sl-color-purple-low);--sl-badge-tip-text: #fff}[data-theme=light]:root{--sl-badge-default-bg: var(--sl-color-accent-high);--sl-badge-note-bg: var(--sl-color-blue-high);--sl-badge-danger-bg: var(--sl-color-red-high);--sl-badge-success-bg: var(--sl-color-green-high);--sl-badge-caution-bg: var(--sl-color-orange-high);--sl-badge-tip-bg: var(--sl-color-purple-high)}.sl-badge:where(.astro-avdet4wd){display:inline-block;border:1px solid var(--sl-color-border-badge);border-radius:.25rem;font-family:var(--sl-font-system-mono);line-height:normal;color:var(--sl-color-text-badge);background-color:var(--sl-color-bg-badge);overflow-wrap:anywhere}.sidebar-content .sl-badge:where(.astro-avdet4wd){line-height:1;font-size:var(--sl-text-xs);padding:.125rem .375rem}.sidebar-content a[aria-current=page]>.sl-badge:where(.astro-avdet4wd){--sl-color-bg-badge: transparent;--sl-color-border-badge: currentColor;color:inherit}.default:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-default-bg);--sl-color-border-badge: var(--sl-badge-default-border);--sl-color-text-badge: var(--sl-badge-default-text)}.note:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-note-bg);--sl-color-border-badge: var(--sl-badge-note-border);--sl-color-text-badge: var(--sl-badge-note-text)}.danger:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-danger-bg);--sl-color-border-badge: var(--sl-badge-danger-border);--sl-color-text-badge: var(--sl-badge-danger-text)}.success:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-success-bg);--sl-color-border-badge: var(--sl-badge-success-border);--sl-color-text-badge: var(--sl-badge-success-text)}.tip:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-tip-bg);--sl-color-border-badge: var(--sl-badge-tip-border);--sl-color-text-badge: var(--sl-badge-tip-text)}.caution:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-caution-bg);--sl-color-border-badge: var(--sl-badge-caution-border);--sl-color-text-badge: var(--sl-badge-caution-text)}.small:where(.astro-avdet4wd){font-size:var(--sl-text-xs);padding:.125rem .25rem}.medium:where(.astro-avdet4wd){font-size:var(--sl-text-sm);padding:.175rem .35rem}.large:where(.astro-avdet4wd){font-size:var(--sl-text-base);padding:.225rem .45rem}.sl-markdown-content :is(h1,h2,h3,h4,h5,h6) .sl-badge:where(.astro-avdet4wd){vertical-align:middle}}
+@layer starlight.components{.card-grid:where(.astro-zntqmydn){display:grid;grid-template-columns:100%;gap:1rem}.card-grid:where(.astro-zntqmydn)>*{margin-top:0!important}@media(min-width:50rem){.card-grid:where(.astro-zntqmydn){grid-template-columns:1fr 1fr;gap:1.5rem}.stagger:where(.astro-zntqmydn){--stagger-height: 5rem;padding-bottom:var(--stagger-height)}.stagger:where(.astro-zntqmydn)>*:nth-child(2n){transform:translateY(var(--stagger-height))}}}
+@layer starlight.components{svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-size, 1em);width:1em;height:1em}}
+@layer starlight.components{.sl-link-card:where(.astro-mf7fz2mj){display:grid;grid-template-columns:1fr auto;gap:.5rem;border:1px solid var(--sl-color-gray-5);border-radius:.5rem;padding:1rem;box-shadow:var(--sl-shadow-sm);position:relative}a:where(.astro-mf7fz2mj){text-decoration:none;line-height:var(--sl-line-height-headings)}a:where(.astro-mf7fz2mj):before{content:"";position:absolute;inset:0}.stack:where(.astro-mf7fz2mj){flex-direction:column;gap:.5rem}.title:where(.astro-mf7fz2mj){color:var(--sl-color-white);font-weight:600;font-size:var(--sl-text-lg)}.description:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3);line-height:1.5}.icon:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3)}.sl-link-card:where(.astro-mf7fz2mj):hover{background:var(--sl-color-gray-7, var(--sl-color-gray-6));border-color:var(--sl-color-gray-2)}.sl-link-card:where(.astro-mf7fz2mj):hover .icon:where(.astro-mf7fz2mj){color:var(--sl-color-white)}}
+@layer starlight.components{.sl-steps{--bullet-size: calc(var(--sl-line-height) * 1rem);--bullet-margin: .375rem;list-style:none;counter-reset:steps-counter var(--sl-steps-start, 0);padding-inline-start:0}.sl-steps>li{counter-increment:steps-counter;position:relative;padding-inline-start:calc(var(--bullet-size) + 1rem);padding-bottom:1px;min-height:calc(var(--bullet-size) + var(--bullet-margin))}.sl-steps>li+li{margin-top:0}.sl-steps>li:before{content:counter(steps-counter);position:absolute;top:0;inset-inline-start:0;width:var(--bullet-size);height:var(--bullet-size);line-height:var(--bullet-size);font-size:var(--sl-text-xs);font-weight:600;text-align:center;color:var(--sl-color-white);background-color:var(--sl-color-gray-6);border-radius:99rem;box-shadow:inset 0 0 0 1px var(--sl-color-gray-5)}.sl-steps>li:after{--guide-width: 1px;content:"";position:absolute;top:calc(var(--bullet-size) + var(--bullet-margin));bottom:var(--bullet-margin);inset-inline-start:calc((var(--bullet-size) - var(--guide-width)) / 2);width:var(--guide-width);background-color:var(--sl-color-hairline-light)}}@layer starlight.content{.sl-steps>li>:first-child{--lh: calc(1em * var(--sl-line-height));--shift-y: calc(.5 * (var(--bullet-size) - var(--lh)));transform:translateY(var(--shift-y));margin-bottom:var(--shift-y)}.sl-steps>li>:first-child:where(h1,h2,h3,h4,h5,h6){--lh: calc(1em * var(--sl-line-height-headings))}@supports (--prop: 1lh){.sl-steps>li>:first-child{--lh: 1lh}}}
+@layer starlight.components{.sl-link-button:where(.astro-xwgiixxa){align-items:center;border:1px solid transparent;border-radius:999rem;display:inline-flex;font-size:var(--sl-text-sm);gap:.5em;line-height:1.1875;outline-offset:.25rem;padding:.4375rem 1.125rem;text-decoration:none}.sl-link-button:where(.astro-xwgiixxa).primary{background:var(--sl-color-text-accent);border-color:var(--sl-color-text-accent);color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).primary:hover{color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).secondary{border-color:inherit;color:var(--sl-color-white)}.sl-link-button:where(.astro-xwgiixxa).minimal{color:var(--sl-color-white);padding-inline:0}.sl-link-button:where(.astro-xwgiixxa) svg{flex-shrink:0}@media(min-width:50rem){.sl-link-button:where(.astro-xwgiixxa){font-size:var(--sl-text-base);padding:.9375rem 1.25rem}}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa){margin-inline-end:1rem}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa):not(:where(p *)){margin-block:1rem}}
+</style><script type="module" src="/docs/_astro/page.B1D-nYk3.js"></script></head> <body class="astro-bguv2lll"> <a href="#_top" class="astro-7q3lir66">Skip to content</a>  <div class="page sl-flex astro-vrdttmbt"> <header class="header astro-vrdttmbt"><div class="header astro-kmkmnagf"> <div class="title-wrapper sl-flex astro-kmkmnagf"> <a href="/docs/en" class="site-title sl-flex astro-m46x6ez3">  <img class="astro-m46x6ez3" alt src="/docs/_astro/auto_pilot_logo.CfyEiyY2.png" width="600" height="600">  <span class="astro-m46x6ez3" translate="no"> AutoPilot </span> </a>  </div> <div class="sl-flex print:hidden astro-kmkmnagf"> <site-search class="astro-kmkmnagf astro-v37mnknz" data-translations="{&#34;placeholder&#34;:&#34;Search&#34;}"> <button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-v37mnknz"> <svg aria-hidden="true" class="astro-v37mnknz astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg> <span class="sl-hidden md:sl-block astro-v37mnknz" aria-hidden="true">Search</span> <kbd class="sl-hidden md:sl-flex astro-v37mnknz" style="display: none;"> <kbd class="astro-v37mnknz">Ctrl</kbd><kbd class="astro-v37mnknz">K</kbd> </kbd> </button> <dialog style="padding:0" aria-label="Search" class="astro-v37mnknz"> <div class="dialog-frame sl-flex astro-v37mnknz">  <button data-close-modal class="sl-flex md:sl-hidden astro-v37mnknz"> Cancel </button> <div class="search-container astro-v37mnknz"> <div id="starlight__search" class="astro-v37mnknz"></div> </div> </div> </dialog> </site-search>  <script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script> <script type="module" src="/docs/_astro/Search.astro_astro_type_script_index_0_lang.7TPqQKfI.js"></script>   </div> <div class="sl-hidden md:sl-flex print:hidden right-group astro-kmkmnagf"> <div class="sl-flex social-icons astro-kmkmnagf">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script> <script type="module">const r="starlight-theme",o=e=>e==="auto"||e==="dark"||e==="light"?e:"auto",c=()=>o(typeof localStorage<"u"&&localStorage.getItem(r));function n(e){typeof localStorage<"u"&&localStorage.setItem(r,e==="light"||e==="dark"?e:"")}const l=()=>matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";function t(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e==="auto"?l():e,n(e)}matchMedia("(prefers-color-scheme: light)").addEventListener("change",()=>{c()==="auto"&&t("auto")});class s extends HTMLElement{constructor(){super(),t(c()),this.querySelector("select")?.addEventListener("change",a=>{a.currentTarget instanceof HTMLSelectElement&&t(o(a.currentTarget.value))})}}customElements.define("starlight-theme-select",s);</script> <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select language</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/getting-started/faq/" class="astro-4yphtoen">Русский</option><option value="/docs/en/getting-started/faq/" selected class="astro-4yphtoen">English</option><option value="/docs/ua/getting-started/faq/" class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select><script type="module">class s extends HTMLElement{constructor(){super();const e=this.querySelector("select");e&&(e.addEventListener("change",t=>{t.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=t.currentTarget.value)}),window.addEventListener("pageshow",t=>{if(!t.persisted)return;const n=e.querySelector("option[selected]")?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}}customElements.define("starlight-lang-select",s);</script> </div> </div> </header> <nav class="sidebar print:hidden astro-vrdttmbt" aria-label="Main"> <starlight-menu-button class="print:hidden astro-jif73yzw"> <button aria-expanded="false" aria-label="Menu" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-jif73yzw"> <svg aria-hidden="true" class="open-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg> <svg aria-hidden="true" class="close-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg> </button> </starlight-menu-button> <script type="module">class s extends HTMLElement{constructor(){super(),this.btn=this.querySelector("button"),this.btn.addEventListener("click",()=>this.toggleExpanded());const t=this.closest("nav");t&&t.addEventListener("keyup",e=>this.closeOnEscape(e))}setExpanded(t){this.setAttribute("aria-expanded",String(t)),document.body.toggleAttribute("data-mobile-menu-expanded",t)}toggleExpanded(){this.setExpanded(this.getAttribute("aria-expanded")!=="true")}closeOnEscape(t){t.code==="Escape"&&(this.setExpanded(!1),this.btn.focus())}}customElements.define("starlight-menu-button",s);</script>   <div id="starlight__sidebar" class="sidebar-pane astro-vrdttmbt"> <div class="sidebar-content sl-flex astro-vrdttmbt"> <sl-sidebar-state-persist data-hash="0tgjp6c" class="astro-kku4brbg"> <script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script>  <ul class="top-level astro-3ii7xxms"> <li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Getting Started</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="0"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/en/getting-started/faq/" aria-current="page" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">FAQ</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/getting-started/macos-launch/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Launch on macOS</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Exchanges</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="1"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/en/exchanges/bybit-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bybit AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/exchanges/mexc-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">MEXC AutoPilot</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/exchanges/bitget-autopilot/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Bitget AutoPilot</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">KYC Platform</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="2"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/docs/en/kyc/autopilot-kyc-subscription/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">KYC Subscription</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/kyc/nvs-faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">NVS Upload</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/kyc/pilot-faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Pilot Guide</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/kyc/sellers-guide/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Seller Guide</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/docs/en/kyc/autopilot-kyc-tos/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Terms of Service</span>  </a> </li> </ul>  </details> </li> </ul>   <script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-wu23bvmt"> <div class="social-icons astro-wu23bvmt">  </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>  <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select language</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/docs/getting-started/faq/" class="astro-4yphtoen">Русский</option><option value="/docs/en/getting-started/faq/" selected class="astro-4yphtoen">English</option><option value="/docs/ua/getting-started/faq/" class="astro-4yphtoen">Українська</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select> </div>  </div> </div> </div> </nav> <div class="main-frame astro-vrdttmbt">  <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-67yu43on"> <aside class="right-sidebar-container print:hidden astro-67yu43on"> <div class="right-sidebar astro-67yu43on"> <script type="module" src="/docs/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.hwBsy0Mo.js"></script><script type="module" src="/docs/_astro/TableOfContents.astro_astro_type_script_index_0_lang.FuRcXuRY.js"></script><div class="lg:sl-hidden astro-pb3aqygn"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-doynk5tl"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-doynk5tl"><details id="starlight__mobile-toc" class="astro-doynk5tl"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-doynk5tl"><span class="toggle sl-flex astro-doynk5tl">On this page<svg aria-hidden="true" class="caret astro-doynk5tl astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-doynk5tl"></span></summary><div class="dropdown astro-doynk5tl"><ul class="isMobile astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#1--mail-providers" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">1. 📧 Mail Providers</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#2--2fa-how-it-works" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">2. 🔐 2FA: How It Works</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#3-️-speed-modes-speed_mode" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">3. 🏎️ Speed Modes (speed_mode)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#4--proxy-and-captcha" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">4. 🧩 Proxy and Captcha</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#5--autopilot_tablexlsx" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">5. 📊 AutoPilot_table.xlsx</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#trading-details" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">6. 📈 Trading: Details</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#futures-smart" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">6.1 🤖 Smart Futures Trading (futures_smart)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#puzzle-hunt" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">6.2 🧩 Puzzle Hunt (puzzle_hunt)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#earn" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">6.3 💰 Bybit Earn — USDT Staking (earn / unearn)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#trading-variants" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">6.4 🛒 Trading Variants (buy, limit, futures)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rewards-events" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">6.5 🎁 Rewards &amp; Events (lp, learn, ref_code, link, profit)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#withdraw" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">7. 💸 Withdrawal (withdraw)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#71--master-wallet-system--automatic-whitelists--untraceable-withdrawals" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">7.1. 🔑 Master Wallet System — Automatic Whitelists &amp; Untraceable Withdrawals</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#8--adspower--dolphin--vision--afina" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">8. 🌐 AdsPower / Dolphin / Vision / Afina</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#9-️-screen-size" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">9. 🖥️ Screen Size</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#10-️-configuration-key-parameters" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">10. ⚙️ Configuration: Key Parameters</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#11--security-and-privacy" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">11. 🔒 Security and Privacy</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#12--updates" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">12. 🔄 Updates</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#13--license-duration" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">13. ⏰ License Duration</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#14--common-errors-and-solutions" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">14. 🚨 Common Errors and Solutions</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#15--contact-developer" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">15. 💬 Contact Developer</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#16--launching-on-macos" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">16. 🍎 Launching on macOS</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#17--outlook-the-unexpected-close-error" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">17. 📧 Outlook: the “Unexpected close” error</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vpn-system-proxy" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">18. 🛡️ VPN for pilots: system proxy mode</span> </a>  </li> </ul>  </li> </ul> </div></details></nav></mobile-starlight-toc></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-pb3aqygn"><div class="sl-container astro-pb3aqygn"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#1--mail-providers" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">1. 📧 Mail Providers</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#2--2fa-how-it-works" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">2. 🔐 2FA: How It Works</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#3-️-speed-modes-speed_mode" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">3. 🏎️ Speed Modes (speed_mode)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#4--proxy-and-captcha" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">4. 🧩 Proxy and Captcha</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#5--autopilot_tablexlsx" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">5. 📊 AutoPilot_table.xlsx</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#trading-details" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">6. 📈 Trading: Details</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#futures-smart" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">6.1 🤖 Smart Futures Trading (futures_smart)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#puzzle-hunt" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">6.2 🧩 Puzzle Hunt (puzzle_hunt)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#earn" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">6.3 💰 Bybit Earn — USDT Staking (earn / unearn)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#trading-variants" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">6.4 🛒 Trading Variants (buy, limit, futures)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#rewards-events" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">6.5 🎁 Rewards &amp; Events (lp, learn, ref_code, link, profit)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#withdraw" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">7. 💸 Withdrawal (withdraw)</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#71--master-wallet-system--automatic-whitelists--untraceable-withdrawals" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">7.1. 🔑 Master Wallet System — Automatic Whitelists &amp; Untraceable Withdrawals</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#8--adspower--dolphin--vision--afina" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">8. 🌐 AdsPower / Dolphin / Vision / Afina</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#9-️-screen-size" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">9. 🖥️ Screen Size</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#10-️-configuration-key-parameters" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">10. ⚙️ Configuration: Key Parameters</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#11--security-and-privacy" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">11. 🔒 Security and Privacy</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#12--updates" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">12. 🔄 Updates</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#13--license-duration" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">13. ⏰ License Duration</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#14--common-errors-and-solutions" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">14. 🚨 Common Errors and Solutions</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#15--contact-developer" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">15. 💬 Contact Developer</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#16--launching-on-macos" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">16. 🍎 Launching on macOS</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#17--outlook-the-unexpected-close-error" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">17. 📧 Outlook: the “Unexpected close” error</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vpn-system-proxy" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">18. 🛡️ VPN for pilots: system proxy mode</span> </a>  </li> </ul>  </li> </ul> </nav></starlight-toc></div></div> </div> </aside> <div class="main-pane astro-67yu43on">  <main data-pagefind-body class="astro-bguv2lll" lang="en" dir="ltr">   <script type="module" src="/docs/_astro/MarkdownContent.astro_astro_type_script_index_0_lang.Be01RnYk.js"></script> <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <h1 id="_top" class="astro-j6tvhyss">FAQ — AutoPilot</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content">  <div class="sl-heading-wrapper level-h1"><h1 id="-faq--autopilot">📋 FAQ — AutoPilot</h1><a class="sl-anchor-link" href="#-faq--autopilot"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “📋 FAQ — AutoPilot”</span></a></div>
+<p><strong>Contents:</strong></p>
+<ol>
+<li><a href="#1--mail-providers">📧 Mail Providers</a></li>
+<li><a href="#2--2fa-how-it-works">🔐 2FA: How It Works</a></li>
+<li><a href="#3-%EF%B8%8F-speed-modes-speed_mode">🏎️ Speed Modes (speed_mode)</a></li>
+<li><a href="#4--proxy-and-captcha">🧩 Proxy and Captcha</a></li>
+<li><a href="#5--autopilot_tablexlsx">📊 AutoPilot_table.xlsx</a></li>
+<li><a href="#6--trading-details">📈 Trading: Details</a>
+<ul>
+<li><a href="#61--smart-futures-trading-futures_smart">6.1 🤖 Smart Futures Trading (futures_smart)</a></li>
+<li><a href="#62--puzzle-hunt-puzzle_hunt">6.2 🧩 Puzzle Hunt (puzzle_hunt)</a></li>
+<li><a href="#63--bybit-earn--usdt-staking-earn--unearn">6.3 💰 Bybit Earn — USDT Staking (earn / unearn)</a></li>
+<li><a href="#64--trading-variants-buy-limit-futures">6.4 🛒 Trading Variants (buy, limit, futures)</a></li>
+<li><a href="#65--rewards--events-claim-lp-learn-ref_code-link-profit">6.5 🎁 Rewards &#x26; Events (lp, learn, ref_code)</a></li>
+</ul>
+</li>
+<li><a href="#7--withdrawal-withdraw">💸 Withdrawal (withdraw)</a></li>
+<li><a href="#8--adspower--dolphin--vision--afina">🌐 AdsPower / Dolphin / Vision / Afina</a></li>
+<li><a href="#9-%EF%B8%8F-screen-size">🖥️ Screen Size</a></li>
+<li><a href="#10-%EF%B8%8F-configuration-key-parameters">⚙️ Configuration: Key Parameters</a></li>
+<li><a href="#11--security-and-privacy">🔒 Security and Privacy</a></li>
+<li><a href="#12--updates">🔄 Updates</a></li>
+<li><a href="#13--license-duration">⏰ License Duration</a></li>
+<li><a href="#14--common-errors-and-solutions">🚨 Common Errors and Solutions</a></li>
+<li><a href="#15--contact-developer">💬 Contact Developer</a></li>
+<li><a href="#16--launching-on-macos">🍎 Launching on macOS</a></li>
+<li><a href="#17--outlook-the-unexpected-close-error">📧 Outlook: the “Unexpected close” error</a></li>
+<li><a href="#vpn-system-proxy">🛡️ VPN for pilots: system proxy mode</a></li>
+</ol>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="1--mail-providers">1. 📧 Mail Providers</h3><a class="sl-anchor-link" href="#1--mail-providers"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “1. 📧 Mail Providers”</span></a></div>
+<p><strong>Available providers</strong> (column <code dir="auto">[EMAIL] mail_provider</code> / <code dir="auto">[EMAIL] forwarding_mail_provider</code>):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Provider</th><th align="center">IMAP App Password</th><th>Notes</th></tr></thead><tbody><tr><td>notletters</td><td align="center">—</td><td>Recommended ✅</td></tr><tr><td>firstmail</td><td align="center">—</td><td>Recommended ✅ (also for forwarding)</td></tr><tr><td>rambler</td><td align="center">—</td><td>Recommended ✅ (also for forwarding)</td></tr><tr><td>gazeta</td><td align="center">—</td><td></td></tr><tr><td>onet</td><td align="center">—</td><td></td></tr><tr><td>gmx.com / gmx.net</td><td align="center">—</td><td></td></tr><tr><td>nic.ru</td><td align="center">—</td><td></td></tr><tr><td>yahoo</td><td align="center">Required 🔑</td><td>App Password in security settings</td></tr><tr><td>gmail</td><td align="center">Required 🔑</td><td>App Password (requires 2FA on Google account)</td></tr><tr><td>outlook</td><td align="center">OAuth2 🔑</td><td>Refresh token (<code dir="auto">M.</code>-prefix) — auto-detected, see <a href="#-pattern-3-outlook--hotmail-via-refresh-token">Pattern 3</a></td></tr><tr><td>mailru</td><td align="center">Required 🔑</td><td>App password in security settings</td></tr><tr><td>yandex</td><td align="center">Required 🔑</td><td>App password in settings</td></tr><tr><td>icloud</td><td align="center">Required 🔑</td><td>App-Specific Password at appleid.apple.com</td></tr><tr><td>inbox.eu</td><td align="center">Required 🔑</td><td></td></tr><tr><td>proton</td><td align="center">Required 🔑</td><td>Proton Mail Bridge (paid subscription)</td></tr></tbody></table>
+<div class="mermaid" data-content="flowchart TD
+    Start[&#x22;📧 Email strategy&#x22;] --> Q{&#x22;What fits?&#x22;}
+    Q -->|&#x22;Simple and fast&#x22;| Direct[&#x22;📦 Ready-made mailboxes<br/>firstmail · notletters · rambler&#x22;]
+    Q -->|&#x22;Large-scale farm<br/>hundreds of accounts&#x22;| Farm[&#x22;🍎 iCloud Hide My Email<br/>1 inbox · up to 1000 sub-addresses&#x22;]
+    Q -->|&#x22;Existing accounts<br/>gmail / yahoo / outlook&#x22;| Fwd[&#x22;🔀 Forwarding<br/>app-password → firstmail / rambler&#x22;]
+
+    style Start fill:#37474F,color:#fff,stroke:none,rx:8
+    style Q fill:#455A64,color:#fff,stroke:none,rx:8
+    style Direct fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style Farm fill:#FF6F00,color:#fff,stroke:none,rx:8
+    style Fwd fill:#2196F3,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<p><strong>🔀 Forwarding</strong> — if your provider requires an app password, set up email forwarding to firstmail/rambler/gmx and fill in the columns:</p>
+<ul>
+<li><code dir="auto">[EMAIL] mail_forwarding_provider</code> — forwarding provider</li>
+<li><code dir="auto">[EMAIL] forwarding_mail</code> — forwarding email address</li>
+<li><code dir="auto">[EMAIL] forwarding_mail_password</code> — forwarding email password</li>
+</ul>
+<blockquote>
+<p>🍎 <strong>App-Specific Password for iCloud / Apple ID:</strong> Apple’s official guide — <a href="https://support.apple.com/en-us/102654">support.apple.com/en-us/102654</a></p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>Important:</strong> after setting up forwarding, send a test email to make sure messages arrive. Some providers activate forwarding with a delay of up to 24 hours.</p>
+</blockquote>
+<blockquote>
+<p>🛡️ <strong>Antivirus:</strong> if you have issues connecting to mail — check if your antivirus is blocking IMAP ports (993, 143).</p>
+</blockquote>
+<blockquote>
+<p>💬 <strong>Your provider not listed?</strong> Contact the developer — it will be added.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h4"><h4 id="-pattern-1-ready-made-mailboxes-simple-and-fast">📦 Pattern 1: ready-made mailboxes (simple and fast)</h4><a class="sl-anchor-link" href="#-pattern-1-ready-made-mailboxes-simple-and-fast"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “📦 Pattern 1: ready-made mailboxes (simple and fast)”</span></a></div>
+<p>The simplest path — buy a pack of mailboxes from a trusted vendor and use them directly. No setup, no forwarding.</p>
+<p><strong>Where to buy:</strong> <a href="https://t.me/buykyc_bot">KYC SHOP by NVS</a> — packs of <code dir="auto">firstmail</code> / <code dir="auto">notletters</code> with ready login and password for IMAP.</p>
+<p><strong>How to plug in:</strong></p>
+<ol>
+<li>Buy a pack of mailboxes from the shop</li>
+<li>Fill only three columns in the AutoPilot table:
+<ul>
+<li><code dir="auto">[EMAIL] mail</code> = email address from the pack</li>
+<li><code dir="auto">[EMAIL] mail_password</code> = password from the pack</li>
+<li><code dir="auto">[EMAIL] mail_provider</code> = <code dir="auto">firstmail</code> / <code dir="auto">notletters</code></li>
+</ul>
+</li>
+<li>Done — no forwarding needed, AutoPilot reads IMAP directly</li>
+</ol>
+<blockquote>
+<p>💡 Suitable for most tasks — KYC on any exchange, email verification, registrations.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h4"><h4 id="-pattern-2-icloud-farm">🍎 Pattern 2: iCloud farm</h4><a class="sl-anchor-link" href="#-pattern-2-icloud-farm"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “🍎 Pattern 2: iCloud farm”</span></a></div>
+<p>Alternative for those building a large-scale farm. Uses <strong>Hide My Email</strong> from iCloud+ — one main inbox receives mail from a thousand sub-addresses.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Pros</th><th>Cons</th></tr></thead><tbody><tr><td>🟢 $0.99/mo → up to 1000 hidden email addresses</td><td>❌ iPhone required to activate iCloud+</td></tr><tr><td>🟢 All emails arrive in one main inbox — read one IMAP instead of 1000</td><td>❌ Apple rate-limits creation (workaround — <a href="https://github.com/rtunazzz/hidemyemail-generator">hidemyemail-generator</a>)</td></tr><tr><td>🟢 Apple signs domains — anti-spam, anti-detection</td><td></td></tr><tr><td>🟢 Especially stable with Bybit</td><td></td></tr></tbody></table>
+<p><strong>How to set up:</strong></p>
+<ol>
+<li>Buy an iPhone + subscribe to <strong>iCloud+</strong> at <a href="https://www.icloud.com/icloudplus/">icloud.com/icloudplus</a></li>
+<li>iCloud → <strong>Hide My Email</strong> → create new addresses (manually or via script)</li>
+<li>All hidden emails forward automatically to the main iCloud inbox</li>
+<li>App-Specific Password for the main mailbox — <a href="https://support.apple.com/en-us/102654">support.apple.com/en-us/102654</a></li>
+<li>Fill in the AutoPilot table:
+<ul>
+<li><code dir="auto">[EMAIL] mail</code> = <code dir="auto">hidden_xxxx@icloud.com</code> (one of 1000)</li>
+<li><code dir="auto">[EMAIL] mail_provider</code> = <code dir="auto">icloud</code></li>
+<li><code dir="auto">[EMAIL] forwarding_mail</code> = your main <code dir="auto">main@icloud.com</code></li>
+<li><code dir="auto">[EMAIL] forwarding_mail_password</code> = App-Specific Password of the main mailbox</li>
+<li><code dir="auto">[EMAIL] mail_forwarding_provider</code> = <code dir="auto">icloud</code></li>
+</ul>
+</li>
+</ol>
+<p><strong>Deleting addresses and rotation (churning the farm):</strong></p>
+<p>You can free up slots for new addresses, with caveats (verified against <a href="https://support.apple.com/guide/icloud/mm3adb030cbf/icloud">Apple Support</a>):</p>
+<ol>
+<li>Only <strong>deactivated</strong> addresses can be deleted — <em>Deactivate</em> first, then <em>Delete</em>. At <code dir="auto">icloud.com/icloudplus</code> → <strong>Hide My Email</strong> → pick the address → <em>Deactivate</em>, then at the bottom under “N inactive addresses” → <em>Delete address</em>.</li>
+<li>Deletion is <strong>permanent</strong>: the old address can’t be recovered or reused — recreating gives you a <strong>new random</strong> address.</li>
+<li>Deletion <strong>frees a slot</strong>: at the cap Apple literally says “<em>delete one before creating another</em>” — delete one, then create a new one.</li>
+<li><strong>Not infinite and not instant.</strong> Apple throttles creation: <strong>~5 new addresses / 30 min</strong> (× number of family members), with a ~30–60 min cooldown when you hit it. Soft ceiling ~500–1000 addresses per account.</li>
+</ol>
+<blockquote>
+<p>⚙️ <strong>What AutoPilot does itself.</strong> The built-in HME generator (pure-HTTP, no browser) <strong>creates and reserves</strong> addresses respecting Apple’s limits (5/30 min, auto-cooldown on 429). <strong>Deletion is still manual</strong> at <code dir="auto">icloud.com</code>. So churning the farm = delete manually → AutoPilot generates new ones.</p>
+</blockquote>
+<p><strong>Detailed video guides:</strong></p>
+<ul>
+<li>📺 <a href="https://t.me/kyctutorial/1574">Creating iCloud farms</a></li>
+<li>📺 <a href="https://t.me/kyctutorial/1575">iCloud forwarding setup</a></li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="-pattern-3-outlook--hotmail-via-refresh-token">📨 Pattern 3: Outlook / Hotmail via refresh token</h4><a class="sl-anchor-link" href="#-pattern-3-outlook--hotmail-via-refresh-token"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “📨 Pattern 3: Outlook / Hotmail via refresh token”</span></a></div>
+<p>Microsoft disabled Basic Auth for IMAP on consumer Outlook / Hotmail accounts in 2024 — a plain mailbox password no longer works. Only OAuth2 with a refresh token does.</p>
+<p>Mailbox vendors (e.g. <a href="https://t.me/buykyc_bot">KYC SHOP by NVS</a>) sell Hotmail combos in this format:</p>
+<div class="expressive-code"><link rel="stylesheet" href="/docs/_astro/ec.v4551.css"><script type="module" src="/docs/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">email:password:recovery_email:recovery_url:2step_codes:M.C510_BAY...</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="email:password:recovery_email:recovery_url:2step_codes:M.C510_BAY..."><div></div></button></div></figure></div>
+<p>AutoPilot only needs two fields: <code dir="auto">email</code> and the long token at the end (starts with <code dir="auto">M.</code>).</p>
+<p><strong>How to plug in:</strong></p>
+<ol>
+<li>Buy a Hotmail combo pack from the shop</li>
+<li>Fill three columns in the AutoPilot table:
+<ul>
+<li><code dir="auto">[EMAIL] mail</code> = <code dir="auto">name@hotmail.com</code> (first field of the combo)</li>
+<li><code dir="auto">[EMAIL] mail_password</code> = <code dir="auto">M.C510_BAY...</code> (last field — the refresh token, <strong>not</strong> the regular password)</li>
+<li><code dir="auto">[EMAIL] mail_provider</code> = <code dir="auto">outlook</code></li>
+</ul>
+</li>
+<li>Done — AutoPilot detects the refresh token by the <code dir="auto">M.</code> prefix, exchanges it for an access token via Microsoft, and connects to IMAP using XOAUTH2</li>
+</ol>
+<blockquote>
+<p>🔄 <strong>Auto-refresh:</strong> the access token lives ~1 hour, AutoPilot refreshes it in the background without pilot interaction.</p>
+</blockquote>
+<blockquote>
+<p>💡 <strong>Plain passwords still work</strong> for accounts where Basic Auth isn’t disabled (legacy corporate / forwarding mailboxes). If the password doesn’t start with <code dir="auto">M.</code> — classic IMAP login/password is used.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="2--2fa-how-it-works">2. 🔐 2FA: How It Works</h3><a class="sl-anchor-link" href="#2--2fa-how-it-works"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “2. 🔐 2FA: How It Works”</span></a></div>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;🔐 Enable 2FA&#x22;] --> B[&#x22;📱 Secret saved to table&#x22;]
+    B --> C[&#x22;🔄 AutoPilot generates TOTP&#x22;]
+    C --> D[&#x22;✅ Auto-enters code&#x22;]
+
+    style A fill:#9C27B0,color:#fff,stroke:none,rx:8
+    style D fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<ul>
+<li>When enabling 2FA, the software saves the secret key to the <code dir="auto">[2FA] totp_secret_code</code> column</li>
+<li>This key can be imported into any authenticator app: Google Authenticator, Authy, 1Password, etc.</li>
+<li>AutoPilot automatically generates and enters TOTP codes when needed</li>
+<li>To manually generate a code from the secret key: <a href="https://totp.danhersam.com/">totp.danhersam.com</a></li>
+</ul>
+<blockquote>
+<p>💾 <strong>Backup:</strong> <code dir="auto">totp_secret_code</code> is additionally saved to profile logs (<code dir="auto">/logs</code> folder) — even if you accidentally clear the table, the secret key can always be found in the logs.</p>
+</blockquote>
+<blockquote>
+<p>⚡ <strong>Auto-setup:</strong> actions <code dir="auto">whitelist</code> and <code dir="auto">withdraw</code> will automatically enable 2FA if it’s not set up yet. No need to run <code dir="auto">2fa</code> separately.</p>
+</blockquote>
+<blockquote>
+<p>⏰ <strong>2FA codes not working?</strong> TOTP codes depend on your computer’s exact time. If the exchange rejects a code — sync your clock: <strong>Windows:</strong> Settings → Time &#x26; Language → Date &#x26; time → Sync now. <strong>macOS:</strong> System Settings → General → Date &#x26; Time → Set time and date automatically.</p>
+</blockquote>
+<blockquote>
+<p>🌐 <strong>Bybit: 2FA issues?</strong> If the email code doesn’t arrive when setting up Google Authenticator — set <code dir="auto">bybitglobal</code> in the <code dir="auto">[BYBIT] domain</code> column of your table. In some regions, <code dir="auto">bybitglobal.com</code> is more reliable. See <a href="/docs/en/bybit-autopilot/#-bybit-global-domains">Bybit AutoPilot → Bybit Global Domains</a> for details.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="3-️-speed-modes-speed_mode">3. 🏎️ Speed Modes (speed_mode)</h3><a class="sl-anchor-link" href="#3-️-speed-modes-speed_mode"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “3. 🏎️ Speed Modes (speed_mode)”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Mode</th><th>Cursor</th><th>Text Input</th><th>When to Use</th></tr></thead><tbody><tr><td><strong>⚡ FAST</strong></td><td>Instant movement</td><td>Fast input without errors</td><td>Bulk operations where speed matters</td></tr><tr><td><strong>🚗 MEDIUM</strong></td><td>Smooth movements, medium speed</td><td>Human-like input with minimal errors</td><td>Balance between speed and naturalness</td></tr><tr><td><strong>🐢 SLOW</strong></td><td>Slow movements with random trajectory</td><td>Input with typos and corrections</td><td>Maximum human imitation</td></tr></tbody></table>
+<p><strong>🖱️ Smart Cursor</strong> (MEDIUM/SLOW): simulates human mouse movements with random trajectory, accelerations and decelerations.</p>
+<p><strong>⌨️ Human Typing</strong> (MEDIUM/SLOW): random delays between characters, random typos with auto-correction — like a real person.</p>
+<blockquote>
+<p>💡 <strong>Recommendation:</strong> FAST is sufficient for registration and login. For trading and actions on pages with anti-bot protection — use MEDIUM.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="4--proxy-and-captcha">4. 🧩 Proxy and Captcha</h3><a class="sl-anchor-link" href="#4--proxy-and-captcha"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “4. 🧩 Proxy and Captcha”</span></a></div>
+<p><strong>Column <code dir="auto">[PROXY] proxy</code></strong> — profile proxy in format <code dir="auto">ip:port:user:password</code></p>
+<blockquote>
+<p>✅ <strong>No need to fill in</strong> — AutoPilot automatically takes the proxy from your AdsPower / Dolphin / Vision / Afina profile on the fly. The captcha is solved from the profile’s IP so it matches the IP the rest of the traffic comes from. Everything happens automatically.</p>
+</blockquote>
+<blockquote>
+<p>🏠 <strong>The proxy must be residential.</strong> The built-in solver submits the captcha check from the profile’s IP, and GeeTest does not accept datacenter IPs — the check simply fails. A cheap datacenter proxy means constant captcha failures even when everything else is configured correctly.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h4"><h4 id="proxy-rotation">🔄 Auto-rotation: Bybit mirrors and proxy sessions</h4><a class="sl-anchor-link" href="#proxy-rotation"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “🔄 Auto-rotation: Bybit mirrors and proxy sessions”</span></a></div>
+<p>Sometimes registration is blocked not by the account but by where you came from: the exchange checks the reputation of the exit IP, and if too many accounts were created from that address, the refusal arrives before the confirmation code does. <strong>AutoPilot handles this itself — in two steps.</strong></p>
+<p><strong>Step 1 — a different Bybit mirror.</strong> Bybit is several domains, and each has its own gate. The very same IP the main domain refuses often passes on <code dir="auto">bybitglobal.com</code> without a fuss. Pilots used to switch that domain by hand — now AutoPilot walks the mirrors itself:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">bybit.com → bybitglobal.com → bybit-global.com → bytick.com</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="bybit.com → bybitglobal.com → bybit-global.com → bytick.com"><div></div></button></div></figure></div>
+<blockquote>
+<p>📌 <strong>The working mirror is remembered.</strong> Bybit’s domains are separate exchanges with separate account pools: an account created on <code dir="auto">bybitglobal.com</code> does not exist on <code dir="auto">bybit.com</code>. So AutoPilot writes the mirror that worked into the <code dir="auto">[BYBIT] domain</code> column, and every later action on that profile follows it there. No more setting it by hand.</p>
+</blockquote>
+<p><strong>Step 2 — a fresh proxy session.</strong> If the mirrors run out, the address really is the problem. On residential proxies the session number is part of the login:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">customer-country-ge-sid-9f4c2ab71e08</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">         </span></span><span style="--0:#d6deeb;--1:#403f53">└─country┘     └─ session ┘</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="customer-country-ge-sid-9f4c2ab71e08         └─country┘     └─ session ┘"><div></div></button></div></figure></div>
+<p>Only the session number changes — and you get a fresh IP <strong>in the same country</strong>. AutoPilot never touches the country: otherwise the account would quietly move to another geo.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Run mode</th><th>What happens</th></tr></thead><tbody><tr><td>⚡ <strong>AutoPilot Engine</strong></td><td>Takes a fresh session and carries the registration through on its own — up to 3 tries, hands off</td></tr><tr><td>🌐 <strong>Antidetect browser</strong></td><td>The proxy belongs to the AdsPower / Dolphin / Vision / Afina profile, so AutoPilot writes a ready login with a new session into the log</td></tr></tbody></table>
+<p><strong>Providers with rotation support:</strong> NodeMaven, Proxyshard, DataImpulse, Bright Data.</p>
+<div class="sl-heading-wrapper level-h4"><h4 id="-built-in-captcha-solver">🆓 Built-in Captcha Solver</h4><a class="sl-anchor-link" href="#-built-in-captcha-solver"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “🆓 Built-in Captcha Solver”</span></a></div>
+<p>AutoPilot solves captcha <strong>on its own, inside the exe</strong> — no third-party services, no per-solve fees, no browser.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Exchange</th><th>Captcha</th><th align="center">Solved by</th><th>Cost</th></tr></thead><tbody><tr><td><strong>Bybit</strong></td><td>GeeTest v4</td><td align="center">🆓 built-in solver</td><td>$0</td></tr><tr><td><strong>MEXC</strong></td><td>GeeTest v4</td><td align="center">🆓 built-in solver</td><td>$0</td></tr><tr><td><strong>Bitget</strong></td><td>GeeTest v4</td><td align="center">🆓 built-in solver</td><td>$0</td></tr></tbody></table>
+<blockquote>
+<p>⚡ <strong>How it works:</strong> AutoPilot always tries to solve the captcha itself first and only reaches for a paid provider if it runs into a rare type the built-in solver doesn’t handle yet. Most captchas on Bybit, MEXC and Bitget are covered — you pay nothing for those.</p>
+</blockquote>
+<blockquote>
+<p>🚀 <strong><code dir="auto">captcha_key</code> is no longer required.</strong> Without a key AutoPilot starts and runs normally — it just prints a warning that the paid backup is off. Older builds used to hang forever on an empty or drained balance; current builds don’t.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h4"><h4 id="-paid-provider--backup-only">💵 Paid Provider — Backup Only</h4><a class="sl-anchor-link" href="#-paid-provider--backup-only"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “💵 Paid Provider — Backup Only”</span></a></div>
+<p>A key is only needed for the rare captcha types the built-in solver doesn’t take yet, and as a backup if it fails on a retry. In everyday use that is uncommon — if you never run into it, you don’t need a key at all.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Provider</th><th align="center"><code dir="auto">captcha_provider</code></th><th>Type</th><th>Website</th></tr></thead><tbody><tr><td><strong>CapSolver</strong> ⭐</td><td align="center"><code dir="auto">capsolver</code></td><td>Token (GeeTest v4)</td><td><a href="https://www.capsolver.com/">capsolver.com</a></td></tr><tr><td><strong>CapMonster</strong></td><td align="center"><code dir="auto">capmonster</code></td><td>Token (GeeTest v4)</td><td><a href="https://capmonster.cloud/">capmonster.cloud</a></td></tr><tr><td><strong>2Captcha</strong></td><td align="center"><code dir="auto">2captcha</code></td><td>Token (GeeTest v4)</td><td><a href="https://2captcha.com/">2captcha.com</a></td></tr></tbody></table>
+<blockquote>
+<p>⭐ <strong>If you do get a key — get CapSolver.</strong> Token-based GeeTest v4 solving, API-first approach, new captcha types picked up quickly.</p>
+</blockquote>
+<p><strong>Example configuration:</strong></p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">captcha_key=CAP-YOUR_KEY_HERE</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="captcha_key=CAP-YOUR_KEY_HERE"><div></div></button></div></figure></div>
+<blockquote>
+<p>💡 <strong>Auto-detection:</strong> AutoPilot automatically detects the captcha provider from the key format. A key starting with <code dir="auto">CAP-</code> means CapSolver. You don’t need to set <code dir="auto">captcha_provider</code> — just paste the key into <code dir="auto">captcha_key</code>, and AutoPilot will figure out which service it is.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h4"><h4 id="-how-to-set-up-capsolver-step-by-step">🔑 How to Set Up CapSolver (Step by Step)</h4><a class="sl-anchor-link" href="#-how-to-set-up-capsolver-step-by-step"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “🔑 How to Set Up CapSolver (Step by Step)”</span></a></div>
+<blockquote>
+<p>ℹ️ This step is <strong>optional</strong> — only needed if you want a paid backup for rare captcha types.</p>
+</blockquote>
+<ol>
+<li>Register at <a href="https://www.capsolver.com/">capsolver.com</a></li>
+<li>Go to <strong>Billing → Top Up</strong> and add balance via crypto</li>
+<li>Copy your <strong>API Key</strong> from the dashboard (Overview → API Key)</li>
+<li>Paste the key into <code dir="auto">AutoPilot.config</code>:
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">captcha_key=CAP-your_key</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="captcha_key=CAP-your_key"><div></div></button></div></figure></div>
+</li>
+<li>Done — AutoPilot will automatically detect that it’s CapSolver</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>Do NOT buy packages on the Market page!</strong> Those are subscriptions for specific captcha types (reCAPTCHA v2 50K for $36, reCAPTCHA v3, etc.) — <strong>AutoPilot doesn’t use them</strong>. AutoPilot works with GeeTest v4 (token-based), which only requires <strong>account balance</strong>, not a package subscription.</p>
+</blockquote>
+<blockquote>
+<p>💰 <strong>Cost:</strong> the provider charges ~$1 per 1000 GeeTest solves, but you only pay for captchas the built-in solver didn’t take — balance goes on rare types, not on every login.</p>
+</blockquote>
+<blockquote>
+<p>🔧 <strong>Captcha errors — what to do:</strong></p>
+<ul>
+<li><strong>Check the proxy first.</strong> A datacenter IP breaks both the built-in solver and the paid one. You need residential.</li>
+<li>If the log shows AutoPilot handing off to the paid provider, you hit a rare type. Add a <code dir="auto">captcha_key</code> from <code dir="auto">capsolver</code> / <code dir="auto">capmonster</code> / <code dir="auto">2captcha</code>.</li>
+<li>If the captcha fails <strong>before</strong> any handoff to a provider, topping up won’t help — it isn’t a money problem. Check the proxy and update AutoPilot.</li>
+<li>The key must be from <code dir="auto">capsolver</code>, <code dir="auto">capmonster</code> or <code dir="auto">2captcha</code> — only those do token-based GeeTest v4. A key from any other service gives you no backup.</li>
+</ul>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="5--autopilot_tablexlsx">5. 📊 AutoPilot_table.xlsx</h3><a class="sl-anchor-link" href="#5--autopilot_tablexlsx"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “5. 📊 AutoPilot_table.xlsx”</span></a></div>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;📋 Fill the table&#x22;] --> B[&#x22;⚙️ Configure settings&#x22;]
+    B --> C[&#x22;🚀 Run AutoPilot&#x22;]
+    C --> D[&#x22;✅ Results in table&#x22;]
+
+    style A fill:#2196F3,color:#fff,stroke:none,rx:8
+    style C fill:#FF9800,color:#fff,stroke:none,rx:8
+    style D fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<p><strong>Basic rules:</strong></p>
+<ul>
+<li>🚫 Do not rename column headers from the template</li>
+<li>↔️ Column order can be changed</li>
+<li>➕ You can add your own columns (AutoPilot ignores them)</li>
+<li>⏳ Do not delete rows while the software is running — wait for completion</li>
+</ul>
+<p><strong>🚀 Minimum set to start (registration):</strong></p>
+<ol>
+<li><code dir="auto">[PROFILE] profile_id</code> — Profile ID from AdsPower/Dolphin (in AdsPower that’s the <strong>ID</strong> column, <strong>NOT</strong> “Number” — <a href="#8--adspower--dolphin--vision--afina">why</a>)</li>
+<li><code dir="auto">[EMAIL] mail_provider</code> — mail service</li>
+<li><code dir="auto">[PROFILE] mail</code> — email address</li>
+<li><code dir="auto">[EMAIL] mail_password</code> — email password</li>
+</ol>
+<blockquote>
+<p>💡 <strong>Tip:</strong> only fill the <code dir="auto">ACTION</code> column for profiles you want to automate. Empty ACTION = profile will be skipped.</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h4"><h4 id="action-chains">➕ Action chains: several ACTIONs in one pass</h4><a class="sl-anchor-link" href="#action-chains"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “➕ Action chains: several ACTIONs in one pass”</span></a></div>
+<p>The <code dir="auto">ACTION</code> cell can hold a whole scenario rather than a single action — steps joined with <code dir="auto">+</code>:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">register+learn+whitelist</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="register+learn+whitelist"><div></div></button></div></figure></div>
+<p>The steps run <strong>in order on each account</strong>. Accounts still run in parallel (<code dir="auto">parallel_limit</code>) — the ordering applies only within a single account.</p>
+<p><strong>Why it exists:</strong></p>
+<ul>
+<li>Running three actions on the same accounts used to mean launching the batch three times in a row, waiting for each to finish and re-selecting the profiles every time</li>
+<li>The profile browser is <strong>not relaunched</strong> between steps — one session for the whole chain instead of three antidetect profile starts</li>
+</ul>
+<p><strong>Config settings:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Key</th><th>Default</th><th>What it does</th></tr></thead><tbody><tr><td><code dir="auto">combo_action_delay</code></td><td><code dir="auto">30,120</code></td><td>Random pause in seconds between two steps of <strong>one</strong> account. Lower it for throughput, raise it to look less like a bot</td></tr><tr><td><code dir="auto">combo_keep_browser</code></td><td><code dir="auto">YES</code></td><td>One browser for the whole chain. Set it to <code dir="auto">NO</code> if you want a clean profile launch on every step</td></tr></tbody></table>
+<blockquote>
+<p>⚠️ If a step fails, the remaining steps for <strong>that</strong> account are skipped. Other accounts keep going.</p>
+</blockquote>
+<blockquote>
+<p>📝 Spaces around <code dir="auto">+</code> do not matter, and neither does case: <code dir="auto">Register + Learn</code> = <code dir="auto">register+learn</code>. If even one step in the chain is misspelled or unavailable on your plan, the whole row is skipped.</p>
+</blockquote>
+<blockquote>
+<p>🔑 <strong>Passwords:</strong> if <code dir="auto">password</code> is not filled — AutoPilot will generate a strong password automatically (8-30 chars, uppercase + lowercase + digits + special characters) and write it to the table.</p>
+</blockquote>
+<blockquote>
+<p>📁 <strong>Is Excel fully closed?</strong> The table must be completely closed while AutoPilot is running:</p>
+<ul>
+<li>Clicking ✕ in Excel is <strong>often not enough</strong> — Windows keeps <code dir="auto">EXCEL.EXE</code> running in the background (due to OneDrive sync, AutoSave, multiple windows). Check Task Manager (<code dir="auto">Ctrl+Shift+Esc</code> → Processes tab → find <code dir="auto">EXCEL.EXE</code> → End task)</li>
+<li>Quick alternative — via command line: <code dir="auto">taskkill /IM EXCEL.EXE /F</code></li>
+<li>If <code dir="auto">EXCEL.EXE</code> is lingering in the background, AutoPilot reads stale data or can’t open the file at all. Classic symptom: “table data doesn’t refresh in console, only a PC reboot helps”</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>☁️ <strong>AutoPilot must be in a local folder</strong>, not OneDrive / Dropbox / iCloud Drive / Google Drive / any other cloud sync. Cloud-sync keeps <code dir="auto">AutoPilot_table.xlsx</code> open in the background for syncing and blocks AutoPilot from reading/writing.</p>
+<p><strong>Where to put it:</strong></p>
+<ul>
+<li><code dir="auto">C:\AutoPilot\</code> or <code dir="auto">D:\AutoPilot\</code> — any local drive</li>
+<li>Or most conveniently — on the desktop: <code dir="auto">\Desktop\AutoPilot\</code> (on Windows 11, make sure Desktop isn’t synced by OneDrive — OneDrive tray icon → Settings → Backup → disable Desktop)</li>
+</ul>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="trading-details">6. 📈 Trading: Details</h3><a class="sl-anchor-link" href="#trading-details"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “6. 📈 Trading: Details”</span></a></div>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;🪙 BTC x3&#x22;] --> B[&#x22;📈 Buy → Sell&#x22;]
+    B --> C[&#x22;🪙 ETH x5&#x22;]
+    C --> D[&#x22;📈 Buy → Sell&#x22;]
+    D --> E[&#x22;🪙 SOL x2&#x22;]
+    E --> F[&#x22;📈 Buy → Sell&#x22;]
+    F --> G[&#x22;✅ Report&#x22;]
+
+    style G fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<p><strong>🪙 Multi-coin:</strong> specify coins, amounts and cycles separated by commas:</p>
+<ul>
+<li><code dir="auto">[TRADING] trading_coin</code> = <code dir="auto">BTC,ETH,SOL</code></li>
+<li><code dir="auto">[TRADING] trading_amount</code> = <code dir="auto">10,20,5</code></li>
+<li><code dir="auto">[TRADING] trading_cycles</code> = <code dir="auto">3,5,2</code></li>
+<li>Result: 3 cycles of BTC at $10, then 5 cycles of ETH at $20, then 2 cycles of SOL at $5</li>
+</ul>
+<p><strong>🧮 Volume formula:</strong> <code dir="auto">cycles x amount x 2</code> (buy + sell)</p>
+<p><strong>📐 Dynamic order size:</strong> if balance is less than <code dir="auto">trading_amount</code> — the software automatically reduces order size to available balance.</p>
+<p><strong>⏱️ Delay between cycles:</strong> configured in settings <code dir="auto">market_trading_delay=5,15</code> (random delay from 5 to 15 seconds).</p>
+<blockquote>
+<p>💵 <strong>Minimum order:</strong> make sure there’s enough USDT for the minimum order on the exchange (usually ~5 USDT).</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="futures-smart">6.1 🤖 Smart Futures Trading (futures_smart)</h3><a class="sl-anchor-link" href="#futures-smart"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “6.1 🤖 Smart Futures Trading (futures_smart)”</span></a></div>
+<p>ACTION: <code dir="auto">futures_smart</code> — automated futures trading with market analysis, post-only limit orders and position management.</p>
+<div class="mermaid" data-content="flowchart TD
+    A[&#x22;📊 Market Analysis&#x22;] --> B{&#x22;🧠 Signal&#x22;}
+    B -->|Long ↑| C[&#x22;📝 Limit Buy Order&#x22;]
+    B -->|Short ↓| D[&#x22;📝 Limit Sell Order&#x22;]
+    C --> E{&#x22;⏳ Filled?&#x22;}
+    D --> E
+    E -->|No, timeout| A
+    E -->|Yes| F[&#x22;📈 Hold Position&#x22;]
+    F --> G[&#x22;🔄 Close at Market&#x22;]
+    G --> H{&#x22;🎯 Target Volume?&#x22;}
+    H -->|No| I[&#x22;💤 Pause&#x22;]
+    I --> A
+    H -->|Yes| J[&#x22;✅ Done&#x22;]
+
+    style A fill:#2196F3,color:#fff,stroke:none,rx:8
+    style J fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style C fill:#009688,color:#fff,stroke:none,rx:8
+    style D fill:#f44336,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<p><strong>💰 Fees:</strong> post-only limit orders = 0.02% (maker), market close = 0.055% (taker). Total ~0.075% per cycle — <strong>32% cheaper</strong> than market orders (0.11%).</p>
+<p><strong>📊 Table columns:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Column</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code dir="auto">[TRADING] trading_coin</code></td><td>Futures coin</td><td><code dir="auto">BTC</code></td></tr><tr><td><code dir="auto">[TRADING] trading_amount</code></td><td>Position size per iteration (with leverage) in USDT</td><td><code dir="auto">1000</code></td></tr><tr><td><code dir="auto">[TRADING] trading_cycles</code></td><td>Number of trading cycles</td><td><code dir="auto">15</code></td></tr></tbody></table>
+<blockquote>
+<p>🔑 <strong>Important:</strong> <code dir="auto">trading_amount</code> is the position size <strong>including leverage</strong>, not the actual balance used. Real balance per trade = <code dir="auto">trading_amount / leverage</code>.</p>
+</blockquote>
+<p><strong>📐 Formula:</strong></p>
+<ul>
+<li><strong>Real balance per trade</strong> = <code dir="auto">trading_amount ÷ leverage</code></li>
+<li><strong>Volume per cycle</strong> = <code dir="auto">trading_amount × 2</code> (open + close)</li>
+<li><strong>Target volume</strong> = <code dir="auto">trading_amount × cycles × 2</code></li>
+</ul>
+<p><strong>Example:</strong> <code dir="auto">trading_amount=1000</code>, <code dir="auto">leverage=10</code>, <code dir="auto">cycles=15</code></p>
+<ul>
+<li>Real balance per trade: 1000 ÷ 10 = <strong>100 USDT</strong></li>
+<li>Volume per cycle: 1000 × 2 = <strong>2,000 USDT</strong></li>
+<li>Target volume: 1000 × 15 × 2 = <strong>30,000 USDT</strong></li>
+</ul>
+<p><strong>⚙️ Config parameters:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Description</th><th align="center">Default</th></tr></thead><tbody><tr><td><code dir="auto">leverage</code></td><td>📊 Leverage</td><td align="center"><code dir="auto">10</code></td></tr><tr><td><code dir="auto">limit_futures_position_hold_interval</code></td><td>⏳ Position hold time, sec (min,max)</td><td align="center"><code dir="auto">50,240</code></td></tr><tr><td><code dir="auto">limit_futures_iteration_wait_interval</code></td><td>💤 Pause between cycles, sec (min,max)</td><td align="center"><code dir="auto">60,180</code></td></tr><tr><td><code dir="auto">limit_futures_order_timeout</code></td><td>⏱️ Max wait for limit order fill, sec</td><td align="center"><code dir="auto">30</code></td></tr><tr><td><code dir="auto">limit_futures_order_check_interval</code></td><td>🔍 Order execution check interval, sec</td><td align="center"><code dir="auto">5</code></td></tr><tr><td><code dir="auto">limit_futures_price_offset_ticks</code></td><td>📐 Offset in ticks from best bid/ask</td><td align="center"><code dir="auto">2</code></td></tr><tr><td><code dir="auto">limit_futures_direction_algorithm</code></td><td>🧠 Direction detection algorithm</td><td align="center"><code dir="auto">inverse_simple</code></td></tr><tr><td><code dir="auto">limit_futures_order_deviation</code></td><td>🎲 Random position size deviation, % (0 = off)</td><td align="center"><code dir="auto">0</code></td></tr></tbody></table>
+<p><strong>🧠 Direction algorithms:</strong></p>
+<ul>
+<li><code dir="auto">simple</code> — follows the trend: analysis of last 5 candles + price vs MA5 (rising → Long, falling → Short)</li>
+<li><code dir="auto">inverse_simple</code> — counter-trend: inverts the simple signal (rising → Short, falling → Long)</li>
+<li><code dir="auto">advanced</code> — complex analysis: EMA 8/21 crossover + RSI 14 + Volume Spike (1.7x above average) + Funding Rate</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>Risks:</strong> leveraged futures trading carries liquidation risk. Use moderate leverage and small amounts for volume generation.</p>
+</blockquote>
+<blockquote>
+<p>💡 <strong>Tip:</strong> if an order isn’t filled within <code dir="auto">limit_futures_order_timeout</code> — the signal is recalculated. Increase <code dir="auto">limit_futures_price_offset_ticks</code> for faster fills (but at a less favorable price).</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="puzzle-hunt">6.2 🧩 Puzzle Hunt (puzzle_hunt)</h3><a class="sl-anchor-link" href="#puzzle-hunt"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “6.2 🧩 Puzzle Hunt (puzzle_hunt)”</span></a></div>
+<p>ACTION: <code dir="auto">puzzle_hunt</code> — automatic registration, task completion and management of Bybit puzzles.</p>
+<div class="mermaid" data-content="flowchart TD
+    Start[&#x22;🧩 puzzle_hunt&#x22;] --> Parse[&#x22;📋 Parse puzzle codes&#x22;]
+    Parse --> Loop[&#x22;🔄 For each puzzle&#x22;]
+    Loop --> CheckLimit{&#x22;🔍 Check-in limit<br/>reached?&#x22;}
+    CheckLimit -->|&#x22;Yes ⛔&#x22;| Skip[&#x22;⏭️ Skip puzzle<br/>save resources&#x22;]
+    Skip --> Next{&#x22;More puzzles?&#x22;}
+    CheckLimit -->|&#x22;No ✅&#x22;| Register[&#x22;📝 Registration<br/>in puzzle&#x22;]
+    Register --> Social[&#x22;📱 Social tasks<br/>follows, retweets&#x22;]
+    Social --> TradeCheck{&#x22;📊 Trading<br/>needed?&#x22;}
+    TradeCheck -->|&#x22;Already today&#x22;| SignIn
+    TradeCheck -->|&#x22;Yes&#x22;| Trade[&#x22;💱 Trading<br/>~5 USDT volume&#x22;]
+    Trade --> Wait[&#x22;⏳ Wait 3-4 min<br/>server sync&#x22;]
+    Wait --> SignIn[&#x22;✅ Daily check-in<br/>+ receive pieces&#x22;]
+    SignIn --> Next
+    Next -->|&#x22;Yes&#x22;| Loop
+    Next -->|&#x22;No&#x22;| Result[&#x22;📊 Result in table<br/>DONE / 5∕10 / ENDED&#x22;]
+
+    style Start fill:#9C27B0,color:#fff,stroke:none,rx:8
+    style Skip fill:#FF9800,color:#fff,stroke:none,rx:8
+    style Trade fill:#2196F3,color:#fff,stroke:none,rx:8
+    style SignIn fill:#009688,color:#fff,stroke:none,rx:8
+    style Result fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<p><strong>✨ Features:</strong></p>
+<ul>
+<li>📱 Automatic puzzle registration and management</li>
+<li>📱 Instant execution and claiming of social tasks via direct requests</li>
+<li>📱 Automatic daily trading tasks and check-ins</li>
+<li>📱 Specify multiple puzzles at once — the system handles everything</li>
+<li>📱 Won’t waste trading attempts if daily check-in is already closed</li>
+<li>📱 Tracks key data: days completed / total, plus puzzle completion status</li>
+</ul>
+<p><strong>📊 Table column:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Column</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code dir="auto">[PUZZLE] event_code</code></td><td>Puzzle code (or multiple, comma-separated)</td><td><code dir="auto">0768558741987</code></td></tr></tbody></table>
+<blockquote>
+<p>📌 <strong>Column type:</strong> make the <code dir="auto">[PUZZLE] event_code</code> column <strong>text</strong> (not numeric), otherwise Excel may truncate long codes.</p>
+</blockquote>
+<p><strong>🔗 Where to get the puzzle code:</strong></p>
+<p>The code is in the puzzle link — the <code dir="auto">activityCode</code> parameter:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">https://www.bybit.com/en/trade/spot/puzzle-hunt/detail?activityCode=0768558741987</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">                                                                      </span></span><span style="--0:#d6deeb;--1:#403f53">^^^^^^^^^^^^^ — this is the code</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="https://www.bybit.com/en/trade/spot/puzzle-hunt/detail?activityCode=0768558741987                                                                      ^^^^^^^^^^^^^ — this is the code"><div></div></button></div></figure></div>
+<p><strong>📋 Managing multiple puzzles:</strong></p>
+<p>To complete multiple puzzles at once — enter codes separated by commas:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">8675373977840,0768558741987,1234567890123</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="8675373977840,0768558741987,1234567890123"><div></div></button></div></figure></div>
+<p>The system processes each puzzle sequentially: social tasks → trading (batched) → check-ins.</p>
+<p><strong>⚙️ How it works internally:</strong></p>
+<ol>
+<li><strong>Limit check</strong> — before any work, checks if the daily check-in is available. If limit is reached — the entire puzzle is skipped (trading isn’t wasted)</li>
+<li><strong>Registration</strong> — automatic participant registration in the puzzle</li>
+<li><strong>Social tasks</strong> — completes all social tasks (follows, retweets) via direct API requests + claims rewards (puzzle pieces)</li>
+<li><strong>Trading</strong> — if not traded today: buy + sell a coin from the puzzle list (~5 USDT volume). If already traded — skips</li>
+<li><strong>Wait</strong> — 3-4 minute pause for Bybit’s server to register the trading volume</li>
+<li><strong>Check-in</strong> — daily mark + receive puzzle pieces</li>
+</ol>
+<p><strong>📈 Table statuses:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Status</th><th>Meaning</th></tr></thead><tbody><tr><td><code dir="auto">DONE</code></td><td>✅ Puzzle fully completed (all days passed)</td></tr><tr><td><code dir="auto">5/10</code></td><td>🔄 Progress: 5 of 10 days completed</td></tr><tr><td><code dir="auto">ENDED</code></td><td>⏰ Puzzle expired (activity ended on Bybit)</td></tr><tr><td><code dir="auto">FAIL</code></td><td>❌ Error (details in logs)</td></tr></tbody></table>
+<p>With multiple puzzles, status is combined: <code dir="auto">[CODE1] DONE, [CODE2] 3/10</code></p>
+<blockquote>
+<p>💡 <strong>Tip:</strong> run <code dir="auto">puzzle_hunt</code> daily — the software will determine what’s already done and only perform the missing steps.</p>
+</blockquote>
+<blockquote>
+<p>⚡ <strong>puzzle_social:</strong> to only complete social tasks without trading — use ACTION <code dir="auto">puzzle_social</code>.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="earn">6.3 💰 Bybit Earn — USDT Staking (earn / unearn)</h3><a class="sl-anchor-link" href="#earn"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “6.3 💰 Bybit Earn — USDT Staking (earn / unearn)”</span></a></div>
+<p>ACTION: <code dir="auto">earn</code> — send USDT to the Flexible Savings pool (automatic staking).
+ACTION: <code dir="auto">unearn</code> (or <code dir="auto">unstake</code>) — withdraw USDT from the pool back to Funding account.</p>
+<div class="mermaid" data-content="flowchart LR
+    subgraph earn [&#x22;earn — staking&#x22;]
+        direction LR
+        A1[&#x22;💳 Trading Account&#x22;] --> A2[&#x22;💳 Funding Account&#x22;]
+        A2 --> A3[&#x22;🏦 Flexible Savings&#x22;]
+    end
+
+    subgraph unearn [&#x22;unearn — unstaking&#x22;]
+        direction LR
+        B1[&#x22;🏦 Flexible Savings&#x22;] --> B2[&#x22;💳 Funding Account&#x22;]
+    end
+
+    style A3 fill:#4CAF50,color:#fff,stroke:none,rx:8
+    style B2 fill:#2196F3,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<p><strong>⚙️ How it works:</strong></p>
+<p><strong><code dir="auto">earn</code> (staking):</strong></p>
+<ol>
+<li>KYC verification and Bybit authorization</li>
+<li>Transfer all USDT from Trading to Funding account (<code dir="auto">transferAllToFunding</code>)</li>
+<li>Get available USDT balance on Funding account</li>
+<li>Send to Flexible Savings pool: preview → pay-order → confirm-order</li>
+<li>Table status: <code dir="auto">[STAKE] SUCCESS - stake 150.25</code></li>
+</ol>
+<p><strong><code dir="auto">unearn</code> (unstaking):</strong></p>
+<ol>
+<li>KYC verification and Bybit authorization</li>
+<li>Get current Flexible Savings balance</li>
+<li>Withdraw from pool to Funding account: preview → pay-order → confirm-order</li>
+<li>Table status: <code dir="auto">[STAKE] SUCCESS - unstake 150.25</code></li>
+</ol>
+<p><strong>📊 Table columns:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Column</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code dir="auto">[WITHDRAW] withdraw_amount</code></td><td>Fixed USDT amount (optional)</td><td><code dir="auto">100</code></td></tr></tbody></table>
+<blockquote>
+<p>💡 <strong>Default:</strong> if <code dir="auto">withdraw_amount</code> is not filled — <code dir="auto">earn</code> will send <strong>all</strong> available USDT to the pool, and <code dir="auto">unearn</code> will withdraw <strong>everything</strong> from the pool.</p>
+</blockquote>
+<blockquote>
+<p>📌 <strong>Fixed amount:</strong> enter a number in <code dir="auto">withdraw_amount</code> to stake/withdraw a specific amount. If the requested amount exceeds available balance — the entire available balance will be used.</p>
+</blockquote>
+<blockquote>
+<p>🏦 <strong>Flexible Savings:</strong> this is flexible staking — funds can be withdrawn at any time, interest accrues daily. Withdrawal is instant.</p>
+</blockquote>
+<blockquote>
+<p>⚡ <strong>Auto-transfer:</strong> with <code dir="auto">earn</code>, funds are automatically transferred from Trading to Funding before staking — no manual action needed.</p>
+</blockquote>
+<blockquote>
+<p>🔄 <strong>Aliases:</strong> <code dir="auto">stake</code> = <code dir="auto">earn</code>, <code dir="auto">unstake</code> = <code dir="auto">unearn</code> — identical actions, use whichever you prefer.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="trading-variants">6.4 🛒 Trading Variants (buy, limit, futures)</h3><a class="sl-anchor-link" href="#trading-variants"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “6.4 🛒 Trading Variants (buy, limit, futures)”</span></a></div>
+<p>AutoPilot offers several trading actions for different scenarios:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Action</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">trading</code></td><td>Market</td><td>Buy-sell cycles with market orders. Volume = <code dir="auto">cycles × amount × 2</code></td></tr><tr><td><code dir="auto">trading_limit</code></td><td>Limit</td><td>Same as <code dir="auto">trading</code>, but uses limit orders for better prices</td></tr><tr><td><code dir="auto">buy</code></td><td>Market</td><td>One-time buy of a specific asset</td></tr><tr><td><code dir="auto">limit_buy</code></td><td>Limit</td><td>One-time limit buy order</td></tr><tr><td><code dir="auto">limit</code></td><td>Limit</td><td>Random limit trading for natural volume</td></tr><tr><td><code dir="auto">sell</code></td><td>Market</td><td>Sell all assets for USDT</td></tr><tr><td><code dir="auto">limit_sell</code></td><td>Limit</td><td>Sell on Funding account with limit orders</td></tr><tr><td><code dir="auto">futures</code></td><td>Market</td><td>Leveraged futures with market orders</td></tr><tr><td><code dir="auto">futures_smart</code></td><td>Limit</td><td>Smart futures with post-only orders (32% cheaper)</td></tr></tbody></table>
+<blockquote>
+<p>💡 <strong>When to use which:</strong> <code dir="auto">trading</code> for quick volume, <code dir="auto">trading_limit</code> for better prices, <code dir="auto">futures_smart</code> for cheapest fees. <code dir="auto">buy</code> / <code dir="auto">limit_buy</code> for one-off purchases.</p>
+</blockquote>
+<blockquote>
+<p>📊 <strong>Columns:</strong> all trading actions use <code dir="auto">[TRADING] trading_coin</code>, <code dir="auto">[TRADING] trading_amount</code>. Cycle-based actions also use <code dir="auto">[TRADING] trading_cycles</code>.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="rewards-events">6.5 🎁 Rewards &#x26; Events (lp, learn, ref_code, link, profit)</h3><a class="sl-anchor-link" href="#rewards-events"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “6.5 🎁 Rewards &#x26; Events (lp, learn, ref_code, link, profit)”</span></a></div>
+<p>Quick-reference for actions that require <strong>no extra columns</strong> — just set the ACTION and run:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Action</th><th>Description</th></tr></thead><tbody><tr><td><code dir="auto">lp</code></td><td>Automatic registration in the current LaunchPad event</td></tr><tr><td><code dir="auto">learn</code></td><td>Complete learning modules and set profile avatar</td></tr><tr><td><code dir="auto">ref_code</code></td><td>Extract account referral code</td></tr><tr><td><code dir="auto">link</code></td><td>Get SUMSUB KYC verification link</td></tr><tr><td><code dir="auto">profit</code></td><td>Calculate profit: total withdrawals − total deposits + balance</td></tr></tbody></table>
+<blockquote>
+<p>💡 <strong>All automatic:</strong> these actions need only <code dir="auto">profile_id</code> and login credentials. No extra columns to fill.</p>
+</blockquote>
+<blockquote>
+<p>🚀 <strong>LaunchPad (<code dir="auto">lp</code>):</strong> fully automatic — finds the current active event and registers. Run periodically when new events appear.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="withdraw">7. 💸 Withdrawal (withdraw)</h3><a class="sl-anchor-link" href="#withdraw"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “7. 💸 Withdrawal (withdraw)”</span></a></div>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;💰 Sell assets&#x22;] --> B[&#x22;🧹 Convert dust&#x22;]
+    B --> C[&#x22;💳 Withdraw USDT&#x22;]
+    C --> D[&#x22;✅ Funds sent&#x22;]
+
+    style A fill:#FF9800,color:#fff,stroke:none,rx:8
+    style D fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<p><strong>Full withdrawal</strong> (<code dir="auto">full_withdraw=YES</code> in config):</p>
+<ul>
+<li>🔄 Sell all assets for USDT at market</li>
+<li>🧹 Convert dust and small leftovers</li>
+<li>💳 Withdraw entire balance</li>
+</ul>
+<p><strong>Partial withdrawal:</strong> specify % in <code dir="auto">withdraw_amount</code> column (100 = all, 50 = half)</p>
+<p><strong>🌐 Network name:</strong> enter exactly as shown on the exchange. Examples:</p>
+<ul>
+<li>Bybit: <code dir="auto">APTOS</code>, <code dir="auto">Arbitrum One</code>, <code dir="auto">BSC (BEP20)</code></li>
+<li>MEXC: <code dir="auto">ERC20</code>, <code dir="auto">TRC20</code>, <code dir="auto">Aptos</code></li>
+<li>Bitget: <code dir="auto">BSC</code>, <code dir="auto">Arbitrum One</code></li>
+</ul>
+<blockquote>
+<p>✅ <strong>Whitelist + Withdraw:</strong> if the withdrawal address matches the whitelisted address — code verification won’t be required (fast withdrawal).</p>
+</blockquote>
+<blockquote>
+<p>🏷️ <strong>Memo/Tag:</strong> if the network requires a memo (e.g., TON, ATOM) — fill in the <code dir="auto">withdraw_memo</code> column. If not required — leave empty.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="71--master-wallet-system--automatic-whitelists--untraceable-withdrawals">7.1. 🔑 Master Wallet System — Automatic Whitelists &#x26; Untraceable Withdrawals</h3><a class="sl-anchor-link" href="#71--master-wallet-system--automatic-whitelists--untraceable-withdrawals"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “7.1. 🔑 Master Wallet System — Automatic Whitelists &#x26; Untraceable Withdrawals”</span></a></div>
+<p>Withdraw from hundreds of accounts <strong>without manually entering a single address</strong>. AutoPilot creates a unique wallet for each account, whitelists it automatically, and collects all funds to your master wallet — with <strong>$0 fees</strong> and <strong>no traceable links</strong> between accounts.</p>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;🔐 setup_aptos_hd&#x22;] --> B[&#x22;🏷️ whitelist_aptos_hd&#x22;]
+    B --> C[&#x22;💳 withdraw&#x22;]
+    C --> D[&#x22;📥 Distribute: collect&#x22;]
+
+    style A fill:#9C27B0,color:#fff,stroke:none,rx:8
+    style B fill:#FF5722,color:#fff,stroke:none,rx:8
+    style C fill:#FF9800,color:#fff,stroke:none,rx:8
+    style D fill:#4CAF50,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<p><strong>What you get:</strong></p>
+<ul>
+<li>🏷️ <strong>Automatic whitelists</strong> — no need to create addresses or fill them in the table. AutoPilot generates a unique address for each account and whitelists it on Bybit with full email/2FA confirmation</li>
+<li>🕵️ <strong>Untraceable withdrawals</strong> — every account withdraws to its own unique address. No shared address = no way to link your accounts together</li>
+<li>💰 <strong>$0 withdrawal fees</strong> — Bybit doesn’t charge for Aptos withdrawals (vs $1-2 per account on ERC20/TRC20)</li>
+<li>📥 <strong>One-click collection</strong> — after withdrawal, collect all funds from all addresses to your master wallet in seconds</li>
+<li>⚡ <strong>Instant transfers</strong> — funds arrive in ~1 second</li>
+</ul>
+<p><strong>How it works (3 actions):</strong></p>
+<ol>
+<li>
+<p><strong><code dir="auto">setup_aptos_hd</code></strong> — run once. Creates your master wallet and gives you a secret phrase (12 words). One phrase = unlimited unique addresses.</p>
+</li>
+<li>
+<p><strong><code dir="auto">whitelist_aptos_hd</code></strong> — run on all profiles. AutoPilot will:</p>
+<ul>
+<li>Create a unique Aptos address for each account</li>
+<li>Open Bybit, add it to whitelist, confirm email/2FA — all automatically</li>
+<li>Save everything to the table</li>
+</ul>
+</li>
+<li>
+<p><strong><code dir="auto">withdraw</code></strong> — withdraws all USDT to the whitelisted address on each account. Fee = <strong>$0</strong>.</p>
+</li>
+</ol>
+<p>After withdrawal — open the <strong>Distribute</strong> tab and collect everything to one wallet with one click.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Config Parameter</th><th>Description</th><th align="center">Default</th></tr></thead><tbody><tr><td><code dir="auto">aptos_hd_enabled</code></td><td>Enable Master Wallet system</td><td align="center"><code dir="auto">NO</code></td></tr><tr><td><code dir="auto">aptos_hd_auto_assign</code></td><td>Auto-assign address to new profiles</td><td align="center"><code dir="auto">YES</code></td></tr><tr><td><code dir="auto">aptos_distribution_master_key</code></td><td>Master wallet private key (hex)</td><td align="center">—</td></tr><tr><td><code dir="auto">aptos_distribution_master_index</code></td><td>Index of the master wallet</td><td align="center"><code dir="auto">0</code></td></tr><tr><td><code dir="auto">aptos_distribution_amount</code></td><td>USDT amount per distribution</td><td align="center"><code dir="auto">0.5</code></td></tr></tbody></table>
+<blockquote>
+<p>💡 <strong>Example:</strong> you have old Bybit accounts with leftover funds. Instead of manually creating addresses, entering them one by one, and collecting from each wallet — run 3 actions and everything lands on your master wallet. Zero manual work, zero fees, zero links between accounts.</p>
+</blockquote>
+<blockquote>
+<p>🔁 <strong>Safe to re-run:</strong> if an account already has an address, <code dir="auto">whitelist_aptos_hd</code> will reuse it — no duplicates.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="8--adspower--dolphin--vision--afina">8. 🌐 AdsPower / Dolphin / Vision / Afina</h3><a class="sl-anchor-link" href="#8--adspower--dolphin--vision--afina"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “8. 🌐 AdsPower / Dolphin / Vision / Afina”</span></a></div>
+<p><strong>🔀 How AutoPilot picks the antidetect browser</strong></p>
+<p>There is no browser switch in AutoPilot. The antidetect is picked for you, from what <code dir="auto">[PROFILE] profile_id</code> looks like in your table. The rules run top to bottom, and the first match wins:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Condition</th><th>Browser</th></tr></thead><tbody><tr><td><code dir="auto">vision_config</code> is set in the config</td><td><strong>Vision</strong> (overrides everything else)</td></tr><tr><td><code dir="auto">profile_id</code> is a UUID (<code dir="auto">8e308a06-f9fd-4927-...</code>) <strong>and</strong> <code dir="auto">afina_api_key</code> is set in the config</td><td><strong>Afina</strong></td></tr><tr><td><code dir="auto">profile_id</code> is <strong>digits only</strong> (<code dir="auto">1274563</code>)</td><td><strong>Dolphin</strong></td></tr><tr><td><code dir="auto">profile_id</code> is <strong>letters and digits</strong> (<code dir="auto">k1b0tidb</code>)</td><td><strong>AdsPower</strong></td></tr></tbody></table>
+<blockquote>
+<p>💡 <strong>You can mix antidetects in one table.</strong> The browser is picked per row, so a single run can drive AdsPower, Dolphin and Afina profiles together. AutoPilot checks that every app it needs is running before it starts, then runs the profiles in parallel — <code dir="auto">parallel_limit</code> sets how many at once.</p>
+<p>Vision is the odd one out: <code dir="auto">vision_config</code> is set once for the whole config and is checked first, so <strong>every</strong> profile in the table goes to Vision.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>Common problem: “Number” and “ID” mixed up.</strong> AdsPower shows two different identifiers: <strong>“Number”</strong> — a sequential index, digits only, and <strong>“ID”</strong> — letters and digits, e.g. <code dir="auto">k1b0tidb</code>. Copy the “Number” and AutoPilot sees digits only, so it goes to <strong>Dolphin</strong>. That is where <code dir="auto">Dolphin local server offline - Launch Dolphin then retry</code> comes from on a machine that never had Dolphin. You need the <strong>ID</strong> column.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>Another problem: Afina without the key.</strong> Afina needs <strong>both</strong> conditions at once — a UUID in <code dir="auto">profile_id</code> and <code dir="auto">afina_api_key</code> in the config. Without the key the row matches no rule (a UUID fails the “letters and digits” check because of the dashes), and the profile goes to <strong>AdsPower</strong>. You end up with an AdsPower error about a profile that isn’t there. Check <code dir="auto">afina_api_key</code> in your config.</p>
+</blockquote>
+<p><strong>AdsPower:</strong></p>
+<ul>
+<li>📥 Install the latest SunBrowser: Settings → Local Settings</li>
+<li>💳 Requires a <strong>paid subscription</strong> (minimum Base)</li>
+<li>📤 Export profiles: Select → Export → Number, ID, Name. The AutoPilot table takes the <strong>ID</strong> (<code dir="auto">k1b0tidb</code>), <strong>NOT</strong> the “Number” — otherwise the profile goes to Dolphin (see above)</li>
+<li>🔌 Default API port: <code dir="auto">50325</code> (configurable in settings <code dir="auto">adspower_port</code>)</li>
+<li>⚠️ <strong>Be sure to disable “API verification”</strong> (<strong>API &#x26; MCP → API Settings</strong>). If the toggle is on, every request to the local API requires a key, and AutoPilot won’t be able to start and stop profiles. The toggle must be <strong>off</strong>:</li>
+</ul>
+<p><img alt="AdsPower — disable API verification" loading="lazy" decoding="async" fetchpriority="auto" width="1775" height="602" src="/docs/_astro/api-verification.Cq7XfllG_Z1l0xCQ.webp" ></p>
+<p><strong>Dolphin:</strong></p>
+<ul>
+<li>Enable Profile ID: Gear icon → Customize columns → Profile ID</li>
+<li>▶️ The <strong>Dolphin Anty app must be running and you must be logged in</strong> — AutoPilot manages profiles via the local API (port <code dir="auto">3001</code>). Automation requires an <strong>active paid subscription</strong> (starting profiles via API is not available on the free plan).</li>
+<li>🔑 <strong>You must set your own token in the config:</strong> <code dir="auto">dolphin_key=YOUR_API_TOKEN</code>. Without it AutoPilot cannot fetch the profile’s proxy from Dolphin — the captcha will be solved from the wrong IP and registration/login will fail.
+<ul>
+<li>Where to get it: <strong>Dolphin Anty → Settings → API</strong> (or on <a href="https://dolphin-anty.com">dolphin-anty.com</a> → API section) → create a token → copy the long string like <code dir="auto">eyJ0eXAi...</code>.</li>
+<li>⚠️ The token in the config template is a <strong>placeholder and already expired</strong>. Replace it with your own fresh one, otherwise you’ll get Dolphin errors.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Vision:</strong></p>
+<ul>
+<li>In config: <code dir="auto">vision_config=folder_name,API_key</code></li>
+<li>Local API port: <code dir="auto">vision_port=53633</code> (default 3030 — set your VisionM port)</li>
+</ul>
+<p><strong>Afina:</strong></p>
+<ul>
+<li>In config: <code dir="auto">afina_api_key=your_API_key</code> and <code dir="auto">afina_port=50778</code> (default port)</li>
+<li>The API key is found in Afina settings (Settings → API)</li>
+<li>🆔 <code dir="auto">[PROFILE] profile_id</code> = <strong>Account ID</strong> (a UUID like <code dir="auto">8e308a06-f9fd-4927-...</code>) — the <strong>“Account ID”</strong> column in Afina (copy icon next to it). <strong>NOT</strong> the profile name and <strong>NOT</strong> the “ID” column (that’s an internal number the API does not accept). No such column? Top-right → <strong>Columns</strong> → enable <strong>Account ID</strong>.</li>
+<li>♻️ The profile is <strong>reused</strong> between actions automatically (not relaunched each time). Set <code dir="auto">close_after=NO</code> to keep it open. Login/register always start with a clean session.</li>
+</ul>
+<p><strong>🚨 Common errors:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Error</th><th>Solution</th></tr></thead><tbody><tr><td><code dir="auto">Dolphin local server offline</code> but Dolphin isn’t installed</td><td>The AdsPower “Number” ended up in <code dir="auto">profile_id</code> instead of the <strong>ID</strong> — see the top of this section</td></tr><tr><td>AdsPower connection error</td><td>Restart AdsPower, check port</td></tr><tr><td>Proxy is bad</td><td>Replace proxy in profile</td></tr><tr><td>Cache problems</td><td>Clear profile cache in AdsPower</td></tr><tr><td>Browser not opening</td><td>Check paid AdsPower subscription</td></tr><tr><td>Timeout loading page</td><td>Check proxy, change fingerprint</td></tr></tbody></table>
+<blockquote>
+<p>🚀 <strong>Optimization:</strong> install Ublock/AdBlock in profiles to block ads — pages will load faster.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="9-️-screen-size">9. 🖥️ Screen Size</h3><a class="sl-anchor-link" href="#9-️-screen-size"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “9. 🖥️ Screen Size”</span></a></div>
+<p>The software automatically sets the resolution to <strong>1920x1080</strong> on the page, even if the browser window is smaller (<code dir="auto">window_size</code> setting in config).</p>
+<p>This ensures all UI elements display correctly and the software doesn’t miss buttons.</p>
+<blockquote>
+<p>📐 The <code dir="auto">window_size=1200,1000</code> parameter in config sets the browser window size, but the internal page resolution is always 1920x1080.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="10-️-configuration-key-parameters">10. ⚙️ Configuration: Key Parameters</h3><a class="sl-anchor-link" href="#10-️-configuration-key-parameters"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “10. ⚙️ Configuration: Key Parameters”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Parameter</th><th>Description</th><th align="center">Default</th></tr></thead><tbody><tr><td><code dir="auto">activation_key</code></td><td>🔑 Activation key</td><td align="center">—</td></tr><tr><td><code dir="auto">captcha_key</code></td><td>🧩 Captcha provider key (see <a href="#4--proxy-and-captcha">section 4</a>)</td><td align="center">—</td></tr><tr><td><code dir="auto">speed_mode</code></td><td>🏎️ Operation speed</td><td align="center"><code dir="auto">FAST</code></td></tr><tr><td><code dir="auto">parallel_limit</code></td><td>🔢 Parallel accounts limit</td><td align="center"><code dir="auto">NO</code></td></tr><tr><td><code dir="auto">sleep_between_accounts</code></td><td>💤 Pause between accounts</td><td align="center"><code dir="auto">NO</code></td></tr><tr><td><code dir="auto">delay_between_accounts</code></td><td>⏱️ Delay in seconds (min,max)</td><td align="center"><code dir="auto">60,120</code></td></tr><tr><td><code dir="auto">shuffle_order</code></td><td>🔀 Random order</td><td align="center"><code dir="auto">YES</code></td></tr><tr><td><code dir="auto">close_after</code></td><td>🚪 Close browser after</td><td align="center"><code dir="auto">NO</code></td></tr><tr><td><code dir="auto">close_tabs</code></td><td>🗂️ Close all tabs</td><td align="center"><code dir="auto">YES</code></td></tr><tr><td><code dir="auto">check_mail</code></td><td>📧 Check emails before start</td><td align="center"><code dir="auto">YES</code></td></tr><tr><td><code dir="auto">full_withdraw</code></td><td>💸 Full withdrawal of all assets</td><td align="center"><code dir="auto">YES</code></td></tr><tr><td><code dir="auto">email_delay_check</code></td><td>⏳ Email check interval</td><td align="center"><code dir="auto">30,300</code></td></tr><tr><td><code dir="auto">market_trading_delay</code></td><td>📈 Delay between trading cycles</td><td align="center"><code dir="auto">5,15</code></td></tr><tr><td><code dir="auto">disable_kyc_protection</code></td><td>🛡️ Allow 2FA without KYC</td><td align="center"><code dir="auto">NO</code></td></tr><tr><td><code dir="auto">color_logs</code></td><td>🎨 Colored logs in console</td><td align="center"><code dir="auto">YES</code></td></tr></tbody></table>
+<blockquote>
+<p>🕵️ <strong>Anti-detect:</strong> enable <code dir="auto">shuffle_order=YES</code> and <code dir="auto">sleep_between_accounts=YES</code> with <code dir="auto">parallel_limit=3-5</code> for natural behavior.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="11--security-and-privacy">11. 🔒 Security and Privacy</h3><a class="sl-anchor-link" href="#11--security-and-privacy"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “11. 🔒 Security and Privacy”</span></a></div>
+<div class="mermaid" data-content="flowchart LR
+    A[&#x22;🔒 AutoPilot&#x22;] -->|&#x22;Sends&#x22;| B[&#x22;📝 Error logs, system hash&#x22;]
+    A -->|&#x22;Does NOT send&#x22;| C[&#x22;🚫 Passwords, keys, table data&#x22;]
+
+    style B fill:#FF9800,color:#fff,stroke:none,rx:8
+    style C fill:#f44336,color:#fff,stroke:none,rx:8" data-status="loading"></div>
+<p><strong>What the software sends:</strong></p>
+<ul>
+<li>📝 Error logs (only error descriptions, no personal data) — when error threshold is exceeded, for debugging</li>
+<li>🔗 System hash during key verification — to track abusers</li>
+</ul>
+<p><strong>What the software does NOT send:</strong></p>
+<ul>
+<li>🚫 Passwords, email addresses, 2FA secret keys</li>
+<li>🚫 Data from AutoPilot_table.xlsx</li>
+<li>🚫 Email content and verification codes</li>
+<li>🚫 Proxy data and cookies</li>
+</ul>
+<p><strong>🤝 Guarantees:</strong> 2+ years market reputation, deposits at Taverna OTC and Crypton OTC, 120+ partners.</p>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="12--updates">12. 🔄 Updates</h3><a class="sl-anchor-link" href="#12--updates"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “12. 🔄 Updates”</span></a></div>
+<p><strong>📥 Where to download AutoPilot:</strong></p>
+<p>Current builds are published in <strong>AutoPilot Chat</strong> (Telegram) in separate topics per exchange:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Chat topic</th><th>Exchange</th><th>Platforms</th></tr></thead><tbody><tr><td><strong>Updates Bybit</strong></td><td>Bybit AutoPilot</td><td>Windows / macOS / Linux</td></tr><tr><td><strong>Updates MEXC</strong></td><td>MEXC AutoPilot</td><td>Windows / macOS / Linux</td></tr><tr><td><strong>Updates Bitget</strong></td><td>Bitget AutoPilot</td><td>Windows / macOS / Linux</td></tr></tbody></table>
+<p>Open the relevant topic → download the latest build for your OS → extract the archive. For macOS, see <a href="#16--launching-on-macos">section 16: Launching on macOS</a> — it describes the Gatekeeper quarantine removal process.</p>
+<hr>
+<p><strong>🔄 In-app auto-update:</strong></p>
+<p>AutoPilot checks for updates on every launch. If a new version is available:</p>
+<ol>
+<li>Wait for the message: <code dir="auto">"AutoPilot new version downloaded successfully!"</code></li>
+<li>Close the software</li>
+<li>Extract the <code dir="auto">AutoPilot.zip</code> archive to the current folder with replacement</li>
+<li>Launch the updated version</li>
+</ol>
+<blockquote>
+<p>♾️ <strong>Lifetime:</strong> all updates are free forever.</p>
+</blockquote>
+<blockquote>
+<p>⛔ <strong>Don’t interrupt the download:</strong> if you close the software during download — the archive may be corrupted. Wait for completion.</p>
+</blockquote>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="13--license-duration">13. ⏰ License Duration</h3><a class="sl-anchor-link" href="#13--license-duration"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “13. ⏰ License Duration”</span></a></div>
+<p>The countdown starts <strong>from the first launch</strong> of AutoPilot with that key. The expiration date is displayed in the console on every launch.</p>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="14--common-errors-and-solutions">14. 🚨 Common Errors and Solutions</h3><a class="sl-anchor-link" href="#14--common-errors-and-solutions"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “14. 🚨 Common Errors and Solutions”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Problem</th><th>Cause</th><th>Solution</th></tr></thead><tbody><tr><td>📧 Code not arriving by email</td><td>IMAP blocked / app password</td><td>Check mail_password, set up forwarding</td></tr><tr><td>🧩 Captcha not solving</td><td>Datacenter proxy / rare captcha type</td><td>Switch to a residential proxy. If you hit a rare type — add a token provider <code dir="auto">captcha_key</code>. Topping up the balance does <strong>not</strong> always help (see <a href="#4--proxy-and-captcha">section 4</a>)</td></tr><tr><td>🌐 Profile not opening</td><td>AdsPower not running / free plan</td><td>Launch AdsPower, check subscription</td></tr><tr><td>📊 Table not readable</td><td>Excel is open</td><td>Close Excel before launching</td></tr><tr><td>🔐 2FA code not working</td><td>Time desync</td><td>Sync your computer time (Settings → Time)</td></tr><tr><td>⏱️ Timeout on page</td><td>Slow proxy</td><td>Replace proxy or increase timeout</td></tr><tr><td>⏳ Startup hangs on the captcha balance line</td><td>Old AutoPilot build</td><td>Update the software — older builds stopped dead when the provider balance fell below $0.05; now it’s just a warning</td></tr><tr><td>🌐 Bybit: 2FA / email / captcha unstable</td><td>Regional domain version</td><td>Set <code dir="auto">bybitglobal</code> in <code dir="auto">[BYBIT] domain</code> column (see <a href="/docs/en/bybit-autopilot/#-bybit-global-domains">Bybit → Global Domains</a>)</td></tr><tr><td>🍎 Mac: file shown as “document” / <code dir="auto">killed: 9</code></td><td>Gatekeeper quarantine</td><td>See <a href="#16--launching-on-macos">section 16: Launching on macOS</a></td></tr><tr><td>🛡️ VPN on — antidetect browser proxies stop working</td><td>Full-tunnel (TUN) mode</td><td>Switch the VPN to “System proxy” mode — see <a href="#vpn-system-proxy">section 18</a></td></tr></tbody></table>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="15--contact-developer">15. 💬 Contact Developer</h3><a class="sl-anchor-link" href="#15--contact-developer"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “15. 💬 Contact Developer”</span></a></div>
+<p><strong>Before contacting:</strong></p>
+<ol>
+<li>✅ Make sure all table fields are filled correctly</li>
+<li>🔍 Check the chat — someone may have already solved this problem</li>
+<li>📖 Read the logs carefully — they contain the main error information</li>
+</ol>
+<p><strong>When contacting, attach:</strong></p>
+<ul>
+<li>📄 Profile log file from the <code dir="auto">/logs</code> folder</li>
+<li>📸 Screenshot or video of the issue (if possible)</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="16--launching-on-macos">16. 🍎 Launching on macOS</h3><a class="sl-anchor-link" href="#16--launching-on-macos"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “16. 🍎 Launching on macOS”</span></a></div>
+<blockquote>
+<p>📥 <strong>First, download the macOS build</strong> from AutoPilot Chat (Telegram) — topic <strong>Updates Bybit / MEXC / Bitget</strong> depending on your exchange. See <a href="#12--updates">section 12: Updates</a> for details.</p>
+</blockquote>
+<p>On macOS, AutoPilot <strong>won’t launch with a double-click</strong> from Finder — the system blocks unsigned binary files. Launch is only via the terminal, and only after removing the Gatekeeper quarantine.</p>
+<p><strong>What you’ll see:</strong></p>
+<ul>
+<li>The <code dir="auto">AutoPilot</code> file appears as a “document” in Finder, not as a program</li>
+<li>Errors: <code dir="auto">cannot be opened because the developer cannot be verified</code>, <code dir="auto">killed: 9</code>, <code dir="auto">Operation not permitted</code></li>
+</ul>
+<p><strong>Quick cheat sheet</strong> (run in order in the terminal — we recommend <a href="https://www.warp.dev/">warp.dev</a>):</p>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Окно терминала</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#C5E478;--1:#3B61B0">cd</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">~/Downloads/AutoPilot</span><span style="--0:#D6DEEB;--1:#403F53">            </span><span style="--0:#919F9F;--1:#5F636F"># your folder path</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">sudo</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">xattr</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-r</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-c</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">./AutoPilot</span><span style="--0:#D6DEEB;--1:#403F53">        </span><span style="--0:#919F9F;--1:#5F636F"># remove macOS quarantine</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">chmod</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">+x</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">./AutoPilot</span><span style="--0:#D6DEEB;--1:#403F53">                </span><span style="--0:#919F9F;--1:#5F636F"># make executable</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">./AutoPilot</span><span style="--0:#D6DEEB;--1:#403F53">                         </span><span style="--0:#919F9F;--1:#5F636F"># launch</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Копировать" data-copied="Скопировано!" data-code="cd ~/Downloads/AutoPilot            # your folder pathsudo xattr -r -c ./AutoPilot        # remove macOS quarantinechmod +x ./AutoPilot                # make executable./AutoPilot                         # launch"><div></div></button></div></figure></div>
+<blockquote>
+<p>🍎 <strong>Full guide</strong> (troubleshooting for <code dir="auto">killed: 9</code> / Gatekeeper errors, Apple Silicon vs Intel, what to do after updates, FAQ): <strong><a href="/docs/en/macos-launch/">Launching AutoPilot on macOS →</a></strong></p>
+</blockquote>
+<blockquote>
+<p>💡 <strong>After the first launch</strong>, the <code dir="auto">xattr</code> and <code dir="auto">chmod</code> steps are no longer needed — subsequent launches only require <code dir="auto">cd</code> into the folder and <code dir="auto">./AutoPilot</code>. Repeat these steps after each update (the new binary comes with quarantine again).</p>
+</blockquote>
+<div class="sl-heading-wrapper level-h3"><h3 id="17--outlook-the-unexpected-close-error">17. 📧 Outlook: the “Unexpected close” error</h3><a class="sl-anchor-link" href="#17--outlook-the-unexpected-close-error"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “17. 📧 Outlook: the “Unexpected close” error”</span></a></div>
+<blockquote>
+<p>🩺 <strong>Symptom:</strong> under heavy use Outlook mail occasionally stops connecting — the log shows <code dir="auto">Email connection error: Unexpected close</code>. <strong>Your mailboxes are fine.</strong></p>
+</blockquote>
+<p>This is a temporary limit on the mail provider’s side — not a problem with your accounts, passwords, or antivirus. AutoPilot knows how to deal with it.</p>
+<p><strong>What to do:</strong></p>
+<ul>
+<li><strong>Just run it again</strong> — mail usually connects on the second or third try; AutoPilot retries the connection on its own.</li>
+<li><strong>Working at large volumes</strong> and it keeps happening? AutoPilot has a stable-mail-under-load mode. Setup is individual — message support (<strong><a href="#15--contact-developer">section 15</a></strong>) and we’ll help enable it for your case.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="vpn-system-proxy">18. 🛡️ VPN for pilots: system proxy mode</h3><a class="sl-anchor-link" href="#vpn-system-proxy"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore="">Section titled “18. 🛡️ VPN for pilots: system proxy mode”</span></a></div>
+<blockquote>
+<p>🩺 <strong>The pilot’s pain:</strong> you turn the VPN on — and proxies in your antidetect browser stop working: profiles don’t open, endless loading, wrong IP. In full-tunnel (<strong>TUN</strong>) mode every bit of system traffic goes through the VPN, including the antidetect browser’s connections to its own proxies — and the chain breaks.</p>
+</blockquote>
+<p><strong>The fix — “System proxy” mode.</strong> The VPN covers regular apps (Chrome, Telegram, the terminal, <code dir="auto">AutoPilot.exe</code>), while antidetect browsers keep using their profile proxies: the system proxy does not apply to them unless you explicitly enable “use system proxy” inside the antidetect browser.</p>
+<p><strong>Step 1. Install the INCY client</strong> — Windows / macOS / Linux (Android too): <strong><a href="https://github.com/INCY-DEV/incy-platforms/releases">GitHub → Releases</a></strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>OS</th><th>File</th></tr></thead><tbody><tr><td>🪟 Windows</td><td><code dir="auto">incy-windows-setup.exe</code> (or <code dir="auto">incy-windows-portable.zip</code>)</td></tr><tr><td>🍎 macOS</td><td><code dir="auto">incy-macos-arm64.dmg</code> (Apple Silicon) / <code dir="auto">incy-macos-intel.dmg</code> (Intel)</td></tr><tr><td>🐧 Linux</td><td><code dir="auto">incy-linux-x64.deb</code> / <code dir="auto">incy-linux-x64.rpm</code> / <code dir="auto">incy-linux-x64-portable.zip</code></td></tr></tbody></table>
+<p><strong>Step 2. Add your VLESS subscription.</strong> You need a subscription link from a VPN provider — we recommend <strong>BlancVPN</strong> (VLESS + Reality, ~50 servers, 45 countries): <strong><a href="https://blnc.to/friend/1925609385c94484a352">get a subscription →</a></strong> — this link gets you <strong>1 free month plus a discount</strong>. Copy the subscription link, open INCY and hit <strong>“Paste”</strong> (or <strong>”+ Add”</strong>) — the server list loads by itself.</p>
+<p><strong>Step 3. Settings → Connection → enable “LAN through proxy”.</strong></p>
+<p><img alt="INCY — Settings → Connection → LAN through proxy" loading="lazy" decoding="async" fetchpriority="auto" width="1714" height="960" src="/docs/_astro/incy-lan-through-proxy.BsiHH8Xe_Z1nKEoA.webp" ></p>
+<p>This toggle extends the VLESS proxy to local applications — to the terminal, and therefore to <code dir="auto">AutoPilot.exe</code> itself.</p>
+<p><strong>Step 4. Home → pick the “System proxy” mode and press the power button.</strong></p>
+<p><img alt="INCY — &quot;System proxy&quot; mode" loading="lazy" decoding="async" fetchpriority="auto" width="1730" height="982" src="/docs/_astro/incy-system-proxy.Dq118wAG_Z11to5R.webp" ></p>
+<p><strong>What you end up with:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Traffic</th><th>Goes through</th></tr></thead><tbody><tr><td>Chrome, Telegram, terminal, <code dir="auto">AutoPilot.exe</code></td><td>VPN (your VLESS subscription)</td></tr><tr><td>AdsPower / Dolphin / Vision / Afina</td><td>the profile’s proxy — same as before</td></tr></tbody></table>
+<blockquote>
+<p>🔌 <strong>If the antidetect app itself won’t load</strong> (panel doesn’t open, license/API unreachable on your network) — route the app’s own service traffic through the system proxy. In Afina: <strong>Network Detection → “Use system proxy for connection”</strong>, with the <strong>Detect system proxy</strong> and <strong>Test via system proxy</strong> buttons right there. Only the app’s traffic (API, fingerprints, license) goes through the proxy — profile proxies stay untouched.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>Do not enable TUN</strong> while working with antidetect browsers — full tunnel is exactly what breaks profile proxies. AutoPilot needs the <strong>“System proxy”</strong> mode.</p>
+</blockquote>
+<blockquote>
+<p>💡 Screenshots are INCY v3.4.2 with the Russian interface — the menu items are the same in other languages.</p>
+</blockquote>  <script>(function(){const className = "mermaid";
+
+    window.__mermaidClassName = className;
+  })();</script>   </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n">   </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr">  <a href="/docs/en/getting-started/macos-launch/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg> <span class="astro-u2l5gyhi"> Next <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Launch on macOS</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>
